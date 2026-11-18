@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title data-t="title">Robin &amp; Julia Mirku – Wer in Ihrer Nähe sucht, soll Sie finden.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF4F4;
+  --bg-2:#E2ECEC;
+  --card:#FFFFFF;
+  --ink:#0E3A3D;
+  --ink-2:#3F5F61;
+  --mute:#9DB6B7;
+  --line:#CFDDDD;
+  --coral:#E8613C;
+  --coral-ink:#B8401C;
+  --deep:#0E3A3D;
+  --r:20px;
+  --rail:96px;
+  --sx:15px;
+  --serif:'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.6;overflow-x:hidden}
+svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-.01em}
+.wrap{max-width:1220px;margin:0 auto;padding:0 40px}
+.skip{position:absolute;left:16px;top:-80px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:10px;z-index:50;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--coral-ink);outline-offset:3px;border-radius:6px}
+.inv :focus-visible{outline-color:#FFB79F}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 28px;border-radius:14px;background:var(--coral-ink);color:#fff;font-weight:600;font-size:18px;text-decoration:none;white-space:nowrap;transition:background .2s ease, transform .2s ease}
+.btn:hover{background:#9E3414}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-o{min-height:44px;padding:0 18px;font-size:16px;background:transparent;color:var(--ink);border:1.5px solid var(--ink);min-width:240px}
+.btn-o:hover{background:var(--ink);color:#fff}
+
+header.top{position:sticky;top:0;z-index:30;background:rgba(238,244,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{height:78px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--serif);font-size:23px;font-weight:600;white-space:nowrap;min-height:44px}
+.brand svg{width:30px;height:30px;flex:none}
+.spacer{flex:1}
+.lang{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--bg-2);border:1px solid var(--line)}
+.lang button{all:unset;box-sizing:border-box;width:50px;height:44px;display:grid;place-items:center;border-radius:10px;font-weight:600;font-size:15px;letter-spacing:.06em;cursor:pointer;color:var(--ink-2)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.lang button:focus-visible{outline:3px solid var(--coral-ink);outline-offset:2px}
+
+main{position:relative}
+#route{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:0;overflow:visible}
+.route-fallback{position:absolute;top:640px;bottom:120px;left:calc(50% - 610px + 40px + 22px);border-left:2px dashed var(--mute);z-index:0}
+.js-route .route-fallback{display:none}
+section{position:relative;z-index:1}
+.stop{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--ink);left:var(--sx);top:.42em;z-index:2}
+h2 .stop{left:calc(var(--sx) - var(--rail))}
+.stop.c{border-color:var(--coral)}
+.railed{padding-left:var(--rail);position:relative}
+
+/* hero */
+.hero{padding:56px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;min-height:600px}
+.hero h1{font-size:clamp(42px,5vw,72px);max-width:12.5ch}
+.hero h1 em{font-style:italic;color:var(--coral-ink)}
+.hero .sub{margin-top:26px;font-size:20px;color:var(--ink-2);max-width:32em}
+.hero .cta{margin-top:34px}
+
+.stack{position:relative;container-type:inline-size;aspect-ratio:1/0.92;width:100%}
+.stack .glow{position:absolute;inset:8% 0 0 12%;border-radius:50%;background:radial-gradient(closest-side, #D3E6E6, rgba(211,230,230,0))}
+.sc{position:absolute;background:var(--card);border-radius:4cqw;box-shadow:0 1.2cqw 4cqw rgba(14,58,61,.13), 0 0 0 1px rgba(14,58,61,.06);padding:3.4cqw;display:flex;flex-direction:column;gap:2cqw}
+.tag{position:absolute;top:-3.4cqw;left:3.4cqw;background:var(--ink);color:#fff;font-size:2.3cqw;font-weight:600;letter-spacing:.06em;padding:.9cqw 2.2cqw;border-radius:5cqw;line-height:1.2}
+.s1{left:0;top:4%;width:56%}
+.s2{left:24%;top:31%;width:52%;z-index:2}
+.s3{right:0;top:60%;width:50%;z-index:3}
+.ln{height:1.7cqw;border-radius:2cqw;background:var(--bg-2)}
+.ln.d{background:var(--ink)}
+.w30{width:30%}.w45{width:45%}.w60{width:60%}.w75{width:75%}.w90{width:90%}
+.q{display:flex;align-items:center;gap:2cqw;border:.3cqw solid var(--line);border-radius:6cqw;padding:1.6cqw 2.4cqw}
+.q svg{width:3.4cqw;height:3.4cqw;flex:none}
+.q .ln{flex:1;background:var(--mute);height:1.5cqw}
+.res{display:grid;grid-template-columns:1fr 14cqw;gap:2cqw;align-items:center;padding:2cqw;border-radius:2.6cqw;background:#F4F8F8;border:.3cqw solid var(--line)}
+.res .col{display:flex;flex-direction:column;gap:1.3cqw}
+.res .map{height:12cqw;border-radius:2cqw;background:#DCE9E9;position:relative;overflow:hidden}
+.res .map svg{position:absolute;inset:0;width:100%;height:100%}
+.hrow{display:flex;justify-content:space-between;align-items:center}
+.hrow .ln:first-child{width:30%}
+.hrow .ln:last-child{width:34%;background:var(--mute)}
+.hrow.now .ln:last-child{background:var(--ink)}
+.hrow.now .ln:first-child{background:var(--ink)}
+.ttl{font-weight:700;font-size:2.6cqw;line-height:1.1;color:var(--ink);letter-spacing:0}
+.book{min-height:8cqw;border-radius:2.4cqw;background:var(--coral-ink);color:#fff;display:grid;place-items:center;font-weight:600;font-size:2.9cqw;padding:0 2cqw;text-align:center;line-height:1.1}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw}
+.slots span{height:5.4cqw;border-radius:1.6cqw;border:.3cqw solid var(--line)}
+.slots span.on{border-color:var(--ink);background:#E3EEEE}
+
+/* sections */
+.sec{padding:88px 0}
+h2{font-size:clamp(34px,3.7vw,52px);max-width:18ch;position:relative}
+.finds-list{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.finds-list li{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:24px 0;border-top:1px solid var(--line)}
+.finds-list svg{width:40px;height:40px;margin-top:2px}
+.finds-list strong{display:block;font-weight:700;margin-bottom:4px;font-size:19px;line-height:1.35}
+.finds-list span{color:var(--ink-2)}
+
+.tcards{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tcard{background:var(--card);border-radius:var(--r);padding:30px 28px;border:1px solid var(--line)}
+.tcard svg{width:44px;height:44px;margin-bottom:20px}
+.tcard h3{font-size:26px;margin-bottom:10px;font-weight:600}
+.tcard p{color:var(--ink-2)}
+
+.safe .panel{margin-top:40px;background:var(--card);border-radius:28px;padding:44px 48px;border:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 56px}
+.safe ul{list-style:none;padding:0;margin:0}
+.safe li{display:grid;grid-template-columns:30px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.safe li:last-child{border-bottom:0}
+.safe li svg{width:26px;height:26px;margin-top:2px}
+.safe .key{grid-column:1/-1;border:0;padding:0 0 28px;margin-bottom:8px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;font-family:var(--serif);font-size:clamp(26px,2.6vw,36px);line-height:1.15}
+.safe .key .yes{flex:none;display:grid;place-items:center;min-width:76px;height:60px;padding:0 16px;border-radius:18px 18px 18px 4px;background:var(--coral-ink);color:#fff;font-family:var(--sans);font-weight:700;font-size:24px}
+
+.steps ol{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.steps li{background:var(--card);border-radius:var(--r);padding:28px;border:1px solid var(--line);position:relative}
+.steps .n{font-family:var(--serif);font-size:56px;line-height:1;color:var(--ink);margin-bottom:14px;display:block}
+.steps h3{font-family:var(--sans);font-size:20px;font-weight:700;line-height:1.35;margin-bottom:6px}
+.steps p{color:var(--ink-2)}
+
+.proof .band{background:var(--deep);color:#E7F1F1;border-radius:28px;padding:56px 56px 60px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:44px;align-items:start}
+.proof h2{color:#fff}
+.proof .story{margin-top:18px;font-size:21px;line-height:1.6;max-width:34em;font-family:var(--serif)}
+.timeline{display:flex;flex-direction:column;align-items:center;gap:0;padding-top:10px}
+.timeline i{width:16px;height:16px;border-radius:50%;border:3px solid #E7F1F1;display:block}
+.timeline i.c{border-color:var(--coral);background:var(--coral)}
+.timeline b{width:2px;height:56px;background:rgba(231,241,241,.4);display:block}
+
+.faq .list{margin-top:40px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:72px;padding:16px 4px;font-weight:600;font-size:20px;line-height:1.35}
+summary::-webkit-details-marker{display:none}
+summary .chev{flex:none;width:40px;height:40px;border-radius:12px;border:1.5px solid var(--line);display:grid;place-items:center;transition:transform .2s ease, background .2s ease}
+summary .chev svg{width:16px;height:16px}
+details[open] summary .chev{transform:rotate(180deg);background:var(--card)}
+details p{padding:0 4px 24px;color:var(--ink-2);max-width:44em}
+
+.contact{padding-bottom:110px}
+.contact .box{background:var(--card);border-radius:28px;border:1px solid var(--line);padding:56px;display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:40px;align-items:end}
+.contact .txt{margin-top:18px;font-size:20px;color:var(--ink-2)}
+.ph{display:inline-block;border:1.5px dashed var(--ink-2);border-radius:8px;padding:0 8px;color:var(--ink);font-weight:600}
+.example{display:block;margin-top:16px;font-family:var(--serif);font-style:italic;font-size:28px;line-height:1.3;color:var(--ink);padding-left:20px;border-left:3px solid var(--coral)}
+.trust{margin-top:24px;color:var(--ink-2);font-size:17px}
+
+footer{border-top:1px solid var(--line);padding:24px 0 36px;font-size:16px;color:var(--ink-2);position:relative;z-index:1}
+footer .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center}
+footer a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+footer .dot{opacity:.5}
+
+@media (max-width:1100px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0;gap:56px}
+  .stack{max-width:600px}
+  .tcards,.steps ol{grid-template-columns:1fr}
+  .tcards{max-width:640px}
+}
+@media (max-width:900px){
+  :root{--rail:64px}
+  .wrap{padding:0 28px}
+  .finds-list{grid-template-columns:1fr}
+  .safe .panel{grid-template-columns:1fr;padding:32px 28px}
+  .safe ul + ul li:first-child{border-top:1px solid var(--line)}
+  .proof .band{grid-template-columns:1fr;padding:40px 32px}
+  .timeline{display:none}
+  .contact .box{grid-template-columns:minmax(0,1fr);padding:40px 32px}
+  .safe .panel,.proof .band{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  footer .dot{display:none}
+  :root{--rail:40px}
+  body{font-size:17px}
+  .wrap{padding:0 16px}
+  .top .wrap{height:68px;gap:10px}
+  .brand{font-size:19px;gap:9px}
+  .brand svg{width:26px;height:26px}
+  .btn-o{display:none}
+  :root{--sx:2px}
+  .stop{width:12px;height:12px;top:.5em}
+  .hero{padding:32px 0 64px}
+  .hero h1{font-size:42px}
+  .hero .sub{font-size:18px;margin-top:18px}
+  .hero .btn{width:100%}
+  .sec{padding:60px 0}
+  .finds-list li{grid-template-columns:36px 1fr;gap:14px}
+  .finds-list svg{width:32px;height:32px}
+  .tcard{padding:24px 20px}
+  .safe .panel{padding:24px 18px;border-radius:22px}
+  .safe .key{flex-direction:column;align-items:flex-start;gap:14px}
+  .steps li{padding:24px 20px}
+  .proof .band{padding:32px 20px;border-radius:22px}
+  .proof .story{font-size:19px}
+  .contact .box{padding:30px 20px;border-radius:22px}
+  .contact .btn{width:100%;white-space:normal;text-align:center;padding:0 14px;gap:8px;font-size:17px}
+  .contact .box{padding:30px 18px}
+  .contact .btn svg{display:none}
+  .contact .txt{font-size:18px}
+  .example{font-size:23px}
+  summary{font-size:18px}
+  .route-fallback{left:23px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#main">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="7" cy="23" r="4" fill="none" stroke="#0E3A3D" stroke-width="2.4"/><path d="M10.5 20.5 C 16 15, 12 9, 19.5 8" fill="none" stroke="#0E3A3D" stroke-width="2.4" stroke-linecap="round"/><circle cx="23" cy="7" r="4" fill="#E8613C"/></svg>
+      <span>Robin &amp; Julia Mirku</span>
+    </a>
+    <span class="spacer"></span>
+    <div class="lang" role="group" aria-label="Sprache" data-ta="aria-label:langgroup">
+      <button type="button" data-lang="de" aria-pressed="true" aria-label="Deutsch" lang="de">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false" aria-label="English" lang="en">EN</button>
+    </div>
+    <a class="btn btn-o" href="#kontakt" data-t="cta">Auf den Entwurf antworten</a>
+  </div>
+</header>
+
+<main id="main">
+  <svg id="route" aria-hidden="true" focusable="false"><path id="routePath" d="" fill="none" stroke="#0E3A3D" stroke-opacity=".42" stroke-width="2" stroke-linecap="round"/><circle id="routeHead" r="6" cx="-20" cy="-20" fill="#E8613C"/></svg>
+  <div class="route-fallback" aria-hidden="true"></div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1 data-t="h1">Wer in Ihrer Nähe sucht, soll <em>Sie finden.</em></h1>
+        <p class="sub" data-t="sub">Eine Website, die auf dem Handy sofort zeigt, was Kunden wissen wollen: Öffnungszeiten, Preise, Adresse und einen Knopf zum Buchen oder Bestellen. Den Entwurf für Ihren Betrieb haben wir schon gebaut. Sie sehen ihn, bevor Sie irgendetwas entscheiden.</p>
+        <div class="cta"><a class="btn" href="#kontakt"><span data-t="cta">Auf den Entwurf antworten</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+
+      <div class="stack" role="img" aria-label="Der Weg eines Kunden: Ihr Eintrag bei Google, Ihre Website mit Öffnungszeiten, der Knopf zum Buchen." data-ta="aria-label:heroimg">
+        <div class="glow"></div>
+        <div class="sc s1" aria-hidden="true">
+          <span class="tag">Google</span>
+          <div class="q"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M13 13l4.5 4.5" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round"/></svg><div class="ln"></div></div>
+          <div class="res">
+            <div class="col"><div class="ln d w75"></div><div class="ln w90"></div><div class="ln w60"></div></div>
+            <div class="map"><svg viewBox="0 0 40 30" preserveAspectRatio="xMidYMid slice"><path d="M0 20 L40 10 M14 0 L20 30" stroke="#fff" stroke-width="3"/><path d="M26 7c-3 0-5 2.2-5 5 0 3.8 5 9 5 9s5-5.2 5-9c0-2.8-2-5-5-5z" fill="#E8613C"/><circle cx="26" cy="12" r="1.8" fill="#fff"/></svg></div>
+          </div>
+          <div class="ln w90"></div><div class="ln w60"></div>
+        </div>
+        <div class="sc s2" aria-hidden="true">
+          <span class="tag">Website</span>
+          <div class="ln d w60" style="height:2.4cqw"></div>
+          <div class="ttl" data-t="ph_hours">Öffnungszeiten</div>
+          <div class="hrow"><span class="ln"></span><span class="ln"></span></div>
+          <div class="hrow now"><span class="ln"></span><span class="ln"></span></div>
+          <div class="hrow"><span class="ln"></span><span class="ln"></span></div>
+          <div class="hrow"><span class="ln"></span><span class="ln"></span></div>
+        </div>
+        <div class="sc s3" aria-hidden="true">
+          <div class="slots"><span></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+          <div class="book" data-t="ph_book">Termin buchen</div>
+        </div>
+      </div>
+    </div>
+    <span class="stop c" id="stop0" style="left:auto;right:0;top:auto;bottom:0;opacity:0"></span>
+  </section>
+
+  <section class="sec finds" aria-labelledby="h-finds">
+    <div class="wrap"><div class="railed">
+      <h2 id="h-finds"><span class="stop"></span><span data-t="finds_h">Was ein neuer Kunde auf Ihrer Website findet</span></h2>
+      <ul class="finds-list">
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5c-6.4 0-11.5 5-11.5 11.5C8.5 25 20 35 20 35s11.5-10 11.5-18.5C31.5 10 26.4 5 20 5z" fill="none" stroke="#0E3A3D" stroke-width="2"/><circle cx="20" cy="16.5" r="4" fill="#E8613C"/></svg><div><strong data-t="f1a">Sie auf Google und Google Maps.</strong><span data-t="f1b">Name, Adresse und Öffnungszeiten stimmen mit Ihrem Google-Eintrag überein, und beide verweisen aufeinander.</span></div></li>
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="4" width="18" height="32" rx="4" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M17 31h6" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round"/><path d="M15 15l5 5 6-7" fill="none" stroke="#E8613C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="f2a">Alles Wichtige auf dem Handy, ohne Suchen.</strong><span data-t="f2b">Mit einem Fingertipp zur Route, schnell geladen.</span></div></li>
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="5" width="24" height="30" rx="3" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M13 13h14M13 19h14M13 25h9" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round"/><circle cx="28" cy="30" r="3" fill="#E8613C"/></svg><div><strong data-t="f3a">Preise oder Speisekarte als echter Text, nicht als PDF.</strong><span data-t="f3b">So können auch Google und KI-Assistenten sie lesen.</span></div></li>
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="11" width="32" height="14" rx="7" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M23 20l2.5 14 3-4.5 5.5 3.5z" fill="#E8613C" stroke="#0E3A3D" stroke-width="1.6" stroke-linejoin="round"/></svg><div><strong data-t="f4a">Einen Knopf zu Ihrem Buchungs- oder Bestellsystem.</strong><span data-t="f4b">Der Kunde bucht direkt bei Ihnen.</span></div></li>
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="10" width="32" height="23" rx="4" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M13 10l2.5-4h9L27 10" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linejoin="round"/><circle cx="20" cy="21.5" r="6" fill="none" stroke="#0E3A3D" stroke-width="2"/><circle cx="20" cy="21.5" r="2.2" fill="#E8613C"/></svg><div><strong data-t="f5a">Ihre echte Arbeit auf Fotos.</strong><span data-t="f5b">Keine Bilder aus dem Internet.</span></div></li>
+        <li><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="8" width="30" height="27" rx="4" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M5 15h30M13 4v7M27 4v7" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="25" r="4" fill="#E8613C"/></svg><div><strong data-t="f6a">Ihre Aktion des Monats.</strong><span data-t="f6b">Sie zeigt, dass bei Ihnen etwas läuft.</span></div></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="sec trades" aria-labelledby="h-trades">
+    <div class="wrap"><div class="railed">
+      <h2 id="h-trades"><span class="stop"></span><span data-t="trades_h">Für Ihre Branche</span></h2>
+      <div class="tcards">
+        <article class="tcard"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="33" r="5" fill="none" stroke="#0E3A3D" stroke-width="2"/><circle cx="32" cy="33" r="5" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M15.5 29.5L33 6M28.5 29.5L11 6" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round"/><circle cx="22" cy="18" r="2" fill="#E8613C"/></svg><h3 data-t="t1h">Coiffeur, Barber, Kosmetik</h3><p data-t="t1p">«Termin buchen» gleich oben, klare Preisliste, Vorher-Nachher-Bilder.</p></article>
+        <article class="tcard"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M7 17h24v9a10 10 0 0 1-10 10h-4A10 10 0 0 1 7 26z" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linejoin="round"/><path d="M31 19h3.5a4.5 4.5 0 0 1 0 9H30" fill="none" stroke="#0E3A3D" stroke-width="2"/><path d="M15 6c-2 3 2 4 0 7M22 6c-2 3 2 4 0 7" fill="none" stroke="#E8613C" stroke-width="2" stroke-linecap="round"/></svg><h3 data-t="t2h">Café, Restaurant, Take-away</h3><p data-t="t2p">Speisekarte, Öffnungszeiten, Anfahrtskarte und ein Knopf zum Reservieren oder Bestellen.</p></article>
+        <article class="tcard"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M9 36l15-15" stroke="#0E3A3D" stroke-width="2.6" stroke-linecap="round"/><path d="M21 11l7-5 11 11-5 7-4-4-4 4-8-8 4-4z" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="14" r="2" fill="#E8613C"/></svg><h3 data-t="t3h">Handwerk</h3><p data-t="t3p">Fotos fertiger Arbeiten, ein Foto von Ihnen, Antworten auf häufige Kundenfragen und ein direkter Weg zur Anfrage.</p></article>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec safe" aria-labelledby="h-safe">
+    <div class="wrap"><div class="railed">
+      <h2 id="h-safe"><span class="stop"></span><span data-t="safe_h">Ohne böse Überraschungen</span></h2>
+      <div class="panel">
+        <p class="key"><span class="yes" aria-hidden="true" data-t="yes">Ja</span><span data-t="s2">Nichts geht online ohne Ihr Ja.</span></p>
+        <ul>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s1">Sie sehen den fertigen Entwurf, bevor Sie etwas entscheiden.</span></li>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s3">Die Domain läuft auf Ihren Namen.</span></li>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s4">Das Hosting richten wir ein.</span></li>
+        </ul>
+        <ul>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s5">Impressum und Datenschutz sind von Anfang an dabei. Die Karte lädt erst nach Zustimmung des Besuchers, die Schriften liegen auf dem eigenen Server.</span></li>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s6">Ihre Fotos bearbeiten wir von Hand, ohne KI. Ihre Arbeit selbst bleibt, wie sie ist.</span></li>
+          <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5" fill="none" stroke="#0E3A3D" stroke-width="1.8"/><path d="M8 13.5l3.5 3.5 6.5-7.5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s7">Jede Änderung wird gespeichert und lässt sich rückgängig machen.</span></li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec steps" aria-labelledby="h-steps">
+    <div class="wrap"><div class="railed">
+      <h2 id="h-steps"><span class="stop"></span><span data-t="steps_h">So geht es</span></h2>
+      <ol>
+        <li><span class="n" aria-hidden="true">1</span><h3 data-t="st1h">Der Entwurf ist da.</h3><p data-t="st1p">Gebaut aus dem, was Ihr Betrieb schon zeigt: Preise, Fotos, Texte.</p></li>
+        <li><span class="n" aria-hidden="true">2</span><h3 data-t="st2h">Sie sagen, was anders sein soll.</h3><p data-t="st2p">Per Nachricht, Foto oder Sprachnachricht.</p></li>
+        <li><span class="n" aria-hidden="true">3</span><h3 data-t="st3h">Nach Ihrem Ja geht die Website online.</h3><p data-t="st3p">Spätere Änderungen schicken Sie genauso, meist sind sie am selben Tag online.</p></li>
+      </ol>
+    </div></div>
+  </section>
+
+  <section class="sec proof inv" aria-labelledby="h-proof">
+    <div class="wrap"><div class="railed">
+      <span class="stop" style="top:64px"></span>
+      <div class="band">
+        <div class="timeline" aria-hidden="true"><i></i><b></b><i></i><b></b><i class="c"></i></div>
+        <div>
+          <h2 id="h-proof" data-t="proof_h">Aus der Praxis</h2>
+          <p class="story" data-t="proof_p">Für einen Betrieb in der Region stand der Entwurf der Startseite nach einem Tag. Später schickte der Inhaber ein neues Vorher-Nachher-Foto per Messenger. Am selben Tag war es bearbeitet und online, nachdem er die fertige Ansicht gesehen und Ja gesagt hatte.</p>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec faq" aria-labelledby="h-faq">
+    <div class="wrap"><div class="railed">
+      <h2 id="h-faq"><span class="stop"></span><span data-t="faq_h">Häufige Fragen</span></h2>
+      <div class="list">
+        <details><summary><span data-t="q1">Bringt mir die Website wirklich Kunden?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a1">Zahlen versprechen wir nicht. Wir bauen ein, wonach Kunden suchen: dass man Sie auf Google findet, Preise und Öffnungszeiten sofort sieht und direkt buchen, bestellen oder anfragen kann.</p></details>
+        <details><summary><span data-t="q2">Was kostet mich das?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a2">Darüber reden wir, wenn Ihnen der Entwurf gefällt. Bis dahin entscheiden Sie nichts.</p></details>
+        <details><summary><span data-t="q3">Bin ich danach an Sie gebunden?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a3">Die Domain läuft auf Ihren Namen und gehört Ihnen.</p></details>
+        <details><summary><span data-t="q4">Wie viel Arbeit habe ich damit?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a4">Wenig. Wir brauchen Ihre Preise und Öffnungszeiten zur Bestätigung, Fotos vom Handy, die Angaben fürs Impressum, den Link zu Ihrem Buchungssystem, falls Sie eines haben, und den Zugang zur Domain.</p></details>
+        <details><summary><span data-t="q5">Und wenn mir der Entwurf nicht gefällt?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a5">Sagen Sie, was anders sein soll. Wir ändern es und zeigen es Ihnen wieder. Sagen Sie Nein, geht nichts online.</p></details>
+        <details><summary><span data-t="q6">Was passiert nach dem Start?</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 6l5 5 5-5" fill="none" stroke="#0E3A3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary><p data-t="a6">Neue Preise, eine Aktion, ein neues Foto: Schicken Sie es per Nachricht. Sie sehen die fertige Ansicht, sagen Ja, und meist ist es am selben Tag online. Selbst ändern müssen Sie nichts.</p></details>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec contact" id="kontakt" aria-labelledby="h-contact">
+    <div class="wrap"><div class="railed">
+      <span class="stop c" style="top:64px"></span>
+      <div class="box">
+        <div>
+          <h2 id="h-contact" data-t="c_h">Ein Satz genügt</h2>
+          <p class="txt"><span data-t="c_p">Antworten Sie auf unsere Nachricht mit dem Entwurf oder schreiben Sie an <span class="ph">[E-Mail]</span>. Zum Beispiel:</span><span class="example" data-t="c_ex">«Gefällt mir, wie geht es weiter?»</span></p>
+          <p class="trust" data-t="c_trust">Ein Ehepaar aus Flawil, Kanton St. Gallen. Robin spricht Schweizerdeutsch.</p>
+        </div>
+        <a class="btn" href="#kontakt"><span data-t="cta">Auf den Entwurf antworten</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Robin &amp; Julia Mirku</span><span class="dot" aria-hidden="true">·</span>
+    <span>Flawil</span><span class="dot" aria-hidden="true">·</span>
+    <a href="#" data-t="imp">Impressum</a><span class="dot" aria-hidden="true">·</span>
+    <a href="#" data-t="priv">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN={
+    title:"Robin &amp; Julia Mirku – When people nearby search, they should find you.",
+    skip:"Skip to content",
+    cta:"Reply to your draft",
+    h1:"When people nearby search, they should <em>find you.</em>",
+    sub:"A website that shows customers what they want to know straight away on their phone: opening hours, prices, address and a button to book or order. We have already built the draft for your business. You see it before you decide anything.",
+    ph_hours:"Opening hours",
+    ph_book:"Book now",
+    finds_h:"What a new customer finds on your website",
+    f1a:"You, on Google and Google Maps.",
+    f1b:"Name, address and opening hours match your Google listing, and each links to the other.",
+    f2a:"Everything important on the phone, with no searching.",
+    f2b:"One tap for directions, quick to load.",
+    f3a:"Prices or the menu as real text, not a PDF.",
+    f3b:"That way, Google and AI assistants can read them too.",
+    f4a:"A button to your booking or ordering system.",
+    f4b:"The customer books directly with you.",
+    f5a:"Photos of your real work.",
+    f5b:"No pictures from the internet.",
+    f6a:"Your offer of the month.",
+    f6b:"It shows that things are happening at your place.",
+    trades_h:"For your trade",
+    t1h:"Hair, barber, beauty",
+    t1p:"‘Book now’ right at the top, a clear price list, before-and-after pictures.",
+    t2h:"Café, restaurant, takeaway",
+    t2p:"Menu, opening hours, a map and a button to reserve or order.",
+    t3h:"Trades",
+    t3p:"Photos of finished jobs, a photo of you, answers to common customer questions and a direct way to get in touch.",
+    safe_h:"No nasty surprises",
+    s1:"You see the finished draft before you decide anything.",
+    s2:"Nothing goes online without your yes.",
+    s3:"The domain is registered in your name.",
+    s4:"We set up the hosting.",
+    s5:"Legal notice and privacy policy are there from day one. The map only loads once the visitor agrees, and the fonts are hosted on the site’s own server.",
+    s6:"We edit your photos by hand, without AI. Your work itself stays as it is.",
+    s7:"Every change is saved and can be undone.",
+    yes:"Yes",
+    steps_h:"How it works",
+    st1h:"The draft is ready.",
+    st1p:"Built from what your business already shows: prices, photos, texts.",
+    st2h:"You tell us what should be different.",
+    st2p:"By message, photo or voice message.",
+    st3h:"After your yes, the website goes online.",
+    st3p:"You send later changes the same way, and they are usually online the same day.",
+    proof_h:"From a real project",
+    proof_p:"For a local business, the home page draft was ready after one day. Later the owner sent a new before-and-after photo by messenger. The same day it was edited and online, after he had seen the finished view and said yes.",
+    faq_h:"Questions owners ask",
+    q1:"Will the website really bring me customers?",
+    a1:"We don’t promise numbers. We build in what customers look for: being found on Google, seeing prices and opening hours at once, and booking, ordering or getting in touch directly.",
+    q2:"What will it cost me?",
+    a2:"We talk about that once you like the draft. Until then you decide nothing.",
+    q3:"Am I tied to you afterwards?",
+    a3:"The domain is registered in your name and belongs to you.",
+    q4:"How much work is it for me?",
+    a4:"Very little. We need your prices and opening hours to confirm, photos from your phone, the details for the legal notice, the link to your booking system if you have one, and access to the domain.",
+    q5:"What if I don’t like the draft?",
+    a5:"Tell us what should be different. We change it and show it to you again. If you say no, nothing goes online.",
+    q6:"What happens after launch?",
+    a6:"New prices, an offer, a new photo: send it by message. You see the finished view, say yes, and it is usually online the same day. You don’t have to change anything yourself.",
+    c_h:"One sentence is enough",
+    c_p:"Reply to our message with the draft or write to <span class=\"ph\">[e-mail]</span>. For example:",
+    c_ex:"‘I like it, what happens next?’",
+    c_trust:"A married couple from Flawil, canton of St. Gallen. Robin speaks Swiss German.",
+    imp:"Legal notice",
+    priv:"Privacy",
+    "@langgroup":"Language",
+    "@heroimg":"A customer’s path: your Google listing, your website with opening hours, the button to book."
+  };
+  var DE={}, root=document.documentElement;
+  var els=document.querySelectorAll('[data-t]');
+  for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-t'); if(!(k in DE)) DE[k]=els[i].innerHTML;}
+  var aels=document.querySelectorAll('[data-ta]');
+  for(var j=0;j<aels.length;j++){aels[j].getAttribute('data-ta').split(';').forEach(function(p){var s=p.split(':'); DE['@'+s[1]]=aels[j].getAttribute(s[0]);});}
+  function apply(l){
+    var D=l==='en'?EN:DE;
+    for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-t'); if(D[k]!=null) els[i].innerHTML=D[k];}
+    for(var j=0;j<aels.length;j++){(function(el){el.getAttribute('data-ta').split(';').forEach(function(p){var s=p.split(':'); if(D['@'+s[1]]!=null) el.setAttribute(s[0],D['@'+s[1]]);});})(aels[j]);}
+    root.lang=l==='en'?'en-GB':'de-CH';
+    document.title=(l==='en'?EN.title:DE.title).replace(/&amp;/g,'&');
+    var b=document.querySelectorAll('.lang button');
+    for(var x=0;x<b.length;x++) b[x].setAttribute('aria-pressed', b[x].getAttribute('data-lang')===l?'true':'false');
+    drawRoute();
+  }
+
+  /* route line through all stops */
+  var main=document.getElementById('main'), svg=document.getElementById('route'), path=document.getElementById('routePath'), head=document.getElementById('routeHead');
+  function drawRoute(){
+    if(!svg) return;
+    var mr=main.getBoundingClientRect(), stops=main.querySelectorAll('.stop'), pts=[];
+    var sr=main.querySelector('.s3').getBoundingClientRect();
+    var narrow=window.innerWidth<1100;
+    pts.push({x:sr.left+sr.width*0.5-mr.left, y:sr.bottom-mr.top});
+    for(var i=0;i<stops.length;i++){ if(stops[i].id==='stop0') continue; var r=stops[i].getBoundingClientRect(); pts.push({x:r.left+r.width/2-mr.left, y:r.top+r.height/2-mr.top}); }
+    var d='M'+pts[0].x+' '+pts[0].y, bow=narrow?0:46;
+    for(var k=1;k<pts.length;k++){
+      var a=pts[k-1], b=pts[k], dy=b.y-a.y, s=(k%2?1:-1)*bow;
+      if(k===1){ d+=' C'+a.x+' '+(a.y+dy*0.6)+' '+b.x+' '+(b.y-dy*0.6)+' '+b.x+' '+b.y; }
+      else d+=' C'+(a.x+s)+' '+(a.y+dy*0.4)+' '+(b.x+s)+' '+(b.y-dy*0.4)+' '+b.x+' '+b.y;
+    }
+    svg.setAttribute('width',mr.width); svg.setAttribute('height',main.scrollHeight);
+    svg.setAttribute('viewBox','0 0 '+mr.width+' '+main.scrollHeight);
+    path.setAttribute('d',d);
+    head.setAttribute('cx',pts[0].x); head.setAttribute('cy',pts[0].y);
+    root.classList.add('js-route');
+  }
+
+  var lang='de';
+  try{var q=new URLSearchParams(location.search).get('lang'); if(q==='en'||q==='de') lang=q; else {var s=localStorage.getItem('mirku-lang'); if(s==='en'||s==='de') lang=s;}}catch(e){}
+  if(lang!=='de') apply(lang); else drawRoute();
+  document.querySelector('.lang').addEventListener('click',function(e){
+    var t=e.target.closest('button[data-lang]'); if(!t) return;
+    var l=t.getAttribute('data-lang'); apply(l);
+    try{localStorage.setItem('mirku-lang',l);}catch(e){}
+  });
+  var tm; window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(drawRoute,80);});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(drawRoute);
+  window.addEventListener('load',drawRoute);
+  main.addEventListener('toggle',drawRoute,true);
+})();
+</script>
+</body>
+</html>

@@ -622,6 +622,11 @@ h1{font-size:clamp(42px,4.5vw,62px);line-height:1.02;letter-spacing:-.035em;font
 .dlg-x:hover{background:rgba(176,138,62,.16)}
 @media (max-width:599px){.visit{padding-bottom:20px}.legal{gap:24px}}
 .foot .wrap span:not(.sep){font-weight:600;color:var(--ink)}
+
+/* Abschnitt einzeilig, feste Höhe */
+.stub{flex-wrap:nowrap}
+.stub .pick-n{white-space:nowrap;overflow:hidden;min-width:0;flex:1 1 auto}
+.stub .pick-p{flex:none}
 </style>
 </head>
 <body>
@@ -828,11 +833,17 @@ h1{font-size:clamp(42px,4.5vw,62px);line-height:1.02;letter-spacing:-.035em;font
   if(rm||!('IntersectionObserver' in window)){pr.classList.add('static');}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(go,350);io.disconnect();}});},{threshold:0.01,rootMargin:'0px 0px -12% 0px'});io.observe(pr.querySelector('.housing'));}
 
+  /* Abschnitt: immer eine Zeile (Schrift verkleinern, min. 13 px, sonst kürzen) */
+  function fitPick(){var n=document.getElementById('pick-n');if(!n)return;var full=n.getAttribute('data-full')||n.textContent;n.setAttribute('data-full',full);
+    n.textContent=full;n.style.fontSize='';var base=parseFloat(getComputedStyle(n).fontSize),fs=base;
+    while(n.scrollWidth>n.clientWidth+1&&fs>13){fs-=0.5;n.style.fontSize=fs+'px';}
+    if(n.scrollWidth>n.clientWidth+1){n.textContent=full.replace('Augenbrauen','Brauen');}}
+  window.addEventListener('resize',fitPick);setTimeout(fitPick,50);
   /* Preiszeile <-> Foto: gemeinsam hervorheben, Auswahl auf den Abschnitt */
   var ks=[].slice.call(document.querySelectorAll('[data-k]')),pickN=document.getElementById('pick-n'),pickP=document.getElementById('pick-p'),stub=document.querySelector('.stub');
   function mark(k,on){ks.forEach(function(e){if(e.getAttribute('data-k')===k)e.classList.toggle('on',on);});}
   function choose(k){var r=document.querySelector('.plist li[data-k="'+k+'"]');if(!r)return;
-    pickN.textContent=r.querySelector('.n').textContent;pickP.textContent=r.querySelector('.p').textContent;stub.classList.add('picked');}
+    pickN.removeAttribute('data-full');pickN.textContent=r.querySelector('.n').textContent;pickP.textContent=r.querySelector('.p').textContent;fitPick();stub.classList.add('picked');}
   ks.forEach(function(e){var k=e.getAttribute('data-k');
     e.addEventListener('mouseenter',function(){mark(k,true);choose(k);});
     e.addEventListener('mouseleave',function(){mark(k,false);});
