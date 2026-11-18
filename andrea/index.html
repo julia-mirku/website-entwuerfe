@@ -363,6 +363,19 @@ footer{border-top:0}
 .partner{background:linear-gradient(180deg,color-mix(in srgb,var(--c-o) 50%,var(--c-t)) 0,var(--c-t) 160px,var(--c-t) calc(100% - 160px),color-mix(in srgb,var(--c-t) 50%,var(--c-c)) 100%)}
 .hero::after{background:linear-gradient(180deg,transparent calc(100% - 140px),color-mix(in srgb,var(--c-h) 50%,var(--c-a)) 100%),linear-gradient(180deg,var(--bg) 24%,color-mix(in srgb,var(--bg) 72%,transparent) 48%,color-mix(in srgb,var(--bg) 40%,transparent) 72%,color-mix(in srgb,var(--bg) 8%,transparent))}
 .drawer-src[hidden]{display:none!important}
+/* Etwas kompakter auf Laptops (nur Höhe und Schrift, Breite bleibt) */
+@media (min-width:981px){
+  section{padding:72px 0}
+  h2{font-size:clamp(30px,3.4vw,44px)}
+  .hero{min-height:calc(100vh - 78px)}
+  .name em{font-size:clamp(52px,6.2vw,86px)}
+  .themes{margin-top:34px}
+  .steps{margin-top:44px}
+  .offer-grid{margin-top:34px}
+  .plogos{margin-top:32px}
+  .contact{padding:84px 0 96px}
+  .film h2{margin-bottom:22px}
+}
 /* Über mich: Interaktion */
 .about .fact{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;cursor:default;outline:none}
 .about .fact b{display:inline-block;padding-bottom:3px;background:linear-gradient(var(--lime),var(--lime)) 0 100%/0 2px no-repeat;transition:background-size .5s ease}
@@ -805,18 +818,6 @@ mark.hl:hover{background-size:100% 5px}
   d.querySelector('.dclose').addEventListener('click',close);
   d.addEventListener('cancel',function(e){e.preventDefault();close()});
   d.addEventListener('click',function(e){if(e.target===d)close()});
-})();
-(function(){
-  /* Desktop: ganze Seite proportional an kleinere Fenster anpassen (13"-Laptop) */
-  var root=document.documentElement,hero=document.querySelector('.hero');
-  function fit(){
-    var w=innerWidth,h=innerHeight;
-    if(w<=980){root.style.zoom='';if(hero)hero.style.minHeight='';return}
-    var z=Math.max(.78,Math.min(1,w/1500,h/940));
-    root.style.zoom=z;
-    if(hero)hero.style.minHeight=Math.round(h/z-78)+'px';
-  }
-  fit();addEventListener('resize',fit);
 })();
 </script>
 </body>
