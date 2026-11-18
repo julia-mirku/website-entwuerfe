@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Все сайты</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f4f4f1;--fg:#1d1f22;--muted:#5a5f67;--line:#c9ccd1;--on:#1d1f22;--on-fg:#fff;--card:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181a;--fg:#ececec;--muted:#a3a7ad;--line:#3a3d42;--on:#ececec;--on-fg:#17181a;--card:#222428;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17181a;--fg:#ececec;--muted:#a3a7ad;--line:#3a3d42;--on:#ececec;--on-fg:#17181a;--card:#222428;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column}
+.bar{flex:none;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
+.bar button{flex:none;min-height:40px;padding:0 16px;border:2px solid var(--on);border-radius:999px;background:transparent;color:var(--fg);font:600 14px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.bar button[aria-pressed="true"]{background:var(--on);color:var(--on-fg)}
+.bar button:focus-visible{outline:3px solid #2a6fdb;outline-offset:2px}
+iframe{flex:1 1 auto;width:100%;min-height:0;border:0;background:#fff}
+</style>
+<nav class="bar" aria-label="Сайты">
+  <button type="button" data-k="keyff" data-src="keyff_hell.html">Kaffe de Keyff</button>
+  <button type="button" data-k="king" data-src="king.html">Coiffeur King 1</button>
+  <button type="button" data-k="sindi" data-src="sindi.html">Coiffeur Sindi</button>
+  <button type="button" data-k="land1" data-src="landing.html">Наш лендинг</button>
+</nav>
+<iframe id="view" title="Сайт"></iframe>
+<script>
+(function(){
+  var f=document.getElementById('view'),bs=[].slice.call(document.querySelectorAll('.bar button'));
+  function show(k){
+    var b=bs.filter(function(x){return x.dataset.k===k})[0]||bs[0];
+    bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    f.src=b.dataset.src;
+    try{history.replaceState(null,'','#'+b.dataset.k)}catch(e){}
+  }
+  bs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.k)})});
+  show((location.hash||'').slice(1));
+})();
+</script>
+
+</html>

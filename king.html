@@ -1,0 +1,1116 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark light">
+<title>King 1 Entwurf 2</title>
+<meta name="description" content="Coiffeur King 1, Wilerstrasse 164, 9230 Flawil. Leistungen und Preise, Öffnungszeiten, Kontakt und Standort.">
+<script>
+/* Thema vor dem ersten Zeichnen: #dunkel / #hell > gespeicherte Wahl > Gerät; #dunkel-gruen waehlt auch die Farbvariante */
+(function(){
+  var d=document.documentElement,t=null,h=(location.hash||"").toLowerCase();
+  if(h.indexOf("#dunkel")===0){t="dark";}else if(h.indexOf("#hell")===0){t="light";}
+  if(!t){try{var s=window.localStorage.getItem("king1-thema");if(s==="dark"||s==="light"){t=s;}}catch(e){}}
+  if(!t){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches)?"light":"dark";}
+  t="dark"; /* Juli 18.11: nur Dunkel, kein Umschalter */
+  d.setAttribute("data-farbe",t);
+  var hero=null;if(h.indexOf("-foto")>-1){hero="foto";h=h.replace("-foto","");}else if(h.indexOf("-decke")>-1){hero="decke";h=h.replace("-decke","");}
+  if(!hero){try{hero=window.localStorage.getItem("king1-start");}catch(e){}}
+  /* erster Bildschirm: nur noch Decke (Juli 18.11), Salonfoto entfernt */
+  var g=null,m=h.match(/-(messing|gruen|kupfer|sw)$/);if(m){g=m[1];}
+  if(!g){try{g=window.localStorage.getItem("king1-gamma");}catch(e){}}
+  /* nur eine Farbvariante: Messing */
+  /* sanftes Einblenden nur, wenn der Beobachter laeuft und Bewegung erwuenscht ist */
+  try{
+    if("IntersectionObserver" in window&&!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)){
+      d.classList.add("rv");
+      window.setTimeout(function(){d.classList.add("rv-all");},4000);
+    }
+  }catch(e){}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Farben: nur hier. Grundwert = Dunkel + Messing
+   ========================================================= */
+:root{
+  color-scheme:dark;
+  --bg:#121110; --bg2:#191714; --raised:#221F1B; --line:#3B372F;
+  --ink:#F1ECE2; --muted:#ABA393;
+  --acc:#C8A15A; --acc-deep:#B48C45; --on-acc:#121110; --acc-text:#D0AB64;
+  --led:#E8CF97; --glow:rgba(200,161,90,.5);
+  --band:#1F3A2E; --band-ink:#F1ECE2; --band-line:rgba(241,236,226,.28); --band-honey:rgba(241,236,226,.07);
+  --paper:#EFE9DD; --paper-card:#F8F4EC; --paper-ink:#17150F; --paper-muted:#5B5345; --paper-line:#D3C9B6; --paper-acc:#77571B; --paper-focus:#17150F;
+  --honey:rgba(200,161,90,.16);
+  --focus:#F1ECE2;
+  --photo-filter:saturate(1.06) contrast(1.03);
+  /* Startbild: immer Nacht, in beiden Themen gleich */
+  --stage-ink:#F4EFE6; --stage-muted:#DCD5C7; --stage-shade:14,13,12;
+  --stage-acc:#C8A15A; --stage-acc-deep:#B48C45; --stage-on-acc:#121110;
+  --stage-led:#FFF1D6; --stage-glow:rgba(255,196,110,.7);
+  /* Farbtupfer der Auswahl */
+  --sw-messing-a:#C8A15A;--sw-messing-b:#1F3A2E;--sw-messing-c:#121110;
+  --sw-gruen-a:#8DBB9A;--sw-gruen-b:#2B2417;--sw-gruen-c:#121110;
+  --sw-kupfer-a:#D29467;--sw-kupfer-b:#1E2F2A;--sw-kupfer-c:#121110;
+  --sw-sw-a:#ECEEEF;--sw-sw-b:#8D8D93;--sw-sw-c:#111112;
+}
+:root[data-farbe="light"]{
+  color-scheme:light;
+  --bg:#F2EFE9; --bg2:#E9E5DD; --raised:#FFFFFF; --line:#CDC5B6;
+  --ink:#16140F; --muted:#574F42;
+  --acc:#8A6626; --acc-deep:#74541C; --on-acc:#FFFFFF; --acc-text:#6E5018;
+  --led:#8A6626; --glow:rgba(138,102,38,.28);
+  --band:#1F3A2E; --band-ink:#F1ECE2; --band-line:rgba(241,236,226,.28);
+  --paper:#1C1A16; --paper-card:#25221D; --paper-ink:#F1ECE2; --paper-muted:#B2AA9A; --paper-line:#3D3830; --paper-acc:#D3AE68; --paper-focus:#F1ECE2;
+  --honey:rgba(138,102,38,.16);
+  --focus:#16140F;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-farbe]){
+    color-scheme:light;
+    --bg:#F2EFE9;--bg2:#E9E5DD;--raised:#FFFFFF;--line:#CDC5B6;--ink:#16140F;--muted:#574F42;
+    --acc:#8A6626;--acc-deep:#74541C;--on-acc:#FFFFFF;--acc-text:#6E5018;--led:#8A6626;--glow:rgba(138,102,38,.28);
+    --paper:#1C1A16;--paper-card:#25221D;--paper-ink:#F1ECE2;--paper-muted:#B2AA9A;--paper-line:#3D3830;--paper-acc:#D3AE68;--paper-focus:#F1ECE2;
+    --honey:rgba(138,102,38,.16);--focus:#16140F;
+  }
+}
+/* Grün (Pflanzen im Salon) */
+:root[data-gamma="gruen"]{
+  --stage-acc:#8DBB9A;--stage-acc-deep:#77A685;--stage-on-acc:#101612;--stage-led:#E4F6EA;--stage-glow:rgba(150,220,175,.6);
+  --band:#2B2417;
+}
+:root[data-gamma="gruen"]:not([data-farbe="light"]){
+  --bg:#111312;--bg2:#171A18;--raised:#1F2420;--line:#353D37;--ink:#ECF0EC;--muted:#A0AAA2;
+  --acc:#8DBB9A;--acc-deep:#77A685;--on-acc:#101612;--acc-text:#9CC6A8;--led:#BFE0C8;--glow:rgba(141,187,154,.45);
+  --paper:#E7EEE8;--paper-card:#F4F8F5;--paper-ink:#0F1712;--paper-muted:#48564C;--paper-line:#C4D2C8;--paper-acc:#2C5B40;--paper-focus:#0F1712;
+  --honey:rgba(141,187,154,.14);--focus:#ECF0EC;
+}
+:root[data-gamma="gruen"][data-farbe="light"]{
+  --bg:#EEF1EE;--bg2:#E3E8E4;--raised:#FFFFFF;--line:#C2CCC5;--ink:#101612;--muted:#4A564E;
+  --acc:#2E5E43;--acc-deep:#244B35;--on-acc:#FFFFFF;--acc-text:#2B593F;--led:#2E5E43;--glow:rgba(46,94,67,.25);
+  --paper:#13201A;--paper-card:#1A2A22;--paper-ink:#E6EFE9;--paper-muted:#A3B5A9;--paper-line:#2F4238;--paper-acc:#8DBB9A;--paper-focus:#E6EFE9;
+  --honey:rgba(46,94,67,.14);--focus:#101612;
+}
+/* Kupfer */
+:root[data-gamma="kupfer"]{
+  --stage-acc:#D29467;--stage-acc-deep:#BE7F52;--stage-on-acc:#140E0B;--stage-led:#FFE9D9;--stage-glow:rgba(240,165,115,.6);
+  --band:#1E2F2A;
+}
+:root[data-gamma="kupfer"]:not([data-farbe="light"]){
+  --bg:#13100F;--bg2:#1A1614;--raised:#241E1B;--line:#3E3430;--ink:#F3ECE6;--muted:#ADA097;
+  --acc:#D29467;--acc-deep:#BE7F52;--on-acc:#140E0B;--acc-text:#D89C70;--led:#F0C3A0;--glow:rgba(210,148,103,.45);
+  --paper:#F2E8DF;--paper-card:#FAF5F0;--paper-ink:#1A120E;--paper-muted:#5E4A3F;--paper-line:#DCC8B9;--paper-acc:#8A4426;--paper-focus:#1A120E;
+  --honey:rgba(210,148,103,.15);--focus:#F3ECE6;
+}
+:root[data-gamma="kupfer"][data-farbe="light"]{
+  --bg:#F3EFEB;--bg2:#EAE3DD;--raised:#FFFFFF;--line:#D2C4B9;--ink:#1A120E;--muted:#5D4A40;
+  --acc:#8A4426;--acc-deep:#73381E;--on-acc:#FFFFFF;--acc-text:#84401F;--led:#8A4426;--glow:rgba(138,68,38,.25);
+  --paper:#24150F;--paper-card:#2E1C15;--paper-ink:#F3E5DC;--paper-muted:#C2A595;--paper-line:#47302A;--paper-acc:#E0A57A;--paper-focus:#F3E5DC;
+  --honey:rgba(138,68,38,.14);--focus:#1A120E;
+}
+/* Schwarz-Weiss */
+:root[data-gamma="sw"]{
+  --stage-acc:#ECEEEF;--stage-acc-deep:#CFD2D4;--stage-on-acc:#111112;--stage-led:#FFFFFF;--stage-glow:rgba(255,255,255,.6);
+  --band:#26272A;--band-ink:#EDEEEF;--band-line:rgba(237,238,239,.28);--band-honey:rgba(237,238,239,.09);
+  --photo-filter:grayscale(1) contrast(1.12);
+}
+:root[data-gamma="sw"]:not([data-farbe="light"]){
+  --bg:#111112;--bg2:#18181A;--raised:#202022;--line:#38383C;--ink:#EDEEEF;--muted:#A3A4A8;
+  --acc:#ECEEEF;--acc-deep:#CFD2D4;--on-acc:#111112;--acc-text:#C9CBCE;--led:#FFFFFF;--glow:rgba(255,255,255,.45);
+  --paper:#ECEEEF;--paper-card:#F8F9F9;--paper-ink:#0B0C0E;--paper-muted:#4C5157;--paper-line:#C9CDD1;--paper-acc:#2F3337;--paper-focus:#0B0C0E;
+  --honey:rgba(255,255,255,.1);--focus:#EDEEEF;
+}
+:root[data-gamma="sw"][data-farbe="light"]{
+  --bg:#EDEEEF;--bg2:#E3E5E7;--raised:#FFFFFF;--line:#C3C7CB;--ink:#0B0C0E;--muted:#4C5157;
+  --acc:#0B0C0E;--acc-deep:#2A2D30;--on-acc:#FFFFFF;--acc-text:#2F3337;--led:#0B0C0E;--glow:rgba(11,12,14,.25);
+  --paper:#111214;--paper-card:#1B1C1F;--paper-ink:#F1F3F4;--paper-muted:#A4A9AE;--paper-line:#34363A;--paper-acc:#D5D8DB;--paper-focus:#F1F3F4;
+  --honey:rgba(11,12,14,.1);--focus:#0B0C0E;
+}
+
+/* =========================================================
+   Grundlagen
+   ========================================================= */
+:root{
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --pad:20px;
+  --hex:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  --cut:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg)}
+.page{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-variation-settings:"wdth" 100;
+  font-size:16px;line-height:1.6;font-weight:400;overflow-x:clip;
+  padding-bottom:84px;
+}
+.page img{display:block;max-width:100%}
+.page a{color:inherit}
+.page :focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.page .on-paper :focus-visible{outline-color:var(--paper-focus)}
+.page .on-stage :focus-visible,.page .on-band :focus-visible{outline-color:var(--stage-ink)}
+.page section[id]{scroll-margin-top:72px}
+.wrap{padding-left:var(--pad);padding-right:var(--pad);max-width:1280px;margin:0 auto}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mono{font-family:var(--mono);font-weight:400;font-variant-numeric:tabular-nums}
+
+/* kurzer Farbwechsel nur beim Umschalten */
+.tt,.tt *,.tt *::before,.tt *::after{
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,filter .2s ease,fill .2s ease,stroke .2s ease!important;
+}
+
+/* Ueberschriften: ruhig, nur eine grosse Stelle (der Name) */
+.h2{
+  margin:0;font-family:var(--sans);font-variation-settings:"wdth" 112;font-weight:700;
+  font-size:28px;line-height:1.1;letter-spacing:-.005em;
+  display:flex;align-items:center;gap:12px;
+}
+.h2::before{content:"";flex:none;width:14px;height:16px;background:var(--acc);clip-path:var(--hex)}
+.on-paper .h2::before{background:var(--paper-acc)}
+
+/* ---------- Knöpfe (Sechseck-Schnitt wie die Deckenlampen) ---------- */
+.btn{
+  --b-bg:var(--acc);--b-ink:var(--on-acc);--b-edge:var(--acc);--b-fill:var(--acc);--b-deep:var(--acc-deep);
+  position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 26px;border:0;background:none;cursor:pointer;
+  font-family:var(--sans);font-variation-settings:"wdth" 108;font-size:15px;font-weight:600;letter-spacing:.02em;
+  text-decoration:none;white-space:nowrap;color:var(--b-ink);
+  transition:transform .18s ease;
+}
+.btn::before,.btn::after{content:"";position:absolute;z-index:-1;clip-path:polygon(var(--cut) 0,calc(100% - var(--cut)) 0,100% 50%,calc(100% - var(--cut)) 100%,var(--cut) 100%,0 50%)}
+.btn::before{inset:0;background:var(--b-edge)}
+.btn::after{inset:1.5px;background:var(--b-fill)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover::after,.btn:hover::before{background:var(--b-deep)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.page .btn{color:var(--b-ink)}
+.btn .tnum{font-family:var(--mono);font-weight:500;letter-spacing:.03em}
+.btn.ghost{--b-ink:var(--ink);--b-edge:var(--ink);--b-fill:var(--bg);--b-deep:var(--ink)}
+.btn.ghost:hover::after{background:var(--raised)}
+.on-paper .btn{--b-edge:var(--paper-acc);--b-fill:var(--paper-acc);--b-deep:var(--paper-acc);--b-ink:var(--paper)}
+.on-stage .btn,.on-band .btn{--b-edge:var(--stage-acc);--b-fill:var(--stage-acc);--b-deep:var(--stage-acc-deep);--b-ink:var(--stage-on-acc)}
+.on-stage .btn.ghost{--b-ink:var(--stage-ink);--b-edge:var(--stage-ink);--b-fill:rgba(var(--stage-shade),.62);--b-deep:var(--stage-ink)}
+.on-stage .btn.ghost:hover::after{background:rgba(var(--stage-shade),.85)}
+
+/* =========================================================
+   Entwurfs-Leiste (nur Inhaberin)
+   ========================================================= */
+.pal{
+  margin:10px var(--pad);padding:10px 12px 12px;
+  border:2px dashed var(--line);background:var(--raised);color:var(--ink);
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;
+}
+.pal-t{font-family:var(--mono);font-size:12px;line-height:1.2;text-transform:uppercase;letter-spacing:.12em}
+.pal-opts{display:flex;flex-wrap:wrap;gap:6px}
+.pal-b{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 12px 4px 6px;font:500 14px/1.1 var(--sans);color:var(--ink);background:transparent;border:1px solid transparent;border-radius:999px;cursor:pointer}
+.pal-b[aria-checked="true"]{border-color:var(--ink)}
+.pal-s{padding:4px 14px}
+.dot{flex:none;display:flex;width:28px;height:28px;border-radius:50%;overflow:hidden;border:1px solid var(--line)}
+.dot i{flex:1}
+.pal-n{flex-basis:100%;margin:0;font-size:13px;line-height:1.35;color:var(--muted)}
+.dot-messing i:nth-child(1){background:var(--sw-messing-a)}.dot-messing i:nth-child(2){background:var(--sw-messing-b)}.dot-messing i:nth-child(3){background:var(--sw-messing-c)}
+.dot-gruen i:nth-child(1){background:var(--sw-gruen-a)}.dot-gruen i:nth-child(2){background:var(--sw-gruen-b)}.dot-gruen i:nth-child(3){background:var(--sw-gruen-c)}
+.dot-kupfer i:nth-child(1){background:var(--sw-kupfer-a)}.dot-kupfer i:nth-child(2){background:var(--sw-kupfer-b)}.dot-kupfer i:nth-child(3){background:var(--sw-kupfer-c)}
+.dot-sw i:nth-child(1){background:var(--sw-sw-a)}.dot-sw i:nth-child(2){background:var(--sw-sw-b)}.dot-sw i:nth-child(3){background:var(--sw-sw-c)}
+
+/* =========================================================
+   Kopf
+   ========================================================= */
+.head{position:sticky;top:-44px;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.head-in{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px}
+.mark{grid-row:2;grid-column:1;display:flex;align-items:center;gap:10px;min-height:60px;text-decoration:none}
+.mark svg{width:30px;height:34px;flex:none}
+.mark .hx{fill:none;stroke:var(--acc);stroke-width:5}
+.mark .cr{fill:var(--acc)}
+.mark b{font-variation-settings:"wdth" 125;font-weight:800;font-size:17px;letter-spacing:.01em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.mark small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:400}
+.nav{
+  grid-column:1/-1;grid-row:1;display:flex;align-items:center;gap:24px;height:44px;
+  margin:0 calc(var(--pad) * -1);padding:0 var(--pad);border-bottom:1px solid var(--line);
+  overflow-x:auto;scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+@media (max-width:1099px){.nav{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent)}}
+.nav a{flex:none;display:inline-flex;align-items:center;height:44px;text-decoration:none;white-space:nowrap;font-size:15px;font-weight:500}
+.nav a:hover{color:var(--acc-text)}
+.tools{grid-row:2;grid-column:2;justify-self:end;display:flex;align-items:center;gap:10px}
+.callpill{display:none}
+
+/* Themenschalter Hell / Dunkel */
+.sw{display:inline-flex;height:46px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--bg)}
+.sw button{
+  appearance:none;-webkit-appearance:none;margin:0;border:0;border-radius:0;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;min-width:44px;padding:0 11px;
+  font-family:var(--sans);font-size:14px;font-weight:500;line-height:1;background:none;color:var(--ink);
+}
+.sw button svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.sw button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.sw button:focus-visible{outline-offset:-5px}
+.sw button[aria-pressed="true"]:focus-visible{outline-color:var(--bg)}
+
+/* Anrufstreifen (vom eigenen Auftritt) */
+.band{background:var(--band);color:var(--band-ink)}
+.call .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:12px;padding-bottom:12px}
+.call p{margin:0;font-size:15px;font-weight:500;line-height:1.35}
+.call .btn{min-height:46px;font-size:15px;padding:0 22px}
+.call .btn .arr{transition:transform .2s ease}
+.call .btn:hover .arr{transform:translateX(3px)}
+
+/* =========================================================
+   Start: die Decke
+   ========================================================= */
+.stage{position:relative;height:clamp(520px,calc(100svh - 248px),660px);overflow:hidden;background:rgb(var(--stage-shade));color:var(--stage-ink)}
+.stage-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:46% 0%;filter:var(--photo-filter);transform:scale(1.04);transform-origin:50% 0}
+.stage-shade{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 42% at 30% 30%,rgba(var(--stage-shade),.55),rgba(var(--stage-shade),0) 70%),
+    linear-gradient(to bottom,rgba(var(--stage-shade),.15) 0%,rgba(var(--stage-shade),0) 22%,rgba(var(--stage-shade),.2) 42%,rgba(var(--stage-shade),.82) 66%,rgba(var(--stage-shade),.94) 100%)}
+.stage-in{position:relative;height:100%;display:flex;flex-direction:column;padding-top:44px;padding-bottom:28px}
+.name{margin:0;font-weight:800;line-height:1;text-shadow:0 2px 24px rgba(var(--stage-shade),.7)}
+.name .n1{display:block;font-variation-settings:"wdth" 125;font-weight:600;font-size:15px;letter-spacing:.42em;text-transform:uppercase;margin-bottom:10px}
+.name .n2{display:block;font-variation-settings:"wdth" 125;font-size:clamp(56px,4.4vw + 40px,108px);letter-spacing:-.01em;text-transform:uppercase;line-height:.96;white-space:nowrap}
+.name .one{display:inline-block;color:transparent;-webkit-text-stroke:2px var(--stage-led);text-shadow:none;filter:drop-shadow(0 0 6px var(--stage-glow)) drop-shadow(0 0 14px var(--stage-glow));margin-left:.06em}
+.name .n3{display:flex;align-items:center;gap:12px;margin-top:14px;font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--stage-muted);text-shadow:none}
+.name .n3::before{content:"";width:28px;height:1px;background:var(--stage-led);box-shadow:0 0 8px var(--stage-glow)}
+.stage-low{display:grid;gap:16px;margin-top:auto;padding-top:24px}
+.facts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.today{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px 0 12px;border-radius:999px;background:rgba(var(--stage-shade),.62);border:1px solid rgba(244,239,230,.35);text-decoration:none;font-size:15px;font-weight:600}
+.today i{width:12px;height:14px;background:var(--stage-acc);clip-path:var(--hex);flex:none}
+.today.zu i{background:none;outline:1px solid var(--stage-muted);outline-offset:-1px;clip-path:none;width:10px;height:10px;border-radius:50%}
+.rate{display:inline-flex;align-items:center;gap:10px;min-height:52px;text-decoration:none}
+.rate svg{width:48px;height:54px;flex:none;overflow:visible}
+.rate .hx{fill:rgba(var(--stage-shade),.6);stroke:var(--stage-acc);stroke-width:3}
+.rate text{fill:var(--stage-ink);font-family:var(--sans);font-weight:800;font-size:30px;font-variation-settings:"wdth" 110}
+.rate span{font-size:15px;line-height:1.3;color:var(--stage-ink)}
+.rate span b{display:block;font-weight:600}
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cta .btn:first-child{grid-column:1/-1}
+
+/* Ueber uns */
+.about{background:var(--bg)}
+.about .wrap{display:grid;gap:28px;padding-top:44px;padding-bottom:48px}
+.about p{margin:0;font-size:17px;line-height:1.65;max-width:34em}
+.about p::first-line{font-weight:600}
+.arch{margin:0;width:min(220px,62%);aspect-ratio:3/4;border-radius:999px 999px 6px 6px;overflow:hidden;position:relative;border:1px solid var(--line);justify-self:start}
+.arch img,.crop img,.ceil img{width:100%;height:100%;object-fit:cover;filter:var(--photo-filter)}
+.arch img{object-position:66% 82%;transform:scale(2.3);transform-origin:66% 74%}
+
+/* Deckenband: die Lichtlinien als Trenner, in Farbe */
+.ceil{position:relative;height:150px;overflow:hidden;margin:0;background:rgb(var(--stage-shade))}
+.ceil img{object-position:50% 14%;transform:scale(1.5);transform-origin:50% 10%}
+.ceil::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,rgba(var(--stage-shade),.4),rgba(var(--stage-shade),0) 30%,rgba(var(--stage-shade),0) 70%,rgba(var(--stage-shade),.4))}
+.ceil .lamp{position:absolute;inset:0;background:rgb(var(--stage-shade));opacity:0;pointer-events:none}
+
+/* =========================================================
+   Leistungen: die helle Tafel
+   ========================================================= */
+.prices{background:var(--paper);color:var(--paper-ink)}
+.prices>.wrap{padding-top:56px;padding-bottom:64px}
+.p-head{display:grid;gap:14px;margin-bottom:32px}
+.p-head p{margin:0;max-width:36em;color:var(--paper-muted);font-size:16px}
+.boards{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+.boards>*{min-width:0}
+.board{position:relative;background:var(--paper-card);border:1px solid var(--paper-line);border-top:3px solid var(--paper-acc);padding:22px 20px 14px}
+.board h3{margin:0 0 6px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-variation-settings:"wdth" 112;font-weight:700;font-size:20px;line-height:1.2}
+.board h3 svg{width:22px;height:24px;flex:none;fill:none;stroke:var(--paper-acc);stroke-width:5}
+.feat{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding:16px 0 18px;border-bottom:1px solid var(--paper-line);margin-bottom:4px}
+.feat .lbl{font-size:17px;font-weight:600;line-height:1.25}
+.feat .big{display:flex;align-items:baseline;gap:6px;color:var(--paper-acc);white-space:nowrap}
+.feat .big small{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.08em}
+.feat .big b{font-variation-settings:"wdth" 125;font-weight:800;font-size:44px;line-height:.9;letter-spacing:-.01em}
+.menu{list-style:none;margin:0;padding:0}
+.menu li{display:flex;align-items:baseline;gap:10px;min-height:48px;padding:12px 0;line-height:1.3;font-size:16px}
+.menu li+li{border-top:1px solid transparent}
+.menu .lead{flex:1 1 24px;min-width:16px;align-self:flex-end;margin-bottom:6px;border-bottom:2px dotted var(--paper-acc);opacity:.75;transform-origin:left center}
+.menu .pr{font-family:var(--mono);font-size:16px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums;flex:none}
+.menu .pr small{font-size:13px;color:var(--paper-muted);margin-right:5px;letter-spacing:.06em}
+.side{display:grid;gap:18px;align-content:start}
+.ask{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Ausschnitte aus dem einen Foto */
+.crops{background:var(--bg);padding:40px 0 8px}
+.strip-x{display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--pad) 12px;scrollbar-width:thin;scroll-padding:0 var(--pad)}
+.crop{margin:0;scroll-snap-align:start;aspect-ratio:4/5;overflow:hidden;position:relative;background:rgb(var(--stage-shade));clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)}
+.crop.c1 img{object-position:72% 42%;transform:scale(2.6);transform-origin:73% 44%}
+.crop.c2 img{object-position:90% 40%;transform:scale(3);transform-origin:89% 41%}
+.crop.c3 img{object-position:10% 32%;transform:scale(2.1);transform-origin:6% 34%}
+.crop.c4 img{object-position:60% 72%;transform:scale(2.4);transform-origin:60% 74%}
+
+/* =========================================================
+   Bewertungen
+   ========================================================= */
+.reviews{background:var(--bg)}
+.reviews>.wrap{padding-top:40px;padding-bottom:60px;display:grid;gap:28px}
+.score{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px}
+.score svg{width:112px;height:124px;overflow:visible}
+.score .hx{fill:none;stroke:var(--led);stroke-width:2;filter:drop-shadow(0 0 6px var(--glow))}
+.score .hx2{fill:none;stroke:var(--line);stroke-width:1}
+.score .v{fill:var(--ink);font-family:var(--sans);font-weight:800;font-size:34px;font-variation-settings:"wdth" 118}
+.score .o{fill:var(--muted);font-family:var(--mono);font-size:13px}
+.score p{margin:0;font-size:16px;line-height:1.4}
+.score p b{display:block;font-size:17px}
+.quotes{list-style:none;margin:0;padding:0;display:grid}
+.quotes li{display:grid;grid-template-columns:28px 1fr;column-gap:12px;padding:20px 0;border-top:1px solid var(--line)}
+.quotes li:last-child{border-bottom:1px solid var(--line)}
+.quotes li::before{content:"«";grid-row:1/3;font-variation-settings:"wdth" 125;font-weight:800;font-size:36px;line-height:.9;color:var(--acc-text)}
+.quotes q{quotes:none;font-style:italic;font-size:18px;line-height:1.5;font-variation-settings:"wdth" 100}
+.quotes .who{margin-top:8px;font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.more{justify-self:start}
+
+/* =========================================================
+   Öffnungszeiten: drei Tafeln, heute leuchtet
+   ========================================================= */
+.hours{background:var(--bg2)}
+.hours>.wrap{padding-top:52px;padding-bottom:60px}
+.tiles{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.tile{position:relative;grid-column:span 1;background:var(--raised);border:1px solid var(--line);padding:18px 16px 18px;display:grid;gap:12px;align-content:start}
+.tile.wk{grid-column:1/-1}
+.tile::before{content:"";position:absolute;left:16px;right:16px;top:-1px;height:2px;background:var(--line)}
+.days{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.days li{display:inline-flex;align-items:center;justify-content:center;width:38px;height:42px;font-size:14px;font-weight:600;
+  background:var(--line);color:var(--ink);clip-path:var(--hex);position:relative}
+.days li::after{content:"";position:absolute;inset:1.5px;background:var(--raised);clip-path:var(--hex);z-index:0}
+.days li span{position:relative;z-index:1}
+.time{margin:0;white-space:nowrap;font-family:var(--mono);font-size:19px;font-weight:500;letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1.2}
+.tile.off{border-style:dashed;background:transparent}
+.tile.off::before{display:none}
+.tile.off .time{font-family:var(--sans);font-size:17px;font-weight:500;color:var(--muted)}
+.tile .now{position:absolute;top:-11px;right:14px;padding:0 8px;line-height:20px;background:var(--bg2);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-text);visibility:hidden}
+.tile.is-today{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc),0 0 26px -6px var(--glow)}
+.tile.is-today::before{background:var(--led);box-shadow:0 0 12px var(--glow)}
+.tile.is-today .now{visibility:visible}
+.days li.d-today{background:var(--acc)}
+.days li.d-today::after{background:var(--acc)}
+.days li.d-today span{color:var(--on-acc)}
+
+/* =========================================================
+   Kontakt: fertige Karte
+   ========================================================= */
+.contact{background:var(--bg)}
+.contact>.wrap{padding-top:56px;padding-bottom:64px}
+.card{position:relative;overflow:hidden;background:var(--raised);border:1px solid var(--line);border-radius:20px;padding:26px 20px 24px;display:grid;gap:26px}
+.honey{position:absolute;top:0;right:0;bottom:0;width:60%;pointer-events:none;background:var(--honey);
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0 L56 16.1 L56 48.4 L28 64.5 L0 48.4 L0 16.1 Z M28 64.5 L28 97' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"),linear-gradient(to right,transparent,#000 45%);mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0 L56 16.1 L56 48.4 L28 64.5 L0 48.4 L0 16.1 Z M28 64.5 L28 97' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"),linear-gradient(to right,transparent,#000 45%);
+  -webkit-mask-size:56px 97px,100% 100%;mask-size:56px 97px,100% 100%;-webkit-mask-repeat:repeat,no-repeat;mask-repeat:repeat,no-repeat;
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+}
+.card>*:not(.honey){position:relative}
+.c-main{display:grid;gap:18px;align-content:start}
+.tel{display:inline-flex;align-items:center;min-height:48px;font-variation-settings:"wdth" 112;font-weight:700;font-size:32px;line-height:1.1;letter-spacing:.01em;text-decoration:none;white-space:nowrap;justify-self:start}
+.tel:hover{color:var(--acc-text)}
+.addr{margin:0;font-style:normal;font-size:17px;line-height:1.5}
+.c-btns{display:flex;flex-wrap:wrap;gap:10px}
+.dl{margin:0;display:grid}
+.dl div{display:grid;grid-template-columns:100px minmax(0,1fr);gap:12px;align-items:center;min-height:56px;border-top:1px solid var(--line);padding:4px 0}
+.dl div:last-child{border-bottom:1px solid var(--line)}
+.dl dt{font-size:15px;color:var(--muted)}
+.dl dd{margin:0;overflow-wrap:anywhere}
+.dl dd a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;font-size:16px}
+.dl dd a:hover{color:var(--acc-text)}
+
+/* =========================================================
+   Schluss
+   ========================================================= */
+.close{position:relative;overflow:hidden}
+.close .wrap{position:relative;padding-top:48px;padding-bottom:28px}
+.close .honey{width:45%;background:var(--band-honey)}
+.close .book{margin:0 0 20px;font-variation-settings:"wdth" 112;font-weight:700;font-size:28px;line-height:1.15;max-width:13em}
+.close .acts{display:flex;flex-wrap:wrap;gap:10px}
+.social{display:flex;flex-wrap:wrap;gap:4px 28px;margin-top:26px}
+.social a{display:inline-flex;align-items:center;gap:10px;min-height:48px;text-decoration:none;font-size:17px;font-weight:600}
+.social svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.social a:hover{text-decoration:underline;text-underline-offset:5px}
+.links{display:flex;flex-wrap:wrap;gap:0 24px;margin-top:22px;border-top:1px solid var(--band-line);padding-top:8px}
+.links a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;font-size:15px}
+.links a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Daumenleiste (Telefon) + Entwurfsband */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--raised);border-top:1px solid var(--line);padding:6px 10px calc(8px + env(safe-area-inset-bottom))}
+.dock .rib{display:block;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.2;margin-bottom:5px}
+.dock .row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px}
+.dock a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:48px;border-radius:10px;text-decoration:none;font-size:15px;font-weight:600;border:1px solid var(--line);color:var(--ink);background:var(--bg)}
+.dock a:first-child{background:var(--acc);border-color:var(--acc);color:var(--on-acc)}
+.dock a:active{transform:scale(.97)}
+.dock{transition:transform .3s ease}
+.dock .row{transition:visibility 0s linear 0s}
+.dock.away{transform:translateY(calc(100% - 24px - env(safe-area-inset-bottom)))}
+.dock.away .row{visibility:hidden;transition:visibility 0s linear .3s}
+.dock svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ribbon{display:none}
+
+/* =========================================================
+   Bewegung (nur wenn erwuenscht; ohne Beobachter bleibt alles sichtbar)
+   ========================================================= */
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes draw{from{stroke-dashoffset:var(--len,400)}to{stroke-dashoffset:0}}
+@keyframes flick{0%{opacity:.15}8%{opacity:1}12%{opacity:.35}20%{opacity:1}26%{opacity:.6}34%,100%{opacity:1}}
+@keyframes lampon{0%{opacity:.75}30%{opacity:.5}36%{opacity:.7}100%{opacity:0}}
+@keyframes lead{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 1px var(--acc),0 0 26px -6px var(--glow)}50%{box-shadow:0 0 0 1px var(--acc),0 0 44px 2px var(--glow)}}
+@media (prefers-reduced-motion:no-preference){
+  .name .n1,.name .n2,.name .n3{animation:up .7s cubic-bezier(.2,.7,.2,1) both}
+  .name .n2{animation-delay:.12s}
+  .name .n3{animation-delay:.28s}
+  .name .one{animation:flick 1.3s linear .55s both}
+  .rate .hx{stroke-dasharray:400;--len:400;animation:draw .9s ease-out .3s both}
+  .mark .hx{stroke-dasharray:400;--len:400;animation:draw .9s ease-out both}
+  .stage-low{animation:up .7s ease-out .45s both}
+  .rv .r{opacity:0;transform:translateY(16px)}
+  .rv .r.in,.rv.rv-all .r{animation:up .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+  .rv .ceil.in .lamp{animation:lampon 1.2s ease-out both}
+  .rv .ceil:not(.in) .lamp{opacity:.75}
+  .rv.rv-all .ceil .lamp{animation:lampon 1.2s ease-out both}
+  .rv .board .lead{transform:scaleX(0)}
+  .rv .board.in .lead,.rv.rv-all .board .lead{animation:lead .7s ease-out both;animation-delay:calc(var(--d,0s) + .25s)}
+  .rv .board .menu li{opacity:0}
+  .rv .board.in .menu li,.rv.rv-all .board .menu li{animation:up .45s ease-out both;animation-delay:calc(var(--d,0s) + .08s * var(--i,0))}
+  .rv .score.in .hx,.rv.rv-all .score .hx{stroke-dasharray:500;--len:500;animation:draw 1.1s ease-out both}
+  .tile.is-today{animation:pulse 2s ease-in-out .6s 1}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .page,.page *,.page *::before,.page *::after{animation:none!important;transition:none!important}
+}
+
+/* =========================================================
+   Breiter
+   ========================================================= */
+@media (max-width:359px){
+  :root{--pad:16px}
+  .mark small{display:none}
+  .mark b{font-size:15px}
+  .mark svg{width:26px;height:30px}
+  .sw button{padding:0 8px;gap:4px;font-size:12px}
+  .tools{gap:6px}
+  .name .n1{letter-spacing:.3em}
+  .tel{font-size:28px}
+  .dl div{grid-template-columns:84px minmax(0,1fr)}
+  .time{font-size:16px}
+  .tile{padding:16px 14px}
+}
+@media (min-width:600px){
+  .call .wrap{flex-direction:row;align-items:center;justify-content:space-between}
+  .strip-x{grid-auto-columns:42%}
+  .time{font-size:22px}
+  .boards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (min-width:900px){
+  :root{--pad:40px}
+  .page{padding-bottom:0}
+  .dock{display:none}
+  .ribbon{display:block;position:fixed;right:0;bottom:0;z-index:60;background:var(--raised);color:var(--muted);border:1px solid var(--line);border-right:0;border-bottom:0;padding:6px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+  .call .wrap{min-height:64px;padding-top:10px;padding-bottom:10px}
+  .call p{font-size:17px}
+  .h2{font-size:36px}
+  .stage{height:clamp(540px,calc(100svh - 136px),780px)}
+  .stage-img{object-position:50% 12%;transform:none}
+  .stage-shade{background:
+    radial-gradient(ellipse 52% 50% at 22% 42%,rgba(var(--stage-shade),.6),rgba(var(--stage-shade),0) 72%),
+    linear-gradient(to bottom,rgba(var(--stage-shade),.1) 0%,rgba(var(--stage-shade),0) 30%,rgba(var(--stage-shade),.35) 58%,rgba(var(--stage-shade),.9) 100%)}
+  .stage-in{padding-top:clamp(40px,8svh,88px);padding-bottom:40px}
+  .name .n1{font-size:22px;margin-bottom:14px}
+  .name .n3{font-size:14px}
+  .stage-low{margin-top:0;padding-top:36px;gap:20px}
+  .facts{gap:14px 28px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .rate svg{width:56px;height:62px}
+  .about .wrap{grid-template-columns:5fr 7fr;column-gap:56px;align-items:center;padding-top:72px;padding-bottom:72px}
+  .arch{width:min(300px,100%);justify-self:end}
+  .about p{font-size:19px}
+  .ceil{height:220px}
+  .ceil img{transform:scale(1.2);object-position:50% 16%}
+  .prices>.wrap{padding-top:80px;padding-bottom:88px}
+  .p-head{grid-template-columns:5fr 7fr;column-gap:56px;align-items:end;margin-bottom:44px}
+  .p-head p{font-size:17px}
+  .boards{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px}
+  .board{padding:28px 32px 18px}
+  .board h3{font-size:22px}
+  .feat .big b{font-size:64px}
+  .menu li{font-size:17px}
+  .crops{padding:64px 0 0}
+  .strip-x{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);grid-auto-columns:auto;overflow:visible;max-width:1280px;margin:0 auto;padding-bottom:0}
+  .crop{aspect-ratio:3/4}
+  .reviews>.wrap{grid-template-columns:5fr 7fr;column-gap:56px;padding-top:72px;padding-bottom:88px;align-items:start}
+  .rv-left{position:sticky;top:110px;display:grid;gap:26px}
+  .score{grid-template-columns:1fr;gap:20px}
+  .score svg{width:150px;height:166px}
+  .quotes{grid-template-columns:1fr 1fr;column-gap:32px}
+  .quotes li:nth-last-child(2){border-bottom:1px solid var(--line)}
+  .quotes q{font-size:19px}
+  .hours>.wrap{padding-top:80px;padding-bottom:88px}
+  .tiles{margin-top:36px;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:16px}
+  .tile.wk{grid-column:auto}
+  .tile{padding:24px 24px 26px;gap:16px}
+  .tile .now{right:22px}
+  .time{font-size:clamp(20px,1.9vw,28px)}
+  .contact>.wrap{padding-top:80px;padding-bottom:96px}
+  .card{grid-template-columns:5fr 7fr;column-gap:56px;padding:44px 48px}
+  .card .h2{grid-column:1/-1}
+  .tel{font-size:36px}
+  .dl{align-self:start}
+  .close .wrap{display:grid;grid-template-columns:7fr 5fr;column-gap:56px;align-items:end;padding-top:72px;padding-bottom:40px}
+  .close .book{font-size:36px}
+  .social{margin-top:0;justify-content:flex-end}
+  .links{grid-column:1/-1;margin-top:40px}
+}
+@media (min-width:1100px){
+  .head{top:0}
+  .head-in{grid-template-columns:auto 1fr auto;column-gap:32px;min-height:72px}
+  .nav{grid-column:2;grid-row:1;justify-content:center;gap:34px;height:auto;margin:0;padding:0;border-bottom:0;overflow:visible}
+  .mark{grid-row:1}
+  .tools{grid-row:1;grid-column:3}
+  .callpill{display:inline-flex}
+  .callpill.btn{min-height:46px;padding:0 24px}
+}
+
+/* ---------- Erster Bildschirm «Salonfoto»: das ganze Foto gerahmt neben dem Namen (Auswahl nur im Entwurf) ---------- */
+.pal-sep{flex-basis:100%;height:0;border-top:1px dashed var(--line);margin:2px 0}
+:root[data-start="foto"] .stage{height:auto;display:grid;grid-template-columns:minmax(0,1fr);gap:0;overflow:visible}
+:root[data-start="foto"] .stage-img{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:4/3;object-position:50% 50%;transform:none}
+:root[data-start="foto"] .stage-shade{display:none}
+:root[data-start="foto"] .stage-in{height:auto;width:100%;padding-top:28px;padding-bottom:32px}
+:root[data-start="foto"] .name{text-shadow:none}
+:root[data-start="foto"] .stage-low{margin-top:0}
+@media (min-width:900px){
+  :root[data-start="foto"] .stage{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);align-items:center;column-gap:48px;max-width:1280px;margin:0 auto;padding:48px var(--pad) 56px}
+  :root[data-start="foto"] #start{background:rgb(var(--stage-shade))}
+  :root[data-start="foto"] .stage-img{grid-column:2;grid-row:1;border:1px solid rgba(244,239,230,.28);box-shadow:0 24px 60px -24px rgba(0,0,0,.7)}
+  :root[data-start="foto"] .stage-in{grid-column:1;grid-row:1;padding:0;max-width:none;margin:0}
+  :root[data-start="foto"] .about{background:var(--bg)}
+}
+
+/* Auswahlleiste: am Telefon eingeklappt, damit die Seite sofort sichtbar ist */
+.pal{display:block;padding:0}
+.pal-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:4px 12px 12px}
+.pal-sum{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:6px 12px;cursor:pointer;list-style:none;font-family:var(--mono);font-size:12px;line-height:1.3;text-transform:uppercase;letter-spacing:.1em;color:var(--ink)}
+.pal-sum::-webkit-details-marker{display:none}
+.pal-ch{flex:none;width:9px;height:9px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg);margin:0 4px 4px 0}
+.pal-d[open] .pal-ch{transform:rotate(225deg);margin:4px 4px 0 0}
+.pal-sum:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+@media (min-width:900px){
+  .pal-sum{display:none}
+  .pal-in{padding:10px 12px 12px}
+}
+
+/* Öffnungszeiten: Tage antippen */
+.days li{width:44px;height:50px}
+.days .dbtn{position:relative;z-index:1;appearance:none;-webkit-appearance:none;margin:0;padding:0;border:0;background:none;width:100%;height:100%;
+  display:inline-flex;align-items:center;justify-content:center;font:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer}
+.days li.d-today{background:var(--acc)}
+.days li.d-today::after{background:var(--raised)}
+.days li.d-today .dbtn{color:var(--ink)}
+.days li.d-sel{background:var(--acc)}
+.days li.d-sel::after{background:var(--acc)}
+.days li.d-sel .dbtn{color:var(--on-acc)}
+.days .dbtn:focus-visible{outline:2px solid var(--focus);outline-offset:-6px}
+@media (hover:hover){.days li:not(.d-sel):hover::after{background:var(--bg2)}}
+.tile.is-sel:not(.is-today){border-color:var(--ink)}
+.pick{margin:18px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;min-height:34px}
+.pick-d{font-size:17px;font-weight:600}
+.pick-t{font-family:var(--mono);font-size:19px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--acc-text)}
+.pick.zu .pick-t{font-family:var(--sans);font-size:17px;color:var(--muted)}
+@media (min-width:900px){.pick{margin-top:22px}.pick-d{font-size:19px}.pick-t{font-size:21px}}
+
+/* Kontakt: ohne Linien direkt auf den Waben, etwas groesser */
+.dl{gap:6px}
+.dl div,.dl div:last-child{border:0;min-height:52px;padding:0}
+.dl dt{font-size:16px}
+.dl dd a{font-size:19px;font-weight:600}
+.addr{font-size:19px}
+@media (max-width:899px){.dl div,.dl div:last-child{grid-template-columns:minmax(0,1fr);gap:0;min-height:0}.dl dt{font-size:15px}.dl dd a{overflow-wrap:normal;word-break:keep-all}}
+@media (min-width:900px){.addr{font-size:21px}.dl dd a{font-size:21px}.dl dt{font-size:17px}.dl div{grid-template-columns:120px minmax(0,1fr)}}
+
+/* Variante B: rechte Seite (WhatsApp, E-Mail) deutlich groesser (nur Computer) */
+@media (min-width:900px){
+  .card{grid-template-columns:5fr 6fr;column-gap:48px;align-items:center}
+  .dl{gap:18px;align-self:center}
+  .dl div{grid-template-columns:minmax(0,1fr);gap:6px;min-height:0}
+  .dl dt{font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .dl dd a{font-size:34px;font-weight:700;font-variation-settings:"wdth" 112;line-height:1.1;min-height:48px}
+  .dl div:last-child dd a{font-size:26px}
+}
+
+/* Foto beim Text: Sechseck wie die Decke, statt Bogen */
+.arch{border:0;border-radius:0;aspect-ratio:100/115;clip-path:var(--hex);background:var(--acc);padding:3px;filter:drop-shadow(0 0 14px var(--glow))}
+.arch .hx-in{display:block;width:100%;height:100%;clip-path:var(--hex);overflow:hidden;position:relative}
+
+/* Telefon: ein goldenes Sechseck zum Anrufen, unten rechts (statt Leiste) */
+.hexcall{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:70;width:64px;height:72px;display:flex;align-items:center;justify-content:center;
+  clip-path:var(--hex);background:var(--acc);color:var(--on-acc);text-decoration:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));transition:transform .3s ease,opacity .3s ease}
+.hexcall svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.hexcall.away{transform:translateY(120px);opacity:0;pointer-events:none}
+.hexcall:active{transform:scale(.94)}
+.hexcall:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media (max-width:899px){
+  .ribbon{display:block;position:static;text-align:center;border-top:1px solid var(--line);padding:10px 16px 90px !important;z-index:auto;background:var(--raised);color:var(--muted);border:1px solid var(--line);border-left:0;border-bottom:0;padding:5px 10px calc(5px + env(safe-area-inset-bottom,0px));font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none}
+  .page{padding-bottom:0}
+}
+@media (min-width:900px){.hexcall{display:none}}
+/* Computer: Sechseck-Foto groesser, Block dichter */
+@media (min-width:900px){
+  .about .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:64px;padding-top:56px;padding-bottom:56px}
+  .arch{width:min(450px,100%);justify-self:end}
+  .about p{font-size:20px;line-height:1.6}
+  /* Logo etwas groesser */
+  .mark svg{width:36px;height:40px}
+  .mark b{font-size:20px}
+  .mark small{font-size:12px}
+  .quotes .who{font-size:15px}
+}
+
+/* Foto beim Text: Rechteck mit schraeg abgeschnittenen Ecken (Andeutung der Waben) */
+.arch{--cut:22px;aspect-ratio:3/4;
+  clip-path:polygon(var(--cut) 0,calc(100% - var(--cut)) 0,100% var(--cut),100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,var(--cut) 100%,0 calc(100% - var(--cut)),0 var(--cut))}
+.arch .hx-in{--ci:calc(var(--cut) - 1.5px);
+  clip-path:polygon(var(--ci) 0,calc(100% - var(--ci)) 0,100% var(--ci),100% calc(100% - var(--ci)),calc(100% - var(--ci)) 100%,var(--ci) 100%,0 calc(100% - var(--ci)),0 var(--ci))}
+@media (min-width:900px){.arch{--cut:44px}}
+/* Juli 18.11: Ecken staerker abgeschnitten */
+.arch{--cut:44px !important}
+@media (min-width:900px){.arch{--cut:90px !important}}
+/* Telefon: Schrift ueber den hellen Wabenlinien lesbar machen (nur Decke als Startbild) */
+@media (max-width:899px){
+  :root:not([data-start="foto"]) .name{position:relative;isolation:isolate}
+  :root:not([data-start="foto"]) .name::before{content:"";position:absolute;z-index:-1;left:-60px;right:-36px;top:-34px;bottom:-30px;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(var(--stage-shade),.86),rgba(var(--stage-shade),.66) 58%,rgba(var(--stage-shade),0) 100%)}
+  :root:not([data-start="foto"]) .name .n1,:root:not([data-start="foto"]) .name .n2{text-shadow:0 0 2px rgba(var(--stage-shade),.95),0 1px 4px rgba(var(--stage-shade),.9),0 2px 18px rgba(var(--stage-shade),.8)}
+  :root:not([data-start="foto"]) .name .n3{text-shadow:0 0 2px rgba(var(--stage-shade),.95),0 1px 6px rgba(var(--stage-shade),.9)}
+}
+/* Juli 18.11: Anrufen / Telefonat vereinbaren heller, mit goldenem Schein (beide Themen) */
+.btn[href^="tel:"]{--b-edge:#F6DA94;--b-fill:#E8C26A;--b-deep:#F4D27F;--b-ink:#17120A;color:#17120A;
+  filter:drop-shadow(0 0 6px rgba(240,196,98,.55)) drop-shadow(0 0 16px rgba(240,190,80,.35));transition:transform .18s ease,filter .25s ease}
+.btn[href^="tel:"]::after{background:linear-gradient(180deg,#F5D78C 0%,#E8C26A 48%,#D9AC4F 100%)}
+.btn[href^="tel:"]:hover{filter:drop-shadow(0 0 9px rgba(246,206,110,.85)) drop-shadow(0 0 26px rgba(240,190,80,.6))}
+.btn[href^="tel:"]:hover::after{background:linear-gradient(180deg,#FBE3A6 0%,#F0CC78 48%,#E2B85C 100%)}
+.btn[href^="tel:"]:hover::before{background:#FCE7B0}
+.page .btn[href^="tel:"]{color:#17120A}
+.hexcall{background:linear-gradient(180deg,#F5D78C 0%,#E8C26A 48%,#D9AC4F 100%);color:#17120A;filter:drop-shadow(0 0 8px rgba(240,196,98,.6)) drop-shadow(0 6px 14px rgba(0,0,0,.4))}
+a.hexcall svg{stroke:#17120A}
+/* Juli 18.11: Galerie mit duennem Goldrahmen (wie Rahmen am Stuhlfoto) */
+.crop{background:var(--acc);padding:2px}
+.crop .cin{display:block;width:100%;height:100%;overflow:hidden;position:relative;background:rgb(var(--stage-shade));
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 21px),calc(100% - 21px) 100%,0 100%)}
+/* Juli 18.11: gewaehlter Tag – Rahmen rundum geschlossen */
+.tile.is-sel:not(.is-today){border-color:var(--ink);border-style:solid;box-shadow:0 0 0 1px var(--ink)}
+.tile.is-sel:not(.is-today)::before{display:none}
+/* Juli 18.11: Text neben dem Stuhlfoto gegliedert (nur eigene Worte des Salons) */
+.about .ab{display:grid;gap:0;max-width:34em}
+.about .ab p{max-width:none}
+.about .ab p::first-line{font-weight:inherit}
+.about .ab-k{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--acc-text)}
+.about .ab-k::before{content:"";width:28px;height:1px;background:var(--acc);box-shadow:0 0 8px var(--glow)}
+.about .ab-lead{margin-top:14px;font-variation-settings:"wdth" 112;font-weight:700;font-size:30px;line-height:1.12;letter-spacing:-.005em;color:var(--ink)}
+.about .ab-lead em{font-style:normal;color:var(--acc-text);text-shadow:0 0 18px var(--glow)}
+.about .ab-p{margin-top:18px;font-size:17px;line-height:1.6;color:var(--muted)}
+.about .ab-l{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line)}
+.about .ab-l li{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.about .ab-l .t{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 14px;line-height:1.2}
+.about .ab-l i{flex:none;margin-top:4.5px;width:12px;height:14px;background:var(--acc);clip-path:var(--hex);filter:drop-shadow(0 0 6px var(--glow))}
+.about .ab-l b{font-size:19px;font-weight:600;color:var(--ink)}
+.about .ab-l span{font-size:16px;color:var(--muted)}
+.about .ab-sig{margin-top:22px;font-size:17px;font-weight:600;color:var(--ink)}
+@media (min-width:900px){
+  .about .ab-k{font-size:14px}
+  .about .ab-lead{font-size:44px;margin-top:18px}
+  .about .ab-p{font-size:19px;margin-top:22px}
+  .about .ab-l{margin-top:30px}
+  .about .ab-l li{padding:15px 0}
+  .about .ab-l b{font-size:22px}
+  .about .ab-l i{margin-top:6px}
+  .about .ab-l span{font-size:17px}
+  .about .ab-sig{margin-top:26px;font-size:19px}
+}
+/* Juli 18.11: Buchungsblock am Computer als schmale Karte statt Vollbreite */
+@media (min-width:900px){
+  .close{background:var(--bg);overflow:visible;padding:16px 0 56px}
+  .close .honey{display:none}
+  .close .wrap{max-width:880px;width:calc(100% - 2*var(--pad));margin:0 auto;padding:44px 48px 18px;background:var(--band);border:1px solid var(--acc);border-radius:20px;box-shadow:0 0 0 1px rgba(200,161,90,.18),0 0 34px -10px var(--glow);
+    background-image:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,0) 60%)}
+  .close .book{font-size:32px}
+  .close .links{margin-top:30px}
+}
+/* Juli 18.11: Galerie – alle vier Ecken leicht abgeschnitten, Goldrahmen folgt dem Schnitt */
+.crop{--gc:16px;clip-path:polygon(var(--gc) 0,calc(100% - var(--gc)) 0,100% var(--gc),100% calc(100% - var(--gc)),calc(100% - var(--gc)) 100%,var(--gc) 100%,0 calc(100% - var(--gc)),0 var(--gc))}
+.crop{padding:3px}
+.crop .cin{--gi:calc(var(--gc) - 1.8px);clip-path:polygon(var(--gi) 0,calc(100% - var(--gi)) 0,100% var(--gi),100% calc(100% - var(--gi)),calc(100% - var(--gi)) 100%,var(--gi) 100%,0 calc(100% - var(--gi)),0 var(--gi))}
+@media (min-width:900px){.crop{--gc:22px}}
+/* Juli 18.11: Gold mit Metallverlauf und ruhigem Glanz, der ab und zu ueber Rahmen und Knoepfe laeuft */
+:root{
+  --metal:linear-gradient(135deg,#7E5E26 0%,#E2C27A 16%,#A47A33 32%,#F6E2A6 48%,#B98F45 62%,#EBCF8A 80%,#8A6828 100%);
+  --metal-btn:linear-gradient(135deg,#DDB45C 0%,#F7DE9A 30%,#E0B65E 55%,#F3D78E 80%,#D6A94E 100%);
+  --glint:linear-gradient(110deg,rgba(255,248,225,0) 38%,rgba(255,252,240,.55) 46%,#FFFDF4 50%,rgba(255,252,240,.55) 54%,rgba(255,248,225,0) 62%);
+  --glint-soft:linear-gradient(110deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.45) 47%,rgba(255,255,255,.85) 50%,rgba(255,255,255,.45) 53%,rgba(255,255,255,0) 60%);
+  --sheen:linear-gradient(110deg,rgba(255,236,190,0) 40%,rgba(255,236,190,.16) 46%,rgba(255,246,220,.30) 50%,rgba(255,236,190,.16) 54%,rgba(255,236,190,0) 60%);
+}
+@keyframes glint2{0%,64%{background-position:100% 0,0 0}100%{background-position:0% 0,0 0}}
+@keyframes glint4{0%,64%{background-position:0 0,0 0,100% 0,0 0}100%{background-position:0 0,0 0,0% 0,0 0}}
+/* Rahmen der Fotos: Gold liegt auf ::before (die Fotos selbst haben schon die Einblend-Animation) */
+.arch,.crop{background:var(--metal)}
+.arch::before,.crop::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--glint),var(--metal);background-size:400% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0;animation:glint2 8s ease-in-out 1.5s infinite}
+.arch .hx-in,.crop .cin{position:relative;z-index:1}
+.crop{background:var(--acc)}
+.crop::before{display:none}
+.arch::before{animation-delay:.8s;animation-duration:9s}
+.hexcall{background:var(--glint),var(--metal);background-size:400% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0;animation:glint2 10s ease-in-out 1.5s infinite}
+.btn[href^="tel:"]::after{background:var(--glint-soft),var(--metal-btn);background-size:400% 100%,100% 100%;background-repeat:no-repeat;background-position:100% 0,0 0;animation:glint2 9s ease-in-out 3s infinite}
+.btn[href^="tel:"]::before{background:linear-gradient(135deg,#B48C45,#FBE6AE 45%,#C9A057 70%,#F4D68E)}
+.btn[href^="tel:"]:hover::after{background:var(--glint-soft),linear-gradient(135deg,#EAC56E 0%,#FCE8B2 30%,#ECC977 55%,#FAE3A2 80%,#E2B85C 100%);background-size:400% 100%,100% 100%;background-repeat:no-repeat}
+@media (min-width:900px){
+  .close .wrap{border:1.5px solid transparent;
+    background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,0) 60%) padding-box,linear-gradient(var(--band),var(--band)) padding-box,var(--glint) border-box,var(--metal) border-box;
+    background-size:auto,auto,400% 100%,100% 100%;background-repeat:no-repeat;background-position:0 0,0 0,100% 0,0 0;animation:glint4 9s ease-in-out 2s infinite}
+}
+/* kleine Goldakzente: Verlauf statt Flaeche */
+.h2::before,.today i,.about .ab-l i,.about .ab-k::before{background:var(--metal)}
+.days li.d-today,.days li.d-sel,.days li.d-sel::after{background:var(--metal)}
+.mark .hx,.rate .hx{stroke:url(#gold-metal)}
+.mark .cr{fill:url(#gold-metal)}
+@media (prefers-reduced-motion:reduce){
+  .arch::before,.crop::before,.hexcall,.btn[href^="tel:"]::after,.close .wrap{animation:none!important}
+}
+/* Juli 18.11: kein Glanz in der Galerie; Buchungskarte und Goldknoepfe mit schoenerem Glanz */
+@keyframes sheen{0%,64%{background-position:100% 0}100%{background-position:0% 0}}
+@media (min-width:900px){
+  .close .wrap{position:relative;isolation:isolate;animation-duration:7s;border-width:2px}
+  .close .wrap::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:var(--sheen);background-size:400% 100%;background-repeat:no-repeat;background-position:100% 0;animation:sheen 7s ease-in-out 2s infinite}
+}
+.btn[href^="tel:"]::after{animation-duration:6s}
+.callpill::after{animation-delay:1.2s}
+@media (prefers-reduced-motion:reduce){.close .wrap::before{animation:none!important}}
+/* Juli 18.11: Impressum und Datenschutz mittig unter der Linie, etwas mehr Abstand (nur Karte am Computer) */
+@media (min-width:900px){.close .links{justify-content:center;gap:0 56px}}
+</style>
+
+<div class="page">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="gold-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8A6828"/><stop offset=".22" stop-color="#EBCB82"/><stop offset=".42" stop-color="#A97F36"/><stop offset=".58" stop-color="#F7E4AA"/><stop offset=".78" stop-color="#B98F45"/><stop offset="1" stop-color="#E5C57C"/></linearGradient></defs></svg>
+
+
+<header class="head" id="top">
+  <div class="wrap head-in">
+    <a class="mark" href="#start" aria-label="Coiffeur King 1 – Startseite">
+      <svg viewBox="0 0 100 112" aria-hidden="true" focusable="false"><path class="hx" d="M50 4 L95 30 L95 82 L50 108 L5 82 L5 30 Z"/><path class="cr" d="M28 70 L24 42 L38 54 L50 36 L62 54 L76 42 L72 70 Z M28 74 H72 V80 H28 Z"/></svg>
+      <span><small>Coiffeur</small><b>King 1</b></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#start">Startseite</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#zeiten">Öffnungszeiten</a>
+      <a href="#kontakt">Kontakt &amp; Standort</a>
+    </nav>
+    <div class="tools">
+      <a class="btn callpill" href="tel:+41412188696">Anrufen</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="band call on-band">
+    <div class="wrap">
+      <p>Möchten Sie mit Ihrem persönlichen Stylist sprechen?</p>
+      <a class="btn" href="tel:+41412188696">Telefonat vereinbaren <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <section id="start" aria-labelledby="h-start">
+    <div class="stage on-stage">
+      <img class="stage-img" src="king_salon.jpg" alt="Salon von Coiffeur King 1 in Flawil: Decke mit Lichtlinien in Sechseckform, goldene Barberstühle" width="1448" height="1086" fetchpriority="high">
+      <div class="stage-shade" aria-hidden="true"></div>
+      <div class="stage-in wrap">
+        <h1 class="name" id="h-start"><span class="n1">Coiffeur</span><span class="n2">King <span class="one">1</span></span><span class="n3">Flawil</span></h1>
+        <div class="stage-low">
+          <div class="facts">
+            <a class="today" href="#zeiten" id="heute"><i aria-hidden="true"></i><span id="heute-t">Öffnungszeiten</span></a>
+          </div>
+          <div class="cta">
+            <a class="btn" href="tel:+41412188696">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+              Anrufen <span class="tnum">041 218 86 96</span></a>
+            <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Coiffeurking1+Wilerstrasse+164+Flawil" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              Route</a>
+            <a class="btn ghost" href="https://wa.me/41767204868" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about">
+      <div class="wrap">
+        <figure class="arch r" aria-hidden="true"><span class="hx-in"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"></span></figure>
+        <div class="ab r">
+          <p class="ab-k">Unser Ziel</p>
+          <p class="ab-lead">Ihnen den <em>Glamour der Stars</em> zu verleihen.</p>
+          <p class="ab-p">Wir kreieren schmeichelhafte, moderne Looks für unsere Kunden und konzentrieren uns dabei auf vielseitige, alltagstaugliche Frisuren.</p>
+          <ul class="ab-l">
+            <li><i aria-hidden="true"></i><span class="t"><b>Trendig</b></span></li>
+            <li><i aria-hidden="true"></i><span class="t"><b>Zeitlos</b></span></li>
+            <li><i aria-hidden="true"></i><span class="t"><b>Highlight</b> <span>für einen besonderen Anlass</span></span></li>
+          </ul>
+          <p class="ab-sig">Coiffeur King 1 hat genau das Richtige für Sie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <figure class="ceil r" aria-hidden="true"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"><span class="lamp"></span></figure>
+
+  <section class="prices on-paper" id="leistungen" aria-labelledby="h-leist">
+    <div class="wrap">
+      <div class="p-head">
+        <h2 class="h2 r" id="h-leist">Unsere Leistungen</h2>
+        <p class="r">Wir helfen Ihnen dabei, Ihre innere Schönheit zum Strahlen zu bringen. Dafür kreieren wir exklusive Looks, die von Ihrem persönlichen Stil, dem Anlass und Ihrem Geschmack inspiriert sind. Unser Team arbeitet mit Liebe zum Detail und verwendet hochwertige Salonprodukte in professioneller Qualität.</p>
+      </div>
+      <div class="boards">
+        <article class="board r" aria-labelledby="h-g1">
+          <h3 id="h-g1">Haarschnitte &amp; Preise <svg viewBox="0 0 100 112" aria-hidden="true" focusable="false"><path d="M50 4 L95 30 L95 82 L50 108 L5 82 L5 30 Z"/></svg></h3>
+          <div class="feat"><span class="lbl">Herrenhaarschnitt</span><span class="big"><small>CHF</small><b>25.–</b></span></div>
+          <ul class="menu">
+            <li style="--i:1"><span>Haarschnitt Kinder bis 12 Jahre</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>15.–</span></li>
+            <li style="--i:2"><span>Haarschnitt Jugendliche bis 16 Jahre</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>20.–</span></li>
+            <li style="--i:3"><span>Haarschnitt &amp; Waschen</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>30.–</span></li>
+            <li style="--i:4"><span>Föhnen</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>10.–</span></li>
+            <li style="--i:5"><span>Bartschnitt</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>15.–</span></li>
+            <li style="--i:6"><span>Augenbrauen zupfen</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>10.–</span></li>
+          </ul>
+        </article>
+        <div class="side">
+          <article class="board r" aria-labelledby="h-g2" style="--d:.12s">
+            <h3 id="h-g2">Schönheit &amp; Preise <svg viewBox="0 0 100 112" aria-hidden="true" focusable="false"><path d="M50 4 L95 30 L95 82 L50 108 L5 82 L5 30 Z"/></svg></h3>
+            <ul class="menu">
+              <li style="--i:1"><span>Blackmaske</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>10.–</span></li>
+              <li style="--i:2"><span>Bart färben</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>20.–</span></li>
+              <li style="--i:3"><span>Haare färben</span><span class="lead" aria-hidden="true"></span><span class="pr"><small>CHF</small>20.–</span></li>
+            </ul>
+          </article>
+          <div class="ask r" style="--d:.2s">
+            <a class="btn" href="tel:+41412188696">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+              Anrufen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="crops" aria-hidden="true">
+    <div class="strip-x">
+      <figure class="crop c1 r"><span class="cin"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"></span></figure>
+      <figure class="crop c2 r" style="--d:.08s"><span class="cin"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"></span></figure>
+      <figure class="crop c3 r" style="--d:.16s"><span class="cin"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"></span></figure>
+      <figure class="crop c4 r" style="--d:.24s"><span class="cin"><img src="king_salon.jpg" alt="" width="1448" height="1086" loading="lazy"></span></figure>
+    </div>
+  </div>
+
+  <section class="reviews" id="bewertungen" aria-labelledby="h-bew">
+    <div class="wrap">
+      <div class="rv-left">
+        <h2 class="h2 r" id="h-bew">Bewertungen</h2>
+        <div class="score r">
+          <svg viewBox="0 0 100 112" role="img" aria-label="4,9 von 5"><path class="hx2" d="M50 12 L88 34 L88 78 L50 100 L12 78 L12 34 Z"/><path class="hx" d="M50 4 L95 30 L95 82 L50 108 L5 82 L5 30 Z"/><text class="v" x="50" y="62" text-anchor="middle">4,9</text><text class="o" x="50" y="80" text-anchor="middle">/ 5</text></svg>
+          <p><b>163 Bewertungen</b>auf Google</p>
+        </div>
+        <a class="btn ghost more r" href="https://www.google.com/maps/search/?api=1&amp;query=Coiffeurking1+Wilerstrasse+164+Flawil" rel="noopener">Alle Bewertungen auf Google <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="quotes">
+        <li class="r"><q>Guter Mann er geht auf wünsche ein ist schnell und professionel gerne wieder.</q><span class="who">Stefan</span></li>
+        <li class="r" style="--d:.08s"><q>Es ist ein sehr einladender Ort, die Angestellten sind sehr höflich und schneiden Ihnen die Haare ganz nach Ihren Wünschen.</q><span class="who">Hikmet</span></li>
+        <li class="r" style="--d:.16s"><q>Sehr flotter service, kinderfreundlich, müssen nie lange warten – er geht die extrameile</q><span class="who">Marco</span></li>
+        <li class="r" style="--d:.24s"><q>Sehr netter herr, sehr ruhig und zuvorkommend, 5 Sterne mehr als verdient.</q><span class="who">David</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="hours" id="zeiten" aria-labelledby="h-zeit">
+    <div class="wrap">
+      <h2 class="h2 r" id="h-zeit">Öffnungszeiten</h2>
+      <p class="pick r" id="pick" aria-live="polite"><span class="pick-d" id="pick-d">Montag</span><span class="pick-t" id="pick-t">09:00–19:00</span></p>
+      <ul class="tiles">
+        <li class="tile wk r" data-days="1 2 3 4 5">
+          <span class="now">Heute</span>
+          <ul class="days" aria-label="Montag bis Freitag">
+            <li data-d="1"><button type="button" class="dbtn" data-d="1" aria-pressed="false" aria-label="Montag">Mo</button></li><li data-d="2"><button type="button" class="dbtn" data-d="2" aria-pressed="false" aria-label="Dienstag">Di</button></li><li data-d="3"><button type="button" class="dbtn" data-d="3" aria-pressed="false" aria-label="Mittwoch">Mi</button></li><li data-d="4"><button type="button" class="dbtn" data-d="4" aria-pressed="false" aria-label="Donnerstag">Do</button></li><li data-d="5"><button type="button" class="dbtn" data-d="5" aria-pressed="false" aria-label="Freitag">Fr</button></li>
+          </ul>
+          <p class="time">09:00–19:00</p>
+        </li>
+        <li class="tile r" data-days="6" style="--d:.08s">
+          <span class="now">Heute</span>
+          <ul class="days" aria-label="Samstag"><li data-d="6"><button type="button" class="dbtn" data-d="6" aria-pressed="false" aria-label="Samstag">Sa</button></li></ul>
+          <p class="time">08:00–18:00</p>
+        </li>
+        <li class="tile off r" data-days="0" style="--d:.16s">
+          <span class="now">Heute</span>
+          <ul class="days" aria-label="Sonntag"><li data-d="0"><button type="button" class="dbtn" data-d="0" aria-pressed="false" aria-label="Sonntag">So</button></li></ul>
+          <p class="time">geschlossen</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="h-kon">
+    <div class="wrap">
+      <div class="card r">
+        <span class="honey" aria-hidden="true"></span>
+        <h2 class="h2" id="h-kon">Kontakt &amp; Standort</h2>
+        <div class="c-main">
+          <a class="tel" href="tel:+41412188696">041 218 86 96</a>
+          <address class="addr">Wilerstrasse 164<br>9230 Flawil</address>
+          <div class="c-btns">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Coiffeurking1+Wilerstrasse+164+Flawil" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              Route planen</a>
+          </div>
+        </div>
+        <dl class="dl">
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/41767204868" rel="noopener">076 720 48 68</a></dd></div>
+          <div><dt>E-Mail</dt><dd><a href="mailto:king1coiffeur@gmail.com">king1coiffeur@gmail.com</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="band close on-band">
+  <span class="honey" aria-hidden="true"></span>
+  <div class="wrap">
+    <div>
+      <p class="book">Buchen Sie jetzt Ihren Termin</p>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/king1coiffeur/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>Instagram</a>
+      <a href="https://www.tiktok.com/@king1coiffeur" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.6 2.4 4.4 5 4.6"/></svg>TikTok</a>
+    </div>
+    <div class="links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<a class="hexcall" href="tel:+41412188696" aria-label="Anrufen 041 218 86 96"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+<div class="ribbon" aria-hidden="true">Entwurf – nur zur Ansicht</div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var KEY="king1-thema";
+  var btns=document.querySelectorAll(".sw button[data-set]");
+  var timer=null;
+  function flash(){root.classList.add("tt");window.clearTimeout(timer);timer=window.setTimeout(function(){root.classList.remove("tt");},260);}
+  function current(){
+    var t=root.getAttribute("data-farbe");
+    if(t!=="dark"&&t!=="light"){
+      t="dark";
+      root.setAttribute("data-farbe",t);
+    }
+    return t;
+  }
+  function paint(){
+    var t=current();
+    for(var i=0;i<btns.length;i++){btns[i].setAttribute("aria-pressed",btns[i].getAttribute("data-set")===t?"true":"false");}
+  }
+  function setTheme(t,store){
+    if(t!=="dark"){return;}
+    if(t!==root.getAttribute("data-farbe")){flash();root.setAttribute("data-farbe",t);}
+    if(store){try{window.localStorage.setItem(KEY,t);}catch(e){}}
+    paint();
+  }
+  for(var i=0;i<btns.length;i++){btns[i].addEventListener("click",function(){setTheme(this.getAttribute("data-set"),true);});}
+  paint();
+  if(window.matchMedia){
+    var mq=window.matchMedia("(prefers-color-scheme: light)");
+    var follow=function(e){
+      var stored=null;try{stored=window.localStorage.getItem(KEY);}catch(err){}
+      if(stored!=="dark"&&stored!=="light"){setTheme(e.matches?"light":"dark",false);}
+    };
+    if(mq.addEventListener){mq.addEventListener("change",follow);}else if(mq.addListener){mq.addListener(follow);}
+  }
+
+  /* Farbvariante (nur Entwurf) */
+  var gb=document.querySelectorAll(".pal-b[data-g]");
+  function curG(){return root.getAttribute("data-gamma")||"messing";}
+  function showG(){for(var j=0;j<gb.length;j++){gb[j].setAttribute("aria-checked",gb[j].getAttribute("data-g")===curG()?"true":"false");}}
+  showG();
+  for(var j=0;j<gb.length;j++){
+    gb[j].addEventListener("click",function(){
+      var g=this.getAttribute("data-g");flash();
+      if(g==="messing"){root.removeAttribute("data-gamma");}else{root.setAttribute("data-gamma",g);}
+      try{window.localStorage.setItem("king1-gamma",g);}catch(e){}
+      showG();
+    });
+  }
+
+  /* Auswahlleiste: am Computer offen, am Telefon eingeklappt */
+  var pd=document.getElementById("pal-d");
+  if(pd&&window.matchMedia&&window.matchMedia("(min-width:900px)").matches){pd.setAttribute("open","");}
+
+  /* erster Bildschirm (nur Entwurf) */
+  var sb=document.querySelectorAll(".pal-b[data-s]");
+  function curS(){return root.getAttribute("data-start")==="foto"?"foto":"decke";}
+  function showS(){for(var k=0;k<sb.length;k++){sb[k].setAttribute("aria-checked",sb[k].getAttribute("data-s")===curS()?"true":"false");}}
+  showS();
+  for(var k=0;k<sb.length;k++){
+    sb[k].addEventListener("click",function(){
+      var s=this.getAttribute("data-s");
+      if(s==="foto"){root.setAttribute("data-start","foto");}else{root.removeAttribute("data-start");}
+      try{window.localStorage.setItem("king1-start",s);}catch(e){}
+      showS();
+    });
+  }
+
+  /* heute: getDay() 0 = Sonntag */
+  var d=new Date().getDay();
+  var tiles=document.querySelectorAll(".tile[data-days]");
+  for(var k=0;k<tiles.length;k++){
+    if((" "+tiles[k].getAttribute("data-days")+" ").indexOf(" "+d+" ")>-1){tiles[k].classList.add("is-today");}
+  }
+  var chip=document.querySelector('.days li[data-d="'+d+'"]');
+  if(chip){chip.classList.add("d-today");}
+
+  /* Tage antippen: Zeiten jedes Tages zeigen (Zeiten stehen in den Tafeln) */
+  var DN=["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+  var pick=document.getElementById("pick"),pd2=document.getElementById("pick-d"),pt=document.getElementById("pick-t");
+  var dbs=document.querySelectorAll(".days .dbtn");
+  function timeOf(n){for(var q=0;q<tiles.length;q++){if((" "+tiles[q].getAttribute("data-days")+" ").indexOf(" "+n+" ")>-1){var tm=tiles[q].querySelector(".time");return {tile:tiles[q],txt:tm?tm.textContent:""};}}return null;}
+  function choose(n){
+    var r=timeOf(n);if(!r){return;}
+    for(var q=0;q<dbs.length;q++){var on=dbs[q].getAttribute("data-d")===String(n);dbs[q].setAttribute("aria-pressed",on?"true":"false");dbs[q].parentNode.classList.toggle("d-sel",on);}
+    for(var q2=0;q2<tiles.length;q2++){tiles[q2].classList.toggle("is-sel",tiles[q2]===r.tile);}
+    if(pd2&&pt&&pick){pd2.textContent=DN[n]+(n===d?", heute":"");pt.textContent=r.txt;pick.classList.toggle("zu",r.tile.classList.contains("off"));}
+  }
+  for(var q3=0;q3<dbs.length;q3++){dbs[q3].addEventListener("click",function(){choose(parseInt(this.getAttribute("data-d"),10));});}
+  choose(d);
+  var ht=document.getElementById("heute-t"),hl=document.getElementById("heute");
+  if(ht&&hl){
+    if(d===0){ht.textContent="Heute geschlossen";hl.classList.add("zu");}else{ht.textContent="Heute geöffnet";}
+  }
+
+  /* Daumenleiste erst, wenn die Knoepfe im Startbild weg sind */
+  var dock=document.querySelector(".hexcall"),cta=document.querySelector(".stage .cta");
+  if(dock&&cta&&"IntersectionObserver" in window){
+    try{
+      var hide={};var pr=document.getElementById("leistungen");
+      var io2=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){hide[es[i].target===cta?"cta":"pr"]=es[i].isIntersecting;}dock.classList.toggle("away",!!(hide.cta||hide.pr));});
+      io2.observe(cta);if(pr){io2.observe(pr);}
+    }catch(e){}
+  }
+
+  /* Einblenden beim Scrollen */
+  if(root.classList.contains("rv")){
+    try{
+      var io=new IntersectionObserver(function(es){
+        for(var n=0;n<es.length;n++){if(es[n].isIntersecting){es[n].target.classList.add("in");io.unobserve(es[n].target);}}
+      },{rootMargin:"0px 0px -8% 0px",threshold:0.01});
+      var rs=document.querySelectorAll(".r");
+      for(var m=0;m<rs.length;m++){io.observe(rs[m]);}
+    }catch(e){root.classList.add("rv-all");}
+  }
+})();
+</script>
+
+</body></html>
