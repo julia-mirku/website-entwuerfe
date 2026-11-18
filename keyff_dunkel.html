@@ -981,8 +981,8 @@ address .nm{color:var(--gold)}
 }
 .score .neon .big{
   background:none;-webkit-background-clip:border-box;background-clip:border-box;padding:0;
-  font-size:3rem;color:#fff3dc;letter-spacing:-.01em;
-  text-shadow:0 0 3px #ffe2b0,0 0 12px rgba(255,180,90,.95),0 0 30px rgba(255,140,50,.7);
+  font-size:3rem;color:#e9a23b;letter-spacing:-.01em;
+  text-shadow:0 0 10px rgba(233,162,59,.45),0 0 26px rgba(233,162,59,.25);
 }
 @media (prefers-reduced-motion:no-preference){
   .js .score .neon{animation:neon 2.2s steps(1,end) .4s backwards}
@@ -1127,6 +1127,48 @@ address .nm{color:var(--gold)}
 /* Weniger Luft zwischen Bewertungen und Öffnungszeiten (18.11) */
 @media (min-width:900px){#stimmen{padding-bottom:48px}#stimmen + .sec{padding-top:64px}}
 @media (max-width:899px){#stimmen{padding-bottom:36px}#stimmen + .sec{padding-top:48px}}
+
+/* Telefon: Name ganz, Anrufen nur als Symbol (18.11) */
+@media (max-width:639px){
+  .top .btn{width:44px;height:44px;min-width:44px;padding:0;border-radius:50%;justify-content:center;gap:0}
+  .top .btn .word{display:none}
+  .top .btn svg{width:20px;height:20px}
+  .brand b{overflow:visible;text-overflow:clip}
+}
+
+/* Unten näher zusammen: weniger Luft vor dem Holzband und zwischen Band, Logo und Links (18.11) */
+#stimmen + .sec{padding-bottom:60px}
+.foot{padding-bottom:44px}
+.foot .wrap{padding-top:30px}
+.plate-lg{margin-bottom:8px}
+@media (max-width:899px){#stimmen + .sec{padding-bottom:44px}.foot{padding-bottom:36px}.foot .wrap{padding-top:26px}}
+
+/* Öffnungszeiten: jeder Tag unter der Maus (Telefon: antippen) bekommt denselben Kreidekreis wie heute (18.11) */
+.hours tbody tr{cursor:default}
+.hours tbody tr th,.hours tbody tr td{transition:color .25s ease}
+.hours tbody tr.is-hover th,.hours tbody tr.is-hover td{color:#ffd896}
+.chalk-hover{opacity:0;transition:opacity .25s ease,top .28s cubic-bezier(.3,.7,.2,1),height .28s ease}
+.chalk-hover.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.chalk-hover{transition:none}}
+
+/* Sichtbares Hover überall (18.11) */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .brand .plate{transition:transform .3s ease}
+  .brand:hover .plate{transform:rotate(-6deg) scale(1.08)}
+  .gallery figure,.js .gallery figure.rv.in{transition:transform .35s ease,box-shadow .35s ease}
+  .gallery figure:hover,.js .gallery figure.rv.in:hover{transform:translateY(-6px)}
+  .quote,.js .quote.rv.in{transition:transform .3s ease}
+  .quote:hover,.js .quote.rv.in:hover{transform:translateX(5px)}
+  .quote:first-child:hover,.js .quote:first-child.rv.in:hover{transform:translateY(-5px)}
+  .brass{transition:transform .35s ease,filter .35s ease}
+  .brass:hover{transform:rotate(-1.2deg) scale(1.02);filter:brightness(1.07)}
+  .score .neon{transition:transform .3s ease}
+  .score:hover .neon{transform:scale(1.06)}
+  .foot .plate-lg{transition:transform .35s ease}
+  .foot .plate-lg:hover{transform:rotate(-6deg) scale(1.08)}
+}
+.foot nav a,.place .reserve a,.textlink{transition:color .2s ease,text-decoration-color .2s ease}
+.foot nav a:hover,.place .reserve a:hover{text-decoration-thickness:2px}
 </style>
 <style id="vw-css">
 .vw-bar{position:relative;z-index:200;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;margin:0;padding:8px 14px;
@@ -2727,6 +2769,38 @@ address .nm{color:var(--gold)}
   window.addEventListener('resize', check);
   window.addEventListener('load', check);
   setTimeout(check, 1200);
+})();
+</script>
+<script>
+/* Kreidekreis folgt der Maus / dem Finger über die Tage; der Kreis von heute bleibt */
+(function(){
+  var slate = document.querySelector('.slate'); if(!slate) return;
+  var rows = slate.querySelectorAll('.hours tbody tr'); if(!rows.length) return;
+  var ring = document.createElement('i');
+  ring.className = 'chalk-ring chalk-hover'; ring.setAttribute('aria-hidden', 'true');
+  slate.appendChild(ring);
+  var cur = null;
+  function place(r){
+    var a = r.getBoundingClientRect(), b = slate.getBoundingClientRect();
+    ring.style.top = Math.round(a.top - b.top - 4) + 'px';
+    ring.style.height = Math.round(a.height + 8) + 'px';
+  }
+  function show(r){
+    if(cur && cur !== r) cur.classList.remove('is-hover');
+    cur = r;
+    if(!r || r.classList.contains('is-today')){ ring.classList.remove('on'); if(r) r.classList.remove('is-hover'); return; }
+    r.classList.add('is-hover');
+    if(!ring.classList.contains('on')){ ring.style.transition = 'none'; place(r); void ring.offsetHeight; ring.style.transition = ''; }
+    else place(r);
+    ring.classList.add('on');
+  }
+  Array.prototype.forEach.call(rows, function(r){
+    r.addEventListener('mouseenter', function(){ show(r); });
+    r.addEventListener('click', function(){ show(r); });
+  });
+  slate.addEventListener('mouseleave', function(){ show(null); });
+  document.addEventListener('click', function(e){ if(!slate.contains(e.target)) show(null); });
+  window.addEventListener('resize', function(){ if(cur && ring.classList.contains('on')) place(cur); });
 })();
 </script>
 </body>

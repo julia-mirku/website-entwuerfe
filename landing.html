@@ -3,7 +3,7 @@
 <html lang="de-CH">
 <head>
 <meta name="robots" content="noindex, nofollow">
-<title data-t="title">Robin &amp; Julia Mirku – Wer in Ihrer Nähe sucht, soll Sie finden.</title>
+<title data-t="title">Robin &amp; Julia Mirku – Wer in Ihrer Nähe sucht, soll Sie finden</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -89,7 +89,7 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(255,252,245,.94);bac
 .result .pin i{width:2.2cqw;height:2.2cqw;border-radius:50%;background:var(--sun);border:.4cqw solid var(--ink);flex:none}
 .site-top{height:11cqw;border-radius:2.2cqw;background:var(--sun);display:flex;align-items:flex-end;padding:1.6cqw}
 .site-top .bar{background:var(--ink);width:60%;height:1.9cqw}
-.lbl{font-family:var(--body);font-weight:700;font-size:2.15cqw;line-height:1.1;color:var(--ink);letter-spacing:0}
+.lbl{font-family:var(--body);font-weight:700;font-size:max(13px,2.15cqw);line-height:1.1;color:var(--ink);letter-spacing:0}
 .hours{display:flex;flex-direction:column;gap:1cqw}
 .hours div{display:flex;justify-content:space-between;align-items:center;gap:2cqw}
 .hours div .bar:first-child{width:28%}
@@ -102,7 +102,7 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(255,252,245,.94);bac
 .price .bar:first-child{width:46%}
 .price .bar:last-child{width:16%;background:var(--ink)}
 .bookbtn{box-shadow:0 0 0 1.4cqw rgba(245,184,0,.32);margin-top:auto;background:var(--sun);border:.45cqw solid var(--ink);border-radius:3cqw;min-height:7.2cqw;display:grid;place-items:center;padding:0 1cqw;text-align:center}
-.bookbtn .lbl{font-size:2.5cqw}
+.bookbtn .lbl{font-size:max(13px,2.5cqw)}
 .tap{position:absolute;right:14%;top:50%;width:6.4cqw;height:6.4cqw;margin-top:-3.2cqw;border-radius:50%;border:.5cqw solid var(--ink);background:rgba(255,255,255,.55);opacity:0}
 /* phone animation */
 .typing{flex:1;overflow:hidden}
@@ -151,9 +151,6 @@ h2{font-size:clamp(32px,3.6vw,50px);max-width:20ch}
 .grid6{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;list-style:none;padding:0}
 .grid6 li{padding:28px 26px 30px;border-radius:var(--r);background:var(--paper);border:2px solid var(--line);transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease}
 .grid6 li:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:6px 6px 0 var(--sun)}
-.grid6 li,.card{position:relative;isolation:isolate;overflow:hidden}
-.grid6 li::before,.card::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(240px circle at var(--x,50%) var(--y,50%),rgba(245,184,0,.32),transparent 70%);opacity:0;transition:opacity .3s ease}
-.grid6 li:hover::before,.card:hover::before,.grid6 li.glow::before,.card.glow::before{opacity:1}
 .ico{transition:background-color .2s ease}
 .ico{width:56px;height:56px;border-radius:16px;background:var(--sun-soft);display:grid;place-items:center;margin-bottom:18px}
 .ico svg{width:30px;height:30px}
@@ -230,7 +227,7 @@ h2{font-size:clamp(32px,3.6vw,50px);max-width:20ch}
 .ba .ok b{background:var(--ink);color:var(--white);border-radius:14px 14px 4px 14px;padding:6px 14px;font-family:var(--head);font-size:18px}
 
 .faq-list{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;align-items:start}
-.ask{background:var(--sun);border:2px solid var(--ink);border-radius:18px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;min-height:64px}
+.ask{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;min-height:64px}
 .ask b{font-size:19px}
 .ask .btn{min-height:44px;font-size:16px;padding:0 18px;background:var(--white);box-shadow:0 3px 0 var(--ink);transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease}
 .ask .btn:hover,.ask .btn:focus-visible,.ask .btn:active{background:var(--ink);color:var(--white);box-shadow:0 3px 0 var(--sun)}
@@ -321,7 +318,6 @@ footer .dot{opacity:.5}
 .wlist{margin:44px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
 .wlist li{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:18px 14px;margin:0 -14px;border-bottom:1px solid var(--line);align-items:start;border-radius:16px;cursor:default;outline:none;transition:opacity .25s ease, transform .25s ease, background-color .25s ease, box-shadow .25s ease}
 .wlist li:is(:hover,:focus-visible,.on){background:var(--paper-2);transform:translateX(6px);box-shadow:inset 4px 0 0 var(--sun)}
-.wlist:has(li:is(:hover,:focus-visible,.on)) li:not(:hover):not(:focus-visible):not(.on){opacity:.42}
 .wlist li svg{transition:transform .3s ease}
 .wlist li:is(:hover,:focus-visible,.on) svg{transform:scale(1.18) rotate(-10deg)}
 .wlist li:is(:hover,:focus-visible,.on) .ck{stroke-dasharray:20;animation:ck-draw .45s ease-out both}
@@ -339,7 +335,7 @@ footer .dot{opacity:.5}
 .ichips button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;min-height:40px;padding:6px 14px;border-radius:999px;background:var(--white);border:2px solid var(--ink);font-weight:600;font-size:16px;transition:background-color .2s ease, color .2s ease, transform .2s ease}
 .ichips button:is(:hover,:focus-visible){background:var(--ink);color:var(--sun);transform:translateY(-2px)}
 .ichips button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.idea .btn{transition:transform .2s ease-out, box-shadow .15s ease}
+
 @media (max-width:900px){.wlist{grid-template-columns:1fr}.idea{grid-template-columns:1fr}}
 @media (max-width:640px){.idea{padding:24px 22px}.idea .btn{width:100%;white-space:normal}}
 
@@ -432,6 +428,7 @@ body.noscroll{overflow:hidden}
 .chatf button{all:unset;box-sizing:border-box;cursor:pointer;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;background:var(--white)}
 .chatf button svg{width:20px;height:20px}
 .chatf button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+@media (max-width:640px){.p1{width:34cqw;left:0}.p3{width:34cqw;left:66%}.p3 .bookbtn{padding:1cqw .6cqw}.bookbtn .lbl{line-height:1.1;letter-spacing:-.01em;font-weight:600}.bookbtn .b2{white-space:nowrap}.p2{width:39cqw;left:30.5%}.openchip{padding:.8cqw 1.4cqw;gap:1cqw}.openchip .lbl{white-space:nowrap;font-weight:600}.p2 .lbl{letter-spacing:-.01em}}
 @media (max-width:640px){.chatw{right:14px;bottom:14px}.chatb{min-height:48px;padding:0 16px;font-size:16px}}
 @media (max-width:640px){.drawer{width:100%;border-left:0;box-shadow:none}.drawer .dh h2{font-size:22px}}
 @media (prefers-reduced-motion:reduce){.drawer,.drawer-bg{transition:none}}
@@ -439,6 +436,23 @@ body.noscroll{overflow:hidden}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none !important;animation:none !important}
 }
+
+/* one hover for all buttons */
+.btn,.pbtn,.ichips button,.chatq button,.chatb,.chatx,.chatf button,.drawer .x,.drawer .back{transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease}
+.btn:is(:hover,:focus-visible), .pbtn:is(:hover,:focus-visible), .ichips button:is(:hover,:focus-visible), .chatq button:is(:hover,:focus-visible), .chatb:is(:hover,:focus-visible), .chatx:is(:hover,:focus-visible), .chatf button:is(:hover,:focus-visible), .drawer .x:is(:hover,:focus-visible), .drawer .back:is(:hover,:focus-visible){transform:translateY(-2px);background:var(--ink);color:var(--white);box-shadow:0 4px 0 var(--sun),0 0 0 6px rgba(245,184,0,.3)}
+.btn:active, .pbtn:active, .ichips button:active, .chatq button:active, .chatb:active, .chatx:active, .chatf button:active, .drawer .x:active, .drawer .back:active{transform:translateY(1px)}
+.chatx:is(:hover,:focus-visible) path,.drawer .x:is(:hover,:focus-visible) path{stroke:#fff}
+.chatf button:is(:hover,:focus-visible) path{stroke:#fff}
+.btn:is(:hover,:focus-visible) svg,.pbtn:is(:hover,:focus-visible) svg{color:var(--sun)}
+
+/* tighter spacing between blocks */
+section{padding:56px 0}
+.hero{padding-bottom:48px}
+.grid6{margin-bottom:0}
+.steps{padding-bottom:36px}.faq{padding-top:36px;padding-bottom:36px}.contact{padding-top:36px;padding-bottom:72px}
+@media (max-width:900px){section{padding:48px 0}.hero{padding-bottom:40px}.steps{padding-bottom:30px}.faq{padding-top:30px;padding-bottom:30px}.contact{padding-top:30px;padding-bottom:64px}}
+@media (max-width:640px){section{padding:36px 0}.hero{padding-bottom:32px}.steps{padding-bottom:26px}.faq{padding-top:26px;padding-bottom:26px}.contact{padding-top:26px;padding-bottom:88px}}
+.drawer section{padding:0}
 </style>
 </head>
 <body>
@@ -464,7 +478,7 @@ body.noscroll{overflow:hidden}
   <section class="hero">
     <div class="wrap">
       <div>
-        <h1 data-t="h1">Wer in Ihrer Nähe sucht, soll <span class="hl">Sie finden.</span></h1>
+        <h1 data-t="h1">Wer in Ihrer Nähe sucht, soll <span class="hl">Sie finden</span></h1>
         <p class="sub" data-t="sub">Eine Website, die auf dem Handy sofort zeigt, was Kunden wissen wollen: Öffnungszeiten, Preise, Adresse und einen Knopf zum Buchen. Den Entwurf bauen wir gratis, und Sie sehen ihn, bevor Sie entscheiden.</p>
         <div class="cta">
           <a class="btn" href="#kontakt"><span data-t="cta_order">Gratis-Entwurf bestellen</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -535,32 +549,32 @@ body.noscroll{overflow:hidden}
       <ul class="grid6">
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 3c-5 0-9 3.9-9 9 0 6.8 9 15 9 15s9-8.2 9-15c0-5.1-4-9-9-9z" fill="none" stroke="#1F2328" stroke-width="2.4"/><circle cx="15" cy="12" r="3.4" fill="#1F2328"/></svg></div>
-          <strong data-t="f1a">Sie auf Google.</strong>
+          <strong data-t="f1a">Sie auf Google</strong>
           <span data-t="f1b">Name, Adresse und Öffnungszeiten so, wie Kunden danach suchen.</span>
         </li>
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="8" y="3" width="14" height="24" rx="3.5" fill="none" stroke="#1F2328" stroke-width="2.4"/><path d="M13 23h4" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-          <strong data-t="f2a">Alles Wichtige auf dem Handy, ohne Suchen.</strong>
+          <strong data-t="f2a">Alles Wichtige auf dem Handy, ohne Suchen</strong>
           <span data-t="f2b">Mit einem Fingertipp zur Route, schnell geladen.</span>
         </li>
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="6" y="4" width="18" height="22" rx="3" fill="none" stroke="#1F2328" stroke-width="2.4"/><path d="M10 10h10M10 15h10M10 20h6" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/></svg></div>
-          <strong data-t="f3a">Preise oder Speisekarte als echter Text, nicht als PDF.</strong>
+          <strong data-t="f3a">Preise oder Speisekarte als echter Text, nicht als PDF</strong>
           <span data-t="f3b">So können auch Google und KI-Assistenten sie lesen.</span>
         </li>
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="3" y="8" width="24" height="11" rx="5.5" fill="none" stroke="#1F2328" stroke-width="2.4"/><path d="M17 15l2 11 2.6-3.6L26 25" fill="#F5B800" stroke="#1F2328" stroke-width="2" stroke-linejoin="round"/></svg></div>
-          <strong data-t="f4a">Einen Knopf zu Ihrem Buchungs- oder Bestellsystem.</strong>
+          <strong data-t="f4a">Einen Knopf zu Ihrem Buchungs- oder Bestellsystem</strong>
           <span data-t="f4b">Der Kunde bucht direkt bei Ihnen.</span>
         </li>
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="3.5" fill="none" stroke="#1F2328" stroke-width="2.4"/><path d="M10 8l2-3h6l2 3" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linejoin="round"/><circle cx="15" cy="16.5" r="4.4" fill="none" stroke="#1F2328" stroke-width="2.4"/></svg></div>
-          <strong data-t="f5a">Ihre echte Arbeit auf Fotos.</strong>
+          <strong data-t="f5a">Ihre echte Arbeit auf Fotos</strong>
           <span data-t="f5b">Keine Bilder aus dem Internet.</span>
         </li>
         <li>
           <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="4" y="6" width="22" height="20" rx="3.5" fill="none" stroke="#1F2328" stroke-width="2.4"/><path d="M4 12h22M10 3v6M20 3v6" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><circle cx="15" cy="19" r="3" fill="#1F2328"/></svg></div>
-          <strong data-t="f6a">Ihre Aktion des Monats.</strong>
+          <strong data-t="f6a">Ihre Aktion des Monats</strong>
           <span data-t="f6b">Sie zeigt, dass bei Ihnen etwas läuft.</span>
         </li>
       </ul>
@@ -611,14 +625,14 @@ body.noscroll{overflow:hidden}
       <div class="eyebrow-line"></div>
       <h2 id="h-works" data-t="works_h">Was wir für Sie bauen</h2>
       <ul class="wlist">
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w1a">Neue Website für Ihren Betrieb.</strong><span data-t="w1b">Eine Seite oder mehrere, je nachdem, was Sie zeigen wollen.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w2a">Neuer Auftritt für Ihre bestehende Website.</strong><span data-t="w2b">Ihre Inhalte bleiben, Aussehen und Bedienung werden neu.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w3a">Speisekarte als blätterbares Menübuch.</strong><span data-t="w3b">Mit Kategorien, Preisen und je Gericht Platz für Foto, Zutaten und Nährwerte.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w4a">Preisliste nach Kategorien.</strong><span data-t="w4b">Ihre Leistungen übersichtlich, auch auf dem Handy.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w5a">Galerie mit Vorher-Nachher-Bildern und kurzen Videos.</strong><span data-t="w5b">Zum Durchblättern, auch im Vollbild.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w6a">Bearbeitung Ihrer Fotos.</strong><span data-t="w6b">Licht, Farbe und ein ruhiger Hintergrund.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w7a">Website auf Deutsch und Englisch.</strong><span data-t="w7b">Auf Wunsch auch in weiteren Sprachen.</span></div></li>
-          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w8a">Eigene Seiten für einzelne Leistungen.</strong><span data-t="w8b">Damit man Sie auf Google mit genau diesen Leistungen findet.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w1a">Neue Website für Ihren Betrieb</strong><span data-t="w1b">Eine Seite oder mehrere, je nachdem, was Sie zeigen wollen.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w2a">Neuer Auftritt für Ihre bestehende Website</strong><span data-t="w2b">Ihre Inhalte bleiben, Aussehen und Bedienung werden neu.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w3a">Speisekarte als blätterbares Menübuch</strong><span data-t="w3b">Mit Kategorien, Preisen und je Gericht Platz für Foto, Zutaten und Nährwerte.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w4a">Preisliste nach Kategorien</strong><span data-t="w4b">Ihre Leistungen übersichtlich, auch auf dem Handy.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w5a">Galerie mit Vorher-Nachher-Bildern und kurzen Videos</strong><span data-t="w5b">Zum Durchblättern, auch im Vollbild.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w6a">Bearbeitung Ihrer Fotos</strong><span data-t="w6b">Licht, Farbe und ein ruhiger Hintergrund.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w7a">Website auf Deutsch und Englisch</strong><span data-t="w7b">Auf Wunsch auch in weiteren Sprachen.</span></div></li>
+          <li tabindex="0"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><path class="ck" d="M8.5 14.5l3.6 3.6 7.4-7.6" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-t="w8a">Eigene Seiten für einzelne Leistungen</strong><span data-t="w8b">Damit man Sie auf Google mit genau diesen Leistungen findet.</span></div></li>
       </ul>
       <div class="idea">
         <div>
@@ -682,10 +696,10 @@ body.noscroll{overflow:hidden}
         <div class="eyebrow-line"></div>
         <h2 id="h-safe" data-t="safe_h">Ohne böse Überraschungen</h2>
         <ul class="checks">
-          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s1">Sie sehen den fertigen Entwurf, bevor Sie etwas entscheiden.</span></li>
-          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s8">Passt der Entwurf nicht, schulden Sie uns nichts.</span></li>
-          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s2">Nichts geht online ohne Ihr Ja.</span></li>
-          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s9">Der Preis steht vorher fest. Es kommt nichts dazu.</span></li>
+          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s1">Sie sehen den fertigen Entwurf, bevor Sie etwas entscheiden</span></li>
+          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s8">Passt der Entwurf nicht, schulden Sie uns nichts</span></li>
+          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s2">Nichts geht online ohne Ihr Ja</span></li>
+          <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#F5B800"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s9">Der Preis steht vorher fest, es kommt nichts dazu</span></li>
         </ul>
       </div>
       <div class="chat" role="img" aria-label="Chat: Sie bekommen den Entwurf als Ansicht und antworten mit Ja." data-ta="aria-label:chatimg">
@@ -706,12 +720,12 @@ body.noscroll{overflow:hidden}
       <ol>
         <li tabindex="0">
           <div class="num" aria-hidden="true">1</div>
-          <h3 data-t="st1h">Der Entwurf ist da.</h3>
+          <h3 data-t="st1h">Der Entwurf ist da</h3>
           <p data-t="st1p">Gebaut aus dem, was Ihr Betrieb schon zeigt: Preise, Fotos, Texte.</p>
         </li>
         <li tabindex="0">
           <div class="num" aria-hidden="true">2</div>
-          <h3 data-t="st2h">Sie sagen, was anders sein soll.</h3>
+          <h3 data-t="st2h">Sie sagen, was anders sein soll</h3>
           <p data-t="st2p">So, wie es für Sie am einfachsten ist:</p>
           <ul class="ways">
             <li tabindex="0" class="w-msg"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3v-3H5a2 2 0 0 1-2-2z" fill="#fff" stroke="#1F2328" stroke-width="2" stroke-linejoin="round"/><circle class="d d1" cx="7.5" cy="9.5" r="1.3" fill="#1F2328"/><circle class="d d2" cx="11" cy="9.5" r="1.3" fill="#1F2328"/><circle class="d d3" cx="14.5" cy="9.5" r="1.3" fill="#1F2328"/></svg><span data-t="way1">Nachricht</span></li>
@@ -721,7 +735,7 @@ body.noscroll{overflow:hidden}
         </li>
         <li tabindex="0">
           <div class="num" aria-hidden="true">3</div>
-          <h3 data-t="st3h">Nach Ihrem Ja geht die Website online.</h3>
+          <h3 data-t="st3h">Nach Ihrem Ja geht die Website online</h3>
           <p data-t="st3p">Spätere Änderungen schicken Sie uns genauso.</p>
           <div class="yes-chip" aria-hidden="true" data-t="yes">Ja</div>
         </li>
@@ -749,11 +763,11 @@ body.noscroll{overflow:hidden}
       <div class="box">
         <div>
           <h2 id="h-contact" data-t="c_h">Ein Satz genügt</h2>
-          <div class="bubbles"><span class="bubble" data-t="c_ex1">«Ich möchte einen Gratis-Entwurf für meinen Betrieb.»</span><span class="bubble b2" data-t="c_ex">«Gefällt mir, wie geht es weiter?»</span></div>
+          <div class="bubbles"><span class="bubble" data-t="c_ex1">«Ich möchte einen Gratis-Entwurf für meinen Betrieb»</span><span class="bubble b2" data-t="c_ex">«Gefällt mir, wie geht es weiter?»</span></div>
         </div>
         <div class="mailcard">
           <div class="mailrow"><a class="btn" href="mailto:mirkurobin@gmail.com"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="4" width="16" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 5.5l7 5.5 7-5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-t="mail_btn">E-Mail schreiben</span></a><div class="mailaddr"><span data-t="mail_l">E-Mail</span><a href="mailto:mirkurobin@gmail.com">mirkurobin@gmail.com</a></div></div>
-          <p class="trust"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2.5c-4.4 0-8 3.4-8 7.9C5 16.4 13 24 13 24s8-7.6 8-13.6c0-4.5-3.6-7.9-8-7.9z" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><circle cx="13" cy="10.5" r="3" fill="#1F2328"/></svg><span data-t="c_trust">Von St. Gallen aus, für Betriebe überall.</span></p>
+          <p class="trust"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2.5c-4.4 0-8 3.4-8 7.9C5 16.4 13 24 13 24s8-7.6 8-13.6c0-4.5-3.6-7.9-8-7.9z" fill="#F5B800" stroke="#1F2328" stroke-width="2"/><circle cx="13" cy="10.5" r="3" fill="#1F2328"/></svg><span data-t="c_trust">Von St. Gallen aus, für Betriebe überall</span></p>
 
         </div>
       </div>
@@ -849,10 +863,10 @@ body.noscroll{overflow:hidden}
     <section aria-labelledby="h-p2" style="padding:0">
       <h3 id="h-p2" data-t="p2_h">Inbegriffen</h3>
       <ul class="dlist">
-        <li data-t="i1">Der Entwurf, bevor Sie sich entscheiden.</li>
-        <li data-t="i2">Zwei Korrekturrunden.</li>
-        <li data-t="i3">Für das Handy gebaut.</li>
-        <li data-t="i4">Deutsch und Englisch.</li>
+        <li data-t="i1">Der Entwurf, bevor Sie sich entscheiden</li>
+        <li data-t="i2">Zwei Korrekturrunden</li>
+        <li data-t="i3">Für das Handy gebaut</li>
+        <li data-t="i4">Deutsch und Englisch</li>
       </ul>
     </section>
     <section aria-labelledby="h-p4" style="padding:0">
@@ -878,11 +892,11 @@ body.noscroll{overflow:hidden}
 <script>
 (function(){
   var EN={
-    title:"Robin &amp; Julia Mirku – When people nearby search, they should find you.",
+    title:"Robin &amp; Julia Mirku – When people nearby search, they should find you",
     skip:"Skip to content",
     cta:"Reply to your draft",
     cta_order:"Order a free draft",
-    h1:"When people nearby search, they should <span class=\"hl\">find you.</span>",
+    h1:"When people nearby search, they should <span class=\"hl\">find you</span>",
     sub:"A website that shows customers what they want to know straight away on their phone: opening hours, prices, address and a button to book. We build the draft free of charge, and you see it before you decide.",
     ph_hours:"Opening hours",
     ph_book:"Book now",
@@ -891,17 +905,17 @@ body.noscroll{overflow:hidden}
     ph_open:"Open now",
     ph_refs:"Our work",
     finds_h:"What a new customer finds on your website",
-    f1a:"You, on Google.",
+    f1a:"You, on Google",
     f1b:"Name, address and opening hours, the way customers search for them.",
-    f2a:"Everything important on the phone, with no searching.",
+    f2a:"Everything important on the phone, with no searching",
     f2b:"One tap for directions, quick to load.",
-    f3a:"Prices or the menu as real text, not a PDF.",
+    f3a:"Prices or the menu as real text, not a PDF",
     f3b:"That way, Google and AI assistants can read them too.",
-    f4a:"A button to your booking or ordering system.",
+    f4a:"A button to your booking or ordering system",
     f4b:"The customer books directly with you.",
-    f5a:"Photos of your real work.",
+    f5a:"Photos of your real work",
     f5b:"No pictures from the internet.",
-    f6a:"Your offer of the month.",
+    f6a:"Your offer of the month",
     f6b:"It shows that things are happening at your place.",
     trades_h:"For your trade",
     t1h:"Hair, barber, beauty",
@@ -917,21 +931,21 @@ body.noscroll{overflow:hidden}
     t6h:"Practice: physio, massage, therapy",
     t6p:"Online booking, your treatments explained clearly, directions.",
     works_h:"What we build for you",
-    w1a:"A new website for your business.",
+    w1a:"A new website for your business",
     w1b:"One page or several, depending on what you want to show.",
-    w2a:"A new look for your existing website.",
+    w2a:"A new look for your existing website",
     w2b:"Your content stays; the look and the way it works are new.",
-    w3a:"Your menu as a book you can leaf through.",
+    w3a:"Your menu as a book you can leaf through",
     w3b:"With categories, prices and, for each dish, room for a photo, ingredients and nutrition values.",
-    w4a:"A price list by category.",
+    w4a:"A price list by category",
     w4b:"Your services laid out clearly, on the phone too.",
-    w5a:"A gallery with before-and-after pictures and short videos.",
+    w5a:"A gallery with before-and-after pictures and short videos",
     w5b:"To browse through, full screen as well.",
-    w6a:"Editing your photos.",
+    w6a:"Editing your photos",
     w6b:"Light, colour and a calm background.",
-    w7a:"A website in German and English.",
+    w7a:"A website in German and English",
     w7b:"Other languages on request.",
-    w8a:"Separate pages for individual services.",
+    w8a:"Separate pages for individual services",
     w8b:"So people find you on Google for exactly those services.",
     idea_h:"Have an idea of your own?",
     idea_p:"Tell us what you have in mind, and we’ll build it. For example:",
@@ -959,20 +973,20 @@ body.noscroll{overflow:hidden}
     hw4p:"We set up the hosting, and the legal notice and privacy policy are there from day one.",
     idea_btn:"Send your idea",
     safe_h:"No nasty surprises",
-    s1:"You see the finished draft before you decide anything.",
-    s2:"Nothing goes online without your yes.",
-    s8:"If the draft isn’t right for you, you owe us nothing.",
-    s9:"The price is fixed in advance. Nothing is added on top.",
+    s1:"You see the finished draft before you decide anything",
+    s2:"Nothing goes online without your yes",
+    s8:"If the draft isn’t right for you, you owe us nothing",
+    s9:"The price is fixed in advance, nothing is added on top",
     yes:"Yes",
     steps_h:"How it works",
-    st1h:"The draft is ready.",
+    st1h:"The draft is ready",
     st1p:"Built from what your business already shows: prices, photos, texts.",
-    st2h:"You tell us what should be different.",
+    st2h:"You tell us what should be different",
     st2p:"Whichever is easiest for you:",
     way1:"Message",
     way2:"Photo",
     way3:"Voice message",
-    st3h:"After your yes, the website goes online.",
+    st3h:"After your yes, the website goes online",
     st3p:"You send us later changes the same way.",
     faq_h:"Questions owners ask",
     q1:"Will the website really bring me customers?",
@@ -1026,10 +1040,10 @@ body.noscroll{overflow:hidden}
     pna_k8:"Priced by effort",
     p_note:"We give you the exact price in the quote. All prices are final: nothing is added on top, and the price does not change.",
     p2_h:"Included",
-    i1:"The draft, before you decide.",
-    i2:"Two rounds of corrections.",
-    i3:"Built for the phone.",
-    i4:"German and English.",
+    i1:"The draft, before you decide",
+    i2:"Two rounds of corrections",
+    i3:"Built for the phone",
+    i4:"German and English",
     p4_h:"How it works",
     z1:"You receive a written quote with scope, date and price.",
     z2:"You pay 50% when you place the order and 50% before the website goes live.",
@@ -1058,9 +1072,9 @@ body.noscroll{overflow:hidden}
     c_h:"One sentence is enough",
     mail_btn:"Write an e-mail",
     mail_l:"E-mail",
-    c_ex1:"‘I’d like a free draft for my business.’",
+    c_ex1:"‘I’d like a free draft for my business’",
     c_ex:"‘I like it, what happens next?’",
-    c_trust:"Working worldwide from St. Gallen.",
+    c_trust:"Working worldwide from St. Gallen",
     imp:"Legal notice",
     priv:"Privacy",
     "@langgroup":"Language",
@@ -1137,12 +1151,6 @@ body.noscroll{overflow:hidden}
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
-  // pointer glow
-  [].forEach.call(document.querySelectorAll('.grid6 li,.card'),function(el){
-    function pos(e){var r=el.getBoundingClientRect(); el.style.setProperty('--x',(e.clientX-r.left)+'px'); el.style.setProperty('--y',(e.clientY-r.top)+'px');}
-    el.addEventListener('pointermove',pos);
-    el.addEventListener('pointerdown',function(e){pos(e); if(e.pointerType!=='mouse'){el.classList.add('glow'); setTimeout(function(){el.classList.remove('glow');},700);}});
-  });
   // touch: tap toggles highlight (one at a time per group)
   [['.wlist','li'],['.steps ol','li'],['.ways','li']].forEach(function(g){
     var box=document.querySelector(g[0]); if(!box) return;
@@ -1160,13 +1168,6 @@ body.noscroll{overflow:hidden}
     var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.disconnect(); var it=[].slice.call(ways.children),i=0;
       (function next(){if(i>0) it[i-1].classList.remove('on'); if(i<it.length){it[i].classList.add('on'); i++; setTimeout(next,900);}})();}});},{threshold:.8});
     io.observe(ways);
-  }
-  // magnetic idea button
-  var box=document.querySelector('.idea'), btn=box&&box.querySelector('.btn');
-  if(box&&btn&&fine&&!reduce){
-    box.addEventListener('pointermove',function(e){var r=btn.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,d=Math.hypot(dx,dy);
-      if(d<170){var k=(1-d/170)*0.18; btn.style.transform='translate('+(dx*k).toFixed(1)+'px,'+(dy*k).toFixed(1)+'px)';} else btn.style.transform='';});
-    box.addEventListener('pointerleave',function(){btn.style.transform='';});
   }
   // idea chips open chat with text
   [].forEach.call(document.querySelectorAll('[data-chat-idea]'),function(b){b.addEventListener('click',function(){

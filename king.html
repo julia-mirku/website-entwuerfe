@@ -894,9 +894,9 @@ a.hexcall svg{stroke:#17120A}
             </ul>
           </article>
           <div class="ask r" style="--d:.2s">
-            <a class="btn" href="tel:+41412188696">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
-              Anrufen</a>
+            <a class="btn" href="https://wa.me/41767204868" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>
+              WhatsApp</a>
           </div>
         </div>
       </div>
@@ -987,7 +987,6 @@ a.hexcall svg{stroke:#17120A}
   </nav>
 </footer>
 
-<a class="hexcall" href="tel:+41412188696" aria-label="Anrufen 041 218 86 96"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
 <div class="ribbon" aria-hidden="true">Entwurf – nur zur Ansicht</div>
 </div>
 
@@ -1087,14 +1086,14 @@ a.hexcall svg{stroke:#17120A}
   }
 
   /* Daumenleiste erst, wenn die Knoepfe im Startbild weg sind */
-  var dock=document.querySelector(".hexcall"),cta=document.querySelector(".stage .cta");
+  var dock=document.querySelector(".hexcall"),cta=document.querySelector(".stage");
   if(dock&&cta&&"IntersectionObserver" in window){
     try{
       var hide={};var pr=document.getElementById("leistungen");
       var io2=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){hide[es[i].target===cta?"cta":"pr"]=es[i].isIntersecting;}dock.classList.toggle("away",!!(hide.cta||hide.pr));});
       io2.observe(cta);if(pr){io2.observe(pr);}
-    }catch(e){}
-  }
+    }catch(e){dock.classList.remove("away");}
+  }else if(dock){dock.classList.remove("away");}
 
   /* Einblenden beim Scrollen */
   if(root.classList.contains("rv")){

@@ -8,7 +8,7 @@
 <meta name="description" content="Kaffe de Keyff, Degersheimerstrasse 1, 9230 Flawil. Café und Restaurant: vor Ort, zum Mitnehmen oder geliefert. Telefon 071 554 42 24.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Kalam:wght@400;700&family=Caveat:wght@600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
   /* helle Fassung: die Namen der dunklen bleiben, damit alle Regeln gleich bleiben; dazu die hellen Farben */
@@ -1285,13 +1285,16 @@ h2 em{color:var(--brick)}
 .gallery figure{background:linear-gradient(180deg,#FFFDF8,#F3E8D2);border-color:rgba(181,135,43,.5);box-shadow:0 30px 60px -36px rgba(90,60,20,.50),0 0 0 1px rgba(181,135,43,.12)}
 .gallery figure::after{background:radial-gradient(80% 50% at 50% 0%,rgba(255,240,205,.14),transparent 70%),linear-gradient(180deg,rgba(42,28,20,0) 65%,rgba(42,28,20,.14) 100%);box-shadow:inset 0 0 30px rgba(42,28,20,.12)}
 
-/* Bewertungen: die Note als klares rotes Schild, eine Lampe über dem grossen Zitat */
+/* Bewertungen: die Note als goldenes Schild wie die Sterne, eine Lampe über dem grossen Zitat */
 .reviews{
   background:radial-gradient(46% 460px at 28% 30%,rgba(233,199,122,.30),transparent 70%),radial-gradient(60% 300px at 100% 0%,rgba(169,52,31,.06),transparent 70%),linear-gradient(180deg,#F5EBD9,#F1E4CC);
   border-color:var(--line);
 }
-.neon{border:2px solid var(--brick);background:var(--paper);box-shadow:0 10px 22px -16px rgba(142,42,26,.6)}
-.score .neon .big{color:var(--brick);text-shadow:none}
+.neon{border:2px solid #B5872B;background:var(--paper);box-shadow:0 10px 22px -16px rgba(154,116,32,.6)}
+.score .neon .big{color:#9A7420;text-shadow:none}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .score .neon .big{background:linear-gradient(180deg,#C9962F 0%,#B5872B 50%,#8F6A1C 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+}
 .js .score .neon{animation:none}
 .score .meta{color:var(--mocha)}
 .quote .stars,.quote:first-child .stars,.quote:not(:first-child) .stars{fill:#B5872B;opacity:1}
@@ -1343,9 +1346,136 @@ h2 em{color:var(--brick)}
 }
 .bk-ph{border-color:rgba(169,52,31,.45)}
 
-/* Weniger Luft zwischen Bewertungen und Öffnungszeiten (18.11) */
-@media (min-width:900px){#stimmen{padding-bottom:48px}#stimmen + .sec{padding-top:64px}}
-@media (max-width:899px){#stimmen{padding-bottom:36px}#stimmen + .sec{padding-top:48px}}
+
+/* Telefon: Name ganz, Anrufen nur als Symbol (18.11) */
+@media (max-width:639px){
+  .top .btn{width:44px;height:44px;min-width:44px;padding:0;border-radius:50%;justify-content:center;gap:0}
+  .top .btn .word{display:none}
+  .top .btn svg{width:20px;height:20px}
+  .brand b{overflow:visible;text-overflow:clip}
+}
+
+/* Unten näher zusammen: weniger Luft vor dem Holzband und zwischen Band, Logo und Links (18.11) */
+.foot{padding-bottom:44px}
+.foot .wrap{padding-top:30px}
+.plate-lg{margin-bottom:8px}
+@media (max-width:899px){.foot{padding-bottom:36px}.foot .wrap{padding-top:26px}}
+
+
+/* Sichtbares Hover überall (18.11) */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .brand .plate{transition:transform .3s ease}
+  .brand:hover .plate{transform:rotate(-6deg) scale(1.08)}
+  .gallery figure,.js .gallery figure.rv.in{transition:transform .35s ease,box-shadow .35s ease}
+  .gallery figure:hover,.js .gallery figure.rv.in:hover{transform:translateY(-6px)}
+  .quote,.js .quote.rv.in{transition:transform .3s ease}
+  .quote:hover,.js .quote.rv.in:hover{transform:translateX(5px)}
+  .quote:first-child:hover,.js .quote:first-child.rv.in:hover{transform:translateY(-5px)}
+  .brass{transition:transform .35s ease,filter .35s ease}
+  .brass:hover{transform:rotate(-1.2deg) scale(1.02);filter:brightness(1.07)}
+  .score .neon{transition:transform .3s ease}
+  .score:hover .neon{transform:scale(1.06)}
+  .foot .plate-lg{transition:transform .35s ease}
+  .foot .plate-lg:hover{transform:rotate(-6deg) scale(1.08)}
+}
+.foot nav a,.place .reserve a,.textlink{transition:color .2s ease,text-decoration-color .2s ease}
+.foot nav a:hover,.place .reserve a:hover{text-decoration-thickness:2px}
+/* ==========================================================
+   Gästebuch und die zwei Zettel am Ende (18.11): zurück aus der früheren hellen Fassung,
+   gleiches Aussehen; der Stempel ist golden wie die Sterne
+   ========================================================== */
+:root{
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --hand:"Caveat","Bradley Hand","Segoe Print","Comic Sans MS",cursive;
+  --sh-s:0 1px 2px rgba(42,28,20,.22),0 6px 14px rgba(42,28,20,.16);
+  --sh-up:0 2px 4px rgba(42,28,20,.18),0 18px 30px -8px rgba(42,28,20,.28);
+}
+.gaeste,.besuch{background:var(--sand);font-family:var(--serif);color:var(--espresso);position:relative;overflow:hidden}
+.gaeste{border-top:1px solid var(--line)}
+.gaeste .wrap,.besuch .wrap{max-width:1160px}
+.gaeste h2,.besuch h2{font:italic 600 32px/1.12 var(--serif);letter-spacing:0;margin-top:0;color:var(--espresso)}
+.gb-kopf{text-align:center}
+.gb-kopf .unter{font:600 23px/1.2 var(--hand);color:var(--mocha);margin-top:2px}
+.gbuch{display:grid;gap:18px;margin-top:30px}
+.zettel{
+  position:relative;margin:0;padding:16px 18px 12px;border-radius:2px;box-shadow:var(--sh-s);
+  background-color:var(--paper);background-image:repeating-linear-gradient(transparent 0 29px,rgba(79,91,42,.2) 29px 30px);background-position:0 14px;
+}
+.zettel blockquote{margin:0;font:600 22px/30px var(--hand)}
+.zettel cite{display:block;font:italic 400 16px/30px var(--serif);color:var(--mocha);text-align:right}
+.gbuch .zettel:nth-child(odd){transform:rotate(-1.2deg);margin-right:8%}
+.gbuch .zettel:nth-child(even){transform:rotate(1.4deg);margin-left:8%}
+.wertung{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:30px;text-align:center}
+.stempel{width:150px;height:150px;transform:rotate(-8deg);color:#B5872B;flex:none}
+.wertung a{color:var(--espresso);font-style:italic;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
+
+.besuch{padding-top:0}
+.unten{display:grid;gap:34px}
+.block{
+  position:relative;overflow:visible;background:var(--paper);padding:30px 20px 22px;box-shadow:var(--sh-s);border-radius:0 0 2px 2px;
+  max-width:440px;width:100%;margin:0 auto;scroll-margin-top:94px;
+}
+.block::before{content:"";position:absolute;left:0;right:0;top:-1px;height:9px;background:radial-gradient(circle at 10px 0,var(--sand) 5px,transparent 5.6px) repeat-x 0 0/20px 9px}
+.besuch .block h2{font-size:28px}
+.zeiten{width:100%;border-collapse:collapse;margin-top:12px;font-size:17px}
+.zeiten th{text-align:left;font-weight:400;padding:7px 0;white-space:nowrap}
+.zeiten td{text-align:right;padding:7px 0;font:600 23px/1 var(--hand);white-space:nowrap}
+.zeiten tr+tr th,.zeiten tr+tr td{border-top:1px dashed rgba(42,28,20,.3)}
+.zeiten tr.jetzt th{font-weight:600}
+.zeiten tr.jetzt td{color:var(--brick)}
+.zeiten .hm{font:600 20px/1 var(--hand);color:var(--brick);margin-left:8px}
+/* Tag unter der Maus / angetippt: wie heute (fett, Ziegelrot) und dazu ein heller Leuchtstift-Strich */
+.zeiten tbody tr{cursor:default}
+.zeiten td{transition:color .25s ease}
+.zeiten .tg{
+  padding:0 3px;margin:0 -3px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M3 7.5C18 5 34 8.5 52 6.5S82 5 97 7' fill='none' stroke='%23E2B65E' stroke-opacity='.6' stroke-width='6.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 94%/0 .7em;
+  transition:background-size .25s ease;
+}
+.zeiten tr.is-hover th{font-weight:600}
+.zeiten tr.is-hover td{color:var(--brick)}
+.zeiten tr.is-hover .tg{background-size:100% .7em}
+@media (prefers-reduced-motion:reduce){.zeiten td,.zeiten .tg{transition:none}}
+.block.ort{transform:rotate(.8deg)}
+.block.zeit{transform:rotate(-.7deg)}
+.ort address{font:400 18px/1.55 var(--serif);font-style:normal;letter-spacing:0;margin-top:10px}
+.ort .res{margin-top:14px;font-style:italic}
+.ort .tel{display:inline-flex;align-items:center;min-height:48px;font:600 28px/1.1 var(--serif);color:var(--espresso);text-decoration:none;text-underline-offset:5px}
+.ort .reihe{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+@media (min-width:900px){
+  .gaeste h2{font-size:38px}
+  .gb-wrap{display:grid;grid-template-columns:1fr 250px;gap:40px;align-items:center;margin-top:36px}
+  .gbuch{grid-template-columns:1fr 1fr;gap:22px 4px;margin-top:0}
+  .gbuch .zettel:nth-child(odd){margin-right:-6px}
+  .gbuch .zettel:nth-child(even){margin-left:-6px;margin-top:18px}
+  .wertung{margin-top:0}
+  .stempel{width:180px;height:180px}
+  .unten{grid-template-columns:1fr 1fr;gap:50px;max-width:940px;margin:0 auto;align-items:start}
+  .besuch .block h2{font-size:32px}
+}
+/* Abstände: Gästebuch zu den Zetteln mässig, unter den Zetteln bis zum Holzband ca. 88 px (Telefon 44 px) */
+.gaeste{padding-bottom:48px}
+.besuch{padding-bottom:46px}
+@media (min-width:900px){.gaeste{padding-bottom:88px}.besuch{padding-bottom:91px}}
+
+/* Sichtbares Hover: Zettel heben sich, der Stempel dreht sich, Links und Nummer kräftiger */
+.wertung a,.ort .tel{transition:color .2s ease,text-decoration-color .2s ease}
+@media (hover:hover){
+  .wertung a:hover{color:var(--brick);text-decoration-thickness:2px}
+  .ort .tel:hover{color:var(--brick);text-decoration:underline;text-decoration-thickness:2px}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .gbuch .zettel{transition:transform .3s ease,box-shadow .3s ease}
+  .gbuch .zettel:hover{z-index:1;box-shadow:var(--sh-up)}
+  .gbuch .zettel:nth-child(odd):hover{transform:translateY(-6px) rotate(-2.4deg)}
+  .gbuch .zettel:nth-child(even):hover{transform:translateY(-6px) rotate(2.6deg)}
+  .stempel{transition:transform .45s cubic-bezier(.3,.7,.2,1)}
+  .wertung:hover .stempel{transform:rotate(-1deg) scale(1.04)}
+  .block{transition:transform .35s ease,box-shadow .35s ease}
+  .block:hover{box-shadow:var(--sh-up)}
+  .block.zeit:hover{transform:translateY(-5px) rotate(-.7deg)}
+  .block.ort:hover{transform:translateY(-5px) rotate(.8deg)}
+}
 </style>
 <style id="vw-css">
 .vw-bar{position:relative;z-index:200;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;margin:0;padding:8px 14px;
@@ -1389,6 +1519,23 @@ h2 em{color:var(--brick)}
     <symbol id="s45" viewBox="0 0 120 23">
       <use href="#sg" fill="#DCCBAA"/>
       <use href="#sg" fill="#B5872B" clip-path="url(#c45)"/>
+    </symbol>
+    <!-- Stempel im Gästebuch: golden wie die Sterne -->
+    <filter id="tinte" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  4.2 0 0 0 -0.95" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in"/>
+    </filter>
+    <path id="st-kreis" d="M60 60 m-40 0 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0"/>
+    <symbol id="st" viewBox="0 0 120 120">
+      <g filter="url(#tinte)" fill="none" stroke="currentColor">
+        <circle cx="60" cy="60" r="56" stroke-width="3"/>
+        <circle cx="60" cy="60" r="50.5" stroke-width="1"/>
+        <circle cx="60" cy="60" r="30" stroke-width="1.2"/>
+        <text fill="#9A7420" stroke="none" font-family="Newsreader,Georgia,serif" font-size="10.6" font-weight="600" letter-spacing="1.3"><textPath href="#st-kreis" startOffset="1%">Kaffe de Keyff · Flawil · Gästebuch ·</textPath></text>
+        <text x="60" y="66" text-anchor="middle" fill="#9A7420" stroke="none" font-family="Newsreader,Georgia,serif" font-size="25" font-weight="600">4,5</text>
+        <text x="60" y="79" text-anchor="middle" fill="#9A7420" stroke="none" font-family="Newsreader,Georgia,serif" font-size="9.5" font-style="italic">von 5</text>
+      </g>
     </symbol>
   </defs>
 </svg>
@@ -2765,97 +2912,58 @@ h2 em{color:var(--brick)}
     </div>
   </section>
 
-  <!-- BEWERTUNGEN -->
-  <section class="sec reviews" id="stimmen" aria-labelledby="h-stimmen">
+  <!-- GÄSTEBUCH -->
+  <section class="sec gaeste" id="stimmen" aria-labelledby="h-gb">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="kicker">Bewertungen auf Google</p>
-        <h2 id="h-stimmen">Was Gäste <em>schreiben</em></h2>
+      <div class="gb-kopf">
+        <h2 id="h-gb">Gästebuch</h2>
+        <p class="unter">Bewertungen auf Google</p>
       </div>
-
-      <div class="score">
-        <div class="neon" aria-hidden="true"><span class="big">4,5</span></div>
-        <div class="meta">
-          <svg class="stars" aria-hidden="true"><use href="#s45"/></svg>
-          <span><span class="sr">4,5 </span>von 5 · 197 Bewertungen auf Google</span>
+      <div class="gb-wrap">
+        <div class="gbuch">
+          <figure class="zettel"><blockquote>«Top Essen, Top Service, sehr freundliches Personal.»</blockquote><cite>Marcel</cite></figure>
+          <figure class="zettel"><blockquote>«Essen immer frisch, immer warm. Service freundlich, aufmerksam. Cooler laden, gemütliches Ambiente. Immer wieder gerne»</blockquote><cite>Christian</cite></figure>
+          <figure class="zettel"><blockquote>«Sehr gutes Essen vor allem das Lammfleisch. Sehr freundliches Personal.»</blockquote><cite>Bruno</cite></figure>
+          <figure class="zettel"><blockquote>«Sehr netter Bediener und Essen ist immer Top»</blockquote><cite>Nico</cite></figure>
+        </div>
+        <div class="wertung">
+          <svg class="stempel" viewBox="0 0 120 120" role="img" aria-label="Stempel: 4,5 von 5"><use href="#st"/></svg>
+          <p>197 Bewertungen</p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Kaffe+de+Keyff+Degersheimerstrasse+1+Flawil" target="_blank" rel="noopener">Alle Bewertungen auf Google</a>
         </div>
       </div>
-
-      <div class="quotes">
-        <blockquote class="quote">
-          <span class="hang" aria-hidden="true"><i></i><svg viewBox="0 0 26 42" focusable="false"><g fill="none" stroke="#9A7420" stroke-width="1.2" stroke-linejoin="round"><path d="M13 1 25 17 13 41 1 17z"/><path d="M13 1 8.5 17 13 41 17.5 17z"/><path d="M1 17h24"/></g><circle cx="13" cy="19" r="4.2" fill="#F4CB78"/></svg></span>
-          <svg class="stars" fill="#B5872B" role="img" aria-label="5 von 5 Sternen"><use href="#s5"/></svg>
-          <p>«Essen immer frisch, immer warm. Service freundlich, aufmerksam. Cooler laden, gemütliches Ambiente. Immer wieder gerne»</p>
-          <footer><b>Christian</b> auf Google</footer>
-        </blockquote>
-        <blockquote class="quote">
-          <svg class="stars" fill="#B5872B" role="img" aria-label="5 von 5 Sternen"><use href="#s5"/></svg>
-          <p>«Top Essen, Top Service, sehr freundliches Personal.»</p>
-          <footer><b>Marcel</b> auf Google</footer>
-        </blockquote>
-        <blockquote class="quote">
-          <svg class="stars" fill="#B5872B" role="img" aria-label="5 von 5 Sternen"><use href="#s5"/></svg>
-          <p>«Sehr gutes Essen vor allem das Lammfleisch. Sehr freundliches Personal.»</p>
-          <footer><b>Bruno</b> auf Google</footer>
-        </blockquote>
-        <blockquote class="quote">
-          <svg class="stars" fill="#B5872B" role="img" aria-label="5 von 5 Sternen"><use href="#s5"/></svg>
-          <p>«Sehr netter Bediener und Essen ist immer Top»</p>
-          <footer><b>Nico</b> auf Google</footer>
-        </blockquote>
-      </div>
-
-      <a class="textlink" href="https://www.google.com/maps/search/?api=1&amp;query=Kaffe+de+Keyff+Degersheimerstrasse+1+Flawil" target="_blank" rel="noopener">Alle Bewertungen auf Google <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <!-- ZEITEN + ORT -->
-  <div class="sec">
-    <div class="wrap visit">
-
-      <section id="zeiten" aria-labelledby="h-zeiten">
-        <div class="sec-head">
-          <p class="kicker">Öffnungszeiten</p>
-          <h2 id="h-zeiten">Jeden Tag <em>offen</em></h2>
-        </div>
-        <div class="board">
-        <div class="slate">
-        <table class="hours">
-          <caption class="sr">Öffnungszeiten Kaffe de Keyff</caption>
-          <tbody>
-            <tr data-day="1"><th scope="row">Montag</th><td>10:30–23:00</td></tr>
-            <tr data-day="2"><th scope="row">Dienstag</th><td>08:00–23:00</td></tr>
-            <tr data-day="3"><th scope="row">Mittwoch</th><td>08:00–23:00</td></tr>
-            <tr data-day="4"><th scope="row">Donnerstag</th><td>08:00–23:00</td></tr>
-            <tr data-day="5"><th scope="row">Freitag</th><td>08:00–<span class="late">24:00</span></td></tr>
-            <tr data-day="6"><th scope="row">Samstag</th><td>08:00–<span class="late">24:00</span></td></tr>
-            <tr data-day="0"><th scope="row">Sonntag</th><td>08:00–23:00</td></tr>
-          </tbody>
-        </table>
-        <svg class="doodle" viewBox="0 0 64 56" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24h34v8c0 10-7 17-17 17S10 42 10 32z"/><path d="M44 28c7-1 10 3 8 8s-7 6-10 5"/><path d="M6 52h44"/><path d="M20 8c-3 4 3 6 0 11M28 5c-3 4 3 7 0 12M36 8c-3 4 3 6 0 11"/></g></svg>
-        </div>
-        <div class="ledge" aria-hidden="true"><i></i><i></i></div>
-        </div>
-      </section>
-
-      <section id="ort" aria-labelledby="h-ort">
-        <div class="sec-head">
-          <p class="kicker">So finden Sie uns</p>
-          <h2 id="h-ort">Der Weg <em>zu uns</em></h2>
-        </div>
-        <div class="place">
-          <div class="brass">
-            <i class="screw" aria-hidden="true"></i><i class="screw" aria-hidden="true"></i><i class="screw" aria-hidden="true"></i><i class="screw" aria-hidden="true"></i>
-            <svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.500C5 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
-            <address><span class="nm">Kaffe de Keyff</span><br>Degersheimerstrasse 1<br>9230 Flawil</address>
-          </div>
-          <p class="reserve">Tisch reservieren: anrufen unter <a href="tel:+41715544224">071 554 42 24</a>.</p>
-          <div class="acts">
+  <!-- ZEITEN + ORT: zwei Zettel -->
+  <div class="sec besuch">
+    <div class="wrap">
+      <div class="unten">
+        <section class="block zeit" id="zeiten" aria-labelledby="h-zeit">
+          <h2 id="h-zeit">Öffnungszeiten</h2>
+          <table class="zeiten">
+            <caption class="sr">Öffnungszeiten Kaffe de Keyff</caption>
+            <tbody>
+              <tr data-day="1"><th scope="row"><span class="tg">Montag</span></th><td>10:30–23:00</td></tr>
+              <tr data-day="2"><th scope="row"><span class="tg">Dienstag</span></th><td>08:00–23:00</td></tr>
+              <tr data-day="3"><th scope="row"><span class="tg">Mittwoch</span></th><td>08:00–23:00</td></tr>
+              <tr data-day="4"><th scope="row"><span class="tg">Donnerstag</span></th><td>08:00–23:00</td></tr>
+              <tr data-day="5"><th scope="row"><span class="tg">Freitag</span></th><td>08:00–24:00</td></tr>
+              <tr data-day="6"><th scope="row"><span class="tg">Samstag</span></th><td>08:00–24:00</td></tr>
+              <tr data-day="0"><th scope="row"><span class="tg">Sonntag</span></th><td>08:00–23:00</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="block ort" id="ort" aria-labelledby="h-ort">
+          <h2 id="h-ort">So finden Sie uns</h2>
+          <address>Kaffe de Keyff<br>Degersheimerstrasse 1<br>9230 Flawil</address>
+          <p class="res">Tisch reservieren: anrufen</p>
+          <a class="tel" href="tel:+41715544224">071 554 42 24</a>
+          <div class="reihe">
             <a class="btn btn-amber" href="https://www.google.com/maps/search/?api=1&amp;query=Kaffe+de+Keyff+Degersheimerstrasse+1+Flawil" target="_blank" rel="noopener">Route planen</a>
           </div>
-        </div>
-      </section>
-
+        </section>
+      </div>
     </div>
   </div>
 
@@ -2876,30 +2984,16 @@ h2 em{color:var(--brick)}
 <script>
 (function(){
   var d = new Date().getDay(); // 0 = Sonntag
-  var row = document.querySelector('.hours tr[data-day="' + d + '"]');
+  var row = document.querySelector('.zeiten tr[data-day="' + d + '"]');
   if(!row) return;
-  row.classList.add('is-today');
   var th = row.querySelector('th'), td = row.querySelector('td');
+  /* erst die Zeiten lesen, dann das handgeschriebene «heute» anhängen */
   var name = th.textContent, time = td.textContent;
+  row.classList.add('jetzt');
   var tag = document.createElement('span');
-  tag.className = 'tag';
-  tag.textContent = 'Heute';
+  tag.className = 'hm';
+  tag.textContent = 'heute';
   th.appendChild(tag);
-  /* Kreidekreis um die Zeile von heute */
-  var slate = row.closest ? row.closest('.slate') : null;
-  if(slate){
-    var ring = document.createElement('i');
-    ring.className = 'chalk-ring'; ring.setAttribute('aria-hidden', 'true');
-    slate.appendChild(ring);
-    var place = function(){
-      var a = row.getBoundingClientRect(), b = slate.getBoundingClientRect();
-      ring.style.top = Math.round(a.top - b.top - 4) + 'px';
-      ring.style.height = Math.round(a.height + 8) + 'px';
-    };
-    place();
-    window.addEventListener('load', place); window.addEventListener('resize', place);
-    if(document.fonts && document.fonts.ready && document.fonts.ready.then) document.fonts.ready.then(place);
-  }
   var line = document.getElementById('heute');
   if(!line) return;
   line.innerHTML = 'Heute, ' + name + ': <strong>' + time + ' Uhr</strong>';
@@ -2918,14 +3012,14 @@ h2 em{color:var(--brick)}
     line.innerHTML = 'Heute ab <strong>' + t.from + ' Uhr</strong> geöffnet';
     if(dot) dot.classList.add('is-closed');
   } else {
-    var n = span(document.querySelector('.hours tr[data-day="' + ((d + 1) % 7) + '"]'));
+    var n = span(document.querySelector('.zeiten tr[data-day="' + ((d + 1) % 7) + '"]'));
     if(n){ line.innerHTML = 'Morgen ab <strong>' + n.from + ' Uhr</strong> geöffnet'; }
     if(dot) dot.classList.add('is-closed');
   }
 })();
 (function(){
   if(!('IntersectionObserver' in window)) return;
-  var els = document.querySelectorAll('.sec-head,.gallery figure,.score,.quote,.board,.place');
+  var els = document.querySelectorAll('.sec-head,.gallery figure,.gb-kopf,.gb-wrap,.unten');
   document.documentElement.classList.add('js');
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -2946,6 +3040,26 @@ h2 em{color:var(--brick)}
   window.addEventListener('resize', check);
   window.addEventListener('load', check);
   setTimeout(check, 1200);
+})();
+</script>
+<script>
+/* Öffnungszeiten-Zettel: der Tag unter der Maus (Telefon: angetippt) wird hervorgehoben wie heute; heute bleibt immer */
+(function(){
+  var slip = document.querySelector('.block.zeit'); if(!slip) return;
+  var rows = slip.querySelectorAll('.zeiten tbody tr'); if(!rows.length) return;
+  var cur = null;
+  function show(r){
+    if(cur === r) return;
+    if(cur) cur.classList.remove('is-hover');
+    cur = r;
+    if(r) r.classList.add('is-hover');
+  }
+  Array.prototype.forEach.call(rows, function(r){
+    r.addEventListener('mouseenter', function(){ show(r); });
+    r.addEventListener('click', function(){ show(r); });
+  });
+  slip.addEventListener('mouseleave', function(){ show(null); });
+  document.addEventListener('click', function(e){ if(!slip.contains(e.target)) show(null); });
 })();
 </script>
 </body>

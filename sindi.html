@@ -576,6 +576,52 @@ h1{font-size:clamp(42px,4.5vw,62px);line-height:1.02;letter-spacing:-.035em;font
 :root[data-theme="dark"] .v-mapimg img{filter:none}
 .tag{justify-content:center;text-align:center;font-size:13px}
 .ph[data-s="5"] .tag{white-space:normal}
+
+/* Telefon: lesbarer Text mindestens 13 px */
+@media (max-width:599px){
+  .draft{font-size:13px}
+  .housing .lbl{font-size:13px}
+  .ticket{width:calc(100% - 14px)}
+  .t-main{font-size:13px;letter-spacing:-.03em;padding-left:12px;padding-right:12px}
+  .t-small,.t-meta,.hours,.t-title{font-size:13px}
+  .plist li{gap:3px}
+  .vlist footer{font-size:13px}
+  .tag{font-size:13px}
+}
+
+/* Fusszeile: mittig, tiefer, zwei Zeilen mit Luft */
+.foot{padding:56px 0 64px;font-size:15px}
+.foot .wrap{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.foot span:first-child{font-weight:600;color:var(--ink)}
+@media (max-width:599px){.foot{padding:44px 0 56px}}
+
+/* Fusszeile: eine Zeile, links/rechts, knapp */
+.visit{padding-bottom:36px}
+.foot{padding:22px 0}
+.foot .wrap{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;gap:16px;flex-wrap:nowrap}
+@media (max-width:599px){.foot{padding:20px 0}.visit{padding-bottom:32px}}
+.draft{transition:opacity .3s}
+
+/* Fusszeile: eine Zeile, mittig, mit Abstand */
+.foot .wrap{justify-content:center;gap:14px}
+.foot .sep{color:var(--muted);opacity:.7}
+
+/* Impressum / Datenschutz */
+.visit{padding-bottom:24px}
+.foot{padding:18px 0 20px}
+.legal{display:flex;justify-content:center;gap:28px;margin-top:8px}
+.legal button{font:inherit;font-size:13px;background:none;border:0;padding:4px 2px;color:var(--muted);cursor:pointer;
+  text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
+.legal button:hover,.legal button:focus-visible{color:var(--gold);text-decoration-color:var(--gold)}
+.dlg{border:0;border-radius:8px;padding:30px 34px 28px;max-width:min(440px,calc(100vw - 32px));width:100%;background:var(--paper);color:var(--paper-ink);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.dlg::backdrop{background:rgba(9,13,18,.6)}
+.dlg h2{margin:0 0 10px;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.dlg p{margin:0;color:var(--paper-muted)}
+.dlg-x{position:absolute;right:10px;top:8px;width:40px;height:40px;border:0;background:none;font-size:26px;line-height:1;color:var(--paper-ink);cursor:pointer;border-radius:6px}
+.dlg-x:hover{background:rgba(176,138,62,.16)}
+@media (max-width:599px){.visit{padding-bottom:20px}.legal{gap:24px}}
+.foot .wrap span:not(.sep){font-weight:600;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -733,7 +779,12 @@ h1{font-size:clamp(42px,4.5vw,62px);line-height:1.02;letter-spacing:-.035em;font
     <a class="gx-frame v-map v-mapimg" href="https://www.google.com/maps/search/?api=1&amp;query=Coiffeur+Sindi+Herisauerstrasse+22+Gossau" target="_blank" rel="noopener" aria-label="In Google Maps öffnen"><img src="sindi_karte.png" width="1080" height="760" alt="Karte: Coiffeur Sindi an der Herisauerstrasse 22 in Gossau" loading="lazy"><span class="v-open">In Google Maps öffnen ↗</span></a>
   </div>
 </section>
-<footer class="foot"><div class="wrap"><span>Coiffeur Sindi · Gossau</span></div></footer>
+<footer class="foot">
+  <div class="wrap"><span>Coiffeur Sindi</span><span class="sep" aria-hidden="true">·</span><span>Gossau</span></div>
+  <nav class="legal" aria-label="Rechtliches"><button type="button" data-dlg="dlg-imp">Impressum</button><button type="button" data-dlg="dlg-ds">Datenschutz</button></nav>
+</footer>
+<dialog class="dlg" id="dlg-imp" aria-labelledby="dlg-imp-h"><button class="dlg-x" type="button" aria-label="Schliessen">×</button><h2 id="dlg-imp-h">Impressum</h2><p>Impressum folgt.</p></dialog>
+<dialog class="dlg" id="dlg-ds" aria-labelledby="dlg-ds-h"><button class="dlg-x" type="button" aria-label="Schliessen">×</button><h2 id="dlg-ds-h">Datenschutz</h2><p>Datenschutzerklärung folgt.</p></dialog>
 
 </main>
 
@@ -796,6 +847,15 @@ h1{font-size:clamp(42px,4.5vw,62px);line-height:1.02;letter-spacing:-.035em;font
   if(!rm&&('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('rv')});
     var io3=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=rv.indexOf(e.target);e.target.style.transitionDelay=(i%3)*0.12+'s';e.target.classList.add('in');io3.unobserve(e.target);}});},{threshold:0.2});
     rv.forEach(function(x){io3.observe(x)});}
+
+  /* Entwurf-Hinweis verdeckt die Fusszeile nicht */
+  var dr=document.querySelector('.draft'),ft=document.querySelector('.foot');
+  if(dr&&ft&&('IntersectionObserver' in window)){new IntersectionObserver(function(es){dr.style.opacity=es[0].isIntersecting?'0':'';},{threshold:0}).observe(ft);}
+
+  /* Impressum / Datenschutz */
+  [].forEach.call(document.querySelectorAll('[data-dlg]'),function(b){b.addEventListener('click',function(){var d=document.getElementById(b.getAttribute('data-dlg'));if(d&&d.showModal)d.showModal();});});
+  [].forEach.call(document.querySelectorAll('.dlg'),function(d){d.querySelector('.dlg-x').addEventListener('click',function(){d.close();});
+    d.addEventListener('click',function(e){if(e.target===d)d.close();});});
 
   /* Fotos: schwarzweiss -> Farbe beim Hineinscrollen */
   var ph=[].slice.call(document.querySelectorAll('.ph'));
