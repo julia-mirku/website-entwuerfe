@@ -882,12 +882,12 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .finds .grid6 li:nth-child(2) .ico{background:#D6EEFB}.finds .grid6 li:nth-child(2) .ico rect{fill:#3BA3E0}
 .finds .grid6 li:nth-child(3) .ico{background:#FFF1C7}.finds .grid6 li:nth-child(3) .ico rect{fill:#FFC81A}
 .finds .grid6 li:nth-child(4) .ico{background:#D6F0DF}.finds .grid6 li:nth-child(4) .ico rect,.finds .grid6 li:nth-child(4) .ico path{fill:#B9BEC3}.finds .grid6 li:nth-child(4) .ico circle{fill:#2E6B4E}
-.finds .grid6 li:hover .ico,.touch .finds .grid6 li.on .ico{background:#FFE58F;border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35)}
-.finds .grid6 li:nth-child(1):hover .ico path,.touch .finds .grid6 li:nth-child(1).on .ico path{fill:#C9302A}
-.finds .grid6 li:nth-child(2):hover .ico rect,.touch .finds .grid6 li:nth-child(2).on .ico rect{fill:#1E7FC0}
-.finds .grid6 li:nth-child(3):hover .ico rect,.touch .finds .grid6 li:nth-child(3).on .ico rect{fill:#fff}
-.finds .grid6 li:nth-child(4):hover .ico rect,.finds .grid6 li:nth-child(4):hover .ico path,.touch .finds .grid6 li:nth-child(4).on .ico rect,.touch .finds .grid6 li:nth-child(4).on .ico path{fill:#9AA1A8}
-.finds .grid6 li:nth-child(4):hover .ico circle,.touch .finds .grid6 li:nth-child(4).on .ico circle{fill:#1E5E3F}
+.finds .grid6 li:hover .ico,.tdev .finds .grid6 li.on .ico{background:#FFE58F;border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35)}
+.finds .grid6 li:nth-child(1):hover .ico path,.tdev .finds .grid6 li:nth-child(1).on .ico path{fill:#C9302A}
+.finds .grid6 li:nth-child(2):hover .ico rect,.tdev .finds .grid6 li:nth-child(2).on .ico rect{fill:#1E7FC0}
+.finds .grid6 li:nth-child(3):hover .ico rect,.tdev .finds .grid6 li:nth-child(3).on .ico rect{fill:#fff}
+.finds .grid6 li:nth-child(4):hover .ico rect,.finds .grid6 li:nth-child(4):hover .ico path,.tdev .finds .grid6 li:nth-child(4).on .ico rect,.tdev .finds .grid6 li:nth-child(4).on .ico path{fill:#9AA1A8}
+.finds .grid6 li:nth-child(4):hover .ico circle,.tdev .finds .grid6 li:nth-child(4).on .ico circle{fill:#1E5E3F}
 @media (hover:none){.finds .grid6 li:hover{transform:none}}
 .finds .grid6 li:hover{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
 
@@ -913,16 +913,16 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .chat .thumb .t1{transition:filter .6s ease}
 .chat.bright .thumb .t1{filter:brightness(1.25) saturate(1.1)}
 /* Touch: kein «klebendes» Hover bei den Schritten */
-.touch .steps ol > li:not(.on)::before{opacity:0 !important}
-.touch .steps ol > li:not(.on) .num{transform:none !important;background:var(--sun) !important;color:var(--ink) !important;box-shadow:none !important}
-.touch .ways li:not(.on){background:var(--sky) !important;border-color:transparent !important;transform:none !important;box-shadow:none !important}
+.tdev .steps ol > li:not(.on)::before{opacity:0 !important}
+.tdev .steps ol > li:not(.on) .num{transform:none !important;background:var(--sun) !important;color:var(--ink) !important;box-shadow:none !important}
+.tdev .ways li:not(.on){background:var(--sky) !important;border-color:transparent !important;transform:none !important;box-shadow:none !important}
 
 /* Handy mit Branchen auch auf dem Handy */
 @media (max-width:900px){.trades .tlay{grid-template-columns:1fr}.tphone-wrap{display:block !important;position:relative !important;top:auto !important;margin:34px auto 0;width:min(290px,78vw)}.tphone{width:100% !important;margin:0 auto}.tphone-wrap .tlive{top:-16px}.trades .card{cursor:pointer}}
 .uchips li.main{font-weight:800}
 .uchips li{transition:background-color .2s ease}
-.touch .finds .grid6 li.on{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
-.touch .hgrid li.on .hico{transform:rotate(-6deg) scale(1.06)}
+.tdev .finds .grid6 li.on{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
+.tdev .hgrid li.on .hico{transform:rotate(-6deg) scale(1.06)}
 @media (max-width:640px){
  .sw-phone .scr{padding:34px 9px 14px;gap:6px}
  .slot{font-size:11px;gap:6px;padding:5px 7px;min-height:26px}
@@ -956,13 +956,13 @@ html,body{overflow-x:clip}
 .plan{transition:transform .25s ease, box-shadow .25s ease}
 .plan .tag{transition:background-color .25s ease, color .25s ease, transform .25s ease}
 .plan ul li::marker{color:#1E5E3F;transition:color .25s ease}
-.plan:hover,.touch .plan.on{transform:translate(-2px,-3px);box-shadow:7px 7px 0 #1E5E3F}
-.plan:hover .tag,.touch .plan.on .tag{background:#1E5E3F;color:#fff;transform:scale(1.05)}
-.plan.g:hover,.touch .plan.g.on{box-shadow:7px 7px 0 var(--sun)}
-.plan.g:hover .tag,.touch .plan.g.on .tag{background:var(--sun);color:var(--ink)}
-.plan.g:hover ul li::marker,.touch .plan.g.on ul li::marker{color:var(--sun)}
+.plan:hover,.tdev .plan.on{transform:translate(-2px,-3px);box-shadow:7px 7px 0 #1E5E3F}
+.plan:hover .tag,.tdev .plan.on .tag{background:#1E5E3F;color:#fff;transform:scale(1.05)}
+.plan.g:hover,.tdev .plan.g.on{box-shadow:7px 7px 0 var(--sun)}
+.plan.g:hover .tag,.tdev .plan.g.on .tag{background:var(--sun);color:var(--ink)}
+.plan.g:hover ul li::marker,.tdev .plan.g.on ul li::marker{color:var(--sun)}
 .plan .pbtn{transition:background-color .25s ease, color .25s ease}
-.plan:hover .pbtn,.touch .plan.on .pbtn{background:#1E5E3F;color:#fff}
+.plan:hover .pbtn,.tdev .plan.on .pbtn{background:#1E5E3F;color:#fff}
 /* Preise: «Mehr erfahren» klappt die Liste auf; gelbe Kreise bekommen beim Hover ein schwarzes Häkchen */
 .pmore{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:15.5px;color:var(--ink);border-bottom:2px solid var(--sun);padding-bottom:1px}
 .pmore i{width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .3s ease}
@@ -2111,7 +2111,7 @@ header.top{will-change:transform}
 
 <script>
 (function(){
-  if(matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
+  if(matchMedia('(hover: none)').matches) document.documentElement.classList.add('tdev');
   var ol=document.querySelector('.steps ol'); if(!ol) return;
   var st=[].slice.call(ol.children), ways=[].slice.call(ol.querySelectorAll('.ways li'));
   var seq=[[0,-1],[1,0],[1,1],[1,2],[2,-1]], i=0, t=null, vis=false, hov=false, started=false;
