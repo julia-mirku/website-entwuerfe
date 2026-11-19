@@ -949,6 +949,17 @@ html,body{overflow-x:clip}
 .touch{transition:width .2s ease,height .2s ease,margin .2s ease,background-color .2s ease,box-shadow .2s ease}
 .tphone.hov .touch{width:28px;height:28px;margin:-14px 0 0 -14px;background:rgba(255,200,26,.22);box-shadow:0 0 0 3px #FFC81A,0 0 0 4.5px rgba(31,35,40,.45),0 2px 10px rgba(31,35,40,.35)}
 .tphone .touch{filter:drop-shadow(0 0 1.5px rgba(31,35,40,.55)) drop-shadow(0 2px 5px rgba(31,35,40,.3))}
+/* Preise: Karten reagieren, Grün und Gelb tauschen beim Hover */
+.plan{transition:transform .25s ease, box-shadow .25s ease}
+.plan .tag{transition:background-color .25s ease, color .25s ease, transform .25s ease}
+.plan ul li::marker{color:#1E5E3F;transition:color .25s ease}
+.plan:hover,.touch .plan.on{transform:translate(-2px,-3px);box-shadow:7px 7px 0 #1E5E3F}
+.plan:hover .tag,.touch .plan.on .tag{background:#1E5E3F;color:#fff;transform:scale(1.05)}
+.plan.g:hover,.touch .plan.g.on{box-shadow:7px 7px 0 var(--sun)}
+.plan.g:hover .tag,.touch .plan.g.on .tag{background:var(--sun);color:var(--ink)}
+.plan.g:hover ul li::marker,.touch .plan.g.on ul li::marker{color:var(--sun)}
+.plan .pbtn{transition:background-color .25s ease, color .25s ease}
+.plan:hover .pbtn,.touch .plan.on .pbtn{background:#1E5E3F;color:#fff}
 /* «Ja» in Schritt 3 leuchtet beim Hover */
 .yes-chip{transition:transform .2s ease, box-shadow .2s ease;cursor:default}
 .yes-chip:hover,.steps ol > li.on .yes-chip{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--sun),0 0 18px rgba(255,200,26,.8);transform:translateY(-2px) scale(1.05)}
@@ -2103,7 +2114,7 @@ header.top{will-change:transform}
 <script>
 (function(){
   if(!matchMedia('(hover: none)').matches||!('IntersectionObserver' in window)) return;
-  var items=[].slice.call(document.querySelectorAll('.wlist li, .finds .grid6 li, .hgrid li'));
+  var items=[].slice.call(document.querySelectorAll('.wlist li, .finds .grid6 li, .hgrid li, .plan'));
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     var li=e.target; if(e.isIntersecting){ li.classList.add('on'); } else { li.classList.remove('on'); }
   });},{rootMargin:'-42% 0px -42% 0px'});
