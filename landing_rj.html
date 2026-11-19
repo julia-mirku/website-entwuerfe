@@ -937,8 +937,7 @@ html,body{overflow-x:clip}
 /* «Wie wir arbeiten»: Icons weiss, Farbe beim Hover */
 .hgrid .hico{background:#fff;transition:background-color .25s ease, transform .2s ease}
 .hgrid li:hover .hico{transform:rotate(-6deg) scale(1.08);box-shadow:0 0 0 4px rgba(255,200,26,.35)}
-header.top{transition:transform .45s cubic-bezier(.4,0,.2,1), box-shadow .3s ease}
-header.top.gone{transform:translateY(-110%)}
+header.top{will-change:transform}
 .tphone-wrap{top:24px !important}
 
 
@@ -2011,7 +2010,7 @@ header.top.gone{transform:translateY(-110%)}
 <script>
 (function(){
   var h=document.querySelector('header.top'), sw=document.querySelector('.swirl'); if(!h||!sw) return;
-  function upd(){ var end=sw.offsetTop+sw.offsetHeight-80; h.classList.toggle('gone', scrollY>end); }
+  function upd(){ var end=sw.offsetTop+sw.offsetHeight-80, H=h.offsetHeight+6; var off=Math.max(0,Math.min(H,scrollY-end)); h.style.transform=off?'translateY('+(-off)+'px)':''; h.classList.toggle('gone', off>=H); }
   addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
 })();
 </script>
