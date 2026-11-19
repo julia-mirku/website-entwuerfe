@@ -952,6 +952,12 @@ html,body{overflow-x:clip}
 /* Finger-Kreis, wenn man selbst im Handy ist: kleiner, gelber Ring */
 .touch{transition:width .2s ease,height .2s ease,margin .2s ease,background-color .2s ease,box-shadow .2s ease}
 .tphone.hov .touch{width:28px;height:28px;margin:-14px 0 0 -14px;background:rgba(255,200,26,.22);box-shadow:0 0 0 3px #FFC81A,0 0 14px rgba(255,200,26,.7)}
+/* «Ja» in Schritt 3 leuchtet beim Hover */
+.yes-chip{transition:transform .2s ease, box-shadow .2s ease;cursor:default}
+.yes-chip:hover,.steps ol > li.on .yes-chip{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--sun),0 0 18px rgba(255,200,26,.8);transform:translateY(-2px) scale(1.05)}
+/* Standort-Symbol bekommt beim Hover einen gelben Kreis */
+.trust svg{border-radius:50%;transition:box-shadow .2s ease, transform .2s ease}
+.trust:hover svg{box-shadow:0 0 0 4px #fff,0 0 0 7px var(--sun);transform:scale(1.08)}
 /* Chat-Knopf verdeckt unten nichts */
 @media (max-width:640px){footer{padding-bottom:96px}}
 
@@ -1319,6 +1325,7 @@ header.top{will-change:transform}
         <details><summary><span data-t="q6">Was passiert nach dem Start?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a6">Neue Preise, eine Aktion, ein neues Foto: Schicken Sie es per Nachricht. Sie sehen die fertige Ansicht und sagen Ja. Selbst ändern müssen Sie nichts.</p></details>
         <details><summary><span data-t="q7">Wie lange dauert es bis zum Entwurf?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a7">In der Regel wenige Tage. Den genauen Termin schreiben wir Ihnen in die Offerte.</p></details>
         <details><summary><span data-t="q8">Brauche ich eine eigene Domain?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a8">Haben Sie schon eine, bleibt sie bei Ihnen und wir nutzen sie. Haben Sie keine, helfen wir Ihnen, eine passende zu finden.</p></details>
+        <details><summary><span data-t="q10">Wie bezahle ich?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a10">Per Rechnung mit QR-Code oder per TWINT. Die Hälfte bei Auftrag, die Hälfte vor der Veröffentlichung.</p></details>
         <details><summary><span data-t="q9">Kann ich später selbst etwas ändern?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a9">Ja, wenn Sie möchten. Oder Sie schicken uns Ihre Änderungen per Nachricht, und wir erledigen sie für Sie.</p></details>
         <div class="ask"><b data-t="ask_t">Ihre Frage ist nicht dabei?</b><a class="btn" href="mailto:mirkurobin@gmail.com?subject=Frage%20zur%20Website"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 3v-3a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span data-t="ask_btn">Frage stellen</span></a></div>
       </div>
@@ -1466,6 +1473,8 @@ header.top{will-change:transform}
     c_lead:"Write to us however is easiest for you. We reply personally.",
     a9:"Yes, if you like. Or you send us your changes by message and we take care of them.",
     q9:"Can I change things myself later?",
+    a10:"By invoice with a QR code or by TWINT. Half when you order, half before the website goes live.",
+    q10:"How do I pay?",
     a8:"If you already have one, it stays yours and we use it. If not, we help you find a good one.",
     q8:"Do I need my own domain?",
     a7:"Usually a few days. We put the exact date in your quote.",
