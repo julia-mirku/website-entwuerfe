@@ -872,18 +872,20 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @keyframes ecg{0%{stroke-dashoffset:30}70%,100%{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.tico *{animation:none!important}}
 
-/* «Was Ihre Kunden sofort finden»: neutral, bunt beim Hover */
-.finds .grid6 .ico{background:#FFE58F;border:2px solid transparent;transition:border-color .2s ease, background-color .25s ease, transform .2s ease}
-.finds .grid6 li:hover .ico{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35);transform:translateY(-2px) rotate(-4deg)}
-.finds .grid6 li:nth-child(1):hover .ico{background:#FFE3E0}
-.finds .grid6 li:nth-child(1):hover .ico path{fill:#E5483D;stroke:#1F2328}
-.finds .grid6 li:nth-child(1):hover .ico circle{fill:#fff}
-.finds .grid6 li:nth-child(2):hover .ico{background:#D6EEFB}
-.finds .grid6 li:nth-child(2):hover .ico rect{fill:#3BA3E0}
-.finds .grid6 li:nth-child(3):hover .ico{background:#FFF1C7}
-.finds .grid6 li:nth-child(3):hover .ico rect{fill:#FFC81A}
-.finds .grid6 li:nth-child(4):hover .ico{background:#D6F0DF}
-.finds .grid6 li:nth-child(4):hover .ico circle{fill:#3FA36F}
+/* «Was Ihre Kunden sofort finden»: bunt in Ruhe, beim Hover/Tipp wechselt die Farbe */
+.finds .grid6 .ico{border:2px solid transparent;transition:border-color .2s ease, background-color .25s ease, box-shadow .2s ease}
+.finds .grid6 .ico svg *{transition:fill .25s ease, stroke .25s ease}
+.finds .grid6 li:nth-child(1) .ico{background:#FFE3E0}.finds .grid6 li:nth-child(1) .ico path{fill:#E5483D}.finds .grid6 li:nth-child(1) .ico circle{fill:#fff}
+.finds .grid6 li:nth-child(2) .ico{background:#D6EEFB}.finds .grid6 li:nth-child(2) .ico rect{fill:#3BA3E0}
+.finds .grid6 li:nth-child(3) .ico{background:#FFF1C7}.finds .grid6 li:nth-child(3) .ico rect{fill:#FFC81A}
+.finds .grid6 li:nth-child(4) .ico{background:#D6F0DF}.finds .grid6 li:nth-child(4) .ico rect,.finds .grid6 li:nth-child(4) .ico path{fill:#B9BEC3}.finds .grid6 li:nth-child(4) .ico circle{fill:#2E6B4E}
+.finds .grid6 li:hover .ico,.touch .finds .grid6 li.on .ico{background:#FFE58F;border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35)}
+.finds .grid6 li:nth-child(1):hover .ico path,.touch .finds .grid6 li:nth-child(1).on .ico path{fill:#C9302A}
+.finds .grid6 li:nth-child(2):hover .ico rect,.touch .finds .grid6 li:nth-child(2).on .ico rect{fill:#1E7FC0}
+.finds .grid6 li:nth-child(3):hover .ico rect,.touch .finds .grid6 li:nth-child(3).on .ico rect{fill:#fff}
+.finds .grid6 li:nth-child(4):hover .ico rect,.finds .grid6 li:nth-child(4):hover .ico path,.touch .finds .grid6 li:nth-child(4).on .ico rect,.touch .finds .grid6 li:nth-child(4).on .ico path{fill:#9AA1A8}
+.finds .grid6 li:nth-child(4):hover .ico circle,.touch .finds .grid6 li:nth-child(4).on .ico circle{fill:#1E5E3F}
+@media (hover:none){.finds .grid6 li:hover{transform:none}}
 .finds .grid6 li:hover{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
 
 
@@ -916,10 +918,6 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @media (max-width:900px){.trades .tlay{grid-template-columns:1fr}.tphone-wrap{display:block !important;position:relative !important;top:auto !important;margin:34px auto 0;width:min(290px,78vw)}.tphone{width:100% !important;margin:0 auto}.tphone-wrap .tlive{top:-16px}.trades .card{cursor:pointer}}
 .uchips li.main{font-weight:800}
 .uchips li{transition:background-color .2s ease}
-.touch .finds .grid6 li.on .ico{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35);transform:translateY(-2px) rotate(-4deg)}
-.touch .finds .grid6 li:nth-child(1).on .ico{background:#FFE3E0}.touch .finds .grid6 li:nth-child(1).on .ico path{fill:#E5483D}
-.touch .finds .grid6 li:nth-child(2).on .ico{background:#D6EEFB}.touch .finds .grid6 li:nth-child(2).on .ico rect{fill:#3BA3E0}
-.touch .finds .grid6 li:nth-child(4).on .ico{background:#D6F0DF}.touch .finds .grid6 li:nth-child(4).on .ico circle{fill:#3FA36F}
 .touch .finds .grid6 li.on{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
 .touch .hgrid li.on .hico{transform:rotate(-6deg) scale(1.06)}
 @media (max-width:640px){
@@ -936,13 +934,11 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 html,body{overflow-x:clip}
 .chatw{max-width:calc(100vw - 24px)}
 /* Kamera «Ihre echte Arbeit» hebt sich vom Hintergrund ab */
-.finds .grid6 li:nth-child(4) .ico rect,.finds .grid6 li:nth-child(4) .ico path{fill:#B9BEC3}
-.finds .grid6 li:nth-child(4) .ico circle{fill:#5F666D}
 
 /* Klick auf Icon: kurzer Wackler + Puls-Ring */
 .tico,.ico,.hico{position:relative}
-.tico.tap,.ico.tap,.hico.tap{animation:icotap .55s cubic-bezier(.3,1.4,.5,1)}
-.tico.tap::after,.ico.tap::after,.hico.tap::after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:3px solid var(--sun);animation:icoring .6s ease-out forwards;pointer-events:none}
+.tico.itap,.ico.itap,.hico.itap{animation:icotap .55s cubic-bezier(.3,1.4,.5,1)}
+.tico.itap::after,.ico.itap::after,.hico.itap::after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:3px solid var(--sun);animation:icoring .6s ease-out forwards;pointer-events:none}
 @keyframes icotap{0%{transform:scale(1)}25%{transform:scale(.86) rotate(-8deg)}55%{transform:scale(1.14) rotate(6deg)}80%{transform:scale(.97) rotate(-2deg)}100%{transform:scale(1)}}
 @keyframes icoring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.7)}}
 /* Handy mittig, Pfeile gleich weit links und rechts */
@@ -2093,8 +2089,8 @@ header.top{will-change:transform}
   document.addEventListener('pointerdown',function(e){
     var host=e.target.closest('.trades .card, .finds .grid6 li, .hgrid li'); if(!host) return;
     var ic=host.querySelector('.tico, .ico, .hico'); if(!ic) return;
-    ic.classList.remove('tap'); void ic.offsetWidth; ic.classList.add('tap');
-    clearTimeout(ic._t); ic._t=setTimeout(function(){ic.classList.remove('tap');},650);
+    ic.classList.remove('itap'); void ic.offsetWidth; ic.classList.add('itap');
+    clearTimeout(ic._t); ic._t=setTimeout(function(){ic.classList.remove('itap');},650);
   });
 })();
 </script>
