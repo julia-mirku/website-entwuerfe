@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" href="rj_apple_icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title data-t="title">Robin &amp; Julia Mirku – Wer in Ihrer Nähe sucht, soll Sie finden</title>
+<title data-t="title">Robin &amp; Julia Websites</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -960,6 +960,21 @@ html,body{overflow-x:clip}
 .plan.g:hover ul li::marker,.touch .plan.g.on ul li::marker{color:var(--sun)}
 .plan .pbtn{transition:background-color .25s ease, color .25s ease}
 .plan:hover .pbtn,.touch .plan.on .pbtn{background:#1E5E3F;color:#fff}
+/* Preise: «Mehr erfahren» klappt die Liste auf; gelbe Kreise bekommen beim Hover ein schwarzes Häkchen */
+.pmore{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:15.5px;color:var(--ink);border-bottom:2px solid var(--sun);padding-bottom:1px}
+.pmore i{width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .3s ease}
+.pmore[aria-expanded="true"] i{transform:rotate(-135deg) translate(-2px,-1px)}
+.pmore:hover{border-bottom-color:#1E5E3F}
+.pmore:focus-visible{outline:3px solid #1E5E3F;outline-offset:3px}
+.plan ul.pmul{list-style:none;padding-left:0;margin:0;max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease, opacity .35s ease, margin .3s ease}
+.plan.open ul.pmul{max-height:420px;opacity:1;margin-top:10px}
+.plan ul.pmul li{position:relative;padding:5px 0 5px 30px;transition:transform .2s ease}
+.plan ul.pmul li::before{content:"";position:absolute;left:0;top:6px;width:18px;height:18px;border-radius:50%;background:var(--sun);border:2px solid var(--ink);box-sizing:border-box;transition:background-color .2s ease, transform .2s ease}
+.plan ul.pmul li::after{content:"";position:absolute;left:6px;top:9px;width:5px;height:9px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) scale(0);transform-origin:center;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.plan ul.pmul li:hover::after,.plan.open.seen ul.pmul li::after{transform:rotate(45deg) scale(1)}
+.plan ul.pmul li:hover::before{transform:scale(1.12)}
+.plan ul.pmul li:hover{transform:translateX(3px)}
+.plan.open.seen ul.pmul li:nth-child(2)::after{transition-delay:.12s}.plan.open.seen ul.pmul li:nth-child(3)::after{transition-delay:.24s}.plan.open.seen ul.pmul li:nth-child(4)::after{transition-delay:.36s}
 /* «Ja» in Schritt 3 leuchtet beim Hover */
 .yes-chip{transition:transform .2s ease, box-shadow .2s ease;cursor:default}
 .yes-chip:hover,.steps ol > li.on .yes-chip{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--sun),0 0 18px rgba(255,200,26,.8);transform:translateY(-2px) scale(1.05)}
@@ -1407,13 +1422,13 @@ header.top{will-change:transform}
       <div class="plan">
         <h4 data-t="pm1h">Sie pflegen selbst</h4>
         <p data-t="pm1d">Wir übergeben Ihnen die Website und zeigen, wie Sie Texte, Preise und Fotos selbst ändern.</p>
-        <ul><li data-t="pm1a">Sicherheit, Updates und Backups</li><li data-t="pm1b">Hilfe, wenn Sie nicht weiterkommen</li></ul>
+        <button class="pmore" type="button" aria-expanded="false"><span data-t="pmore">Mehr erfahren</span><i aria-hidden="true"></i></button><ul class="pmul"><li data-t="pm1a">Sicherheit, Updates und Backups</li><li data-t="pm1b">Hilfe, wenn Sie nicht weiterkommen</li></ul>
         <span class="tag" data-t="pm1p">ab CHF 30 pro Monat</span>
       </div>
       <div class="plan g">
         <h4 data-t="pm2h">Wir kümmern uns um alles</h4>
         <p data-t="pm2d">Sie schicken uns kleine Änderungen per Nachricht, wir erledigen sie. Sie müssen nichts selbst machen.</p>
-        <ul><li data-t="pm2a">Kleine Änderungen inklusive: Öffnungszeiten, Preise, Texte, Fotos</li><li data-t="pm2c">Sicherheit, Updates und Backups</li><li data-t="pm2e">Grössere Umbauten, z. B. eine neue Seite, offerieren wir separat</li><li data-t="pm2b">Ihre Domain bleibt bei Ihnen. Eine neue organisieren wir auf Wunsch.</li></ul>
+        <button class="pmore" type="button" aria-expanded="false"><span data-t="pmore">Mehr erfahren</span><i aria-hidden="true"></i></button><ul class="pmul"><li data-t="pm2a">Kleine Änderungen inklusive: Öffnungszeiten, Preise, Texte, Fotos</li><li data-t="pm2c">Sicherheit, Updates und Backups</li><li data-t="pm2e">Grössere Umbauten, z. B. eine neue Seite, offerieren wir separat</li><li data-t="pm2b">Ihre Domain bleibt bei Ihnen. Eine neue organisieren wir auf Wunsch.</li></ul>
         <span class="tag" data-t="pm2p">ab CHF 60 pro Monat</span>
       </div>
       <p class="note" data-t="p_host">Hosting: Haben Sie schon einen Anbieter, bleibt Ihre Website dort. Brauchen Sie einen neuen, organisieren wir ihn und nennen die Kosten in der Offerte.</p>
@@ -1450,7 +1465,7 @@ header.top{will-change:transform}
 <script>
 (function(){
   var EN={
-    title:"Robin &amp; Julia Mirku – When people nearby search, they should find you",
+    title:"Robin &amp; Julia Websites",
     skip:"Skip to content",
     cta:"Reply to your draft",
     cta_order:"Order a free draft",
@@ -1472,6 +1487,7 @@ header.top{will-change:transform}
     pm1p:"from CHF 30 a month",
     pm1b:"Help whenever you get stuck",
     pm1a:"Security, updates and backups",
+    pmore:"Learn more",
     pm1d:"We hand the website over and show you how to change texts, prices and photos yourself.",
     pm1h:"You keep it up to date",
     p3_h:"Care after launch",
@@ -2069,6 +2085,18 @@ header.top{will-change:transform}
 })();
 </script>
 
+
+<script>
+(function(){
+  [].slice.call(document.querySelectorAll('.plan .pmore')).forEach(function(b){
+    var pl=b.closest('.plan'), t;
+    b.addEventListener('click',function(){
+      var o=!pl.classList.contains('open'); pl.classList.toggle('open',o); b.setAttribute('aria-expanded',o?'true':'false');
+      clearTimeout(t); pl.classList.remove('seen'); if(o) t=setTimeout(function(){pl.classList.add('seen');},450);
+    });
+  });
+})();
+</script>
 
 <script>
 (function(){
