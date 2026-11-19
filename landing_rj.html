@@ -919,6 +919,8 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
  .slot.photos i{height:40px}.slot.photos i svg{width:20px;height:20px}
  .slot.cta{min-height:36px}
 }
+html,body{overflow-x:clip}
+.chatw{max-width:calc(100vw - 24px)}
 /* Chat-Knopf verdeckt unten nichts */
 @media (max-width:640px){footer{padding-bottom:96px}}
 
@@ -933,11 +935,8 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .steps ol > li:is(:hover,:focus-visible,.on) .num{background:#1E5E3F;color:#fff}
 
 /* «Wie wir arbeiten»: Icons weiss, Farbe beim Hover */
-.hgrid .hico{background:var(--sun);transition:background-color .25s ease, transform .2s ease}
-.hgrid li:hover .hico{background:var(--sun);transform:rotate(-6deg) scale(1.06)}
-.hgrid li:nth-child(2):hover .hico{background:#FFE0DF}
-.hgrid li:nth-child(3):hover .hico{background:#D6F0DF}
-.hgrid li:nth-child(4):hover .hico{background:#D6EEFB}
+.hgrid .hico{background:#fff;transition:background-color .25s ease, transform .2s ease}
+.hgrid li:hover .hico{transform:rotate(-6deg) scale(1.08);box-shadow:0 0 0 4px rgba(255,200,26,.35)}
 header.top{transition:transform .45s cubic-bezier(.4,0,.2,1), box-shadow .3s ease}
 header.top.gone{transform:translateY(-110%)}
 .tphone-wrap{top:24px !important}
@@ -1216,10 +1215,10 @@ header.top.gone{transform:translateY(-110%)}
       <div class="eyebrow-line"></div>
       <h2 id="h-how" data-t="how_h">Wie wir arbeiten</h2>
       <ul class="hgrid">
-        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="11" fill="#fff" stroke="#1F2328" stroke-width="2.4"/><path d="M16 11v6l4 3" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><path d="M13 3h6" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/></svg></div><h3 data-t="hw1">Schnell und sorgfältig</h3><p data-t="hw1p">Wir arbeiten zügig und achten auf jedes Detail.</p></li>
-        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27s-10-6.2-10-13.2A5.6 5.6 0 0 1 16 10.4a5.6 5.6 0 0 1 10 3.4C26 20.8 16 27 16 27z" fill="#fff" stroke="#1F2328" stroke-width="2.4" stroke-linejoin="round"/></svg></div><h3 data-t="hw2">Ganz nach Ihren Wünschen</h3><p data-t="hw2p">Jede Website bauen wir einzeln für Ihren Betrieb, ohne Vorlage von der Stange.</p></li>
-        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26l3.5-1 14-14-2.5-2.5-14 14z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/><path d="M20 8.5l2.5-2.5 3.5 3.5-2.5 2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></div><h3 data-t="hw3">Änderungen auf Anfrage</h3><p data-t="hw3p">Soll etwas anders sein, ändern wir es. Auf Wunsch betreuen wir Ihre Website auch danach weiter.</p></li>
-        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="8" rx="2.5" fill="#fff" stroke="#1F2328" stroke-width="2.4"/><rect x="5" y="18" width="22" height="8" rx="2.5" fill="#fff" stroke="#1F2328" stroke-width="2.4"/><circle cx="10" cy="10" r="1.6" fill="#1F2328"/><circle cx="10" cy="22" r="1.6" fill="#1F2328"/></svg></div><h3 data-t="hw4">Die Technik übernehmen wir</h3><p data-t="hw4p">Das Hosting richten wir ein, Impressum und Datenschutz sind von Anfang an dabei.</p></li>
+        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17.5" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4"/><path d="M16 11.5v6l4 3" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><path d="M13 3.5h6M16 3.5v3.5" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/></svg></div><h3 data-t="hw1">Schnell und sorgfältig</h3><p data-t="hw1p">Wir arbeiten zügig und achten auf jedes Detail.</p></li>
+        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27s-10-6.2-10-13.2A5.6 5.6 0 0 1 16 10.4a5.6 5.6 0 0 1 10 3.4C26 20.8 16 27 16 27z" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4" stroke-linejoin="round"/></svg></div><h3 data-t="hw2">Ganz nach Ihren Wünschen</h3><p data-t="hw2p">Jede Website bauen wir einzeln für Ihren Betrieb, ohne Vorlage von der Stange.</p></li>
+        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="4" width="16" height="22" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.2"/><path d="M9 10h8M9 14.5h8M9 19h4" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path d="M27.5 12.5l-9.5 9.5-3.5 1 1-3.5 9.5-9.5z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></div><h3 data-t="hw3">Änderungen auf Anfrage</h3><p data-t="hw3p">Soll etwas anders sein, ändern wir es. Auf Wunsch betreuen wir Ihre Website auch danach weiter.</p></li>
+        <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="8" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4"/><rect x="5" y="18" width="22" height="8" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4"/><circle cx="10" cy="10" r="1.6" fill="#1F2328"/><circle cx="10" cy="22" r="1.6" fill="#1F2328"/><path d="M15 10h7M15 22h7" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/></svg></div><h3 data-t="hw4">Die Technik übernehmen wir</h3><p data-t="hw4p">Das Hosting richten wir ein, Impressum und Datenschutz sind von Anfang an dabei.</p></li>
       </ul>
     </div>
   </section>
@@ -1239,7 +1238,7 @@ header.top.gone{transform:translateY(-110%)}
       <div class="chat" role="img" aria-label="Chat: Sie bekommen den Entwurf, wünschen eine Änderung und sagen Ja." data-ta="aria-label:chatimg">
         <div class="msg them" aria-hidden="true"><div class="thumb"><div class="t1"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div><div class="b"></div></div><span class="cap" data-t="ch1">Ihr Entwurf ist fertig. Schauen Sie mal!</span></div>
         <div class="msg me" aria-hidden="true" data-t="ch2">Wow, genau so wollte ich es! Nur das Foto oben bitte heller.</div>
-        <div class="msg them" aria-hidden="true" data-t="ch3">Erledigt! So besser?</div>
+        <div class="msg them" aria-hidden="true" data-t="ch3">Erledigt! Ohne Ihr Ja geht nichts online. Dürfen wir die Website jetzt veröffentlichen?</div>
         <div class="msg me big" aria-hidden="true" data-t="yes">Ja</div>
         <div class="ticks" aria-hidden="true"><svg viewBox="0 0 26 16"><path d="M2 8l4 4 8-9M10 12l2 0 9-9" fill="none" stroke="#FFC81A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="online" aria-hidden="true"><i></i><span data-t="ch5">Ihre Website ist jetzt online</span></div>
@@ -1412,7 +1411,7 @@ header.top.gone{transform:translateY(-110%)}
     sw_street:"Main St. 1",
     u4:"Attention to detail",
     ch5:"Your website is now online",
-    ch3:"Done! Better like this?",
+    ch3:"Done! Nothing goes online without your yes. May we publish your website now?",
     ch2:"Wow, exactly what I wanted! Just make the top photo a bit brighter, please.",
     ch1:"Your draft is ready. Have a look!",
     tlive:"Live · Try it out",
