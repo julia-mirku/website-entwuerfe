@@ -855,8 +855,12 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .tico .nail{transform-box:view-box;transform-origin:22px 28px}
 .card:is(:hover,.live) .tico .nail{animation:nail .7s ease-in-out infinite}
 @keyframes nail{0%,40%{transform:scaleY(1)}50%,100%{transform:scaleY(.7)}}
-.tico .sun{transform:translateY(8px);opacity:0;transition:transform 1s ease, opacity 1s ease}
-.card:is(:hover,.live) .tico .sun{transform:none;opacity:1}
+.tico .sunw{transform:translateY(11px);opacity:0;transition:transform 1.1s cubic-bezier(.3,.8,.3,1), opacity .8s ease}
+.card:is(:hover,.live) .tico .sunw{transform:none;opacity:1}
+.tico .rays{transform-box:view-box;transform-origin:24px 7px;opacity:0;transform:scale(.5)}
+.card:is(:hover,.live) .tico .rays{animation:rays 2.4s linear .9s infinite;opacity:1}
+@keyframes rays{0%{transform:scale(.7) rotate(0);opacity:.4}25%{opacity:1}50%{transform:scale(1.1) rotate(22deg);opacity:1}100%{transform:scale(.7) rotate(45deg);opacity:.4}}
+.card:is(:hover,.live) .tico .sun{filter:drop-shadow(0 0 3px rgba(255,200,26,.9))}
 .tico .door,.tico .door2{transform-box:fill-box;transition:transform .6s ease}
 .tico .door{transform-origin:left center}.tico .door2{transform-origin:right center}
 .card:is(:hover,.live) .tico .door{transform:scaleX(.35)}
@@ -1164,7 +1168,7 @@ header.top{will-change:transform}
           <p data-t="t4p">Fotos fertiger Arbeiten, Antworten auf häufige Fragen und ein direkter Weg zur Offerte.</p>
         </article>
         <article class="card">
-          <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle class="sun" cx="24" cy="10" r="4" fill="#FFC81A"/><path d="M5 15L16 7l11 8v12H5z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><g class="door"><path d="M12 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="door2"><path d="M16 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
+          <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><g class="sunw"><g class="rays" stroke="#FFC81A" stroke-width="1.8" stroke-linecap="round"><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(0 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(45 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(90 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(135 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(180 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(225 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(270 24 7)"/><path d="M24 0.7999999999999998 V-1.5999999999999996" transform="rotate(315 24 7)"/></g><circle class="sun" cx="24" cy="7" r="4" fill="#FFC81A" stroke="#E0A000" stroke-width=".8"/></g><path d="M5 15L16 7l11 8v12H5z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><g class="door"><path d="M12 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="door2"><path d="M16 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
           <h3 data-t="t5h">Hofläden und regionale Produzenten</h3>
           <p data-t="t5p">Was es gerade frisch gibt, Öffnungszeiten, Anfahrt und Vorbestellung.</p>
         </article>
@@ -1264,7 +1268,7 @@ header.top{will-change:transform}
       <div class="chat" role="img" aria-label="Chat: Sie bekommen den Entwurf, wünschen eine Änderung und sagen Ja." data-ta="aria-label:chatimg">
         <div class="msg them" aria-hidden="true"><div class="thumb"><div class="t1"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div><div class="b"></div></div><span class="cap" data-t="ch1">Ihr Entwurf ist fertig. Schauen Sie mal!</span></div>
         <div class="msg me" aria-hidden="true" data-t="ch2">Wow, genau so wollte ich es! Nur das Foto oben bitte heller.</div>
-        <div class="msg them" aria-hidden="true" data-t="ch3">Erledigt! Ohne Ihr Ja geht nichts online. Dürfen wir die Website jetzt veröffentlichen?</div>
+        <div class="msg them" aria-hidden="true" data-t="ch3">Erledigt! Dürfen wir die Website jetzt veröffentlichen?</div>
         <div class="msg me big" aria-hidden="true" data-t="yes">Ja</div>
         <div class="ticks" aria-hidden="true"><svg viewBox="0 0 26 16"><path d="M2 8l4 4 8-9M10 12l2 0 9-9" fill="none" stroke="#FFC81A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="online" aria-hidden="true"><i></i><span data-t="ch5">Ihre Website ist jetzt online</span></div>
@@ -1437,7 +1441,7 @@ header.top{will-change:transform}
     sw_street:"Main St. 1",
     u4:"Attention to detail",
     ch5:"Your website is now online",
-    ch3:"Done! Nothing goes online without your yes. May we publish your website now?",
+    ch3:"Done! May we publish it now?",
     ch2:"Wow, exactly what I wanted! Just make the top photo a bit brighter, please.",
     ch1:"Your draft is ready. Have a look!",
     tlive:"Live · Try it out",
