@@ -642,7 +642,7 @@ html:not(.kbd) summary:focus,html:not(.kbd) button:focus,html:not(.kbd) a:focus{
 .tphone{cursor:pointer;transition:transform .5s cubic-bezier(.3,.7,.3,1), box-shadow .35s ease}
 .tphone:hover,.tphone.hov{box-shadow:0 0 0 5px var(--sun),0 0 0 9px rgba(255,200,26,.25),0 30px 60px rgba(31,35,40,.25);transform:translateY(-6px) rotate(-1.5deg)}
 
-.tsite .chips span,.tsite .avs span,.tsite .week span,.tsite .grid2 span:not(.no),.tsite .tb{cursor:pointer;transition:transform .15s ease, background-color .2s ease, color .2s ease, border-color .2s ease}
+.tsite .chips span,.tsite .avs span,.tsite .week span,.tsite .grid2 span,.tsite .tb{cursor:pointer;transition:transform .15s ease, background-color .2s ease, color .2s ease, border-color .2s ease}
 .tphone.hov .tsite .chips span:hover,.tphone.hov .tsite .week span:hover,.tphone.hov .tsite .avs span:hover{transform:translateY(-2px)}
 .tsite .chips span:active,.tsite .avs span:active,.tsite .week span:active,.tsite .grid2 span:active,.tsite .tb:active{transform:scale(.94)}
 .tsite .grid2 span.sel{background:var(--sun-soft);box-shadow:inset 0 0 0 2px var(--sun)}
@@ -773,7 +773,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .tphone-wrap.act .tlive{opacity:1;transform:translate(-50%,0)}
 .tphone.hov .scr{box-shadow:inset 0 0 0 3px var(--sun)}
 
-
+details .ans .pbtn{margin:8px 0 16px 4px}details .ul{background:linear-gradient(#1E5E3F,#1E5E3F) 0 100%/0 2px no-repeat;padding-bottom:1px;transition:background-size .6s ease .25s}details[open] .ul{background-size:100% 2px}
 /* ===== Inhalt 19.11 ===== */
 .brand-mark{width:38px;height:38px}
 .finds .grid6{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -1345,8 +1345,8 @@ header.top{will-change:transform}
       <div class="eyebrow-line"></div>
       <h2 id="h-faq" data-t="faq_h">Häufige Fragen</h2>
       <div class="faq-list">
-        <details><summary><span data-t="q1">Bringt mir die Website wirklich Kunden?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a1">Zahlen versprechen wir nicht. Wir bauen ein, wonach Kunden suchen: dass man Sie auf Google findet, Preise und Öffnungszeiten sofort sieht und direkt buchen, bestellen oder anfragen kann.</p></details>
-        <details><summary><span data-t="q2">Was kostet mich das?</span><span class="pm" aria-hidden="true"></span></summary><div class="ans"><p data-t="a2">Eine Website mit einer Seite gibt es ab CHF 900. Den genauen Preis nennen wir Ihnen in der Offerte, bevor Sie zusagen.</p><button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="pbtn">Alle Preise und Bedingungen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></details>
+        <details><summary><span data-t="q1">Bringt mir die Website wirklich Kunden?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a1">Zahlen versprechen wir nicht. Wir bauen ein, <span class="ul">wonach Kunden suchen</span>: dass man Sie auf Google findet, Preise und Öffnungszeiten sofort sieht und direkt buchen, bestellen oder anfragen kann.</p></details>
+        <details><summary><span data-t="q2">Was kostet mich das?</span><span class="pm" aria-hidden="true"></span></summary><div class="ans"><p data-t="a2"><span class="ul">Eine Website mit einer Seite gibt es ab CHF 900.</span> Den genauen Preis nennen wir Ihnen in der Offerte, bevor Sie zusagen.</p><button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="pbtn">Alle Preise und Bedingungen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></details>
         <details><summary><span data-t="q4">Wie viel Arbeit habe ich damit?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a4">Wenig. Wir brauchen Ihre Preise und Öffnungszeiten, Fotos vom Handy und die Angaben fürs Impressum.</p></details>
         <details><summary><span data-t="q5">Und wenn mir der Entwurf nicht gefällt?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a5">Sagen Sie, was anders sein soll. Wir ändern es und zeigen es Ihnen wieder. Sagen Sie Nein, geht nichts online.</p></details>
         <details><summary><span data-t="q6">Was passiert nach dem Start?</span><span class="pm" aria-hidden="true"></span></summary><p data-t="a6">Neue Preise, eine Aktion, ein neues Foto: Schicken Sie es per Nachricht. Sie sehen die fertige Ansicht und sagen Ja. Selbst ändern müssen Sie nichts.</p></details>
@@ -1613,9 +1613,9 @@ header.top{will-change:transform}
     st3p:"You send us later changes the same way.",
     faq_h:"Questions owners ask",
     q1:"Will the website really bring me customers?",
-    a1:"We don’t promise numbers. We build in what customers look for: being found on Google, seeing prices and opening hours at once, and booking, ordering or getting in touch directly.",
+    a1:"We don’t promise numbers. We build in <span class=\"ul\">what customers look for</span>: being found on Google, seeing prices and opening hours at once, and booking, ordering or getting in touch directly.",
     q2:"What will it cost me?",
-    a2:"A one-page website starts at CHF 900. We give you the exact price in the quote, before you agree.",
+    a2:"<span class=\"ul\">A one-page website starts at CHF 900.</span> We give you the exact price in the quote, before you agree.",
     pbtn:"All prices and terms",
     p_h:"Prices and terms",
     "@pclose":"Close",
@@ -2005,7 +2005,7 @@ header.top{will-change:transform}
       if(swiping) return; var site=lastSite(); if(!site) return;
       var t=ev.target, el;
       if(el=t.closest('.chips span,.avs span,.week span')){ pick(el); return; }
-      if(el=t.closest('.grid2 span:not(.no)')){ el.classList.toggle('sel'); var tb0=site.querySelector('.tb span'); var n=site.querySelectorAll('.grid2 .sel').length; tb0.textContent=(tb0.dataset.base||(tb0.dataset.base=tb0.textContent))+(n?' ('+n+')':''); return; }
+      if(el=t.closest('.grid2 span')){ el.classList.toggle('sel'); var tb0=site.querySelector('.tb span'); var n=site.querySelectorAll('.grid2 .sel').length; tb0.textContent=(tb0.dataset.base||(tb0.dataset.base=tb0.textContent))+(n?' ('+n+')':''); return; }
       if(el=t.closest('.tb')){
         var r=el.getBoundingClientRect(); ripple(el, ev.clientX-r.left, ev.clientY-r.top);
         if(now===2){ callScreen(site); return; }
