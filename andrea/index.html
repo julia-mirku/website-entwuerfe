@@ -111,6 +111,19 @@ b.k{color:var(--dt);font-weight:700}
 .edu{list-style:none;padding:0;margin:0}
 .edu li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);font-weight:500}
 .edu li:last-child{border-bottom:1px solid var(--line)}
+.edu .sprout{width:24px;height:24px;flex:none;margin-top:1px;overflow:visible}
+.sprout .st,.sprout .lf{fill:var(--lime)}
+.sprout .lf{transform-box:view-box;transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.sprout .lf.l{transform-origin:256px 330px}
+.sprout .lf.r{transform-origin:258px 306px}
+.sprout .fl *{transform-box:view-box;transform-origin:256px 236px}
+.sprout .fl .p{fill:#f4a6c4;rotate:var(--r);scale:0;transition:scale .55s cubic-bezier(.3,1.5,.5,1);transition-delay:calc(var(--d) + .1s)}
+.sprout .fl .p:nth-child(even){fill:#ec8db3}
+.sprout .fl .c{fill:#ffe08a;scale:0;transition:scale .4s cubic-bezier(.3,1.6,.5,1) .45s}
+.edu li:hover .sprout .fl .p,.edu li:active .sprout .fl .p,.edu li:hover .sprout .fl .c,.edu li:active .sprout .fl .c{scale:1}
+.edu li:hover .sprout .lf.l,.edu li:active .sprout .lf.l{transform:rotate(-18deg)}
+.edu li:hover .sprout .lf.r,.edu li:active .sprout .lf.r{transform:rotate(18deg)}
+@media (prefers-reduced-motion:reduce){.sprout *{transition:none!important}}
 .edu .dot{width:12px;height:12px;border-radius:50% 0;background:var(--lime);margin-top:9px;flex:none;transform:rotate(45deg)}
 
 /* Kernthemen */
@@ -499,11 +512,11 @@ mark.hl:hover{background-size:100% 5px}
       <div class="edu-card">
         <h3>Meine Ausbildungen</h3>
         <ul class="edu">
-          <li><span class="dot"></span>Ärztlich geprüfte Dipl.-Gesundheitsberaterin</li>
-          <li><span class="dot"></span>Ausbildung zur Apothekenhelferin</li>
-          <li><span class="dot"></span>Ausbildung zur Gesundheitsberaterin bei der Europäischen Akademie für Naturheilverfahren und Umweltmedizin</li>
-          <li><span class="dot"></span>Basenkur-Leiterin nach P. Jentschura</li>
-          <li><span class="dot"></span>Fachfortbildung für bioenergetische Revitalisierung</li>
+          <li><svg class="sprout" viewBox="0 0 512 512" aria-hidden="true"><rect class="st" x="226" y="290" width="60" height="200" rx="18"/><path class="lf l" d="M256 330C128 330 18 228 6 92C146 92 248 186 256 330Z"/><path class="lf r" d="M258 306C264 166 360 50 506 30C504 170 404 282 258 306Z"/><g class="fl"><ellipse class="p" style="--r:0deg;--d:0ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:72deg;--d:60ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:144deg;--d:120ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:216deg;--d:180ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:288deg;--d:240ms" cx="256" cy="150" rx="64" ry="88"/><circle class="c" cx="256" cy="236" r="46"/></g></svg>Ärztlich geprüfte Dipl.-Gesundheitsberaterin</li>
+          <li><svg class="sprout" viewBox="0 0 512 512" aria-hidden="true"><rect class="st" x="226" y="290" width="60" height="200" rx="18"/><path class="lf l" d="M256 330C128 330 18 228 6 92C146 92 248 186 256 330Z"/><path class="lf r" d="M258 306C264 166 360 50 506 30C504 170 404 282 258 306Z"/><g class="fl"><ellipse class="p" style="--r:0deg;--d:0ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:72deg;--d:60ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:144deg;--d:120ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:216deg;--d:180ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:288deg;--d:240ms" cx="256" cy="150" rx="64" ry="88"/><circle class="c" cx="256" cy="236" r="46"/></g></svg>Ausbildung zur Apothekenhelferin</li>
+          <li><svg class="sprout" viewBox="0 0 512 512" aria-hidden="true"><rect class="st" x="226" y="290" width="60" height="200" rx="18"/><path class="lf l" d="M256 330C128 330 18 228 6 92C146 92 248 186 256 330Z"/><path class="lf r" d="M258 306C264 166 360 50 506 30C504 170 404 282 258 306Z"/><g class="fl"><ellipse class="p" style="--r:0deg;--d:0ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:72deg;--d:60ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:144deg;--d:120ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:216deg;--d:180ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:288deg;--d:240ms" cx="256" cy="150" rx="64" ry="88"/><circle class="c" cx="256" cy="236" r="46"/></g></svg>Ausbildung zur Gesundheitsberaterin bei der Europäischen Akademie für Naturheilverfahren und Umweltmedizin</li>
+          <li><svg class="sprout" viewBox="0 0 512 512" aria-hidden="true"><rect class="st" x="226" y="290" width="60" height="200" rx="18"/><path class="lf l" d="M256 330C128 330 18 228 6 92C146 92 248 186 256 330Z"/><path class="lf r" d="M258 306C264 166 360 50 506 30C504 170 404 282 258 306Z"/><g class="fl"><ellipse class="p" style="--r:0deg;--d:0ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:72deg;--d:60ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:144deg;--d:120ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:216deg;--d:180ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:288deg;--d:240ms" cx="256" cy="150" rx="64" ry="88"/><circle class="c" cx="256" cy="236" r="46"/></g></svg>Basenkur-Leiterin nach P. Jentschura</li>
+          <li><svg class="sprout" viewBox="0 0 512 512" aria-hidden="true"><rect class="st" x="226" y="290" width="60" height="200" rx="18"/><path class="lf l" d="M256 330C128 330 18 228 6 92C146 92 248 186 256 330Z"/><path class="lf r" d="M258 306C264 166 360 50 506 30C504 170 404 282 258 306Z"/><g class="fl"><ellipse class="p" style="--r:0deg;--d:0ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:72deg;--d:60ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:144deg;--d:120ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:216deg;--d:180ms" cx="256" cy="150" rx="64" ry="88"/><ellipse class="p" style="--r:288deg;--d:240ms" cx="256" cy="150" rx="64" ry="88"/><circle class="c" cx="256" cy="236" r="46"/></g></svg>Fachfortbildung für bioenergetische Revitalisierung</li>
         </ul>
       </div>
     </div>
