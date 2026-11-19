@@ -813,7 +813,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 /* ===== lebendige Branchen-Icons + weniger Gelb ===== */
 .trades .card .tico{background:var(--sun);transition:background-color .3s ease, transform .2s ease, box-shadow .3s ease}
 .trades .card .tico svg{overflow:visible}
-.trades .card:nth-child(1):is(:hover,.live) .tico{background:#FFD9C2}
+.trades .card:nth-child(1):is(:hover,.live) .tico{background:#FFB98F}
 .trades .card:nth-child(2):is(:hover,.live) .tico{background:#F3E6D3}
 .trades .card:nth-child(3):is(:hover,.live) .tico{background:#FFFFFF}
 .trades .card:nth-child(4):is(:hover,.live) .tico{background:#D8EFC6}
@@ -822,10 +822,14 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 
 .trades .card:is(:hover,.live) .tico{box-shadow:0 0 0 4px rgba(31,35,40,.08);transform:scale(1.08)}
 .tico .bl1,.tico .bl2{transform-box:view-box;transform-origin:16px 16px}
-.card:is(:hover,.live) .tico .bl1{animation:snipL .5s ease-in-out infinite alternate}
-.card:is(:hover,.live) .tico .bl2{animation:snipR .5s ease-in-out infinite alternate}
-@keyframes snipL{from{transform:rotate(0)}to{transform:rotate(16deg)}}
-@keyframes snipR{from{transform:rotate(0)}to{transform:rotate(-16deg)}}
+.card:is(:hover,.live) .tico .bl1{animation:snipL .38s cubic-bezier(.6,0,.4,1) infinite alternate}
+.card:is(:hover,.live) .tico .bl2{animation:snipR .38s cubic-bezier(.6,0,.4,1) infinite alternate}
+.tico .hair{opacity:0}
+.card:is(:hover,.live) .tico .h1{animation:hairfall 1.5s ease-in infinite}
+.card:is(:hover,.live) .tico .h2{animation:hairfall 1.5s ease-in .75s infinite}
+@keyframes hairfall{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(3px,16px) rotate(40deg)}}
+@keyframes snipL{0%{transform:rotate(0)}100%{transform:rotate(-34deg)}}
+@keyframes snipR{0%{transform:rotate(0)}100%{transform:rotate(34deg)}}
 .tico .liq{transform:translateY(14px);transition:transform 1.4s cubic-bezier(.3,.7,.3,1)}
 .card:is(:hover,.live) .tico .liq{transform:translateY(3px)}
 .tico .st{opacity:0}
@@ -855,7 +859,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @media (prefers-reduced-motion:reduce){.tico *{animation:none!important}}
 
 /* «Was Ihre Kunden sofort finden»: neutral, bunt beim Hover */
-.finds .grid6 .ico{background:#fff;border:2px solid var(--line);transition:border-color .2s ease, background-color .25s ease, transform .2s ease}
+.finds .grid6 .ico{background:var(--sun-soft);border:2px solid transparent;transition:border-color .2s ease, background-color .25s ease, transform .2s ease}
 .finds .grid6 li:hover .ico{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35);transform:translateY(-2px) rotate(-4deg)}
 .finds .grid6 li:nth-child(1):hover .ico{background:#FFE3E0}
 .finds .grid6 li:nth-child(1):hover .ico path{fill:#E5483D;stroke:#1F2328}
@@ -868,6 +872,35 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .finds .grid6 li:nth-child(4):hover .ico circle{fill:#3FA36F}
 .finds .grid6 li:hover{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
 
+
+/* Telefon im Wirbel passt auf jeden Handy-Bildschirm */
+@media (max-width:900px){.sw-phone{width:min(230px, calc((100vh - 310px) * .48)) !important;width:min(230px, calc((100svh - 310px) * .48)) !important}.swirl .inner{align-content:start}.swirl .pwrap{align-items:start;padding-top:14px}}
+/* Häkchen in «Was wir für Sie bauen»: hellgrün beim Hover */
+.wlist li svg circle{transition:fill .25s ease}
+.wlist li:is(:hover,:focus-visible,.on) svg circle{fill:#5BBF85}
+/* FAQ-Antwort: fett + kursiv */
+.faq-list details[open] > p,.faq-list details[open] .ans p{font-style:italic}
+/* «Frage stellen» gelb, Sprechblase weiss */
+.ask .btn{background:var(--sun) !important}
+.ask .btn svg path{fill:#fff}
+.ask .btn:hover svg path{fill:var(--ink)}
+/* Chat: Freigabe-Gespräch */
+.chat .msg{font-size:15.5px;line-height:1.4;font-weight:600}
+.chat .msg.them{color:#F3F1EA}
+.chat .msg.me{font-weight:700}
+.chat .cap{display:block;margin-top:8px}
+.chat .online{align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(91,191,133,.15);color:#9BE3B7;font-weight:800;font-size:14px}
+.chat .online i{width:9px;height:9px;border-radius:50%;background:#5BBF85;box-shadow:0 0 0 4px rgba(91,191,133,.25);animation:pulse 1.4s ease-in-out infinite}
+.chat .thumb .t1{transition:filter .6s ease}
+.chat.bright .thumb .t1{filter:brightness(1.25) saturate(1.1)}
+/* Touch: kein «klebendes» Hover bei den Schritten */
+.touch .steps ol > li:not(.on)::before{opacity:0 !important}
+.touch .steps ol > li:not(.on) .num{transform:none !important;background:var(--sun) !important;color:var(--ink) !important;box-shadow:none !important}
+.touch .ways li:not(.on){background:var(--sky) !important;border-color:transparent !important;transform:none !important;box-shadow:none !important}
+
+/* Handy mit Branchen auch auf dem Handy */
+@media (max-width:900px){.trades .tlay{grid-template-columns:1fr}.tphone-wrap{display:block !important;position:relative !important;top:auto !important;margin:34px auto 0;width:min(290px,78vw)}.tphone{width:100% !important;margin:0 auto}.tphone-wrap .tlive{top:-16px}.trades .card{cursor:pointer}}
+.uchips li.main{background:var(--sun);font-weight:800}
 /* Chat-Knopf verdeckt unten nichts */
 @media (max-width:640px){footer{padding-bottom:96px}}
 
@@ -882,7 +915,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .steps ol > li:is(:hover,:focus-visible,.on) .num{background:#1E5E3F;color:#fff}
 
 /* «Wie wir arbeiten»: Icons weiss, Farbe beim Hover */
-.hgrid .hico{background:#fff;transition:background-color .25s ease, transform .2s ease}
+.hgrid .hico{background:var(--sun);transition:background-color .25s ease, transform .2s ease}
 .hgrid li:hover .hico{background:var(--sun);transform:rotate(-6deg) scale(1.06)}
 .hgrid li:nth-child(2):hover .hico{background:#FFE0DF}
 .hgrid li:nth-child(3):hover .hico{background:#D6F0DF}
@@ -1064,7 +1097,7 @@ header.top.gone{transform:translateY(-110%)}
       <div class="tlay"><div class="cards">
         <article class="card">
           <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><g class="bl1"><path d="M15 16L24.5 4.5" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="24" r="4" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.6 21L15 16" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g class="bl2"><path d="M17 16L7.5 4.5" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="24" r="4" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.4 21L17 16" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="16" cy="16" r="1.4" fill="#1F2328"/></svg></div>
+<g class="bl2"><path d="M17 16L7.5 4.5" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="24" r="4" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.4 21L17 16" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="16" cy="16" r="1.4" fill="#1F2328"/><path class="hair h1" d="M14 3c1.5 1 1.8 2.4 1 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/><path class="hair h2" d="M18 2.5c-1.2 1.3-1.2 2.6-.2 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/></svg></div>
           <h3 data-t="t1h">Coiffeur, Barber, Kosmetik</h3>
           <p data-t="t1p">«Termin buchen» gleich oben, klare Preisliste, Vorher-Nachher-Bilder.</p>
         </article>
@@ -1142,7 +1175,8 @@ header.top.gone{transform:translateY(-110%)}
         <p class="lead" data-t="us_p1">Wir sind Robin und Julia Mirku. Wir nehmen uns Zeit für Ihren Betrieb und hören genau zu.</p>
         <p class="lead" data-t="us_p2">Jeder Kunde wird so behandelt, wie man selbst behandelt werden möchte. Die Preise sind fair: Sie bezahlen für eine sorgfältig gebaute Website, nicht für den Namen einer grossen Agentur.</p>
         <ul class="uchips">
-          <li data-t="u1">Persönlich</li>
+          <li class="main" data-t="u4">Liebe zum Detail</li>
+          <li data-t="u1">Persönlich, nach Ihren Wünschen</li>
           <li data-t="u2">Mit Liebe gemacht</li>
           <li data-t="u3">Faire Preise</li>
         </ul>
@@ -1184,14 +1218,15 @@ header.top.gone{transform:translateY(-110%)}
           <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#FFC81A"/><path d="M8 14.5l4 4 8-9" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-t="s9">Der Preis steht vorher fest, es kommt nichts dazu</span></li>
         </ul>
       </div>
-      <div class="chat" role="img" aria-label="Chat: Sie bekommen den Entwurf als Ansicht und antworten mit Ja." data-ta="aria-label:chatimg">
-        <div class="msg them" aria-hidden="true">
-          <div class="thumb"><div class="t1"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div><div class="b"></div></div>
-        </div>
-        <div class="msg them" aria-hidden="true" style="width:62%"><div class="bar" style="height:9px;background:#5A636D;border-radius:6px"></div><div class="bar" style="height:9px;width:70%;margin-top:8px;background:#5A636D;border-radius:6px"></div></div>
+      <div class="chat" role="img" aria-label="Chat: Sie bekommen den Entwurf, wünschen eine Änderung und sagen Ja." data-ta="aria-label:chatimg">
+        <div class="msg them" aria-hidden="true"><div class="thumb"><div class="t1"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:60%"></div><div class="b"></div></div><span class="cap" data-t="ch1">Ihr Entwurf ist fertig. Schauen Sie mal!</span></div>
+        <div class="msg me" aria-hidden="true" data-t="ch2">Wow, genau so wollte ich es! Nur das Foto oben bitte heller.</div>
+        <div class="msg them" aria-hidden="true" data-t="ch3">Erledigt! So besser?</div>
         <div class="msg me big" aria-hidden="true" data-t="yes">Ja</div>
         <div class="ticks" aria-hidden="true"><svg viewBox="0 0 26 16"><path d="M2 8l4 4 8-9M10 12l2 0 9-9" fill="none" stroke="#FFC81A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="online" aria-hidden="true"><i></i><span data-t="ch5">Ihre Website ist jetzt online</span></div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -1251,9 +1286,9 @@ header.top.gone{transform:translateY(-110%)}
           <p class="lead2" data-t="c_lead">Schreiben Sie uns so, wie es Ihnen am einfachsten ist. Wir antworten persönlich.</p>
         </div>
         <div class="ways2">
-          <a class="wcard mail" href="mailto:mirkurobin@gmail.com?subject=Gratis-Entwurf"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3.5" fill="#fff" stroke="#1F2328" stroke-width="2.2"/><path d="M4.5 8l9.5 7 9.5-7" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span><b data-t="c_mail">E-Mail an Robin</b><span>mirkurobin@gmail.com</span></span></a>
-          <a class="wcard wa" href="https://wa.me/41000000000" target="_blank" rel="noopener"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5a10.5 10.5 0 0 0-9 15.9L3.5 24.5l5.3-1.4A10.5 10.5 0 1 0 14 3.5z" fill="#fff" stroke="#1F2328" stroke-width="2"/><path d="M10.2 9.2c.3-.6.7-.6 1-.6h.7c.2 0 .5.1.6.5l.9 2.1c.1.3 0 .6-.2.8l-.6.7c-.2.2-.2.4-.1.6.8 1.5 2 2.6 3.5 3.3.2.1.5.1.6-.1l.8-.9c.2-.2.5-.3.8-.2l2 .9c.4.2.5.5.4.8-.2 1-1 1.9-2 2-1 .2-2.3 0-4.4-1.1a11 11 0 0 1-4.3-4.6c-.8-1.6-.6-2.7-.1-3.4z" fill="#1E5E3F"/></svg></span><span><b data-t="c_wa">WhatsApp an Julia</b><span>+41 7X XXX XX XX</span></span></a>
-          <p class="trust"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2.5c-4.4 0-8 3.4-8 7.9C5 16.4 13 24 13 24s8-7.6 8-13.6c0-4.5-3.6-7.9-8-7.9z" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><circle cx="13" cy="10.5" r="3" fill="#1F2328"/></svg><span data-t="c_trust">Von St. Gallen aus, für Betriebe überall</span></p>
+          <a class="wcard mail" href="mailto:mirkurobin@gmail.com?subject=Gratis-Entwurf"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3.5" fill="#fff" stroke="#1F2328" stroke-width="2.2"/><path d="M4.5 8l9.5 7 9.5-7" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span><b data-t="c_mail">E-Mail Robin</b><span>mirkurobin@gmail.com</span></span></a>
+          <a class="wcard wa" href="https://wa.me/41000000000" target="_blank" rel="noopener"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5a10.5 10.5 0 0 0-9 15.9L3.5 24.5l5.3-1.4A10.5 10.5 0 1 0 14 3.5z" fill="#fff" stroke="#1F2328" stroke-width="2"/><path d="M10.2 9.2c.3-.6.7-.6 1-.6h.7c.2 0 .5.1.6.5l.9 2.1c.1.3 0 .6-.2.8l-.6.7c-.2.2-.2.4-.1.6.8 1.5 2 2.6 3.5 3.3.2.1.5.1.6-.1l.8-.9c.2-.2.5-.3.8-.2l2 .9c.4.2.5.5.4.8-.2 1-1 1.9-2 2-1 .2-2.3 0-4.4-1.1a11 11 0 0 1-4.3-4.6c-.8-1.6-.6-2.7-.1-3.4z" fill="#1E5E3F"/></svg></span><span><b data-t="c_wa">WhatsApp Julia</b><span>+41 7X XXX XX XX</span></span></a>
+          <p class="trust"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2.5c-4.4 0-8 3.4-8 7.9C5 16.4 13 24 13 24s8-7.6 8-13.6c0-4.5-3.6-7.9-8-7.9z" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><circle cx="13" cy="10.5" r="3" fill="#1F2328"/></svg><span data-t="c_trust">Weltweit tätig, von St. Gallen aus</span></p>
         </div>
       </div>
     </div>
@@ -1356,6 +1391,11 @@ header.top.gone{transform:translateY(-110%)}
     skip:"Skip to content",
     cta:"Reply to your draft",
     cta_order:"Order a free draft",
+    u4:"Attention to detail",
+    ch5:"Your website is now online",
+    ch3:"Done! Better like this?",
+    ch2:"Wow, exactly what I wanted! Just make the top photo a bit brighter, please.",
+    ch1:"Your draft is ready. Have a look!",
     tlive:"Live · Try it out",
     pm2p:"from CHF 60 a month",
     pm2b:"Your domain stays yours. We can set up a new one if you like.",
@@ -1449,10 +1489,10 @@ header.top.gone{transform:translateY(-110%)}
     ic4:"Enquiries with a photo",
     ic5:"Newsletter sign-up",
     ic6:"Job vacancies",
-    us_h:"With our whole heart in it",
+    us_h:"With all our heart",
     us_p1:"We are Robin and Julia Mirku. We take time for your business and listen carefully.",
     us_p2:"Every customer is treated the way anyone would like to be treated. The prices are fair: you pay for a carefully built website, not for the name of a big agency.",
-    u1:"Personal",
+    u1:"Personal, made the way you want it",
     u2:"Made with love",
     u3:"Fair prices",
     us_btn:"See all prices",
@@ -1646,7 +1686,7 @@ header.top.gone{transform:translateY(-110%)}
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
   // touch: tap toggles highlight (one at a time per group)
-  [['.wlist','li'],['.steps ol','li'],['.ways','li']].forEach(function(g){
+  [['.wlist','li']].forEach(function(g){
     var box=document.querySelector(g[0]); if(!box) return;
     box.addEventListener('pointerdown',function(e){
       if(e.pointerType==='mouse') return;
@@ -1658,7 +1698,7 @@ header.top.gone{transform:translateY(-110%)}
   });
   // ways: play once when scrolled into view
   var ways=document.querySelector('.ways');
-  if(ways&&'IntersectionObserver' in window&&!reduce){
+  if(false&&ways&&'IntersectionObserver' in window&&!reduce){
     var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.disconnect(); var it=[].slice.call(ways.children),i=0;
       (function next(){if(i>0) it[i-1].classList.remove('on'); if(i<it.length){it[i].classList.add('on'); i++; setTimeout(next,900);}})();}});},{threshold:.8});
     io.observe(ways);
@@ -1715,26 +1755,6 @@ header.top.gone{transform:translateY(-110%)}
   }
   addEventListener('scroll',read,{passive:true}); addEventListener('resize',read);
   read(); cur=tgt; requestAnimationFrame(frame);
-})();
-</script>
-
-<script>
-(function(){
-  var ol=document.querySelector('.steps ol'); if(!ol||!('IntersectionObserver' in window)) return;
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var it=[].slice.call(ol.children), i=0, t=null, vis=false, hold=false;
-  function step(){
-    if(!vis||hold) return;
-    it.forEach(function(c){c.classList.remove('on');});
-    it[i].classList.add('on'); i=(i+1)%it.length;
-    t=setTimeout(step, i===0?2200:1300);
-  }
-  ol.addEventListener('mouseenter',function(){hold=true; clearTimeout(t); it.forEach(function(c){c.classList.remove('on');});});
-  ol.addEventListener('mouseleave',function(){hold=false; clearTimeout(t); step();});
-  new IntersectionObserver(function(es){es.forEach(function(e){
-    vis=e.isIntersecting; clearTimeout(t);
-    if(vis){i=0; t=setTimeout(step,300);} else it.forEach(function(c){c.classList.remove('on');});
-  });},{threshold:.3}).observe(ol);
 })();
 </script>
 
@@ -1857,6 +1877,7 @@ header.top.gone{transform:translateY(-110%)}
       var sec=document.querySelector('.trades').getBoundingClientRect();
       vis=sec.bottom>innerHeight*0.2&&sec.top<innerHeight*0.8;
       if(!vis){cards.forEach(function(c){c.classList.remove('live');}); return;}
+      if(innerWidth<=900){ var pr=ph.getBoundingClientRect(); vis=pr.bottom>0&&pr.top<innerHeight; if(vis&&!busy&&!demoT&&!reduce&&!onPhone) demoT=setTimeout(demo,500); return; }
       if(hoverI>=0) return;
       var mid=innerHeight*0.45, best=0, bd=1e9;
       cards.forEach(function(c,k){var r=c.getBoundingClientRect(), d=Math.abs((r.top+r.height/2)-mid); if(d<bd){bd=d;best=k;}});
@@ -1917,6 +1938,10 @@ header.top.gone{transform:translateY(-110%)}
     scr.addEventListener('pointermove',mv); addEventListener('pointerup',function(){drag=null;});
     (function autoBA(t){ var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user){ ba.style.setProperty('--p',(50+28*Math.sin(t/900))+'%'); } requestAnimationFrame(autoBA); })(0);
     cards.forEach(function(c,k){c.addEventListener('mouseenter',function(){hoverI=k; go(k,true);}); c.addEventListener('mouseleave',function(){hoverI=-1;});});
+    var touchT=null;
+    ph.addEventListener('touchstart',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); clearTimeout(touchT);
+      touchT=setTimeout(function(){ onPhone=false; ph.classList.remove('hov'); tw.classList.remove('act'); if(!busy) demoT=setTimeout(demo,300); },7000); },{passive:true});
+    cards.forEach(function(c,k){ c.addEventListener('click',function(){ if(innerWidth>900) return; go(k,true); }); });
     ph.addEventListener('mouseenter',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); var tn=scr.querySelector('.tin'); if(tn){tn.dataset.y=0; tn.style.transform='';} });
     ph.addEventListener('mouseleave',function(){ onPhone=false; ph.classList.remove('hov'); tw.classList.remove('act'); var tn=scr.querySelector('.tin'); if(tn){tn.dataset.y=0; tn.style.transform='';} var cl=scr.querySelector('.tcall'); if(cl) cl.remove(); if(!busy) demoT=setTimeout(demo,500); });
     addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll);
@@ -1929,18 +1954,19 @@ header.top.gone{transform:translateY(-110%)}
   if(safe&&!reduce){
     safe.classList.add('fx');
     var lis=[].slice.call(safe.querySelectorAll('.checks li')), chat=safe.querySelector('.chat');
-    var parts=[].slice.call(chat.children), typing=document.createElement('div'); typing.className='typing3'; typing.innerHTML='<i></i><i></i><i></i>';
-    var yes=chat.querySelector('.msg.me'); chat.insertBefore(typing,yes);
+    var items=[].slice.call(chat.children), typing=document.createElement('div'); typing.className='typing3'; typing.innerHTML='<i></i><i></i><i></i>'; chat.appendChild(typing);
     var ticks=chat.querySelector('.ticks');
-    // sequence: msg1, msg2, typing, yes(+typing hide), ticks, read
     function apply(p){
-      var n=Math.floor(p*9);
-      lis.forEach(function(li,k){li.classList.toggle('done', n>k*2);});
-      parts[0].classList.toggle('shown', n>=1);
-      parts[1].classList.toggle('shown', n>=2);
-      typing.classList.toggle('shown', n>=3&&n<5); typing.style.display=(n>=5?'none':'');
-      yes.classList.toggle('shown', n>=5);
-      ticks.classList.toggle('shown', n>=6); ticks.classList.toggle('read', n>=7);
+      var steps=items.length+2, n=Math.floor(p*steps);
+      lis.forEach(function(li,k){li.classList.toggle('done', p>(k+1)/(lis.length+1));});
+      var shown=0;
+      items.forEach(function(el,k){ var on=n>k; el.classList.toggle('shown',on); if(on) shown=k+1; });
+      if(ticks) ticks.classList.toggle('read', n>items.indexOf(ticks)+1);
+      chat.classList.toggle('bright', n>2);
+      var next=items[shown]; var showTyping = next && next.classList.contains('msg') && shown>0 && (p*steps-n)>0.35;
+      typing.classList.toggle('shown', !!showTyping); typing.style.display=showTyping?'':'none';
+      if(showTyping) chat.insertBefore(typing,next);
+      typing.style.alignSelf = next && next.classList.contains('me') ? 'flex-end' : 'flex-start';
     }
     function sp(){ var r=safe.getBoundingClientRect(); var p=(innerHeight*0.85-r.top)/(r.height*0.9); apply(Math.max(0,Math.min(1,p))); }
     addEventListener('scroll',sp,{passive:true}); addEventListener('resize',sp); sp();
@@ -1964,6 +1990,28 @@ header.top.gone{transform:translateY(-110%)}
   var h=document.querySelector('header.top'), sw=document.querySelector('.swirl'); if(!h||!sw) return;
   function upd(){ var end=sw.offsetTop+sw.offsetHeight-80; h.classList.toggle('gone', scrollY>end); }
   addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+</script>
+
+<script>
+(function(){
+  if(matchMedia('(hover: none)').matches) document.documentElement.classList.add('touch');
+  var ol=document.querySelector('.steps ol'); if(!ol) return;
+  var st=[].slice.call(ol.children), ways=[].slice.call(ol.querySelectorAll('.ways li'));
+  var seq=[[0,-1],[1,0],[1,1],[1,2],[2,-1]], i=0, t=null, vis=false, hov=false, started=false;
+  function show(){ var s=seq[i];
+    st.forEach(function(li,k){li.classList.toggle('on',k===s[0]);});
+    ways.forEach(function(w,k){w.classList.toggle('on',k===s[1]);}); }
+  function tick(){ if(!vis||hov) return; show(); var d=(i===seq.length-1)?2200:1200; i=(i+1)%seq.length; t=setTimeout(tick,d); }
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(matchMedia('(hover: hover)').matches){
+    ol.addEventListener('mouseenter',function(){hov=true; clearTimeout(t); st.forEach(function(li){li.classList.remove('on');}); ways.forEach(function(w){w.classList.remove('on');});});
+    ol.addEventListener('mouseleave',function(){hov=false; clearTimeout(t); tick();});
+  }
+  new IntersectionObserver(function(es){es.forEach(function(e){
+    var was=vis; vis=e.isIntersecting; clearTimeout(t);
+    if(vis&&!was){ t=setTimeout(tick, started?400:300); started=true; }
+  });},{threshold:.25}).observe(ol);
 })();
 </script>
 
