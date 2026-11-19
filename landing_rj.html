@@ -2038,7 +2038,7 @@ header.top{will-change:transform}
       if(showTyping) chat.insertBefore(typing,next);
       typing.style.alignSelf = next && next.classList.contains('me') ? 'flex-end' : 'flex-start';
     }
-    function sp(){ var r=safe.getBoundingClientRect(); var p=(innerHeight*0.85-r.top)/(r.height*0.9); apply(Math.max(0,Math.min(1,p))); }
+    var pmax=0; function sp(){ var r=safe.getBoundingClientRect(); var p=(innerHeight*0.85-r.top)/(r.height*0.9); pmax=Math.max(pmax,Math.max(0,Math.min(1,p))); apply(pmax); }
     addEventListener('scroll',sp,{passive:true}); addEventListener('resize',sp); sp();
   }
 })();
