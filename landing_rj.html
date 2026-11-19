@@ -947,7 +947,8 @@ html,body{overflow-x:clip}
 @media (max-width:900px){.tphone-wrap{width:min(250px,64vw) !important}}
 /* Finger-Kreis, wenn man selbst im Handy ist: kleiner, gelber Ring */
 .touch{transition:width .2s ease,height .2s ease,margin .2s ease,background-color .2s ease,box-shadow .2s ease}
-.tphone.hov .touch{width:28px;height:28px;margin:-14px 0 0 -14px;background:rgba(255,200,26,.22);box-shadow:0 0 0 3px #FFC81A,0 0 14px rgba(255,200,26,.7)}
+.tphone.hov .touch{width:28px;height:28px;margin:-14px 0 0 -14px;background:rgba(255,200,26,.22);box-shadow:0 0 0 3px #FFC81A,0 0 0 4.5px rgba(31,35,40,.45),0 2px 10px rgba(31,35,40,.35)}
+.tphone .touch{filter:drop-shadow(0 0 1.5px rgba(31,35,40,.55)) drop-shadow(0 2px 5px rgba(31,35,40,.3))}
 /* «Ja» in Schritt 3 leuchtet beim Hover */
 .yes-chip{transition:transform .2s ease, box-shadow .2s ease;cursor:default}
 .yes-chip:hover,.steps ol > li.on .yes-chip{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--sun),0 0 18px rgba(255,200,26,.8);transform:translateY(-2px) scale(1.05)}
