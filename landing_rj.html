@@ -657,6 +657,15 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .tcall b{font-family:var(--head);font-size:18px}.tcall small{opacity:.8}
 .tcall button{all:unset;cursor:pointer;margin-top:18px;width:56px;height:56px;border-radius:50%;background:#E5483D;display:grid;place-items:center;box-shadow:0 6px 14px rgba(0,0,0,.25)}
 .tcall button svg{width:26px;height:26px}
+
+.tphone-wrap .tnav{all:unset;box-sizing:border-box;position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 3px 0 var(--ink);display:grid;place-items:center;cursor:pointer;z-index:5;transition:transform .15s ease, background-color .2s ease}
+.tphone-wrap .tnav svg{width:18px;height:18px}
+.tphone-wrap .tnav.prev{left:-22px}.tphone-wrap .tnav.next{right:-22px}
+.tphone-wrap .tnav:hover{background:var(--sun);transform:translateY(-2px)}
+.tphone-wrap .tnav:active{transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}
+.tdots i{cursor:pointer}
+.tdots i:hover{background:var(--ink-2)}
+@media (max-width:1100px){.tphone-wrap .tnav.prev{left:-16px}.tphone-wrap .tnav.next{right:-16px}}
 .touch{position:absolute;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:rgba(31,35,40,.22);box-shadow:0 0 0 3px rgba(255,255,255,.9),0 4px 12px rgba(0,0,0,.18);opacity:0;z-index:4;pointer-events:none;will-change:transform,opacity}
 .tripple{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:rgba(255,255,255,.6);pointer-events:none}
 .tsite .th{border-radius:16px;padding:14px 14px 16px;display:flex;align-items:center;gap:10px;min-height:86px;background:var(--sun);color:var(--ink)}
@@ -1141,7 +1150,7 @@ header.top{will-change:transform}
         </article>
         <article class="card">
           <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><circle class="sun" cx="24" cy="10" r="4" fill="#FFC81A"/><path d="M5 15L16 7l11 8v12H5z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><g class="door"><path d="M12 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><g class="door2"><path d="M16 27v-8h4v8" fill="#3FA36F" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
-          <h3 data-t="t5h">Hofladen und Bauernhof</h3>
+          <h3 data-t="t5h">Hofläden und regionale Produzenten</h3>
           <p data-t="t5p">Was es gerade frisch gibt, Öffnungszeiten, Anfahrt und Vorbestellung.</p>
         </article>
         <article class="card">
@@ -1149,7 +1158,7 @@ header.top{will-change:transform}
           <h3 data-t="t6h">Praxis: Physio, Massage, Therapie</h3>
           <p data-t="t6p">Termin online buchen, Angebote verständlich erklärt, Anfahrt.</p>
         </article>
-      </div><div class="tphone-wrap" aria-hidden="true"><span class="tlive"><i></i><span data-t="tlive">Live · Probieren Sie es aus</span></span><div class="tphone"><div class="scr"><div class="tsite"><div class="tframe s-salon"><div class="abar"><span class="amk">SL</span><b>Salon Lena</b><span class="aic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div><div class="tview"><div class="tin"><div class="ph hv hero" style="background-image:url(mini_s_hero.jpg),linear-gradient(135deg,#F7E3C8,#E8B98A)"><div class="hcap"><small>Coiffeur · Gossau</small><b>Schön, dass Sie da sind</b><span class="rate">4,9 ★ <em>(128)</em></span></div></div><div class="lbl2">Unser Team</div><div class="avs"><span class="hv"><div class="ph hv av" style="background-image:url(mini_s_lena.jpg),linear-gradient(135deg,#F6D1B5,#D9A07C)"></div>Lena</span><span class="hv on"><div class="ph hv av" style="background-image:url(mini_s_mia.jpg),linear-gradient(135deg,#E9C3A6,#B98563)"></div>Mia</span><span class="hv"><div class="ph hv av" style="background-image:url(mini_s_noah.jpg),linear-gradient(135deg,#C9A58A,#8E6A55)"></div>Noah</span></div><div class="lbl2">Freie Termine heute</div><div class="chips"><span class="hv">10:00</span><span class="hv on">14:30</span><span class="hv">16:15</span><span class="hv">17:45</span></div><div class="card hv"><div class="row"><span>Damenschnitt</span><span>68.–</span></div><div class="row"><span>Herrenschnitt</span><span>42.–</span></div><div class="row"><span>Färben</span><span>ab 95.–</span></div></div><div class="lbl2">Unsere Arbeit</div><div class="strip"><div class="ph hv " style="background-image:url(mini_s_result.jpg),linear-gradient(135deg,#E8C9A8,#B98563)"></div><div class="ph hv " style="background-image:url(mini_s_hero.jpg),linear-gradient(135deg,#F2DDC3,#D9B48E)"></div></div></div></div><div class="tdock"><div class="tb" data-done="14:30 gebucht ✓"><span>Termin buchen</span></div><div class="ttabs"><i class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v8h-5v-5H9v5H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></i><i class=""><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></i><i class=""><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><i class=""><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></svg></i></div></div></div></div><div class="touch"></div></div></div><div class="tdots"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      </div><div class="tphone-wrap"><button type="button" class="tnav prev" aria-label="Zurück"><svg viewBox="0 0 20 20"><path d="M12.5 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="tnav next" aria-label="Weiter"><svg viewBox="0 0 20 20"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="tlive" aria-hidden="true"><i></i><span data-t="tlive">Live · Probieren Sie es aus</span></span><div class="tphone" aria-hidden="true"><div class="scr"><div class="tsite"><div class="tframe s-salon"><div class="abar"><span class="amk">SL</span><b>Salon Lena</b><span class="aic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div><div class="tview"><div class="tin"><div class="ph hv hero" style="background-image:url(mini_s_hero.jpg),linear-gradient(135deg,#F7E3C8,#E8B98A)"><div class="hcap"><small>Coiffeur · Gossau</small><b>Schön, dass Sie da sind</b><span class="rate">4,9 ★ <em>(128)</em></span></div></div><div class="lbl2">Unser Team</div><div class="avs"><span class="hv"><div class="ph hv av" style="background-image:url(mini_s_lena.jpg),linear-gradient(135deg,#F6D1B5,#D9A07C)"></div>Lena</span><span class="hv on"><div class="ph hv av" style="background-image:url(mini_s_mia.jpg),linear-gradient(135deg,#E9C3A6,#B98563)"></div>Mia</span><span class="hv"><div class="ph hv av" style="background-image:url(mini_s_noah.jpg),linear-gradient(135deg,#C9A58A,#8E6A55)"></div>Noah</span></div><div class="lbl2">Freie Termine heute</div><div class="chips"><span class="hv">10:00</span><span class="hv on">14:30</span><span class="hv">16:15</span><span class="hv">17:45</span></div><div class="card hv"><div class="row"><span>Damenschnitt</span><span>68.–</span></div><div class="row"><span>Herrenschnitt</span><span>42.–</span></div><div class="row"><span>Färben</span><span>ab 95.–</span></div></div><div class="lbl2">Unsere Arbeit</div><div class="strip"><div class="ph hv " style="background-image:url(mini_s_result.jpg),linear-gradient(135deg,#E8C9A8,#B98563)"></div><div class="ph hv " style="background-image:url(mini_s_hero.jpg),linear-gradient(135deg,#F2DDC3,#D9B48E)"></div></div></div></div><div class="tdock"><div class="tb" data-done="14:30 gebucht ✓"><span>Termin buchen</span></div><div class="ttabs"><i class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6v8h-5v-5H9v5H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></i><i class=""><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></i><i class=""><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><i class=""><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></svg></i></div></div></div></div><div class="touch"></div></div></div><div class="tdots"><i role="button" tabindex="0" aria-label="1"></i><i role="button" tabindex="0" aria-label="2"></i><i role="button" tabindex="0" aria-label="3"></i><i role="button" tabindex="0" aria-label="4"></i><i role="button" tabindex="0" aria-label="5"></i><i role="button" tabindex="0" aria-label="6"></i></div></div></div>
     <div class="idea">
         <div>
           <h3 data-t="idea_h">Sie haben eine eigene Idee?</h3>
@@ -1480,7 +1489,7 @@ header.top{will-change:transform}
     t3p:"Your number big and one tap to call, your service area and an enquiry with a photo of the problem.",
     t4h:"Carpentry, painting, gardening",
     t4p:"Photos of finished jobs, answers to common questions and a direct way to request a quote.",
-    t5h:"Farm shop and farm",
+    t5h:"Farm shops and local producers",
     t5p:"What’s fresh right now, opening hours, directions and pre-orders.",
     t6h:"Practice: physio, massage, therapy",
     t6p:"Online booking, your treatments explained clearly, directions.",
@@ -1890,7 +1899,7 @@ header.top{will-change:transform}
       tin.getAnimations().forEach(function(a){a.cancel();});
       busy=false;
       if(want!==now) return swipe(want);
-      if(vis) demoT=setTimeout(function(){ if(want===now&&hoverI<0&&vis){ want=(now+1)%SITES.length; swipe(want);} },1200);
+      if(vis) demoT=setTimeout(function(){ if(want===now&&hoverI<0&&vis&&Date.now()-manualT>9000){ want=(now+1)%SITES.length; swipe(want);} },1200);
     }
     function go(i,force){
       want=i; mark(i);
@@ -1903,7 +1912,7 @@ header.top{will-change:transform}
       vis=sec.bottom>innerHeight*0.2&&sec.top<innerHeight*0.8;
       if(!vis){cards.forEach(function(c){c.classList.remove('live');}); return;}
       if(innerWidth<=900){ var pr=ph.getBoundingClientRect(); vis=pr.bottom>0&&pr.top<innerHeight; if(vis&&!busy&&!demoT&&!reduce&&!onPhone) demoT=setTimeout(demo,500); return; }
-      if(hoverI>=0) return;
+      if(hoverI>=0||Date.now()-manualT<9000) return;
       var mid=innerHeight*0.45, best=0, bd=1e9;
       cards.forEach(function(c,k){var r=c.getBoundingClientRect(), d=Math.abs((r.top+r.height/2)-mid); if(d<bd){bd=d;best=k;}});
       if(best!==want) go(best); else mark(want);
@@ -1962,6 +1971,17 @@ header.top{will-change:transform}
     function mv(ev){ if(!drag) return; var r=drag.getBoundingClientRect(); var p=Math.min(96,Math.max(4,(ev.clientX-r.left)/r.width*100)); drag.style.setProperty('--p',p+'%'); drag._user=true; }
     scr.addEventListener('pointermove',mv); addEventListener('pointerup',function(){drag=null;});
     (function autoBA(t){ if(!vis){ requestAnimationFrame(autoBA); return; } var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user){ ba.style.setProperty('--p',(50+28*Math.sin(t/900))+'%'); } requestAnimationFrame(autoBA); })(0);
+
+    /* Pfeile, Punkte, Wischen */
+    var manualT=0, N=SITESL.de.length;
+    function nav(d){ manualT=Date.now(); hoverI=-1; go(((want+d)%N+N)%N,true); }
+    tw.querySelector('.tnav.prev').addEventListener('click',function(){nav(-1);});
+    tw.querySelector('.tnav.next').addEventListener('click',function(){nav(1);});
+    dots.forEach(function(d,k){ d.addEventListener('click',function(){ manualT=Date.now(); go(k,true); }); d.style.cursor='pointer'; });
+    var sx=null, sy=null;
+    scr.addEventListener('touchstart',function(e){ var t=e.touches[0]; sx=t.clientX; sy=t.clientY; },{passive:true});
+    scr.addEventListener('touchend',function(e){ if(sx==null) return; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){ nav(dx<0?1:-1); } },{passive:true});
     cards.forEach(function(c,k){c.addEventListener('mouseenter',function(){hoverI=k; go(k,true);}); c.addEventListener('mouseleave',function(){hoverI=-1;});});
     var touchT=null;
     ph.addEventListener('touchstart',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); clearTimeout(touchT);
