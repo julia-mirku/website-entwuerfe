@@ -813,11 +813,11 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 /* ===== lebendige Branchen-Icons + weniger Gelb ===== */
 .trades .card .tico{background:var(--sun);transition:background-color .3s ease, transform .2s ease, box-shadow .3s ease}
 .trades .card .tico svg{overflow:visible}
-.trades .card:nth-child(1):is(:hover,.live) .tico{background:#FFB98F}
-.trades .card:nth-child(2):is(:hover,.live) .tico{background:#F3E6D3}
+.trades .card:nth-child(1):is(:hover,.live) .tico{background:#FFA877}
+.trades .card:nth-child(2):is(:hover,.live) .tico{background:#EED6B5}
 .trades .card:nth-child(3):is(:hover,.live) .tico{background:#FFFFFF}
-.trades .card:nth-child(4):is(:hover,.live) .tico{background:#D8EFC6}
-.trades .card:nth-child(5):is(:hover,.live) .tico{background:#DFF1DF}
+.trades .card:nth-child(4):is(:hover,.live) .tico{background:#C2E8A6}
+.trades .card:nth-child(5):is(:hover,.live) .tico{background:#BFE0FA}
 .trades .card:nth-child(6):is(:hover,.live) .tico{background:#E5483D}
 
 .trades .card:is(:hover,.live) .tico{box-shadow:0 0 0 4px rgba(31,35,40,.08);transform:scale(1.08)}
@@ -828,8 +828,8 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .card:is(:hover,.live) .tico .h1{animation:hairfall 1.5s ease-in infinite}
 .card:is(:hover,.live) .tico .h2{animation:hairfall 1.5s ease-in .75s infinite}
 @keyframes hairfall{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(3px,16px) rotate(40deg)}}
-@keyframes snipL{0%{transform:rotate(0)}100%{transform:rotate(-34deg)}}
-@keyframes snipR{0%{transform:rotate(0)}100%{transform:rotate(34deg)}}
+@keyframes snipL{0%{transform:rotate(0)}100%{transform:rotate(-30deg)}}
+@keyframes snipR{0%{transform:rotate(0)}100%{transform:rotate(30deg)}}
 .tico .liq{transform:translateY(14px);transition:transform 1.4s cubic-bezier(.3,.7,.3,1)}
 .card:is(:hover,.live) .tico .liq{transform:translateY(3px)}
 .tico .st{opacity:0}
@@ -859,7 +859,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @media (prefers-reduced-motion:reduce){.tico *{animation:none!important}}
 
 /* «Was Ihre Kunden sofort finden»: neutral, bunt beim Hover */
-.finds .grid6 .ico{background:var(--sun-soft);border:2px solid transparent;transition:border-color .2s ease, background-color .25s ease, transform .2s ease}
+.finds .grid6 .ico{background:#FFE58F;border:2px solid transparent;transition:border-color .2s ease, background-color .25s ease, transform .2s ease}
 .finds .grid6 li:hover .ico{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35);transform:translateY(-2px) rotate(-4deg)}
 .finds .grid6 li:nth-child(1):hover .ico{background:#FFE3E0}
 .finds .grid6 li:nth-child(1):hover .ico path{fill:#E5483D;stroke:#1F2328}
@@ -877,7 +877,7 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @media (max-width:900px){.sw-phone{width:min(230px, calc((100vh - 310px) * .48)) !important;width:min(230px, calc((100svh - 310px) * .48)) !important}.swirl .inner{align-content:start}.swirl .pwrap{align-items:start;padding-top:14px}}
 /* Häkchen in «Was wir für Sie bauen»: hellgrün beim Hover */
 .wlist li svg circle{transition:fill .25s ease}
-.wlist li:is(:hover,:focus-visible,.on) svg circle{fill:#5BBF85}
+.wlist li:is(:hover,:focus-visible,.on) svg{filter:drop-shadow(0 0 6px rgba(255,200,26,.95)) drop-shadow(0 0 2px rgba(255,200,26,.8))}
 /* FAQ-Antwort: fett + kursiv */
 .faq-list details[open] > p,.faq-list details[open] .ans p{font-style:italic}
 /* «Frage stellen» gelb, Sprechblase weiss */
@@ -900,7 +900,25 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 
 /* Handy mit Branchen auch auf dem Handy */
 @media (max-width:900px){.trades .tlay{grid-template-columns:1fr}.tphone-wrap{display:block !important;position:relative !important;top:auto !important;margin:34px auto 0;width:min(290px,78vw)}.tphone{width:100% !important;margin:0 auto}.tphone-wrap .tlive{top:-16px}.trades .card{cursor:pointer}}
-.uchips li.main{background:var(--sun);font-weight:800}
+.uchips li.main{font-weight:800}
+.uchips li{transition:background-color .2s ease}
+.touch .finds .grid6 li.on .ico{border-color:var(--sun);box-shadow:0 0 0 3px rgba(255,200,26,.35);transform:translateY(-2px) rotate(-4deg)}
+.touch .finds .grid6 li:nth-child(1).on .ico{background:#FFE3E0}.touch .finds .grid6 li:nth-child(1).on .ico path{fill:#E5483D}
+.touch .finds .grid6 li:nth-child(2).on .ico{background:#D6EEFB}.touch .finds .grid6 li:nth-child(2).on .ico rect{fill:#3BA3E0}
+.touch .finds .grid6 li:nth-child(4).on .ico{background:#D6F0DF}.touch .finds .grid6 li:nth-child(4).on .ico circle{fill:#3FA36F}
+.touch .finds .grid6 li.on{border-color:var(--sun)!important;box-shadow:6px 6px 0 var(--sun)!important}
+.touch .hgrid li.on .hico{transform:rotate(-6deg) scale(1.06)}
+@media (max-width:640px){
+ .sw-phone .scr{padding:34px 9px 14px;gap:6px}
+ .slot{font-size:11px;gap:6px;padding:5px 7px;min-height:26px}
+ .slot em{width:20px;height:20px}.slot em svg{width:12px;height:12px}
+ .slot.head{min-height:54px;padding:8px 9px}
+ .slot.head .ht b{font-size:14px;overflow-wrap:normal;word-break:normal}
+ .slot.head .ht small{font-size:9.5px}
+ .slot.head .store{width:30px;height:26px}
+ .slot.photos i{height:40px}.slot.photos i svg{width:20px;height:20px}
+ .slot.cta{min-height:36px}
+}
 /* Chat-Knopf verdeckt unten nichts */
 @media (max-width:640px){footer{padding-bottom:96px}}
 
@@ -1096,8 +1114,8 @@ header.top.gone{transform:translateY(-110%)}
       <h2 id="h-trades" data-t="trades_h">Für Ihre Branche</h2>
       <div class="tlay"><div class="cards">
         <article class="card">
-          <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><g class="bl1"><path d="M15 16L24.5 4.5" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="24" r="4" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.6 21L15 16" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g class="bl2"><path d="M17 16L7.5 4.5" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="23" cy="24" r="4" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.4 21L17 16" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="16" cy="16" r="1.4" fill="#1F2328"/><path class="hair h1" d="M14 3c1.5 1 1.8 2.4 1 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/><path class="hair h2" d="M18 2.5c-1.2 1.3-1.2 2.6-.2 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/></svg></div>
+          <div class="tico"><svg viewBox="0 0 32 32" aria-hidden="true"><g class="bl1"><path d="M16.2 15.3L24.8 4.6c.4-.5 1.1 0 .8.5L17.4 16.4z" fill="#fff" stroke="#1F2328" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 16L11.4 21.6" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round"/><circle cx="9" cy="24" r="3.6" fill="#fff" stroke="#1F2328" stroke-width="2.2"/></g>
+<g class="bl2"><path d="M15.8 15.3L7.2 4.6c-.4-.5-1.1 0-.8.5l8.2 11.3z" fill="#fff" stroke="#1F2328" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 16l4.6 5.6" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="24" r="3.6" fill="#fff" stroke="#1F2328" stroke-width="2.2"/></g><circle cx="16" cy="16" r="1.5" fill="#1F2328"/><path class="hair h1" d="M14 3c1.5 1 1.8 2.4 1 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/><path class="hair h2" d="M18 2.5c-1.2 1.3-1.2 2.6-.2 3.8" fill="none" stroke="#7A4A2A" stroke-width="1.6" stroke-linecap="round" style="transform-box:fill-box"/></svg></div>
           <h3 data-t="t1h">Coiffeur, Barber, Kosmetik</h3>
           <p data-t="t1p">«Termin buchen» gleich oben, klare Preisliste, Vorher-Nachher-Bilder.</p>
         </article>
@@ -1391,6 +1409,7 @@ header.top.gone{transform:translateY(-110%)}
     skip:"Skip to content",
     cta:"Reply to your draft",
     cta_order:"Order a free draft",
+    sw_street:"Main St. 1",
     u4:"Attention to detail",
     ch5:"Your website is now online",
     ch3:"Done! Better like this?",
@@ -1726,6 +1745,8 @@ header.top.gone{transform:translateY(-110%)}
     var r=sec.getBoundingClientRect(), span=r.height-innerHeight;
     tgt=clamp(-r.top/span);
   }
+  var running=false, settled=0;
+  function kick(){ if(!running){ running=true; settled=0; requestAnimationFrame(frame); } }
   function frame(){
     cur+= (tgt-cur)*0.12;
     var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect();
@@ -1751,10 +1772,12 @@ header.top.gone{transform:translateY(-110%)}
       if(f<=0.96) allIn=false;
     });
     done.classList.toggle('on', allIn && cur>0.9);
-    requestAnimationFrame(frame);
+    var r=sec.getBoundingClientRect(); var near=r.bottom>-200&&r.top<innerHeight+200;
+    if(Math.abs(tgt-cur)<0.0008){ settled++; } else settled=0;
+    if(near&&settled<4){ requestAnimationFrame(frame); } else running=false;
   }
-  addEventListener('scroll',read,{passive:true}); addEventListener('resize',read);
-  read(); cur=tgt; requestAnimationFrame(frame);
+  addEventListener('scroll',function(){read();kick();},{passive:true}); addEventListener('resize',function(){read();kick();});
+  read(); cur=tgt; kick();
 })();
 </script>
 
@@ -1818,6 +1841,7 @@ header.top.gone{transform:translateY(-110%)}
     function place(x,y,o){dot.getAnimations().forEach(function(a){a.cancel();}); dot.style.transform='translate('+x+'px,'+y+'px)'; dot.style.opacity=o;}
     var swiping=false; function lastSite(){ var a=scr.querySelectorAll('.tsite'); return a[a.length-1]; }
     async function swipe(to){
+      if(to==null||!SITESL[LNG()][to]) to=0;
       busy=true; swiping=true; clearTimeout(demoT); demoT=null;
       var dir=to>now?1:-1, w=W(), h=H(), cur=lastSite();
       place(dir>0?w*0.8:w*0.2, h*0.55, hoverI>=0?1:0); if(hoverI<0) await fing(dir>0?w*0.8:w*0.2, h*0.55, 1, 220);
@@ -1936,7 +1960,7 @@ header.top.gone{transform:translateY(-110%)}
     scr.addEventListener('pointerdown',function(ev){ var ba=ev.target.closest('.ba'); if(!ba) return; drag=ba; ba.setPointerCapture(ev.pointerId); mv(ev); ev.preventDefault(); });
     function mv(ev){ if(!drag) return; var r=drag.getBoundingClientRect(); var p=Math.min(96,Math.max(4,(ev.clientX-r.left)/r.width*100)); drag.style.setProperty('--p',p+'%'); drag._user=true; }
     scr.addEventListener('pointermove',mv); addEventListener('pointerup',function(){drag=null;});
-    (function autoBA(t){ var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user){ ba.style.setProperty('--p',(50+28*Math.sin(t/900))+'%'); } requestAnimationFrame(autoBA); })(0);
+    (function autoBA(t){ if(!vis){ requestAnimationFrame(autoBA); return; } var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user){ ba.style.setProperty('--p',(50+28*Math.sin(t/900))+'%'); } requestAnimationFrame(autoBA); })(0);
     cards.forEach(function(c,k){c.addEventListener('mouseenter',function(){hoverI=k; go(k,true);}); c.addEventListener('mouseleave',function(){hoverI=-1;});});
     var touchT=null;
     ph.addEventListener('touchstart',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); clearTimeout(touchT);
@@ -2012,6 +2036,17 @@ header.top.gone{transform:translateY(-110%)}
     var was=vis; vis=e.isIntersecting; clearTimeout(t);
     if(vis&&!was){ t=setTimeout(tick, started?400:300); started=true; }
   });},{threshold:.25}).observe(ol);
+})();
+</script>
+
+<script>
+(function(){
+  if(!matchMedia('(hover: none)').matches||!('IntersectionObserver' in window)) return;
+  var items=[].slice.call(document.querySelectorAll('.wlist li, .finds .grid6 li, .hgrid li'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var li=e.target; if(e.isIntersecting){ li.classList.add('on'); } else { li.classList.remove('on'); }
+  });},{rootMargin:'-42% 0px -42% 0px'});
+  items.forEach(function(li){io.observe(li);});
 })();
 </script>
 
