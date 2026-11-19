@@ -804,6 +804,8 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .pask{margin-top:14px}
 #splash{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;transition:opacity .45s ease, visibility .45s}
 #splash.out{opacity:0;visibility:hidden}
+#splash{animation:sp-gone .45s ease 1.8s forwards;pointer-events:none}
+@keyframes sp-gone{to{opacity:0;visibility:hidden}}
 #splash .lg{display:flex;align-items:center;gap:14px;font-family:var(--head);font-weight:800}
 #splash .mk{width:92px;height:92px;border-radius:28px;background:var(--sun);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:38px;letter-spacing:-1px;box-shadow:0 8px 0 var(--ink);animation:sp-pop .7s cubic-bezier(.2,1.5,.4,1) both}
 #splash .mk i{font-style:normal;display:inline-block}
