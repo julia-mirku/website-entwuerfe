@@ -773,7 +773,8 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .tphone-wrap.act .tlive{opacity:1;transform:translate(-50%,0)}
 .tphone.hov .scr{box-shadow:inset 0 0 0 3px var(--sun)}
 
-details .ans .pbtn{margin:8px 0 16px 4px}details .ul{background:linear-gradient(#1E5E3F,#1E5E3F) 0 100%/0 2px no-repeat;padding-bottom:1px;transition:background-size .6s ease .25s}details[open] .ul{background-size:100% 2px}
+.legal{max-width:560px;width:calc(100% - 32px);max-height:85vh;border:2px solid var(--ink);border-radius:18px;padding:22px 22px 18px;background:var(--white,#fff);color:var(--ink);box-shadow:6px 6px 0 var(--sun)}.legal::backdrop{background:rgba(31,35,40,.45)}.legal h3{font-family:var(--head);font-size:22px;margin:0 0 10px}.legal p{font-size:15.5px;line-height:1.5;margin:0 0 10px}.legal .lx{all:unset;cursor:pointer;position:sticky;top:0;float:right;font-size:26px;line-height:1;width:36px;height:36px;text-align:center;border-radius:50%;background:var(--sun)}.legal [lang]{display:none}html[lang^="de"] .legal [lang="de"],html[lang^="en"] .legal [lang="en"]{display:block}.legal.imp .lg-priv,.legal.priv .lg-imp{display:none}
+.wcard .hid{color:var(--ink-2)}.wcard .hid::before{content:"Zum Anzeigen tippen"}html[lang^="en"] .wcard .hid::before{content:"Tap to show"}details .ans .pbtn{margin:8px 0 16px 4px}details .ul{background:linear-gradient(#1E5E3F,#1E5E3F) 0 100%/0 2px no-repeat;padding-bottom:1px;transition:background-size .6s ease .25s}details[open] .ul{background-size:100% 2px}
 /* ===== Inhalt 19.11 ===== */
 .brand-mark{width:38px;height:38px}
 .finds .grid6{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -2081,7 +2082,16 @@ header.top{will-change:transform}
 })();
 </script>
 
-
+<dialog id="legal" class="legal"><button type="button" class="lx" aria-label="Schliessen">×</button>
+<div class="lg-imp">
+<div lang="de"><h3>Impressum</h3><p><b>Robin Mirku und Julia Mirku</b><br>Krankenhausstrasse 10<br>9230 Flawil, Kanton St. Gallen<br>Schweiz</p><p>E-Mail: mirkurobin@gmail.com<br>WhatsApp: +41 77 470 59 28</p><p>Für Inhalte externer Links übernehmen wir keine Haftung. Für deren Inhalte sind ausschliesslich die Betreiber verantwortlich.</p></div>
+<div lang="en"><h3>Legal notice</h3><p><b>Robin Mirku and Julia Mirku</b><br>Krankenhausstrasse 10<br>9230 Flawil, Canton of St. Gallen<br>Switzerland</p><p>E-mail: mirkurobin@gmail.com<br>WhatsApp: +41 77 470 59 28</p><p>We are not responsible for the content of external links. Their operators alone are responsible for it.</p></div>
+</div>
+<div class="lg-priv">
+<div lang="de"><h3>Datenschutz</h3><p>Wir behandeln Ihre Daten nach dem Schweizer Datenschutzgesetz (DSG).</p><p><b>Verantwortlich:</b> Robin Mirku und Julia Mirku, Krankenhausstrasse 10, 9230 Flawil, mirkurobin@gmail.com</p><p><b>Keine Cookies, kein Tracking.</b> Diese Website setzt keine Cookies und verwendet keine Analyse-Tools.</p><p><b>Hosting:</b> Die Website liegt bei GitHub Pages (GitHub Inc., USA). Beim Aufruf werden technisch nötige Daten wie die IP-Adresse kurz in Server-Protokollen gespeichert.</p><p><b>Schriften:</b> Schriften werden von Google Fonts (Google, USA) geladen. Dabei wird Ihre IP-Adresse an Google übermittelt.</p><p><b>Kontakt:</b> Wenn Sie uns per E-Mail oder WhatsApp schreiben, nutzen wir Ihre Angaben nur, um Ihre Anfrage zu beantworten. Wir geben sie nicht weiter.</p><p><b>Ihre Rechte:</b> Sie können jederzeit Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen: mirkurobin@gmail.com</p></div>
+<div lang="en"><h3>Privacy</h3><p>We handle your data under the Swiss Federal Act on Data Protection (FADP).</p><p><b>Responsible:</b> Robin Mirku and Julia Mirku, Krankenhausstrasse 10, 9230 Flawil, mirkurobin@gmail.com</p><p><b>No cookies, no tracking.</b> This website sets no cookies and uses no analytics tools.</p><p><b>Hosting:</b> The website is hosted on GitHub Pages (GitHub Inc., USA). When you visit, technically necessary data such as your IP address is briefly stored in server logs.</p><p><b>Fonts:</b> Fonts are loaded from Google Fonts (Google, USA). Your IP address is sent to Google in the process.</p><p><b>Contact:</b> If you write to us by e-mail or WhatsApp, we use your details only to answer your request. We do not pass them on.</p><p><b>Your rights:</b> You can ask at any time to see, correct or delete your data: mirkurobin@gmail.com</p></div>
+</div></dialog><script>(function(){var d=document.getElementById('legal');if(!d)return;function op(k){d.className='legal '+k;try{d.showModal();}catch(e){d.setAttribute('open','');}d.scrollTop=0;}document.querySelectorAll('a[data-t="imp"],a[data-t="priv"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();op(a.getAttribute('data-t'));});});d.querySelector('.lx').addEventListener('click',function(){try{d.close();}catch(e){d.removeAttribute('open');}});d.addEventListener('click',function(e){if(e.target===d){try{d.close();}catch(x){}}});
+document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.querySelector('b + span');if(!sp)return;var v=sp.textContent;sp.textContent='';sp.classList.add('hid');c.addEventListener('click',function(e){if(sp.classList.contains('hid')){e.preventDefault();sp.classList.remove('hid');sp.textContent=v;}});});})();</script>
 <script>
 (function(){
   var s=document.getElementById('splash'); if(!s) return;
