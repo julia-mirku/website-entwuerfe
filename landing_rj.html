@@ -1310,13 +1310,15 @@ details .ul::after{display:none !important}
 .steps.pin ol>li::after,.steps.pin ol>li:not(:last-child)::after,.steps.pin ol>li.land:not(:last-child)::after{display:none !important;content:none !important}
 .steps.pin .sline{display:none !important}
 .steps.pin .sbar{position:absolute;left:80px;right:4px;top:39px;height:5px;border-radius:3px;background:#ECE7DC;overflow:hidden;pointer-events:none}
-.steps.pin .sbar i{position:absolute;inset:0;background:var(--sun);transform-origin:left center;transform:scaleX(var(--f,0));transition:transform .12s linear}
+.steps.pin .sbar i{position:absolute;inset:0;background:var(--sun);transform-origin:left center;transform:scaleX(var(--f,0));transition:transform .22s ease-out}
 @media (max-width:900px){.steps.pin .sbar{left:84px;right:16px;top:auto;bottom:12px;height:4px}}
 .steps.pin .stk .wrap>h2,.steps.pin .stk .eyebrow-line{position:relative;z-index:3}
 .steps.pin ol{position:relative;z-index:1}
 .steps.pin ol:not(.fin)>li .yes-chip{transform:scale(0) !important;box-shadow:none !important}
 .steps.pin ol.fin>li .yes-chip{transition:transform .55s cubic-bezier(.3,1.7,.5,1),box-shadow .5s ease .2s}
-/* Während der Animation kein Hover, nur der aktuelle Schritt leuchtet */
+/* Während der Animation: nichts leuchtet, auch nicht unter der Maus (Juli 20.11) */
+.steps.pin ol:not(.fin)>li::before{opacity:1}
+.steps.pin ol:not(.fin)>li .num{transform:none !important;box-shadow:none !important;background:var(--sun) !important;color:var(--ink) !important}
 .steps.pin ol:not(.fin){pointer-events:none}
 .steps.pin.unpinned{height:auto !important}
 .steps.pin.unpinned .stk{position:relative;top:auto;height:auto;padding:80px 0}
@@ -1404,8 +1406,6 @@ html{overflow-anchor:none}
 
 <style>
 ::selection{background:#FFDA4F;color:#1F2328}
-.brand-mark text{transform-box:fill-box;transform-origin:center;transition:transform .17s ease-in}
-.brand-mark.flip text{transform:scaleX(0)}
 .lang{position:relative}
 .hibub{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px) scale(.85);background:#1F2328;color:#fff;font-weight:800;font-size:14px;padding:6px 12px;border-radius:12px 12px 12px 4px;white-space:nowrap;opacity:0;pointer-events:none;z-index:60;transition:opacity .2s ease,transform .3s cubic-bezier(.3,1.6,.5,1)}
 .hibub.on{opacity:1;transform:translate(-50%,0) scale(1)}
@@ -2839,8 +2839,8 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     lis.forEach(function(li,k){ var on=li.classList.contains('land');
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
-    lis.forEach(function(li,k){ li.classList.toggle('on',k===top); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.84); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    lis.forEach(function(li,k){ if(!ol.classList.contains('fin')) li.classList.remove('on'); li.classList.toggle('under',mob&&k<top); });
+    bars.forEach(function(br,k){ var st=T[k]+0.03, en=Math.min(st+0.13,(k<T.length-1?T[k+1]-0.02:0.84)); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
     if(p>=0.86) ol.classList.add('fin');
@@ -2882,7 +2882,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
 <script>
 (function(){
   var els=[].slice.call(document.querySelectorAll('.pcard .cnt[data-n]'));
-  if(!els.length||!('IntersectionObserver' in window)) return;
+  if(!els.length) return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); }
   function run(el){ var to=+el.getAttribute('data-n'), from=+el.getAttribute('data-from'), step=to>=1000?10:(to>=100?5:1), t0=null, D=1100, done=false;
@@ -2890,22 +2890,44 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     function f(t){ if(done) return; if(t0===null) t0=t; var k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3);
       if(k>=1){ end(); return; } el.textContent=fmt(Math.min(to,Math.round((from+(to-from)*e)/step)*step)); requestAnimationFrame(f); }
     requestAnimationFrame(f); setTimeout(end, D+400); }
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); var el=e.target.querySelector('.cnt[data-from]'); if(el) run(el); } }); },{threshold:0.6});
+  /* Start, sobald der Preis-Block irgendwie ins Bild kommt; alle drei zählen bis zum Ende, egal wie weiter gescrollt wird */
+  var sec=document.getElementById('preise'), started=false, todo=[];
   els.forEach(function(el){ var c=el.closest('.pcard'); if(!c) return; if(c.getBoundingClientRect().top<innerHeight) return;
-    var to=+el.getAttribute('data-n'); el.style.fontVariantNumeric='tabular-nums'; el.setAttribute('data-from',Math.round(to*0.6)); el.textContent=fmt(Math.round(to*0.6)); io.observe(c); });
+    var to=+el.getAttribute('data-n'); el.style.fontVariantNumeric='tabular-nums'; el.setAttribute('data-from',Math.round(to*0.6)); el.textContent=fmt(Math.round(to*0.6)); todo.push(el); });
+  function start(){ if(started) return; started=true; todo.forEach(function(el,k){ setTimeout(function(){ run(el); },k*180); }); }
+  function chk(){ if(started||!sec) return; var r=sec.getBoundingClientRect(); if(r.top<innerHeight*0.9&&r.bottom>0) start(); }
+  if(todo.length){ addEventListener('scroll',chk,{passive:true}); addEventListener('resize',chk); chk();
+    if('IntersectionObserver' in window&&sec){ new IntersectionObserver(function(es){ if(es[0].isIntersecting) start(); },{threshold:0.05}).observe(sec); } }
 })();
 </script>
 
 <script>
 (function(){
   function L3(d,e,f){ return window.__L3?__L3(d,e,f):d; }
-  /* 1. Logo: R und J tauschen beim Drüberfahren, beim Wegfahren zurück */
+  /* 1. Logo: R und J fahren im Bogen aneinander vorbei und tauschen die Plätze, «&» dreht sich; beim Wegfahren zurück */
   var bm=document.querySelector('header .brand-mark'), br=bm&&bm.closest('a');
-  if(bm&&br){ var tx=bm.querySelector('text'), ts=tx.querySelectorAll('tspan'), sw=false, tm=null;
-    function set(s){ if(s===sw) return; sw=s; bm.classList.add('flip'); clearTimeout(tm);
-      tm=setTimeout(function(){ tx.firstChild.nodeValue=s?'J':'R'; ts[1].textContent=s?'R':'J'; bm.classList.remove('flip'); },170); }
-    br.addEventListener('mouseenter',function(){ set(true); }); br.addEventListener('mouseleave',function(){ set(false); });
-    br.addEventListener('touchstart',function(){ set(true); setTimeout(function(){ set(false); },1200); },{passive:true}); }
+  if(bm&&br&&bm.querySelector('text')&&bm.querySelector('text').getExtentOfChar&&Element.prototype.animate){ try{
+    var NS='http://www.w3.org/2000/svg', tx=bm.querySelector('text'), ts=tx.querySelectorAll('tspan');
+    var ex=[0,1,2].map(function(i){ var b=tx.getExtentOfChar(i); return {x:b.x+b.width/2}; });
+    var y=tx.getAttribute('y'), ff=tx.getAttribute('font-family');
+    function mk(ch,x,fs,fill,dy){ var t=document.createElementNS(NS,'text'); t.setAttribute('x',x); t.setAttribute('y',(+y+(dy||0))); t.setAttribute('text-anchor','middle');
+      t.setAttribute('font-family',ff); t.setAttribute('font-weight','800'); t.setAttribute('font-size',fs); t.setAttribute('fill',fill); t.textContent=ch;
+      t.style.transformBox='fill-box'; t.style.transformOrigin='center'; bm.appendChild(t); return t; }
+    var R=mk('R',ex[0].x,16,'#1F2328'), A=mk('&',ex[1].x,12.5,ts[0].getAttribute('fill')||'#1E5E3F',-.6), J=mk('J',ex[2].x,16,'#1F2328');
+    tx.remove(); var dX=ex[2].x-ex[0].x, sw=false, an=[];
+    var E='cubic-bezier(.45,0,.25,1)', D=520;
+    function go(s){ if(s===sw) return; sw=s; an.forEach(function(a){ a.cancel(); }); an=[];
+      var a0=s?0:dX, a1=s?dX:0, b0=s?0:-dX, b1=s?-dX:0, r0=s?0:360, r1=s?360:0;
+      an.push(R.animate([{transform:'translate('+a0+'px,0)'},{transform:'translate('+((a0+a1)/2)+'px,-7px)'},{transform:'translate('+a1+'px,0)'}],{duration:D,easing:E,fill:'forwards'}));
+      an.push(J.animate([{transform:'translate('+b0+'px,0)'},{transform:'translate('+((b0+b1)/2)+'px,7px)'},{transform:'translate('+b1+'px,0)'}],{duration:D,easing:E,fill:'forwards'}));
+      an.push(A.animate([{transform:'rotate('+r0+'deg) scale(1)'},{transform:'rotate('+((r0+r1)/2)+'deg) scale(1.25)'},{transform:'rotate('+r1+'deg) scale(1)'}],{duration:D,easing:E,fill:'forwards'})); }
+    var hov=false;
+    br.addEventListener('mouseenter',function(){ hov=true; go(true); }); br.addEventListener('mouseleave',function(){ hov=false; go(false); });
+    /* Am Anfang zweimal von selbst tauschen (nach dem Splash), danach nur beim Drüberfahren */
+    if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+      [[3000,true],[4300,false],[8500,true],[9800,false]].forEach(function(x){ setTimeout(function(){ if(!hov) go(x[1]); },x[0]); }); }
+    br.addEventListener('touchstart',function(){ go(true); setTimeout(function(){ go(false); },1400); },{passive:true});
+  }catch(_){} }
   /* 2. Sprach-Bläschen */
   var lg=document.querySelector('.lang');
   if(lg){ var bb=document.createElement('span'); bb.className='hibub'; bb.setAttribute('aria-hidden','true'); lg.appendChild(bb); var bt=null;
