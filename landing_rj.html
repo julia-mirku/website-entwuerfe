@@ -2592,6 +2592,47 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
 
 <script>
 (function(){
+  var T={
+    de:{
+      order:{s:'Gratis-Entwurf für meinen Betrieb',b:'Guten Tag\n\nIch interessiere mich für einen Entwurf für die Website meines Betriebs.\n\nBetrieb: \nOrt: \nBisherige Website (falls vorhanden): \n\nFreundliche Grüsse\n'},
+      reply:{s:'Antwort auf Ihren Entwurf',b:'Guten Tag\n\nIch habe Ihren Entwurf für unsere Website erhalten.\n\nBetrieb: \nMeine Rückmeldung: \n\nFreundliche Grüsse\n'},
+      idea:{s:'Idee für eine Website',b:'Guten Tag\n\nIch habe eine Idee für die Website meines Betriebs.\n\nBetrieb: \nMeine Idee: \n\nFreundliche Grüsse\n'},
+      ask:{s:'Frage zu Ihren Websites',b:'Guten Tag\n\nIch habe eine Frage:\n\n\nFreundliche Grüsse\n'},
+      price:{s:'Preis für eine Website mit Animation',b:'Guten Tag\n\nIch interessiere mich für eine Website mit Bewegung und Effekten und bitte um eine Offerte.\n\nBetrieb: \nWas ich mir vorstelle: \n\nFreundliche Grüsse\n'},
+      general:{s:'Anfrage Website',b:'Guten Tag\n\n\n\nFreundliche Grüsse\n'}
+    },
+    en:{
+      order:{s:'Free draft for my business',b:'Hello,\n\nI would like a draft for my business website.\n\nBusiness: \nTown: \nCurrent website (if any): \n\nKind regards\n'},
+      reply:{s:'Reply to your draft',b:'Hello,\n\nI have received your draft for our website.\n\nBusiness: \nMy feedback: \n\nKind regards\n'},
+      idea:{s:'An idea for a website',b:'Hello,\n\nI have an idea for my business website.\n\nBusiness: \nMy idea: \n\nKind regards\n'},
+      ask:{s:'Question about your websites',b:'Hello,\n\nI have a question:\n\n\nKind regards\n'},
+      price:{s:'Price for a website with animation',b:'Hello,\n\nI am interested in a website with motion and effects and would like a quote.\n\nBusiness: \nWhat I have in mind: \n\nKind regards\n'},
+      general:{s:'Website enquiry',b:'Hello,\n\n\n\nKind regards\n'}
+    }
+  };
+  function L(){ return /^en/i.test(document.documentElement.lang||'')?'en':'de'; }
+  var last=null;
+  var MAP={cta:'reply',cta_order:'order',idea_btn:'idea'};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a'); if(!a) return;
+    var key=a.getAttribute('data-t')||(a.querySelector('[data-t]')&&a.querySelector('[data-t]').getAttribute('data-t'));
+    if(a.getAttribute('href')==='#kontakt'&&MAP[key]){ last=MAP[key]; return; }
+    var h=a.getAttribute('href')||''; var mail=/^mailto:/i.test(h), wa=/wa\.me\//.test(h); if(!mail&&!wa) return;
+    var it=a.dataset.intent;
+    if(!it){ if(/Frage/i.test(h)&&!/Anfrage/i.test(h)) it='ask'; else if(/Preis|Animation/i.test(h)) it='price'; else it=last||'general'; a.dataset.auto='1'; }
+    if(a.dataset.auto) it=(/Frage/i.test(a.dataset.orig||h)&&!/Anfrage/i.test(a.dataset.orig||h))?'ask':(/Preis|Animation/i.test(a.dataset.orig||h)?'price':(last||'general'));
+    if(!a.dataset.orig) a.dataset.orig=h;
+    var t=T[L()][it]||T[L()].general;
+    if(mail){ var addr=(a.dataset.orig.match(/^mailto:([^?]*)/i)||[])[1]||'';
+      a.setAttribute('href','mailto:'+addr+'?subject='+encodeURIComponent(t.s)+'&body='+encodeURIComponent(t.b)); }
+    else { var num=(a.dataset.orig.match(/wa\.me\/(\d+)/)||[])[1];
+      a.setAttribute('href','https://wa.me/'+num+'?text='+encodeURIComponent(t.s+'\n\n'+t.b)); }
+  },true);
+})();
+</script>
+
+<script>
+(function(){
   var sec=document.querySelector('section.steps.pin'); if(!sec) return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var ol=sec.querySelector('ol'), lis=[].slice.call(ol.children), ways=[].slice.call(ol.querySelectorAll('.ways li'));
