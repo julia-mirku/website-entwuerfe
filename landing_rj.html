@@ -1317,11 +1317,14 @@ details .ul::after{display:none !important}
 .steps.pin ol.fin>li .yes-chip{transition:transform .55s cubic-bezier(.3,1.7,.5,1),box-shadow .5s ease .2s}
 /* Während der Animation kein Hover, nur der aktuelle Schritt leuchtet */
 .steps.pin ol:not(.fin){pointer-events:none}
+.steps.pin.unpinned{height:auto !important}
+.steps.pin.unpinned .stk{position:relative;top:auto;height:auto;padding:80px 0}
+@media (max-width:900px){.steps.pin.unpinned .stk{padding:56px 0}}
 </style>
 
 <style>
 /* ===== Wie wir arbeiten: gepinnt, Schilder klappen herunter ===== */
-.how.pin{padding:0 !important;height:calc(100vh + 190vh);height:calc(100svh + 190svh)}
+.how.pin{padding:0 !important;height:calc(100vh + 60vh);height:calc(100svh + 60svh)}
 .how.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
 .how.pin .stk>.wrap{width:100%}
 .how.pin .hgrid li{border-top-color:transparent !important;position:relative;perspective:900px;opacity:1 !important;transform:none !important}
@@ -1334,7 +1337,7 @@ details .ul::after{display:none !important}
 .how.pin .hgrid li.lit .hico{transform:none;transition:transform .6s cubic-bezier(.3,1.8,.5,1) .7s}
 .how.pin .hgrid li.lit:hover .hico{transform:rotate(-6deg) scale(1.08)}
 @media (max-width:900px){
-  .how.pin{height:calc(100vh + 170vh);height:calc(100svh + 170svh)}
+  .how.pin{height:calc(100vh + 60vh);height:calc(100svh + 60svh)}
   .how.pin .hgrid{margin-top:22px}
   .how.pin .hgrid li{padding:14px 2px 4px}
   .how.pin .hgrid h3{font-size:18px;margin-bottom:4px}
@@ -1374,6 +1377,8 @@ details .ul::after{display:none !important}
 }
 @media (prefers-reduced-motion:reduce){.psec.pin{height:auto}.psec.pin .stk{position:static;height:auto}}
 .psec.pin.allgold .pcard.gold{border-color:#E9B10A;box-shadow:0 0 0 4px rgba(255,200,26,.45),0 0 32px 4px rgba(255,190,0,.55)}
+.psec.pin.unpinned{height:auto !important}
+.psec.pin.unpinned .stk{position:relative;top:auto;height:auto;padding:60px 0}
 </style>
 <style>
 @media (min-width:901px){footer .wrap{padding-right:330px !important}}
@@ -2796,12 +2801,16 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ li.classList.toggle('on',k===top); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.93); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.98); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.9) ol.classList.add('fin');
+    if(p>=0.95) ol.classList.add('fin');
   }
-  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
+
+  /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
+  function __coll(sec, done){ if(!done||sec.classList.contains('unpinned')) return; var r=sec.getBoundingClientRect(); if(r.bottom>0) return;
+    var h0=sec.offsetHeight; sec.classList.add('unpinned'); var d=h0-sec.offsetHeight; if(d>0) window.scrollBy(0,-d); }
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); __coll(sec, ol.classList.contains('fin')); }); } },{passive:true});
   addEventListener('resize',function(){ fitStack(); up(); });
   fitStack(); up(); setTimeout(fitStack,800);
 })();
@@ -2813,7 +2822,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var lis=[].slice.call(sec.querySelectorAll('.hgrid > li'));
   lis.forEach(function(li){ var w=document.createElement('div'); w.className='hin'; while(li.firstChild) w.appendChild(li.firstChild); li.appendChild(w); });
-  var T=[0.04,0.3,0.56,0.82], q=false;
+  var T=[0.05,0.32,0.59,0.86], q=false;
   function up(){ q=false;
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
@@ -2839,11 +2848,15 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(p>pmax) pmax=p; p=pmax;
     var cur=-1; cards.forEach(function(c,k){ if(p>=T[k]) cur=k; }); cards.forEach(function(c,k){ c.classList.toggle('cur', k===cur&&!sec.classList.contains('allgold')); });
     cards.forEach(function(c,k){ if(p>=T[k]&&!c.classList.contains('gold')){ c.classList.add('gold','flash'); setTimeout(function(){c.classList.remove('flash');},950); }
-      var el=cnts[k]; if(el){ var n=+el.getAttribute('data-n'), t=Math.max(0,Math.min(1,(p-(T[k]-0.04))/0.26)); t=1-Math.pow(1-t,3); var v=Math.round(n*t); el.textContent=String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); } });
+      var el=cnts[k]; if(el){ var n=+el.getAttribute('data-n'), t=Math.max(0,Math.min(1,(p-(T[k]-0.04))/0.20)); t=1-Math.pow(1-t,2); var v=Math.round(n*t); el.textContent=String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); } });
   }
   var allDone=false;
-  function fin(){ if(allDone||pmax<0.86) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){c.classList.remove('cur');}); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
-  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); fin(); }); } },{passive:true});
+  function fin(){ if(allDone||pmax<0.84) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){c.classList.remove('cur');}); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
+
+  /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
+  function __coll(sec, done){ if(!done||sec.classList.contains('unpinned')) return; var r=sec.getBoundingClientRect(); if(r.bottom>0) return;
+    var h0=sec.offsetHeight; sec.classList.add('unpinned'); var d=h0-sec.offsetHeight; if(d>0) window.scrollBy(0,-d); }
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); fin(); __coll(sec, allDone); }); } },{passive:true});
   addEventListener('resize',up); up();
 })();
 </script>
