@@ -1269,7 +1269,7 @@ details .ul::after{display:none !important}
 
 <style>
 /* ===== So geht es: gepinnt, Karten fallen ===== */
-.steps.pin{padding:0 !important;height:calc(100vh + 270vh);height:calc(100svh + 270svh)}
+.steps.pin{padding:0 !important;height:calc(100vh + 150vh);height:calc(100svh + 150svh)}
 .steps.pin .stk{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
 .steps.pin .stk>.wrap{width:100%}
 .steps.pin ol{margin-top:48px;gap:52px}
@@ -1293,7 +1293,7 @@ details .ul::after{display:none !important}
 @keyframes shb{50%{transform:translateY(4px)}}
 .steps.pin ol.fin~.shint{opacity:0}
 @media (max-width:900px){
-  .steps.pin{height:calc(100vh + 230vh);height:calc(100svh + 230svh)}
+  .steps.pin{height:calc(100vh + 150vh);height:calc(100svh + 150svh)}
   .steps.pin ol{position:relative;display:block;margin-top:26px}
   .steps.pin ol>li{position:absolute;left:0;right:0;top:0;padding:18px 16px 18px 84px}
   .steps.pin ol>li::before{inset:0 !important}
@@ -2823,7 +2823,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   var segs=lis.slice(0,-1).map(function(li){var i=document.createElement('i');i.className='sline';li.appendChild(i);return i;});
   var bars=lis.map(function(li){var b=document.createElement('span');b.className='sbar';b.innerHTML='<i></i>';li.appendChild(b);return b;});
   /* Schwellen im gepinnten Bereich: Karte 1, 2 (+3 Wege), 3 */
-  var T=[0.04,0.36,0.70], WT=[0.45,0.53,0.61], pmax=0, q=false, mob=false;
+  var T=[0.03,0.27,0.55], WT=[0.33,0.38,0.43], pmax=0, q=false, mob=false;
   function clamp(x){return x<0?0:x>1?1:x;}
   function fitStack(){ mob=innerWidth<=900; lis.forEach(function(li){ li.style.minHeight=''; }); if(!mob){ ol.style.height=''; return; }
     var m=0; lis.forEach(function(li){ m=Math.max(m, li.offsetHeight); }); lis.forEach(function(li){ li.style.minHeight=m+'px'; });
@@ -2840,10 +2840,10 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ if(!ol.classList.contains('fin')) li.classList.remove('on'); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.03, en=Math.min(st+0.13,(k<T.length-1?T[k+1]-0.02:0.84)); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.02, en=(k<T.length-1?T[k+1]+0.01:0.80); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.86) ol.classList.add('fin');
+    if(p>=0.82) ol.classList.add('fin');
   }
 
   /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
