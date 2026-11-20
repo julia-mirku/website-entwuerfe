@@ -1381,6 +1381,24 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
 html{overflow-anchor:none}
 .msg.me.big.stamped .stamp{animation:stamp .8s cubic-bezier(.3,1.5,.45,1) .35s forwards !important}
 </style>
+
+<style>
+::selection{background:#FFDA4F;color:#1F2328}
+.brand-mark text{transform-box:fill-box;transform-origin:center;transition:transform .17s ease-in}
+.brand-mark.flip text{transform:scaleX(0)}
+.lang{position:relative}
+.hibub{position:absolute;top:calc(100% + 8px);left:50%;transform:translate(-50%,-4px) scale(.85);background:#1F2328;color:#fff;font-weight:800;font-size:14px;padding:6px 12px;border-radius:12px 12px 12px 4px;white-space:nowrap;opacity:0;pointer-events:none;z-index:60;transition:opacity .2s ease,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.hibub.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.wcard{position:relative}
+.wcard .cpy{display:none}
+@media (hover:hover) and (pointer:fine){
+  .wcard .cpy{display:inline-block;position:absolute;right:12px;top:50%;transform:translateY(-50%) scale(.9);opacity:0;background:#fff;border:2px solid #1F2328;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:800;color:#1F2328;cursor:copy;transition:opacity .2s ease,transform .2s ease,background-color .2s}
+  .wcard:hover .cpy,.wcard .cpy:focus-visible{opacity:1;transform:translateY(-50%) scale(1)}
+  .wcard .cpy:hover{background:#FFDA4F}
+  .wcard .cpy.ok{background:#BFE3CF;border-color:#1E5E3F;color:#1E5E3F}
+}
+footer .totop{font-weight:700}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -2829,6 +2847,46 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); var el=e.target.querySelector('.cnt[data-from]'); if(el) run(el); } }); },{threshold:0.6});
   els.forEach(function(el){ var c=el.closest('.pcard'); if(!c) return; if(c.getBoundingClientRect().top<innerHeight) return;
     var to=+el.getAttribute('data-n'); el.style.fontVariantNumeric='tabular-nums'; el.setAttribute('data-from',Math.round(to*0.6)); el.textContent=fmt(Math.round(to*0.6)); io.observe(c); });
+})();
+</script>
+
+<script>
+(function(){
+  function L3(d,e,f){ return window.__L3?__L3(d,e,f):d; }
+  /* 1. Logo: R und J tauschen beim Drüberfahren, beim Wegfahren zurück */
+  var bm=document.querySelector('header .brand-mark'), br=bm&&bm.closest('a');
+  if(bm&&br){ var tx=bm.querySelector('text'), ts=tx.querySelectorAll('tspan'), sw=false, tm=null;
+    function set(s){ if(s===sw) return; sw=s; bm.classList.add('flip'); clearTimeout(tm);
+      tm=setTimeout(function(){ tx.firstChild.nodeValue=s?'J':'R'; ts[1].textContent=s?'R':'J'; bm.classList.remove('flip'); },170); }
+    br.addEventListener('mouseenter',function(){ set(true); }); br.addEventListener('mouseleave',function(){ set(false); });
+    br.addEventListener('touchstart',function(){ set(true); setTimeout(function(){ set(false); },1200); },{passive:true}); }
+  /* 2. Sprach-Bläschen */
+  var lg=document.querySelector('.lang');
+  if(lg){ var bb=document.createElement('span'); bb.className='hibub'; bb.setAttribute('aria-hidden','true'); lg.appendChild(bb); var bt=null;
+    lg.addEventListener('click',function(e){ var b=e.target.closest('button[data-lang]'); if(!b) return; var l=b.getAttribute('data-lang');
+      bb.textContent=l==='en'?'Hello!':(l==='fr'?'Bonjour !':'Grüezi!'); bb.classList.remove('on'); void bb.offsetWidth; bb.classList.add('on');
+      clearTimeout(bt); bt=setTimeout(function(){ bb.classList.remove('on'); },1100); }); }
+  /* 3. Kopieren (nur Computer), der Link selbst funktioniert weiter */
+  [['.wcard.mail','mirkurobin@gmail.com'],['.wcard.tel','+41 79 932 55 14']].forEach(function(x){
+    var c=document.querySelector(x[0]); if(!c) return; var p=document.createElement('span'); p.className='cpy'; p.setAttribute('role','button'); p.tabIndex=0;
+    function lab(){ p.textContent=p.classList.contains('ok')?L3('Kopiert ✓','Copied ✓','Copié ✓'):L3('Kopieren','Copy','Copier'); }
+    lab(); c.appendChild(p);
+    function go(e){ e.preventDefault(); e.stopPropagation();
+      var done=function(){ p.classList.add('ok'); lab(); setTimeout(function(){ p.classList.remove('ok'); lab(); },1600); };
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(x[1]).then(done,done); } else { var t=document.createElement('textarea'); t.value=x[1]; document.body.appendChild(t); t.select(); try{document.execCommand('copy');}catch(_){} t.remove(); done(); } }
+    p.addEventListener('click',go); p.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' ') go(e); });
+    new MutationObserver(lab).observe(document.documentElement,{attributes:true,attributeFilter:['lang']}); });
+  /* 4. Tab-Titel: erst nach 3 s weg, sofort zurück */
+  var tt=null, old=null;
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){ clearTimeout(tt); tt=setTimeout(function(){ if(!document.hidden) return; old=document.title; document.title=L3('Bis gleich! 👋','See you soon! 👋','À tout de suite ! 👋'); },3000); }
+    else { clearTimeout(tt); if(old!==null){ document.title=old; old=null; } } });
+  /* 5. Nach oben */
+  var fw=document.querySelector('footer .wrap');
+  if(fw){ var d=document.createElement('span'); d.className='dot'; d.setAttribute('aria-hidden','true'); d.textContent='·';
+    var a=document.createElement('a'); a.href='#'; a.className='totop'; function tl(){ a.textContent=L3('↑ Nach oben','↑ Back to top','↑ Haut de page'); } tl();
+    a.addEventListener('click',function(e){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+    fw.appendChild(d); fw.appendChild(a); new MutationObserver(tl).observe(document.documentElement,{attributes:true,attributeFilter:['lang']}); }
 })();
 </script>
 </body>
