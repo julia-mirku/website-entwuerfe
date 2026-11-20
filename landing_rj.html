@@ -1299,6 +1299,8 @@ details .ul::after{display:none !important}
 @media (max-width:900px){.steps.pin .sbar{left:84px;right:16px;top:auto;bottom:12px;height:4px}}
 .steps.pin .stk .wrap>h2,.steps.pin .stk .eyebrow-line{position:relative;z-index:3}
 .steps.pin ol{position:relative;z-index:1}
+.steps.pin ol:not(.fin)>li .yes-chip{transform:scale(0) !important;box-shadow:none !important}
+.steps.pin ol.fin>li .yes-chip{transition:transform .55s cubic-bezier(.3,1.7,.5,1),box-shadow .5s ease .2s}
 </style>
 
 <style>
@@ -2761,7 +2763,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.97); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=T[2]+0.04) ol.classList.add('fin');
+    if(p>=0.92) ol.classList.add('fin');
   }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
   addEventListener('resize',function(){ fitStack(); up(); });
