@@ -1315,6 +1315,8 @@ details .ul::after{display:none !important}
 .steps.pin ol{position:relative;z-index:1}
 .steps.pin ol:not(.fin)>li .yes-chip{transform:scale(0) !important;box-shadow:none !important}
 .steps.pin ol.fin>li .yes-chip{transition:transform .55s cubic-bezier(.3,1.7,.5,1),box-shadow .5s ease .2s}
+/* Während der Animation kein Hover, nur der aktuelle Schritt leuchtet */
+.steps.pin ol:not(.fin){pointer-events:none}
 </style>
 
 <style>
@@ -1343,6 +1345,8 @@ details .ul::after{display:none !important}
   .how.pin h2{margin-bottom:0}
 }
 @media (prefers-reduced-motion:reduce){.how.pin{height:auto}.how.pin .stk{position:static;height:auto}.how.pin .hin{transform:none;opacity:1}.how.pin .hgrid li::before{transform:none}}
+/* Während der Animation kein Hover */
+.how.pin .hgrid:not(.done){pointer-events:none}
 </style>
 
 <style>
@@ -1352,7 +1356,12 @@ details .ul::after{display:none !important}
 .psec.pin .stk>.wrap{width:100%}
 .psec.pin .pcard{transition:border-color .5s ease,box-shadow .6s ease,transform .25s ease}
 .psec.pin .pcard.gold{border-color:#E9B10A;box-shadow:0 0 0 3px rgba(255,200,26,.35),0 0 26px 2px rgba(255,190,0,.45)}
-.psec.pin .pcard.gold .pv{background-size:100% .32em}
+.psec.pin .pcard.gold .pv{background-size:0 .32em}
+.psec.pin .pcard.cur .pv,.psec.pin.allgold .pcard .pv{background-size:100% .32em}
+/* Während der Animation: kein Hover, nichts anderes unterstrichen */
+.psec.pin:not(.allgold) .pcards{pointer-events:none}
+.psec.pin:not(.allgold) .pcard.on{transform:none}
+.psec.pin:not(.allgold) .pcard:not(.cur) .pv{background-size:0 .32em !important}
 .psec.pin .pcard.flash{animation:pgold .9s ease-out}
 @keyframes pgold{0%{box-shadow:0 0 0 0 rgba(255,200,26,.0)}40%{box-shadow:0 0 0 6px rgba(255,200,26,.55),0 0 40px 8px rgba(255,190,0,.6)}100%{box-shadow:0 0 0 3px rgba(255,200,26,.35),0 0 26px 2px rgba(255,190,0,.45)}}
 @media (max-width:820px){
@@ -2799,6 +2808,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     var p=Math.max(0,Math.min(1,(hh-r.top)/run));
     lis.forEach(function(li,k){ var on=li.classList.contains('lit');
       if(!on&&p>=T[k]) li.classList.add('lit'); else if(on&&p<T[k]-0.025) li.classList.remove('lit'); });
+    var g=sec.querySelector('.hgrid'); g.classList.toggle('done', lis.every(function(li){return li.classList.contains('lit');}) && p>=T[T.length-1]+0.06);
   }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
   addEventListener('resize',up); up();
@@ -2815,11 +2825,12 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   function up(){ q=false;
     var hh=parseFloat(getComputedStyle(st).top)||0, r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
     var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(p>pmax) pmax=p; p=pmax;
+    var cur=-1; cards.forEach(function(c,k){ if(p>=T[k]) cur=k; }); cards.forEach(function(c,k){ c.classList.toggle('cur', k===cur&&!sec.classList.contains('allgold')); });
     cards.forEach(function(c,k){ if(p>=T[k]&&!c.classList.contains('gold')){ c.classList.add('gold','flash'); setTimeout(function(){c.classList.remove('flash');},950); }
       var el=cnts[k]; if(el){ var n=+el.getAttribute('data-n'), t=Math.max(0,Math.min(1,(p-(T[k]-0.04))/0.26)); t=1-Math.pow(1-t,3); var v=Math.round(n*t); el.textContent=String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); } });
   }
   var allDone=false;
-  function fin(){ if(allDone||pmax<0.86) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
+  function fin(){ if(allDone||pmax<0.86) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){c.classList.remove('cur');}); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); fin(); }); } },{passive:true});
   addEventListener('resize',up); up();
 })();
