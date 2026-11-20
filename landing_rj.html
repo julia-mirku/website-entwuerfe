@@ -1074,6 +1074,8 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
 @keyframes wig{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}45%{transform:rotate(10deg)}70%{transform:rotate(-5deg)}}
 /* Buchen-Knöpfe in den Handys anklickbar: werden grün «Gebucht ✓» */
 .bookbtn{cursor:pointer;pointer-events:auto}
+.bookbtn,.bookbtn .lbl,.p3 .tap{animation:none!important}
+.bookbtn .b2{opacity:0}.p3 .tap{opacity:0!important}
 .bookbtn.booked,.bookbtn.booked .lbl{animation:none!important}
 .bookbtn.booked{background:#1C7A4B!important;transition:background-color .25s}
 .bookbtn.booked .b1{opacity:0!important}.bookbtn.booked .b2{opacity:1!important}
