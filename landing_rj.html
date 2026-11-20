@@ -1239,6 +1239,15 @@ details .ul::after{display:none !important}
 /* «Schreiben Sie uns»: kräftig gelb wie «Sie finden» */
 .wlink{background:linear-gradient(transparent 62%, var(--sun) 62%, var(--sun) 92%, transparent 92%) !important}
 .wlink:hover,.wlink:focus-visible{background:var(--sun) !important}
+/* Hofladen-Icon: Sonne geht ganz auf, Strahlen erhellen das ganze Bild */
+.trades .card .tico .sunw{transform:translateY(13px) scale(.9);opacity:0;transition:transform 1.4s cubic-bezier(.22,.9,.3,1),opacity .5s ease}
+.trades .card:is(:hover,.live) .tico .sunw{transform:translateY(-4px) scale(1.15);opacity:1}
+.trades .card .tico .sunw{filter:drop-shadow(0 0 0 rgba(255,200,26,0));transition:transform 1.4s cubic-bezier(.22,.9,.3,1),opacity .5s ease,filter 1s ease .6s}
+.trades .card:is(:hover,.live) .tico .sunw{filter:drop-shadow(0 0 5px rgba(255,214,60,1)) drop-shadow(0 0 12px rgba(255,214,60,.8))}
+.trades .card:is(:hover,.live) .tico .rays{animation:rays2 2.6s linear 1.1s infinite;opacity:1}
+@keyframes rays2{0%{transform:scale(1) rotate(0);opacity:.6}50%{transform:scale(1.7) rotate(22deg);opacity:1}100%{transform:scale(1) rotate(45deg);opacity:.6}}
+.trades .card:nth-child(5) .tico{transition:background-color .3s ease,box-shadow 1s ease .7s,transform .2s ease}
+.trades .card:nth-child(5):is(:hover,.live) .tico{background:radial-gradient(circle at 74% 18%,#FFF6C8 0,#FFE58A 32%,#BFE0FA 72%);box-shadow:0 0 18px 4px rgba(255,214,60,.55)}
 </style>
 
 <style>
