@@ -1431,6 +1431,17 @@ footer .totop{font-weight:700}
 /* Kopfzeile: Tablet / kleiner Laptop */
 @media (min-width:901px) and (max-width:1340px){header.top .brand>span{display:none}}
 @media (min-width:901px) and (max-width:1100px){header.top a.btn.btn-s:not(.hb2){display:none}}
+/* Kopfzeile: gleiche Breiten in DE/EN/FR, nichts verschiebt sich beim Sprachwechsel */
+header .snav.na a{box-sizing:border-box;text-align:center;justify-content:center}
+header .snav.na a:nth-child(1){min-width:89px}header .snav.na a:nth-child(2){min-width:99px}header .snav.na a:nth-child(3){min-width:111px}
+header .snav.na a:nth-child(4){min-width:64px}header .snav.na a:nth-child(5){min-width:91px}header .snav.na a:nth-child(6){min-width:76px}
+@media (min-width:1341px) and (max-width:1460px){
+  header.top .wrap{gap:14px}
+  header .snav.na a{padding-left:6px;padding-right:6px}
+  header .snav.na a:nth-child(1){min-width:81px}header .snav.na a:nth-child(2){min-width:91px}header .snav.na a:nth-child(3){min-width:103px}
+  header .snav.na a:nth-child(4){min-width:56px}header .snav.na a:nth-child(5){min-width:83px}header .snav.na a:nth-child(6){min-width:68px}
+}
+@media (min-width:901px){header.top a.btn.btn-s:not(.hb2){min-width:223px;justify-content:center;text-align:center}}
 /* Chat-Knopf: weg, solange er etwas verdeckt */
 .chatw{transition:opacity .25s ease,transform .25s ease}
 html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-events:none}
