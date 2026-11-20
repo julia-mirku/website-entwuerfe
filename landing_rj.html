@@ -1095,6 +1095,12 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
 .wrest i{width:9px;height:9px;border-left:3px solid var(--ink);border-top:3px solid var(--ink);transform:rotate(45deg) translateY(2px)}
 .usimg.isMin .wrest{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);animation:wrb 1.6s ease-in-out .4s infinite}
 @keyframes wrb{0%,100%{margin-top:0}50%{margin-top:-5px}}
+.wlink{color:inherit;text-decoration:none;font-weight:700;background:linear-gradient(transparent 58%,rgba(255,200,26,.55) 58%);padding:0 2px;border-radius:3px;transition:background-color .2s}
+.wlink:hover,.wlink:focus-visible{background:rgba(255,200,26,.55)}
+.wchoice{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.wchoice[hidden]{display:none}
+.wchoice .wc{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;border:2px solid var(--ink);background:var(--sun);color:var(--ink);font-weight:800;text-decoration:none;animation:tbump .4s cubic-bezier(.2,1.6,.4,1)}
+.wchoice .wc:nth-child(2){background:#fff}
 @media (prefers-reduced-motion:reduce){.steps ol>li .sline{transform:none}.wlist.wait li .ck{stroke-dashoffset:0}.wlist.wait li svg circle{transform:none;opacity:1}.phones .phone{translate:none}}
 
 /* ===== Gelb + ein paar dunkelgrüne Details ===== */
@@ -1470,7 +1476,7 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
       <div class="box">
         <div>
           <h2 id="h-contact" data-t="c_h">Ein Satz genügt</h2>
-          <p class="lead2" data-t="c_lead">Schreiben Sie uns so, wie es Ihnen am einfachsten ist. Wir antworten persönlich.</p>
+          <p class="lead2" data-t="c_lead"><a href="#" class="wlink">Schreiben Sie uns</a> so, wie es Ihnen am einfachsten ist.<br>Wir antworten persönlich.</p><div class="wchoice" hidden><a class="wc" href="mailto:mirkurobin@gmail.com?subject=Anfrage%20Website">E-Mail</a><a class="wc" href="https://wa.me/41774705928" target="_blank" rel="noopener">WhatsApp</a></div>
         </div>
         <div class="ways2">
           <a class="wcard mail" href="mailto:mirkurobin@gmail.com?subject=Gratis-Entwurf"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3.5" fill="#fff" stroke="#1F2328" stroke-width="2.2"/><path d="M4.5 8l9.5 7 9.5-7" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span><b data-t="c_mail">E-Mail Robin</b><span>mirkurobin@gmail.com</span></span></a>
@@ -1622,7 +1628,7 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
     pl1h:"New website",
     c_wa:"WhatsApp Julia",
     c_mail:"E-mail Robin",
-    c_lead:"Write to us however is easiest for you. We reply personally.",
+    c_lead:"<a href=\"#\" class=\"wlink\">Write to us</a> however is easiest for you.<br>We reply personally.",
     a9:"Yes, if you like. Or you send us your changes by message and we take care of them.",
     q9:"Can I change things myself later?",
     a10:"By invoice with a QR code or by TWINT. Half when you order, half before the website goes live.",
@@ -2367,6 +2373,8 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
   },300);
   /* Preis-Panel: Häkchen beim Tippen */
   document.addEventListener('click',function(e){ var li=e.target.closest&&e.target.closest('.plan ul.pmul li'); if(li) li.classList.toggle('tk'); });
+  /* Kontakt: «Schreiben Sie uns» öffnet Auswahl E-Mail / WhatsApp */
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('.wlink'); if(!a) return; e.preventDefault(); var c=document.querySelector('.wchoice'); if(c) c.hidden=!c.hidden; });
   /* 9. Preise zählen hoch */
   var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt'));
   if(cnt.length&&!RM&&'IntersectionObserver' in window){
