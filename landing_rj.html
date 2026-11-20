@@ -1193,6 +1193,10 @@ html.nav-a .snav.na,html.nav-b .snav.nb,html.nav-c .snav.nc{display:flex}
 /* E-Mail / WhatsApp: beide gleich, beim Hovern gelb */
 .wchoice .wc,.wchoice .wc:nth-child(2){background:#fff;transition:background-color .2s ease,transform .2s ease}
 .wchoice .wc:hover,.wchoice .wc:focus-visible,.wchoice .wc:nth-child(2):hover,.wchoice .wc:nth-child(2):focus-visible{background:var(--sun);transform:translateY(-2px)}
+/* Zeiten im Footer */
+footer .fhours{margin-left:auto}
+footer .fhours b{color:var(--ink)}
+@media (max-width:640px){footer .fhours{margin-left:0;flex-basis:100%}}
 </style>
 
 <style>
@@ -1695,7 +1699,7 @@ html.nav-a .snav.na,html.nav-b .snav.nb,html.nav-c .snav.nc{display:flex}
 <footer>
   <div class="wrap">
     <a href="#" data-t="imp">Impressum</a><span class="dot" aria-hidden="true">·</span>
-    <a href="#" data-t="priv">Datenschutz</a>
+    <a href="#" data-t="priv">Datenschutz</a><span class="fhours"><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span>
   </div>
 </footer>
 
@@ -1706,6 +1710,8 @@ html.nav-a .snav.na,html.nav-b .snav.nb,html.nav-c .snav.nc{display:flex}
     skip:"Skip to content",
     cta:"Reply to your draft",
     cta_order:"Order a free draft",
+    fz_h:"Mon–Fri, 10 am–8 pm",
+    fz_hk:"Available",
     navmenu:"Menu",
     navlabel:"Page navigation",
     nav_kontakt:"Contact",
