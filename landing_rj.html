@@ -1324,7 +1324,7 @@ details .ul::after{display:none !important}
 
 <style>
 /* ===== Wie wir arbeiten: gepinnt, Schilder klappen herunter ===== */
-.how.pin{padding:0 !important;height:calc(100vh + 60vh);height:calc(100svh + 60svh)}
+.how.pin{padding:0 !important;height:calc(100vh + 130vh);height:calc(100svh + 130svh)}
 .how.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
 .how.pin .stk>.wrap{width:100%}
 .how.pin .hgrid li{border-top-color:transparent !important;position:relative;perspective:900px;opacity:1 !important;transform:none !important}
@@ -1337,7 +1337,7 @@ details .ul::after{display:none !important}
 .how.pin .hgrid li.lit .hico{transform:none;transition:transform .6s cubic-bezier(.3,1.8,.5,1) .7s}
 .how.pin .hgrid li.lit:hover .hico{transform:rotate(-6deg) scale(1.08)}
 @media (max-width:900px){
-  .how.pin{height:calc(100vh + 60vh);height:calc(100svh + 60svh)}
+  .how.pin{height:calc(100vh + 130vh);height:calc(100svh + 130svh)}
   .how.pin .hgrid{margin-top:22px}
   .how.pin .hgrid li{padding:14px 2px 4px}
   .how.pin .hgrid h3{font-size:18px;margin-bottom:4px}
@@ -1350,39 +1350,6 @@ details .ul::after{display:none !important}
 @media (prefers-reduced-motion:reduce){.how.pin{height:auto}.how.pin .stk{position:static;height:auto}.how.pin .hin{transform:none;opacity:1}.how.pin .hgrid li::before{transform:none}}
 /* Während der Animation kein Hover */
 .how.pin .hgrid:not(.done){pointer-events:none}
-</style>
-
-<style>
-/* ===== Preise: kurz gepinnt, Rahmen leuchten golden ===== */
-.psec.pin{padding:0 !important;height:calc(100vh + 110vh);height:calc(100svh + 110svh)}
-.psec.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
-.psec.pin .stk>.wrap{width:100%}
-.psec.pin .pcard{transition:border-color .4s ease,box-shadow .4s ease}
-.psec.pin .pcard .cnt{font-variant-numeric:tabular-nums}
-.psec.pin .pcard.gold{border-color:#E9B10A;box-shadow:0 0 0 3px rgba(255,200,26,.45)}
-.psec.pin .pcard.gold .pv{background-size:0 .32em}
-.psec.pin .pcard.cur .pv,.psec.pin.allgold .pcard .pv{background-size:100% .32em}
-/* Während der Animation: kein Hover, nichts anderes unterstrichen */
-.psec.pin:not(.allgold) .pcards{pointer-events:none}
-.psec.pin:not(.allgold) .pcard.on{transform:none}
-.psec.pin:not(.allgold) .pcard:not(.cur) .pv{background-size:0 .32em !important}
-.psec.pin .pcard.flash{animation:none}
-@keyframes pgold{0%{box-shadow:0 0 0 0 rgba(255,200,26,.0)}40%{box-shadow:0 0 0 6px rgba(255,200,26,.55),0 0 40px 8px rgba(255,190,0,.6)}100%{box-shadow:0 0 0 3px rgba(255,200,26,.35),0 0 26px 2px rgba(255,190,0,.45)}}
-@media (max-width:820px){
-  .psec.pin{height:calc(100vh + 95vh);height:calc(100svh + 95svh)}
-  .psec.pin .pcards{gap:10px;margin-top:16px}
-  .psec.pin .pcard{padding:14px 16px}
-  .psec.pin .pcard .pv{font-size:26px}
-  .psec.pin .pcard .pd{font-size:14px}
-  .psec.pin .lead{margin-bottom:0}
-}
-@media (prefers-reduced-motion:reduce){.psec.pin{height:auto}.psec.pin .stk{position:static;height:auto}}
-.psec.pin.allgold .pcard.gold{border-color:#E9B10A;box-shadow:0 0 0 4px rgba(255,200,26,.6)}
-.psec.pin.unpinned{height:auto !important}
-.psec.pin.unpinned .stk{position:relative;top:auto;height:auto;padding:60px 0}
-.psec.pin .pcard .pv{transform-origin:left center}
-.psec.pin .pcard.gold .pv{animation:ppop .6s cubic-bezier(.3,1.6,.5,1) 1}
-@keyframes ppop{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1)}}
 </style>
 <style>
 @media (min-width:901px){footer .wrap{padding-right:330px !important}}
@@ -1408,6 +1375,11 @@ html[lang^="fr"] .msg.me.big .stamp::after{content:"Validé ✓"}
 html[lang^="fr"] .wrest::after{content:"Ouvrir"}
 html[lang^="fr"] .legal [lang="fr"]{display:block}
 @media (max-width:480px){.lang button{width:38px;height:38px;font-size:14px}.lang{height:46px}header.top .brand{font-size:15px;gap:8px}header.top .brand-mark{width:32px;height:32px}html[lang^="fr"] .btn{white-space:normal;text-align:center;min-width:0;line-height:1.2;padding-top:10px;padding-bottom:10px}}
+</style>
+
+<style>
+html{overflow-anchor:none}
+.msg.me.big.stamped .stamp{animation:stamp .8s cubic-bezier(.3,1.5,.45,1) .35s forwards !important}
 </style>
 </head>
 <body>
@@ -1736,8 +1708,8 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
     </div>
   </section>
 
-  <section class="psec pin" id="preise" aria-labelledby="h-psec">
-    <div class="stk"><div class="wrap">
+  <section class="psec" id="preise" aria-labelledby="h-psec">
+    <div class="wrap">
       <div class="eyebrow-line"></div>
       <h2 id="h-psec" data-t="pz_h">Preise</h2>
       <p class="lead" data-t="pz_lead">Klare Ab-Preise. Den genauen Betrag nennen wir Ihnen in der Offerte.</p>
@@ -1748,7 +1720,6 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
       </div>
       <p class="pnote" data-t="pz_note">Mit Bewegung und Effekten wie auf dieser Seite: Preis auf Anfrage.</p>
       <button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="pz_btn">Alle Preise und Bedingungen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    </div>
     </div>
   </section>
   <section class="faq" id="fragen" aria-labelledby="h-faq">
@@ -2511,19 +2482,19 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
     var lis=[].slice.call(safe.querySelectorAll('.checks li')), chat=safe.querySelector('.chat');
     var items=[].slice.call(chat.children), typing=document.createElement('div'); typing.className='typing3'; typing.innerHTML='<i></i><i></i><i></i>'; chat.appendChild(typing);
     var ticks=chat.querySelector('.ticks');
-    function apply(p){
-      var steps=items.length+2, n=Math.floor(p*steps);
+    function apply(p,pc){
+      var steps=items.length+2, n=Math.floor(pc*steps);
       lis.forEach(function(li,k){li.classList.toggle('done', p>(k+1)/(lis.length+1));});
       var shown=0;
       items.forEach(function(el,k){ var on=n>k; el.classList.toggle('shown',on); if(on) shown=k+1; });
       if(ticks) ticks.classList.toggle('read', n>items.indexOf(ticks)+1);
       chat.classList.toggle('bright', n>2);
-      var next=items[shown]; var showTyping = next && next.classList.contains('msg') && shown>0 && (p*steps-n)>0.35;
+      var next=items[shown]; var showTyping = next && next.classList.contains('msg') && shown>0 && (pc*steps-n)>0.35;
       typing.classList.toggle('shown', !!showTyping); typing.style.display=showTyping?'':'none';
       if(showTyping) chat.insertBefore(typing,next);
       typing.style.alignSelf = next && next.classList.contains('me') ? 'flex-end' : 'flex-start';
     }
-    var pmax=0; function sp(){ var r=safe.getBoundingClientRect(); var p=(innerHeight*0.98-r.top)/(r.height*0.5); pmax=Math.max(pmax,Math.max(0,Math.min(1,p))); apply(pmax); }
+    var pmax=0, cmax=0; function sp(){ var r=safe.getBoundingClientRect(); var p=(innerHeight*0.98-r.top)/(r.height*0.5); pmax=Math.max(pmax,Math.max(0,Math.min(1,p))); var lim=innerHeight*0.84, n=0; for(var k=0;k<items.length;k++){ if(items[k].getBoundingClientRect().top<lim) n=k+1; else break; } if(n===items.length&&chat.getBoundingClientRect().bottom<innerHeight*0.92) n+=2; var nx=items[n]; var fr=(nx&&nx.getBoundingClientRect().top<lim+90)?0.5:0; var pc=Math.min(1,(n+fr)/(items.length+2)); cmax=Math.max(cmax,pc); apply(pmax,cmax); }
     addEventListener('scroll',sp,{passive:true}); addEventListener('resize',sp); sp();
   }
 })();
@@ -2658,7 +2629,11 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   /* 5. Stempel */
   var yes=document.querySelector('.msg.me.big');
   if(yes&&!RM){ var st=document.createElement('span'); st.className='stamp'; st.setAttribute('aria-hidden','true'); yes.appendChild(st);
-    new MutationObserver(function(){ yes.classList.toggle('stamped', yes.classList.contains('shown')); }).observe(yes,{attributes:true,attributeFilter:['class']}); }
+    (function(){ function hh(){ return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||70; }
+    function ens(){ if(!yes.querySelector('.stamp')){ var s=document.createElement('span'); s.className='stamp'; s.setAttribute('aria-hidden','true'); yes.appendChild(s); } }
+    function chk(){ ens(); if(!yes.classList.contains('shown')||yes.classList.contains('stamped')) return; var r=yes.getBoundingClientRect(); if(r.top>hh()+10&&r.bottom<innerHeight-40) yes.classList.add('stamped'); }
+    new MutationObserver(chk).observe(yes,{attributes:true,attributeFilter:['class'],childList:true});
+    addEventListener('scroll',chk,{passive:true}); chk(); })(); }
   /* 6. Vorher/Nachher: «Neu» am Rand */
   setInterval(function(){ [].slice.call(document.querySelectorAll('.tsite .ba')).forEach(function(ba){
     if(!ba.querySelector('.neu')){var n=document.createElement('span');n.className='neu';n.textContent=__L3('Neu','New',"Nouveau");ba.appendChild(n);}
@@ -2799,21 +2774,21 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   function up(){ q=false;
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=clamp((hh-r.top)/run); if(p>pmax) pmax=p; p=pmax;
+    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.45) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
     var top=-1;
     lis.forEach(function(li,k){ var on=li.classList.contains('land');
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ li.classList.toggle('on',k===top); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.98); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.84); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.95) ol.classList.add('fin');
+    if(p>=0.86) ol.classList.add('fin');
   }
 
   /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
   function __coll(sec, done){ if(!done||sec.classList.contains('unpinned')) return; var r=sec.getBoundingClientRect(); if(r.bottom>0) return;
-    var h0=sec.offsetHeight; sec.classList.add('unpinned'); var d=h0-sec.offsetHeight; if(d>0) window.scrollBy(0,-d); }
+    var h0=sec.offsetHeight; sec.classList.add('unpinned'); var d=h0-sec.offsetHeight; if(d>0){ var H=document.documentElement, sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollTo(0, window.scrollY-d); H.style.scrollBehavior=sb; } }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); __coll(sec, ol.classList.contains('fin')); }); } },{passive:true});
   addEventListener('resize',function(){ fitStack(); up(); });
   fitStack(); up(); setTimeout(fitStack,800);
@@ -2826,11 +2801,11 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var lis=[].slice.call(sec.querySelectorAll('.hgrid > li'));
   lis.forEach(function(li){ var w=document.createElement('div'); w.className='hin'; while(li.firstChild) w.appendChild(li.firstChild); li.appendChild(w); });
-  var T=[0.05,0.32,0.59,0.86], q=false;
+  var T=[0.02,0.25,0.48,0.71], q=false;
   function up(){ q=false;
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=Math.max(0,Math.min(1,(hh-r.top)/run));
+    var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(r.top<innerHeight*0.45) p=Math.max(p,T[0]);
     lis.forEach(function(li,k){ var on=li.classList.contains('lit');
       if(!on&&p>=T[k]) li.classList.add('lit'); else if(on&&p<T[k]-0.025) li.classList.remove('lit'); });
     var g=sec.querySelector('.hgrid'); g.classList.toggle('done', lis.every(function(li){return li.classList.contains('lit');}) && p>=T[T.length-1]+0.06);
@@ -2842,25 +2817,18 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
 
 <script>
 (function(){
-  var sec=document.querySelector('section.psec.pin'); if(!sec) return;
+  var els=[].slice.call(document.querySelectorAll('.pcard .cnt[data-n]'));
+  if(!els.length||!('IntersectionObserver' in window)) return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var cards=[].slice.call(sec.querySelectorAll('.pcard')), st=sec.querySelector('.stk');
-  var cnts=cards.map(function(c){return c.querySelector('.cnt');});
-  var T=[0.06,0.33,0.6], pmax=0, q=false;
-  function up(){ q=false;
-    var hh=parseFloat(getComputedStyle(st).top)||0, r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(p>pmax) pmax=p; p=pmax;
-    var cur=-1; cards.forEach(function(c,k){ if(p>=T[k]) cur=k; }); cards.forEach(function(c,k){ c.classList.toggle('cur', k===cur&&!sec.classList.contains('allgold')); });
-    cards.forEach(function(c,k){ if(p>=T[k]&&!c.classList.contains('gold')){ c.classList.add('gold','flash'); setTimeout(function(){c.classList.remove('flash');},950); } });
-  }
-  var allDone=false;
-  function fin(){ if(allDone||pmax<0.84) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){c.classList.remove('cur');}); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
-
-  /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
-  function __coll(sec, done){ if(!done||sec.classList.contains('unpinned')) return; var r=sec.getBoundingClientRect(); if(r.bottom>0) return;
-    var h0=sec.offsetHeight; sec.classList.add('unpinned'); var d=h0-sec.offsetHeight; if(d>0) window.scrollBy(0,-d); }
-  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); fin(); __coll(sec, allDone); }); } },{passive:true});
-  addEventListener('resize',up); up();
+  function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); }
+  function run(el){ var to=+el.getAttribute('data-n'), from=+el.getAttribute('data-from'), step=to>=1000?10:(to>=100?5:1), t0=null, D=1100, done=false;
+    function end(){ if(done) return; done=true; el.textContent=fmt(to); }
+    function f(t){ if(done) return; if(t0===null) t0=t; var k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3);
+      if(k>=1){ end(); return; } el.textContent=fmt(Math.min(to,Math.round((from+(to-from)*e)/step)*step)); requestAnimationFrame(f); }
+    requestAnimationFrame(f); setTimeout(end, D+400); }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ io.unobserve(e.target); var el=e.target.querySelector('.cnt[data-from]'); if(el) run(el); } }); },{threshold:0.6});
+  els.forEach(function(el){ var c=el.closest('.pcard'); if(!c) return; if(c.getBoundingClientRect().top<innerHeight) return;
+    var to=+el.getAttribute('data-n'); el.style.fontVariantNumeric='tabular-nums'; el.setAttribute('data-from',Math.round(to*0.6)); el.textContent=fmt(Math.round(to*0.6)); io.observe(c); });
 })();
 </script>
 </body>
