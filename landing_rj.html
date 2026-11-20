@@ -2118,7 +2118,7 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
     for(var x=0;x<b.length;x++) b[x].setAttribute('aria-pressed', b[x].getAttribute('data-lang')===l?'true':'false');
   }
   var lang='de';
-  try{var q=new URLSearchParams(location.search).get('lang'); if(q==='en'||q==='de'||q==='fr') lang=q; else {var s=localStorage.getItem('mirku-lang'); if(s==='en'||s==='de'||s==='fr') lang=s;}}catch(e){}
+  try{var q=new URLSearchParams(location.search).get('lang'); if(q==='en'||q==='de'||q==='fr') lang=q; else {var s=localStorage.getItem('mirku-lang'); }}catch(e){}
   if(lang!=='de') apply(lang);
   document.querySelector('.lang').addEventListener('click',function(e){
     var t=e.target.closest('button[data-lang]'); if(!t) return;
