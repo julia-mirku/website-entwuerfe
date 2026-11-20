@@ -1072,6 +1072,15 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
 /* 9. Kontakt: Symbol wackelt beim Hover */
 .wcard:hover .wi svg,.wcard:focus-visible .wi svg{animation:wig .6s ease}
 @keyframes wig{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}45%{transform:rotate(10deg)}70%{transform:rotate(-5deg)}}
+/* Buchen-Knöpfe in den Handys anklickbar: werden grün «Gebucht ✓» */
+.bookbtn{cursor:pointer;pointer-events:auto}
+.bookbtn.booked,.bookbtn.booked .lbl{animation:none!important}
+.bookbtn.booked{background:#1C7A4B!important;transition:background-color .25s}
+.bookbtn.booked .b1{opacity:0!important}.bookbtn.booked .b2{opacity:1!important}
+.slot.cta{cursor:pointer}
+.slot.cta.booked,.slot.cta.booked .in{background:#1C7A4B!important;color:#fff!important;transition:background-color .25s}
+.slot.cta.booked .arr{display:none}
+.bookbtn.booked,.slot.cta.booked{animation:tbump .45s cubic-bezier(.2,1.6,.4,1)!important}
 @media (prefers-reduced-motion:reduce){.steps ol>li .sline{transform:none}.wlist.wait li .ck{stroke-dashoffset:0}.wlist.wait li svg circle{transform:none;opacity:1}.phones .phone{translate:none}}
 
 /* ===== Gelb + ein paar dunkelgrüne Details ===== */
@@ -2310,6 +2319,16 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
   /* 8. Hero-Parallaxe */
   var ph=document.querySelector('.phones');
   if(ph&&!RM){ var q2=false; addEventListener('scroll',function(){ if(q2) return; q2=true; requestAnimationFrame(function(){ q2=false; ph.style.setProperty('--hy', Math.min(scrollY,700)); }); },{passive:true}); }
+  /* Buchen-Knöpfe */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.bookbtn, .slot.cta'); if(!b) return;
+    e.preventDefault();
+    var en=(document.documentElement.lang||'').indexOf('en')===0;
+    if(b.classList.contains('slot')){ var sp=b.querySelector('[data-t="ph_book"]'); if(!sp) return;
+      if(!b.classList.contains('booked')){ b._t=sp.textContent; sp.textContent=en?'Booked ✓':'Gebucht ✓'; b.classList.add('booked'); }
+      else { sp.textContent=b._t||sp.textContent; b.classList.remove('booked'); }
+    } else { b.classList.toggle('booked'); }
+  });
   /* 9. Preise zählen hoch */
   var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt'));
   if(cnt.length&&!RM&&'IntersectionObserver' in window){
