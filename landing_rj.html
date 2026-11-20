@@ -1243,15 +1243,15 @@ details .ul::after{display:none !important}
 .steps.pin .stk>.wrap{width:100%}
 .steps.pin ol{margin-top:48px;gap:52px}
 .steps.pin ol>li:not(:last-child)::after,.steps.pin .sline{right:-30px}
-.steps.pin ol>li{opacity:0;transform:translateY(-70vh) rotate(-7deg) scale(1.06);transition:none}
+.steps.pin ol>li{opacity:0;transform:translateY(-70vh) rotate(-7deg) scale(1.06);transition:transform .5s cubic-bezier(.55,0,.8,.3),opacity .35s ease .12s;will-change:transform}
 .steps.pin ol>li:nth-child(2){transform:translateY(-70vh) rotate(5deg) scale(1.06)}
 .steps.pin ol>li:nth-child(3){transform:translateY(-70vh) rotate(-4deg) scale(1.06)}
 .steps.pin ol>li.land{opacity:1;transform:none;transition:transform .75s cubic-bezier(.3,1.45,.55,1),opacity .2s ease}
 .steps.pin ol>li.land::before{opacity:1 !important;transform:none !important;transition:box-shadow .4s ease .45s}
 .steps.pin ol>li.thud::before{animation:stthud .5s ease-out .5s both}
 @keyframes stthud{0%{box-shadow:0 0 0 var(--sun)}60%{box-shadow:10px 10px 0 var(--sun)}100%{box-shadow:6px 6px 0 var(--sun)}}
-.steps.pin ol>li:not(:last-child)::after{opacity:0;transition:opacity .4s ease .5s}
-.steps.pin ol>li.land:not(:last-child)::after{opacity:.35}
+.steps.pin ol>li:not(:last-child)::after{opacity:0;transition:opacity .25s ease}
+.steps.pin ol>li.land:not(:last-child)::after{opacity:.35;transition:opacity .4s ease .5s}
 .steps.pin .sline{position:absolute;top:40px;left:80px;right:-12px;height:3px;background:var(--sun);border-radius:2px;transform-origin:left center;transform:scaleX(var(--s,0));z-index:0;pointer-events:none}
 .steps.pin ol>li .ways li{opacity:.35;transform:scale(.92);transition:opacity .3s ease,transform .35s cubic-bezier(.3,1.6,.5,1),background-color .3s}
 .steps.pin ol>li .ways li.lit{opacity:1;transform:none}
@@ -1274,6 +1274,34 @@ details .ul::after{display:none !important}
   .steps.pin ol>li.land.under>*:not(.num){opacity:.0;transition:opacity .3s}
 }
 @media (prefers-reduced-motion:reduce){.steps.pin{height:auto}.steps.pin .stk{position:static;height:auto}.steps.pin ol>li{opacity:1;transform:none}}
+</style>
+
+<style>
+/* ===== Wie wir arbeiten: gepinnt, Schilder klappen herunter ===== */
+.how.pin{padding:0 !important;height:calc(100vh + 230vh);height:calc(100svh + 230svh)}
+.how.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
+.how.pin .stk>.wrap{width:100%}
+.how.pin .hgrid li{border-top-color:transparent !important;position:relative;perspective:900px;opacity:1 !important;transform:none !important}
+.how.pin .hgrid li::before{content:"";position:absolute;left:0;right:0;top:-4px;height:4px;background:var(--ink);transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.6,0,.8,.4)}
+.how.pin .hgrid li.lit::before{transform:scaleX(1);transition:transform .45s cubic-bezier(.2,.8,.3,1)}
+.how.pin .hgrid li:hover::before{background:var(--sun)}
+.how.pin .hin{transform-origin:50% 0;transform:rotateX(-96deg);opacity:0;transition:transform .35s cubic-bezier(.6,0,.8,.4),opacity .25s ease .1s;backface-visibility:hidden}
+.how.pin .hgrid li.lit .hin{transform:rotateX(0);opacity:1;transition:transform .9s cubic-bezier(.25,1.55,.45,1) .28s,opacity .2s ease .28s}
+.how.pin .hgrid li .hico{transform:scale(.4) rotate(-30deg);transition:transform .3s ease}
+.how.pin .hgrid li.lit .hico{transform:none;transition:transform .6s cubic-bezier(.3,1.8,.5,1) .7s}
+.how.pin .hgrid li.lit:hover .hico{transform:rotate(-6deg) scale(1.08)}
+@media (max-width:900px){
+  .how.pin{height:calc(100vh + 200vh);height:calc(100svh + 200svh)}
+  .how.pin .hgrid{margin-top:22px}
+  .how.pin .hgrid li{padding:14px 2px 4px}
+  .how.pin .hgrid h3{font-size:18px;margin-bottom:4px}
+  .how.pin .hgrid p{font-size:15px;line-height:1.4}
+  .how.pin .hin{display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:start}
+  .how.pin .hin .hico{grid-row:1 / span 2;width:44px;height:44px;margin:0}
+  .how.pin .hin h3,.how.pin .hin p{grid-column:2}
+  .how.pin h2{margin-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){.how.pin{height:auto}.how.pin .stk{position:static;height:auto}.how.pin .hin{transform:none;opacity:1}.how.pin .hgrid li::before{transform:none}}
 </style>
 </head>
 <body>
@@ -1532,8 +1560,8 @@ details .ul::after{display:none !important}
     </div>
   </section>
 
-  <section class="how" aria-labelledby="h-how">
-    <div class="wrap">
+  <section class="how pin" aria-labelledby="h-how">
+    <div class="stk"><div class="wrap">
       <div class="eyebrow-line"></div>
       <h2 id="h-how" data-t="how_h">Wie wir arbeiten</h2>
       <ul class="hgrid">
@@ -1542,6 +1570,7 @@ details .ul::after{display:none !important}
         <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="4" width="16" height="22" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.2"/><path d="M9 10h8M9 14.5h8M9 19h4" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path d="M27.5 12.5l-9.5 9.5-3.5 1 1-3.5 9.5-9.5z" fill="#fff" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></div><h3 data-t="hw3">Änderungen auf Anfrage</h3><p data-t="hw3p">Soll etwas anders sein, ändern wir es. Auf Wunsch betreuen wir Ihre Website auch danach weiter.</p></li>
         <li><div class="hico"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="8" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4"/><rect x="5" y="18" width="22" height="8" rx="2.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2.4"/><circle cx="10" cy="10" r="1.6" fill="#1F2328"/><circle cx="10" cy="22" r="1.6" fill="#1F2328"/><path d="M15 10h7M15 22h7" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/></svg></div><h3 data-t="hw4">Die Technik übernehmen wir</h3><p data-t="hw4p">Das Hosting richten wir ein, Impressum und Datenschutz sind von Anfang an dabei.</p></li>
       </ul>
+    </div>
     </div>
   </section>
 
@@ -2565,6 +2594,7 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
   de.classList.add('nav-'+v);
   function hh(){ var hd=document.querySelector('header.top'); if(hd) de.style.setProperty('--hh',hd.offsetHeight+'px'); }
   hh(); addEventListener('resize',hh); addEventListener('load',hh);
+  try{ new ResizeObserver(hh).observe(document.querySelector('header.top')); }catch(e){}
   var links=[].slice.call(document.querySelectorAll('.snav a[href^="#"]'));
   var ids=[]; links.forEach(function(a){var i=a.getAttribute('href').slice(1); if(ids.indexOf(i)<0) ids.push(i);});
   var secs=ids.map(function(i){return document.getElementById(i);});
@@ -2646,17 +2676,38 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
     var h=0; lis.forEach(function(li){ h=Math.max(h, li.offsetHeight+li.offsetTop); }); ol.style.height=h+'px'; }
   function up(){ q=false;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-innerHeight; if(run<=0) return;
-    var p=clamp(-r.top/run); if(p>pmax) pmax=p; p=pmax;
+    var p=clamp(-r.top/run);
     var top=-1;
-    lis.forEach(function(li,k){ if(p>=T[k]&&!li.classList.contains('land')){ li.classList.add('land','thud'); } if(li.classList.contains('land')) top=k; });
+    lis.forEach(function(li,k){ var on=li.classList.contains('land');
+      if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
+      else if(on&&p<T[k]-0.025){ li.classList.remove('land','thud'); on=false; }
+      if(on) top=k; });
     lis.forEach(function(li,k){ li.classList.toggle('on',k===top); li.classList.toggle('under',mob&&k<top); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=T[2]+0.04) ol.classList.add('fin');
+    ol.classList.toggle('fin', p>=T[2]+0.04);
   }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
   addEventListener('resize',function(){ fitStack(); up(); });
   fitStack(); up(); setTimeout(fitStack,800);
+})();
+</script>
+
+<script>
+(function(){
+  var sec=document.querySelector('section.how.pin'); if(!sec) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var lis=[].slice.call(sec.querySelectorAll('.hgrid > li'));
+  lis.forEach(function(li){ var w=document.createElement('div'); w.className='hin'; while(li.firstChild) w.appendChild(li.firstChild); li.appendChild(w); });
+  var T=[0.04,0.26,0.48,0.70], q=false;
+  function up(){ q=false;
+    var r=sec.getBoundingClientRect(), run=sec.offsetHeight-sec.querySelector('.stk').offsetHeight; if(run<=0) return;
+    var p=Math.max(0,Math.min(1,-r.top/run));
+    lis.forEach(function(li,k){ var on=li.classList.contains('lit');
+      if(!on&&p>=T[k]) li.classList.add('lit'); else if(on&&p<T[k]-0.025) li.classList.remove('lit'); });
+  }
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
+  addEventListener('resize',up); up();
 })();
 </script>
 </body>
