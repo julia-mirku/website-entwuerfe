@@ -1034,6 +1034,46 @@ header.top{will-change:transform}
 .tphone-wrap{top:24px !important}
 
 
+/* 2. Schritte: gelbe Linie läuft mit dem Scrollen */
+.steps ol>li{position:relative}
+.steps ol>li .sline{position:absolute;top:40px;left:80px;right:-12px;height:3px;background:var(--sun);border-radius:2px;transform-origin:left center;transform:scaleX(var(--s,0));z-index:0;pointer-events:none}
+@media (max-width:900px){.steps ol>li .sline{top:80px;bottom:-30px;left:30px;right:auto;width:3px;height:auto;transform-origin:center top;transform:scaleY(var(--s,0))}}
+.steps ol.fin>li:last-child .num{animation:stfin .7s cubic-bezier(.2,1.6,.4,1)}
+.steps ol.fin>li:last-child .num::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:3px solid var(--sun);animation:icoring .7s ease-out forwards}
+@keyframes stfin{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+/* 3. Häkchen zeichnen sich nacheinander */
+.wlist.wait li .ck{stroke-dasharray:20;stroke-dashoffset:20}
+.wlist.wait li svg circle{transform-box:fill-box;transform-origin:center;transform:scale(.6);opacity:.4}
+.wlist.go li .ck{animation:wck .45s ease forwards;animation-delay:calc(var(--i,0) * 110ms + .15s)}
+.wlist.go li svg circle{transition:transform .35s cubic-bezier(.2,1.6,.4,1),opacity .3s;transition-delay:calc(var(--i,0) * 110ms);transform:scale(1);opacity:1}
+@keyframes wck{to{stroke-dashoffset:0}}
+/* 4. Hof: Ware fliegt in den Korb */
+.flyw{position:fixed;z-index:200;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--sun);border:2px solid var(--ink);pointer-events:none}
+.tsite .tb.bump{animation:tbump .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes tbump{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+.cfx{position:fixed;z-index:201;width:7px;height:7px;border-radius:2px;pointer-events:none;animation:cfx .8s ease-out forwards}
+@keyframes cfx{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(220deg);opacity:0}}
+/* 5. Chat: Stempel «Freigegeben» beim Ja */
+.msg.me.big{position:relative}
+.msg.me.big .stamp{position:absolute;right:calc(100% + 14px);top:50%;font-family:var(--head);font-size:15px;font-weight:800;letter-spacing:.02em;color:#3FA36F;border:2.5px solid #3FA36F;border-radius:10px;padding:5px 10px;white-space:nowrap;transform:translateY(-50%) rotate(-8deg) scale(1.8);opacity:0}
+.msg.me.big .stamp::after{content:"Freigegeben ✓"}
+html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
+.msg.me.big.stamped .stamp{animation:stamp .5s cubic-bezier(.2,1.4,.4,1) .35s forwards}
+@keyframes stamp{to{transform:translateY(-50%) rotate(-8deg) scale(1);opacity:1}}
+/* 6. Vorher/Nachher: am Rand kurzes «Neu» */
+.tsite .ba .neu{position:absolute;right:8px;bottom:8px;font-size:11px;font-weight:800;background:var(--sun);border:2px solid var(--ink);border-radius:999px;padding:2px 8px;opacity:0;transform:scale(.6);transition:opacity .25s,transform .3s cubic-bezier(.2,1.6,.4,1)}
+.tsite .ba.full .neu{opacity:1;transform:scale(1)}
+/* 7. Herz: maximiert schlägt es schneller */
+.usart .win.max .heart{animation:hbfast .7s ease-in-out infinite}
+@keyframes hbfast{0%,100%{transform:scale(1)}30%{transform:scale(1.12)}60%{transform:scale(.97)}}
+/* 8. Hero: Telefone gehen beim Scrollen leicht auseinander */
+.phones .phone.p1{translate:0 calc(var(--hy,0) * -0.06px)}
+.phones .phone.p3{translate:0 calc(var(--hy,0) * -0.11px)}
+/* 9. Kontakt: Symbol wackelt beim Hover */
+.wcard:hover .wi svg,.wcard:focus-visible .wi svg{animation:wig .6s ease}
+@keyframes wig{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg)}45%{transform:rotate(10deg)}70%{transform:rotate(-5deg)}}
+@media (prefers-reduced-motion:reduce){.steps ol>li .sline{transform:none}.wlist.wait li .ck{stroke-dashoffset:0}.wlist.wait li svg circle{transform:none;opacity:1}.phones .phone{translate:none}}
+
 /* ===== Gelb + ein paar dunkelgrüne Details ===== */
 :root{--dg:#1E5E3F}
 .hero .pindrop path:first-child{fill:#3FA36F}
@@ -1375,9 +1415,9 @@ header.top{will-change:transform}
       <h2 id="h-psec" data-t="pz_h">Preise</h2>
       <p class="lead" data-t="pz_lead">Klare Preise ab, den genauen Betrag nennen wir in der Offerte. Er bleibt fest.</p>
       <div class="pcards">
-        <div class="pcard" tabindex="0"><span class="pk" data-t="pz1k">Eine Seite</span><b class="pv"><small data-t="pz_ab">ab</small> CHF 900</b><span class="pd" data-t="pz1d">Alles Wichtige auf einer Seite: Angebot, Preise, Öffnungszeiten, Kontakt.</span></div>
-        <div class="pcard" tabindex="0"><span class="pk" data-t="pz2k">3 bis 5 Seiten</span><b class="pv"><small data-t="pz_ab2">ab</small> CHF 1’800</b><span class="pd" data-t="pz2d">Eigene Seiten für Leistungen, Team oder Galerie.</span></div>
-        <div class="pcard g" tabindex="0"><span class="pk" data-t="pz3k">Betreuung</span><b class="pv"><small data-t="pz_ab3">ab</small> CHF 30<small data-t="pz_mo">/Monat</small></b><span class="pd" data-t="pz3d">Sicherheit, Updates und Backups. Auf Wunsch erledigen wir auch kleine Änderungen.</span></div>
+        <div class="pcard" tabindex="0"><span class="pk" data-t="pz1k">Eine Seite</span><b class="pv"><small data-t="pz_ab">ab</small> CHF <span class="cnt" data-n="900">900</span></b><span class="pd" data-t="pz1d">Alles Wichtige auf einer Seite: Angebot, Preise, Öffnungszeiten, Kontakt.</span></div>
+        <div class="pcard" tabindex="0"><span class="pk" data-t="pz2k">3 bis 5 Seiten</span><b class="pv"><small data-t="pz_ab2">ab</small> CHF <span class="cnt" data-n="1800">1’800</span></b><span class="pd" data-t="pz2d">Eigene Seiten für Leistungen, Team oder Galerie.</span></div>
+        <div class="pcard g" tabindex="0"><span class="pk" data-t="pz3k">Betreuung</span><b class="pv"><small data-t="pz_ab3">ab</small> CHF <span class="cnt" data-n="30">30</span><small data-t="pz_mo">/Monat</small></b><span class="pd" data-t="pz3d">Sicherheit, Updates und Backups. Auf Wunsch erledigen wir auch kleine Änderungen.</span></div>
       </div>
       <p class="pnote" data-t="pz_note">Mit Bewegung und Effekten wie auf dieser Seite: Preis auf Anfrage.</p>
       <button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="pz_btn">Alle Preise und Bedingungen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -2188,16 +2228,12 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
   function show(){ var s=seq[i];
     st.forEach(function(li,k){li.classList.toggle('on',k===s[0]);});
     ways.forEach(function(w,k){w.classList.toggle('on',k===s[1]);}); }
-  function tick(){ if(!vis||hov) return; show(); var d=(i===seq.length-1)?2200:1200; i=(i+1)%seq.length; t=setTimeout(tick,d); }
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if(matchMedia('(hover: hover)').matches){
-    ol.addEventListener('mouseenter',function(){hov=true; clearTimeout(t); st.forEach(function(li){li.classList.remove('on');}); ways.forEach(function(w){w.classList.remove('on');});});
-    ol.addEventListener('mouseleave',function(){hov=false; clearTimeout(t); tick();});
-  }
-  new IntersectionObserver(function(es){es.forEach(function(e){
-    var was=vis; vis=e.isIntersecting; clearTimeout(t);
-    if(vis&&!was){ t=setTimeout(tick, started?400:300); started=true; }
-  });},{threshold:.25}).observe(ol);
+  /* Schritte folgen dem Scrollen: Tempo = Scrolltempo */
+  var cur=-1, q=false;
+  function upd(){ q=false; if(hov) return; var r=ol.getBoundingClientRect(); var p=(innerHeight*0.8-r.top)/(r.height+innerHeight*0.2); p=p<0?0:p>0.999?0.999:p;
+    var k=Math.floor(p*seq.length); if(k!==cur){ cur=k; i=k; show(); } }
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(upd); } },{passive:true}); upd();
 })();
 </script>
 
@@ -2223,5 +2259,66 @@ document.querySelectorAll('.wcard.mail,.wcard.wa').forEach(function(c){var sp=c.
 })();
 </script>
 
+<script>
+(function(){
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function clamp(x){return x<0?0:x>1?1:x;}
+  /* 2. Schritt-Linien */
+  var ol=document.querySelector('.steps ol');
+  if(ol&&!RM){
+    var lis=[].slice.call(ol.children), segs=[];
+    lis.slice(0,-1).forEach(function(li){var i=document.createElement('i');i.className='sline';li.appendChild(i);segs.push(i);});
+    var fin=false, q=false;
+    function up(){q=false;var r=ol.getBoundingClientRect();var p=clamp((innerHeight*0.85-r.top)/(r.height+innerHeight*0.25));
+      segs.forEach(function(s,k){s.style.setProperty('--s',clamp(p*segs.length*1.15-k).toFixed(3));});
+      if(p>0.92&&!fin){fin=true;ol.classList.add('fin');} if(p<0.6&&fin){fin=false;ol.classList.remove('fin');}}
+    addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(up);}},{passive:true}); up();
+  }
+  /* 3. Häkchen */
+  var wl=document.querySelector('.wlist');
+  if(wl&&!RM&&'IntersectionObserver' in window){
+    [].slice.call(wl.children).forEach(function(li,k){li.style.setProperty('--i',k);});
+    wl.classList.add('wait');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){wl.classList.add('go');io.disconnect();}});},{threshold:.2});
+    io.observe(wl);
+  }
+  /* 4. Hof: fliegen in den Korb + Konfetti beim 3. */
+  document.addEventListener('click',function(e){
+    var sp=e.target.closest&&e.target.closest('.tsite .grid2 span'); if(!sp) return;
+    setTimeout(function(){
+      if(!sp.classList.contains('sel')) return;
+      var site=sp.closest('.tsite'), tb=site&&site.querySelector('.tb'); if(!tb||RM) return;
+      var a=sp.getBoundingClientRect(), b=tb.getBoundingClientRect();
+      var d=document.createElement('div'); d.className='flyw'; d.style.left=(a.left+a.width/2)+'px'; d.style.top=(a.top+a.height/2)+'px'; document.body.appendChild(d);
+      var dx=b.left+b.width/2-(a.left+a.width/2), dy=b.top+b.height/2-(a.top+a.height/2);
+      var an=d.animate([{transform:'translate(0,0) scale(1)'},{transform:'translate('+dx*0.5+'px,'+(dy*0.5-60)+'px) scale(1.1)',offset:.5},{transform:'translate('+dx+'px,'+dy+'px) scale(.4)'}],{duration:520,easing:'ease-in-out'});
+      an.onfinish=function(){ d.remove(); tb.classList.remove('bump'); void tb.offsetWidth; tb.classList.add('bump');
+        var n=site.querySelectorAll('.grid2 .sel').length;
+        if(n===3){ var cs=['#FFC81A','#3FA36F','#E5483D','#3BA3E0','#1F2328'];
+          for(var k=0;k<10;k++){var c=document.createElement('i');c.className='cfx';c.style.left=(b.left+b.width/2)+'px';c.style.top=(b.top+b.height/2)+'px';c.style.background=cs[k%5];var ang=Math.PI*2*k/10;c.style.setProperty('--dx',(Math.cos(ang)*60)+'px');c.style.setProperty('--dy',(Math.sin(ang)*50-20)+'px');document.body.appendChild(c);(function(c){setTimeout(function(){c.remove();},900);})(c);} }
+      };
+    },0);
+  },true);
+  /* 5. Stempel */
+  var yes=document.querySelector('.msg.me.big');
+  if(yes&&!RM){ var st=document.createElement('span'); st.className='stamp'; st.setAttribute('aria-hidden','true'); yes.appendChild(st);
+    new MutationObserver(function(){ yes.classList.toggle('stamped', yes.classList.contains('shown')); }).observe(yes,{attributes:true,attributeFilter:['class']}); }
+  /* 6. Vorher/Nachher: «Neu» am Rand */
+  setInterval(function(){ [].slice.call(document.querySelectorAll('.tsite .ba')).forEach(function(ba){
+    if(!ba.querySelector('.neu')){var n=document.createElement('span');n.className='neu';n.textContent=(document.documentElement.lang||'').indexOf('en')===0?'New':'Neu';ba.appendChild(n);}
+    var p=parseFloat(ba.style.getPropertyValue('--p'))||50; ba.classList.toggle('full', p<=4); }); },250);
+  /* 8. Hero-Parallaxe */
+  var ph=document.querySelector('.phones');
+  if(ph&&!RM){ var q2=false; addEventListener('scroll',function(){ if(q2) return; q2=true; requestAnimationFrame(function(){ q2=false; ph.style.setProperty('--hy', Math.min(scrollY,700)); }); },{passive:true}); }
+  /* 9. Preise zählen hoch */
+  var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt'));
+  if(cnt.length&&!RM&&'IntersectionObserver' in window){
+    var fmt=function(v){v=Math.round(v);return v>=1000?Math.floor(v/1000)+'’'+('00'+(v%1000)).slice(-3):''+v;};
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting) return; io2.unobserve(e.target); var el=e.target, n=+el.dataset.n, t0=performance.now();
+      (function f(t){ var k=clamp((t-t0)/800); el.textContent=fmt(n*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(f); })(t0); });},{threshold:.6});
+    cnt.forEach(function(el){ io2.observe(el); });
+  }
+})();
+</script>
 </body>
 </html>
