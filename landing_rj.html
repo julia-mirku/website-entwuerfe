@@ -1305,7 +1305,7 @@ details .ul::after{display:none !important}
 
 <style>
 /* ===== Wie wir arbeiten: gepinnt, Schilder klappen herunter ===== */
-.how.pin{padding:0 !important;height:calc(100vh + 230vh);height:calc(100svh + 230svh)}
+.how.pin{padding:0 !important;height:calc(100vh + 190vh);height:calc(100svh + 190svh)}
 .how.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
 .how.pin .stk>.wrap{width:100%}
 .how.pin .hgrid li{border-top-color:transparent !important;position:relative;perspective:900px;opacity:1 !important;transform:none !important}
@@ -1318,7 +1318,7 @@ details .ul::after{display:none !important}
 .how.pin .hgrid li.lit .hico{transform:none;transition:transform .6s cubic-bezier(.3,1.8,.5,1) .7s}
 .how.pin .hgrid li.lit:hover .hico{transform:rotate(-6deg) scale(1.08)}
 @media (max-width:900px){
-  .how.pin{height:calc(100vh + 200vh);height:calc(100svh + 200svh)}
+  .how.pin{height:calc(100vh + 170vh);height:calc(100svh + 170svh)}
   .how.pin .hgrid{margin-top:22px}
   .how.pin .hgrid li{padding:14px 2px 4px}
   .how.pin .hgrid h3{font-size:18px;margin-bottom:4px}
@@ -1333,7 +1333,7 @@ details .ul::after{display:none !important}
 
 <style>
 /* ===== Preise: kurz gepinnt, Rahmen leuchten golden ===== */
-.psec.pin{padding:0 !important;height:calc(100vh + 130vh);height:calc(100svh + 130svh)}
+.psec.pin{padding:0 !important;height:calc(100vh + 110vh);height:calc(100svh + 110svh)}
 .psec.pin .stk{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));height:calc(100svh - var(--hh,0px));display:flex;align-items:center;overflow:hidden}
 .psec.pin .stk>.wrap{width:100%}
 .psec.pin .pcard{transition:border-color .5s ease,box-shadow .6s ease,transform .25s ease}
@@ -1342,7 +1342,7 @@ details .ul::after{display:none !important}
 .psec.pin .pcard.flash{animation:pgold .9s ease-out}
 @keyframes pgold{0%{box-shadow:0 0 0 0 rgba(255,200,26,.0)}40%{box-shadow:0 0 0 6px rgba(255,200,26,.55),0 0 40px 8px rgba(255,190,0,.6)}100%{box-shadow:0 0 0 3px rgba(255,200,26,.35),0 0 26px 2px rgba(255,190,0,.45)}}
 @media (max-width:820px){
-  .psec.pin{height:calc(100vh + 110vh);height:calc(100svh + 110svh)}
+  .psec.pin{height:calc(100vh + 95vh);height:calc(100svh + 95svh)}
   .psec.pin .pcards{gap:10px;margin-top:16px}
   .psec.pin .pcard{padding:14px 16px}
   .psec.pin .pcard .pv{font-size:26px}
@@ -1350,6 +1350,7 @@ details .ul::after{display:none !important}
   .psec.pin .lead{margin-bottom:0}
 }
 @media (prefers-reduced-motion:reduce){.psec.pin{height:auto}.psec.pin .stk{position:static;height:auto}}
+.psec.pin.allgold .pcard.gold{border-color:#E9B10A;box-shadow:0 0 0 4px rgba(255,200,26,.45),0 0 32px 4px rgba(255,190,0,.55)}
 </style>
 <style>
 @media (min-width:901px){footer .wrap{padding-right:300px}}
@@ -2653,7 +2654,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   /* Kontakt: «Schreiben Sie uns» öffnet Auswahl E-Mail / WhatsApp */
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('.wlink'); if(!a) return; e.preventDefault(); var c=document.querySelector('.wchoice'); if(c) c.hidden=!c.hidden; });
   /* 9. Preise zählen hoch */
-  var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt'));
+  var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt.__aus'));
   if(cnt.length&&!RM&&'IntersectionObserver' in window){
     var fmt=function(v){v=Math.round(v);return v>=1000?Math.floor(v/1000)+'’'+('00'+(v%1000)).slice(-3):''+v;};
     var io2=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting) return; io2.unobserve(e.target); var el=e.target, n=+el.dataset.n, t0=performance.now();
@@ -2760,10 +2761,10 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ li.classList.toggle('on',k===top); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.97); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.03, en=(k<T.length-1?T[k+1]-0.02:0.93); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.92) ol.classList.add('fin');
+    if(p>=0.9) ol.classList.add('fin');
   }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
   addEventListener('resize',function(){ fitStack(); up(); });
@@ -2777,7 +2778,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var lis=[].slice.call(sec.querySelectorAll('.hgrid > li'));
   lis.forEach(function(li){ var w=document.createElement('div'); w.className='hin'; while(li.firstChild) w.appendChild(li.firstChild); li.appendChild(w); });
-  var T=[0.04,0.26,0.48,0.70], q=false;
+  var T=[0.04,0.3,0.56,0.82], q=false;
   function up(){ q=false;
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
@@ -2795,13 +2796,17 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   var sec=document.querySelector('section.psec.pin'); if(!sec) return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var cards=[].slice.call(sec.querySelectorAll('.pcard')), st=sec.querySelector('.stk');
-  var T=[0.08,0.38,0.68], pmax=0, q=false;
+  var cnts=cards.map(function(c){return c.querySelector('.cnt');});
+  var T=[0.06,0.33,0.6], pmax=0, q=false;
   function up(){ q=false;
     var hh=parseFloat(getComputedStyle(st).top)||0, r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
     var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(p>pmax) pmax=p; p=pmax;
-    cards.forEach(function(c,k){ if(p>=T[k]&&!c.classList.contains('gold')){ c.classList.add('gold','flash'); setTimeout(function(){c.classList.remove('flash');},950); } });
+    cards.forEach(function(c,k){ if(p>=T[k]&&!c.classList.contains('gold')){ c.classList.add('gold','flash'); setTimeout(function(){c.classList.remove('flash');},950); }
+      var el=cnts[k]; if(el){ var n=+el.getAttribute('data-n'), t=Math.max(0,Math.min(1,(p-(T[k]-0.04))/0.26)); t=1-Math.pow(1-t,3); var v=Math.round(n*t); el.textContent=String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'’'); } });
   }
-  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
+  var allDone=false;
+  function fin(){ if(allDone||pmax<0.86) return; allDone=true; sec.classList.add('allgold'); cards.forEach(function(c){ c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); setTimeout(function(){c.classList.remove('flash');},950); }); }
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); fin(); }); } },{passive:true});
   addEventListener('resize',up); up();
 })();
 </script>
