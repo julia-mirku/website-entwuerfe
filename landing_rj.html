@@ -1102,7 +1102,7 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
 .wchoice .wc{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border-radius:999px;border:2px solid var(--ink);background:var(--sun);color:var(--ink);font-weight:800;text-decoration:none;animation:tbump .4s cubic-bezier(.2,1.6,.4,1)}
 .wchoice .wc:nth-child(2){background:#fff}
 @media (prefers-reduced-motion:reduce){.steps ol>li .sline{transform:none}.wlist.wait li .ck{stroke-dashoffset:0}.wlist.wait li svg circle{transform:none;opacity:1}.phones .phone{translate:none}}
-
+.uchips li.ubtn,.uchips li.ubtn:hover{background:none!important;border:0!important;padding:0!important;box-shadow:none!important;transform:none!important}.uchips li.ubtn .pbtn{margin:0}
 /* ===== Gelb + ein paar dunkelgrüne Details ===== */
 :root{--dg:#1E5E3F}
 .hero .pindrop path:first-child{fill:#3FA36F}
@@ -1354,11 +1354,11 @@ html[lang^="en"] .msg.me.big .stamp::after{content:"Approved ✓"}
         <p class="lead" data-t="us_p2">Jeder Kunde wird so behandelt, wie man selbst behandelt werden möchte. Die Preise sind fair: Sie bezahlen für eine sorgfältig gebaute Website, nicht für den Namen einer grossen Agentur.</p>
         <ul class="uchips">
           <li class="main" data-t="u4">Liebe zum Detail</li>
-          <li data-t="u1">Persönlich, nach Ihren Wünschen</li>
-          <li data-t="u2">Mit Liebe gemacht</li>
           <li data-t="u3">Faire Preise</li>
+          <li data-t="u2">Mit Liebe gemacht</li>
+          <li data-t="u1">Persönlich, nach Ihren Wünschen</li>
+          <li class="ubtn"><button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="us_btn">Alle Preise ansehen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
         </ul>
-        <button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="us_btn">Alle Preise ansehen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
       <div class="usimg"><svg class="usart" viewBox="0 0 340 280" aria-hidden="true">
             <path d="M40 150c0-70 60-120 140-118 80 2 130 50 128 120-2 72-62 112-138 110C92 260 40 220 40 150z" fill="#FFF0C4"/>
