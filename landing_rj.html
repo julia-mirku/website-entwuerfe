@@ -1234,6 +1234,11 @@ footer .fhours b{color:var(--ink)}
 details .ul{padding-bottom:0;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(#BFE3CF,#BFE3CF) 0 92%/0% .5em no-repeat;transition:background-size 1.2s cubic-bezier(.4,0,.2,1) .35s}
 details[open] .ul{background-size:100% .5em}
 details .ul::after{display:none !important}
+/* Preise: alle drei Karten beim Hovern gleich grün wie 30 */
+.pcard:hover,.pcard:focus-visible,.tdev .pcard.on{box-shadow:5px 5px 0 #1E5E3F !important}
+/* «Schreiben Sie uns»: kräftig gelb wie «Sie finden» */
+.wlink{background:linear-gradient(transparent 62%, var(--sun) 62%, var(--sun) 92%, transparent 92%) !important}
+.wlink:hover,.wlink:focus-visible{background:var(--sun) !important}
 </style>
 
 <style>
