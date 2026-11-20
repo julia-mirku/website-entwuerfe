@@ -1380,6 +1380,17 @@ details .ul::after{display:none !important}
 @media (max-width:900px){.trades .idea{margin-top:110px}}
 </style>
 <script>document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.lang button[data-lang]');if(!b)return;try{var u=new URL(location.href);if(u.searchParams.has('lang')){u.searchParams.delete('lang');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}}catch(x){}});</script>
+<style>
+@media (min-width:901px){.contact .box{align-items:stretch}.contact .box>div:first-child{display:flex;flex-direction:column;justify-content:center}
+.contact .box>div:first-child .cinfo{margin-top:auto}.ways2{justify-content:center}.ways2 .trust{margin-top:auto}}
+.cinfo{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+.cinfo .trust{margin-top:0;align-items:center;flex-direction:row !important;text-align:left;color:var(--ink-2);cursor:default}
+.cinfo .trust svg{width:26px;height:26px;flex:none;border-radius:50%;transition:box-shadow .2s ease,transform .3s ease}
+.cinfo .trust:hover svg{box-shadow:0 0 0 4px #fff,0 0 0 7px var(--sun);transform:scale(1.08)}
+.cinfo .trust:hover svg path{animation:clk 1.2s linear infinite;transform-origin:13px 13px}
+@keyframes clk{to{transform:rotate(360deg)}}
+.cinfo .trust b{color:var(--ink);font-weight:700}
+</style>
 <script>window.__L3=function(d,e,f){var l=document.documentElement.lang||'';return l.indexOf('en')===0?e:(l.indexOf('fr')===0?f:d);};</script>
 <style>
 html[lang^="fr"] .tsite .grid2 span.sel i::after{content:" · au panier"}
@@ -1756,6 +1767,7 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
         <div>
           <h2 id="h-contact" data-t="c_h">Ein Satz genügt</h2>
           <p class="lead2" data-t="c_lead"><a href="#" class="wlink">Schreiben Sie uns</a> so, wie es Ihnen am einfachsten ist.<br>Wir antworten persönlich.</p><div class="wchoice" hidden><a class="wc" href="mailto:mirkurobin@gmail.com?subject=Anfrage%20Website" data-t="c_em">E-Mail</a><a class="wc" href="https://wa.me/41774705928" target="_blank" rel="noopener">WhatsApp</a></div>
+          <div class="cinfo"><p class="trust hours"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><path d="M13 7.5V13l3.8 2.4" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linecap="round"/></svg><span><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span></p></div>
         </div>
         <div class="ways2">
           <a class="wcard mail" href="mailto:mirkurobin@gmail.com?subject=Gratis-Entwurf"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3.5" fill="#fff" stroke="#1F2328" stroke-width="2.2"/><path d="M4.5 8l9.5 7 9.5-7" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span><b data-t="c_mail">E-Mail R&amp;J</b><span>mirkurobin@gmail.com</span></span></a>
@@ -1854,7 +1866,7 @@ html[lang^="fr"] .legal [lang="fr"]{display:block}
 <footer>
   <div class="wrap">
     <a href="#" data-t="imp">Impressum</a><span class="dot" aria-hidden="true">·</span>
-    <a href="#" data-t="priv">Datenschutz</a><span class="fhours"><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span>
+    <a href="#" data-t="priv">Datenschutz</a>
   </div>
 </footer>
 
