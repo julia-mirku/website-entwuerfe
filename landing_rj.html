@@ -773,7 +773,14 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 .tphone-wrap.act .tlive{opacity:1;transform:translate(-50%,0)}
 .tphone.hov .scr{box-shadow:inset 0 0 0 3px var(--sun)}
 
-.legal{max-width:560px;width:calc(100% - 32px);max-height:85vh;border:2px solid var(--ink);border-radius:18px;padding:22px 22px 18px;background:var(--white,#fff);color:var(--ink);box-shadow:6px 6px 0 var(--sun)}.legal::backdrop{background:rgba(31,35,40,.45)}.legal h3{font-family:var(--head);font-size:22px;margin:0 0 10px}.legal p{font-size:15.5px;line-height:1.5;margin:0 0 10px}.legal .lx{all:unset;cursor:pointer;position:sticky;top:0;float:right;font-size:26px;line-height:1;width:36px;height:36px;text-align:center;border-radius:50%;background:var(--sun)}.legal [lang]{display:none}html[lang^="de"] .legal [lang="de"],html[lang^="en"] .legal [lang="en"]{display:block}.legal.imp .lg-priv,.legal.priv .lg-imp{display:none}
+.usart .win{transform-box:view-box;transform-origin:170px 142px;transition:transform .45s cubic-bezier(.3,1.3,.5,1),opacity .35s ease}
+.usart .win.closed{transform:scale(.2);opacity:0}
+.usart .win.min{transform:translateY(60px) scaleY(.25)}
+.usart .win.max{transform:scale(1.12)}
+.usart .wdot{cursor:pointer;transition:fill .25s ease,transform .2s ease;transform-box:fill-box;transform-origin:center}
+.usart:hover .wdot.d1,.tdev .usart .wdot.d1{fill:#FF5F57}.usart:hover .wdot.d2,.tdev .usart .wdot.d2{fill:#FEBC2E}.usart:hover .wdot.d3,.tdev .usart .wdot.d3{fill:#28C840}
+.usart .wdot:hover{transform:scale(1.35)}
+.usart .whit{fill:transparent;cursor:pointer}.legal{max-width:560px;width:calc(100% - 32px);max-height:85vh;border:2px solid var(--ink);border-radius:18px;padding:22px 22px 18px;background:var(--white,#fff);color:var(--ink);box-shadow:6px 6px 0 var(--sun)}.legal::backdrop{background:rgba(31,35,40,.45)}.legal h3{font-family:var(--head);font-size:22px;margin:0 0 10px}.legal p{font-size:15.5px;line-height:1.5;margin:0 0 10px}.legal .lx{all:unset;cursor:pointer;position:sticky;top:0;float:right;font-size:26px;line-height:1;width:36px;height:36px;text-align:center;border-radius:50%;background:var(--sun)}.legal [lang]{display:none}html[lang^="de"] .legal [lang="de"],html[lang^="en"] .legal [lang="en"]{display:block}.legal.imp .lg-priv,.legal.priv .lg-imp{display:none}
 .wcard .hid{color:var(--ink-2)}.wcard .hid::before{content:"Zum Anzeigen tippen"}html[lang^="en"] .wcard .hid::before{content:"Tap to show"}details .ans .pbtn{margin:8px 0 16px 4px}details .ul{background:linear-gradient(#1E5E3F,#1E5E3F) 0 100%/0 2px no-repeat;padding-bottom:1px;transition:background-size .6s ease .25s}details[open] .ul{background-size:100% 2px}
 /* ===== Inhalt 19.11 ===== */
 .brand-mark{width:38px;height:38px}
@@ -2082,7 +2089,8 @@ header.top{will-change:transform}
 })();
 </script>
 
-<dialog id="legal" class="legal"><button type="button" class="lx" aria-label="Schliessen">×</button>
+<script>(function(){var svg=document.querySelector('.usart');if(!svg)return;var NS='http://www.w3.org/2000/svg';var kids=[].slice.call(svg.children);var g=document.createElementNS(NS,'g');g.setAttribute('class','win');svg.insertBefore(g,kids[1]);kids.slice(1).forEach(function(k){if(!k.classList.contains('cursor'))g.appendChild(k);});var dots=[].slice.call(g.querySelectorAll('circle')).filter(function(c){return c.getAttribute('cy')==='80';});var st='';function set(x){st=(st===x?'':x);g.classList.remove('closed','min','max');if(st)g.classList.add(st);if(st==='closed'){setTimeout(function(){if(st==='closed'){st='';g.classList.remove('closed');}},1400);}}
+['closed','min','max'].forEach(function(act,i){var d=dots[i];if(!d)return;d.classList.add('wdot','d'+(i+1));var h=document.createElementNS(NS,'circle');h.setAttribute('cx',d.getAttribute('cx'));h.setAttribute('cy','80');h.setAttribute('r','10');h.setAttribute('class','whit');g.appendChild(h);[d,h].forEach(function(el){el.addEventListener('click',function(e){e.stopPropagation();set(act);});});});})();</script><dialog id="legal" class="legal"><button type="button" class="lx" aria-label="Schliessen">×</button>
 <div class="lg-imp">
 <div lang="de"><h3>Impressum</h3><p><b>Iuliia Mirku</b><br>Einzelunternehmen<br>Krankenhausstrasse 10<br>9230 Flawil, Kanton St. Gallen<br>Schweiz</p><p>E-Mail: mirkurobin@gmail.com<br>WhatsApp: +41 77 470 59 28</p><p>Für Inhalte externer Links übernehmen wir keine Haftung. Für deren Inhalte sind ausschliesslich die Betreiber verantwortlich.</p></div>
 <div lang="en"><h3>Legal notice</h3><p><b>Iuliia Mirku</b><br>Sole proprietorship<br>Krankenhausstrasse 10<br>9230 Flawil, Canton of St. Gallen<br>Switzerland</p><p>E-mail: mirkurobin@gmail.com<br>WhatsApp: +41 77 470 59 28</p><p>We are not responsible for the content of external links. Their operators alone are responsible for it.</p></div>
