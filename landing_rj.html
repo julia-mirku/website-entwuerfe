@@ -830,6 +830,27 @@ html[lang^="en"] .tsite .grid2 span.sel i::after{content:" · in basket"}
 @media (max-width:640px){#splash .lg{flex-direction:column}#splash .nm{font-size:22px}}
 @media (prefers-reduced-motion:reduce){#splash{display:none}}
 
+.psec{padding-top:36px;padding-bottom:30px}
+.pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
+@media (max-width:820px){.pcards{grid-template-columns:1fr;gap:12px}}
+.pcard{display:flex;flex-direction:column;gap:6px;padding:22px 22px 20px;border:2px solid var(--line);border-radius:var(--r,20px);background:var(--paper);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;outline:none}
+.pcard .pk{font-weight:700;color:var(--ink-2);font-size:15.5px}
+.pcard .pv{font-family:var(--head);font-weight:800;font-size:32px;line-height:1.1;color:var(--ink)}
+.pcard .pv small{font-family:inherit;font-size:16px;font-weight:700;color:var(--ink-2);margin-right:4px}
+.pcard .pv small:last-child{margin:0 0 0 2px}
+.pcard .pd{font-size:15px;color:var(--ink-2);line-height:1.45}
+.pcard .pv{background:linear-gradient(var(--sun),var(--sun)) 0 92%/0 .32em no-repeat;transition:background-size .35s ease;justify-self:start;width:max-content}
+.pcard:hover,.pcard:focus-visible,.tdev .pcard.on{transform:translateY(-3px);border-color:var(--ink);box-shadow:5px 5px 0 var(--sun)}
+.pcard:hover .pv,.pcard:focus-visible .pv,.tdev .pcard.on .pv{background-size:100% .32em}
+.pcard.g:hover,.pcard.g:focus-visible,.tdev .pcard.g.on{box-shadow:5px 5px 0 #1E5E3F}
+.pcard.g .pv{background-image:linear-gradient(#BFE3CF,#BFE3CF)}
+.pnote{margin-top:16px;font-size:15.5px;color:var(--ink-2)}
+.psec .pbtn{margin-top:14px}
+/* Preis-Panel: Preiszeilen statt zwei gleichzeitig hervorgehobener Plaketten */
+.plan .prow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 12px;margin-top:8px;border-radius:12px;background:var(--paper-2,#FFFAEE);transition:background-color .2s ease}
+.plan .prow b{font-family:var(--head);font-weight:800;white-space:nowrap}
+.plan .prow:hover{background:var(--sun-soft,#FFF0C4)}
+.plan:hover .tag,.tdev .plan.on .tag{transform:none}
 
 /* ===== lebendige Branchen-Icons + weniger Gelb ===== */
 .trades .card .tico{background:var(--sun);transition:background-color .3s ease, transform .2s ease, box-shadow .3s ease}
@@ -1348,6 +1369,20 @@ header.top{will-change:transform}
     </div>
   </section>
 
+  <section class="psec" id="preise" aria-labelledby="h-psec">
+    <div class="wrap">
+      <div class="eyebrow-line"></div>
+      <h2 id="h-psec" data-t="pz_h">Preise</h2>
+      <p class="lead" data-t="pz_lead">Klare Preise ab, den genauen Betrag nennen wir in der Offerte. Er bleibt fest.</p>
+      <div class="pcards">
+        <div class="pcard" tabindex="0"><span class="pk" data-t="pz1k">Eine Seite</span><b class="pv"><small data-t="pz_ab">ab</small> CHF 900</b><span class="pd" data-t="pz1d">Alles Wichtige auf einer Seite: Angebot, Preise, Öffnungszeiten, Kontakt.</span></div>
+        <div class="pcard" tabindex="0"><span class="pk" data-t="pz2k">3 bis 5 Seiten</span><b class="pv"><small data-t="pz_ab2">ab</small> CHF 1’800</b><span class="pd" data-t="pz2d">Eigene Seiten für Leistungen, Team oder Galerie.</span></div>
+        <div class="pcard g" tabindex="0"><span class="pk" data-t="pz3k">Betreuung</span><b class="pv"><small data-t="pz_ab3">ab</small> CHF 30<small data-t="pz_mo">/Monat</small></b><span class="pd" data-t="pz3d">Sicherheit, Updates und Backups. Auf Wunsch erledigen wir auch kleine Änderungen.</span></div>
+      </div>
+      <p class="pnote" data-t="pz_note">Mit Bewegung und Effekten wie auf dieser Seite: Preis auf Anfrage.</p>
+      <button type="button" class="pbtn" data-open-prices aria-haspopup="dialog" aria-controls="prices"><span data-t="pz_btn">Alle Preise und Bedingungen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </section>
   <section class="faq" aria-labelledby="h-faq">
     <div class="wrap">
       <div class="eyebrow-line"></div>
@@ -1420,7 +1455,7 @@ header.top{will-change:transform}
       <div class="plan">
         <h4 data-t="pl1h">Neue Website</h4>
         <p data-t="pl1d">Für das Handy gebaut, auf Deutsch und Englisch, mit allem, was Ihre Kunden suchen.</p>
-        <span class="tag" data-t="pk1a">Eine Seite ab CHF 900</span> <span class="tag" data-t="pk1b">3 bis 5 Seiten ab CHF 1’800</span>
+        <div class="prow"><span data-t="pk1a">Eine Seite</span><b>ab CHF 900</b></div><div class="prow"><span data-t="pk1b">3 bis 5 Seiten</span><b>ab CHF 1’800</b></div>
       </div>
       <div class="plan">
         <h4 data-t="pl2h">Mit Bewegung und Effekten</h4>
@@ -1487,6 +1522,20 @@ header.top{will-change:transform}
     ch3:"Done! May we publish it now?",
     ch2:"Wow, exactly what I wanted! Just make the top photo a bit brighter, please.",
     ch1:"Your draft is ready. Have a look!",
+    pz_btn:"All prices and terms",
+    pz_note:"With motion and effects like on this page: price on request.",
+    pz_mo:"/month",
+    pz_ab3:"from",
+    pz_ab2:"from",
+    pz_ab:"from",
+    pz3d:"Security, updates and backups. On request we also make small changes.",
+    pz3k:"Care",
+    pz2d:"Separate pages for services, team or gallery.",
+    pz2k:"3 to 5 pages",
+    pz1d:"Everything important on one page: services, prices, opening hours, contact.",
+    pz1k:"One page",
+    pz_lead:"Clear starting prices. We give you the exact amount in the quote, and it stays fixed.",
+    pz_h:"Prices",
     tlive:"Live · Try it out",
     pm2p:"from CHF 60 a month",
     pm2b:"Your domain stays yours. We can set up a new one if you like.",
@@ -1628,8 +1677,8 @@ header.top{will-change:transform}
     p_h:"Prices and terms",
     "@pclose":"Close",
     p1_h:"Your website",
-    pk1a:"One page from CHF 900",
-    pk1b:"3 to 5 pages from CHF 1,800",
+    pk1a:"One page",
+    pk1b:"3 to 5 pages",
     k1h:"New website",
     k1d:"Your website from scratch: a home page or several pages with opening hours, prices, address and a button to book or order.",
     k1x:"A live “Open now” sign based on your opening hours, with today highlighted. If you like, a light and a dark design to switch between.",
