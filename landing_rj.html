@@ -1197,6 +1197,13 @@ html.nav-a .snav.na,html.nav-b .snav.nb,html.nav-c .snav.nc{display:flex}
 footer .fhours{margin-left:auto}
 footer .fhours b{color:var(--ink)}
 @media (max-width:640px){footer .fhours{margin-left:0;flex-basis:100%}}
+/* Book-Knöpfe in den Handys: beim Hovern sichtbar reagieren */
+.bookbtn,.slot.cta{transition:scale .2s ease,translate .2s ease,box-shadow .2s ease,filter .2s ease,background-color .25s}
+.bookbtn:hover{scale:1.06;translate:0 -2px;filter:brightness(1.06);box-shadow:0 0 0 1.8cqw rgba(255,200,26,.5),0 .7cqw 0 var(--ink)}
+.slot.cta:hover{scale:1.04;translate:0 -2px;filter:brightness(1.06);box-shadow:0 0 0 5px rgba(255,200,26,.45),0 5px 0 var(--ink);cursor:pointer}
+.bookbtn.booked:hover{box-shadow:0 0 0 1.8cqw rgba(28,122,75,.35),0 .7cqw 0 var(--ink)}
+.slot.cta.booked:hover{box-shadow:0 0 0 5px rgba(28,122,75,.3),0 5px 0 var(--ink)}
+.bookbtn:active,.slot.cta:active{scale:.97;translate:0 1px}
 </style>
 
 <style>
