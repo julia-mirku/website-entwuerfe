@@ -840,7 +840,7 @@ html.anim .steps.rvl.in .step:nth-child(1) .sprig{animation-delay:.55s}html.anim
   <div class="wrap">
     <div class="eyebrow"><span class="strip h" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Video</div>
     <h2>Ein Blick in meine Praxis</h2>
-    <div class="vbox reveal"><video controls playsinline preload="none" poster="andrea_poster_film.jpg?v=4" width="1280" height="720" aria-label="Video: Ein Blick in die Praxis von Andrea Mirku"><source src="andrea_film_hd.mp4" type="video/mp4"></video></div>
+    <div class="vbox reveal"><video controls playsinline preload="none" poster="andrea_poster_film.jpg?v=5" width="1280" height="720" aria-label="Video: Ein Blick in die Praxis von Andrea Mirku"><source src="andrea_film_hd.mp4" type="video/mp4"></video></div>
   </div>
 </section>
 
@@ -1261,6 +1261,12 @@ window.amSeed=function(btn){if(matchMedia('(prefers-reduced-motion: reduce)').ma
  var d=document.createElement('span');d.className='amseed';d.setAttribute('aria-hidden','true');
  d.innerHTML='<svg viewBox="0 0 34 48"><path d="M17 47V20"/><circle cx="17" cy="47" r="1.6" fill="currentColor" style="fill:var(--apri);stroke:none"/>'+[-70,-45,-22,0,22,45,70].map(function(g){var x=17+Math.sin(g*Math.PI/180)*15,y=20-Math.cos(g*Math.PI/180)*15;return '<path d="M17 20L'+x.toFixed(1)+' '+y.toFixed(1)+'"/><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r=".9" style="fill:var(--leaf);stroke:none"/>'}).join('')+'</svg>';
  d.style.left=(a.left-r.left+a.width/2-24)+'px';d.style.top=(a.top-r.top-58)+'px';f.appendChild(d);setTimeout(function(){d.remove()},3600)};
+</script>
+<script>
+/* Video startet beim Posterbild (1,0 s), damit nach Play kein Bildsprung */
+(function(){var v=document.querySelector('.vbox video');if(!v)return;var done=false;
+ function go(){if(done)return;done=true;if(v.currentTime<1)try{v.currentTime=1}catch(e){}}
+ v.addEventListener('loadedmetadata',go);v.addEventListener('play',go);})();
 </script>
 </body>
 </html>
