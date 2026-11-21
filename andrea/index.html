@@ -601,6 +601,31 @@ dialog.drawer.in::backdrop{opacity:1}
 .hrs small{font:600 14px/1 "Raleway",sans-serif;color:var(--muted);letter-spacing:.01em;margin-right:2px}
 .hrs b,.hrs span{white-space:nowrap}
 @media (max-width:600px){.hrs{flex-wrap:wrap;row-gap:6px;border-radius:20px;padding:10px 18px}.hrs small{flex-basis:100%}}
+
+/* Tage interaktiv 21.11 */
+.wk.on{display:inline-grid;grid-template-columns:auto auto;column-gap:8px;border-radius:20px;padding:10px 14px 10px 16px;row-gap:6px;align-items:center;max-width:100%}
+.wk.on small{margin-right:4px}
+.wk-days{display:inline-flex;gap:3px}
+.wk-d{font:700 14px/1 "Raleway",sans-serif;color:var(--ink);background:none;border:1.5px solid transparent;border-radius:8px;padding:6px 7px;min-width:34px;cursor:pointer;transition:border-color .2s,color .2s,background-color .2s;-webkit-tap-highlight-color:transparent;font-variant-numeric:tabular-nums}
+.wk-d.off{color:var(--muted);font-weight:600}
+.wk-d[aria-pressed="true"]{border-color:var(--dt);color:var(--dt);background:var(--card)}
+.wk-out{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;min-height:24px}
+.wk-out em{font:600 13px/1 "Raleway",sans-serif;font-style:normal;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.wk-out.off span{color:var(--muted);font-weight:700;font-size:16px}
+.hrs-dd.on{gap:2px;margin-top:6px}
+.wk-r{display:flex;justify-content:space-between;align-items:baseline;gap:14px;width:100%;max-width:330px;text-align:left;background:none;border:1.5px solid transparent;border-radius:9px;padding:5px 10px;margin-left:-11px;cursor:pointer;color:var(--ink);font:600 17px/1.3 "Raleway",sans-serif;transition:border-color .2s,color .2s,background-color .2s;-webkit-tap-highlight-color:transparent}
+.wk-r i{white-space:nowrap;font-style:normal;font-weight:800;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.wk-r.off{color:var(--muted)}.wk-r.off i{font-weight:600}
+.wk-r[aria-pressed="true"]{border-color:var(--dt);background:color-mix(in srgb,var(--lime) 10%,var(--card))}
+.wk-r[aria-pressed="true"] span{color:var(--dt);font-weight:800}
+.wk-r small{font:600 12px/1 "Raleway",sans-serif;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-left:8px}
+.wk-d:focus-visible,.wk-r:focus-visible{outline:2px solid var(--dt);outline-offset:2px}
+@media (hover:hover){.wk.live .wk-d:not([aria-pressed="true"]):hover,.hrs-dd.on .wk-r:not([aria-pressed="true"]):hover{border-color:color-mix(in srgb,var(--dt) 55%,transparent)}}
+.wk.on:not(.live){pointer-events:none}
+.cbox dd.hrs-dd .wk-r span{font:600 17px/1.3 "Raleway",sans-serif;letter-spacing:0;color:inherit;white-space:nowrap}
+.cbox dd.hrs-dd .wk-r[aria-pressed="true"] span{color:var(--dt);font-weight:800}
+@media (max-width:600px){.wk.on{grid-template-columns:auto}.wk-d{min-width:0;padding:6px 6px;font-size:13.5px}.wk-days{gap:1px}.cbox dd.hrs-dd .wk-r span,.wk-r{font-size:15.5px}.wk-r{gap:8px;padding:5px 8px;margin-left:-9px}.wk-r small{font-size:0;width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;vertical-align:middle;margin-left:7px}.wk-r i{white-space:nowrap}}
+@media (max-width:360px){.cbox dd.hrs-dd .wk-r span,.wk-r{font-size:14px;letter-spacing:0}.wk-r{gap:6px;padding:5px 6px;margin-left:-7px}.wk.on{padding:10px 10px}.wk-d{padding:6px 4px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -638,7 +663,7 @@ dialog.drawer.in::backdrop{opacity:1}
       <a class="btn" href="tel:+4915167212085">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
         Termin telefonisch vereinbaren</a>
-      <p class="note"><span class="hrs"><small>Telefonisch:</small><b>Mo–Fr</b><span>07:00–20:00 Uhr</span></span><span class="hnote">Beratung nur nach Terminvereinbarung</span></p>
+      <p class="note"><span class="hrs wk" data-wk="hero" role="group" aria-label="Telefonische Erreichbarkeit"><small>Telefonisch:</small><b>Mo–Fr</b><span>07:00–20:00 Uhr</span></span><span class="hnote">Beratung nur nach Terminvereinbarung</span></p>
       <p class="haddr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Doggenriedstra%C3%9Fe+43+88250+Weingarten" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Doggenriedstraße 43, Weingarten</a></p>
       <div class="scale" aria-hidden="true"><div class="bar"></div><div class="lbl"><span>sauer</span><span>basisch</span></div></div>
     </div>
@@ -822,7 +847,7 @@ dialog.drawer.in::backdrop{opacity:1}
         <dt>Praxis</dt>
         <dd>Andrea Mirku Gesundheitsberaterin<br>Doggenriedstraße 43<br>88250 Weingarten<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Doggenriedstra%C3%9Fe+43+88250+Weingarten" target="_blank" rel="noopener">Route planen</a></dd>
         <dt>Telefonisch erreichbar</dt>
-        <dd class="hrs-dd"><b>Montag bis Freitag</b><span>07:00–20:00 Uhr</span></dd>
+        <dd class="hrs-dd" data-wk="box"><b>Montag bis Freitag</b><span>07:00–20:00 Uhr</span></dd>
         <dt>E-Mail</dt>
         <dd><a href="mailto:info@andrea-mirku.de">info@andrea-mirku.de</a></dd>
       </dl>
@@ -916,7 +941,7 @@ dialog.drawer.in::backdrop{opacity:1}
   var nodes=[],attrs=[],title0=document.title;
   function norm(t){return t.replace(/\s+/g,' ').trim()}
   function walk(el){
-    if(SKIP[el.tagName]||el.classList&&el.classList.contains('lang'))return;
+    if(SKIP[el.tagName]||el.classList&&el.classList.contains('lang')||el.hasAttribute&&el.hasAttribute('data-wk'))return;
     ['alt','aria-label'].forEach(function(a){if(el.hasAttribute&&el.hasAttribute(a))attrs.push([el,a,el.getAttribute(a)])});
     var direct=[].some.call(el.childNodes,function(n){return n.nodeType===3&&n.nodeValue.trim()});
     if(direct){
@@ -998,6 +1023,40 @@ dialog.drawer.in::backdrop{opacity:1}
   /* Linie der vier Schritte endet am Kreis 4 */
   function line(){[].forEach.call(document.querySelectorAll('.steps'),function(st){var l=st.lastElementChild;if(!l)return;st.style.setProperty('--sb',(l.offsetHeight-30)+'px')})}
   line();addEventListener('resize',line);addEventListener('load',line);
+})();
+</script>
+<script>
+(function(){
+  var T={de:{s:['Mo','Di','Mi','Do','Fr','Sa','So'],l:['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'],h:'07:00–20:00 Uhr',x:'keine Telefonzeit',t:'Heute',lab:'Telefonisch:',g:'Telefonische Erreichbarkeit'},
+         en:{s:['Mo','Tu','We','Th','Fr','Sa','Su'],l:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],h:'07:00–20:00',x:'no phone hours',t:'Today',lab:'By phone:',g:'Phone hours'}};
+  var today=0;try{var wd=new Intl.DateTimeFormat('en-GB',{weekday:'short',timeZone:'Europe/Berlin'}).format(new Date());today=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].indexOf(wd)}catch(e){today=(new Date().getDay()+6)%7}
+  if(today<0)today=0;
+  var sel=today,hero=document.querySelector('[data-wk="hero"]'),box=document.querySelector('[data-wk="box"]');
+  function L(){return T[document.documentElement.lang]||T.de}
+  function off(d){return d>4}
+  function btn(cls,d){var b=document.createElement('button');b.type='button';b.className=cls+(off(d)?' off':'');b.dataset.d=d;b.addEventListener('click',function(){sel=d;draw()});return b}
+  var hb=[],rb=[],out,lab;
+  if(hero){hero.innerHTML='';hero.classList.add('on');lab=document.createElement('small');hero.appendChild(lab);
+    var days=document.createElement('span');days.className='wk-days';hero.appendChild(days);
+    for(var d=0;d<7;d++){var b=btn('wk-d',d);days.appendChild(b);hb.push(b)}
+    out=document.createElement('span');out.className='wk-out';out.setAttribute('aria-live','polite');hero.appendChild(out);
+    var still=!document.documentElement.classList.contains('anim')||matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function(){hero.classList.add('live')},still?0:1500)}
+  if(box){box.innerHTML='';box.classList.add('on');box.setAttribute('role','group');
+    for(var d=0;d<7;d++){var r=btn('wk-r',d);box.appendChild(r);rb.push(r)}}
+  function draw(){var t=L();
+    if(hero){hero.setAttribute('aria-label',t.g);lab.textContent=t.lab;
+      hb.forEach(function(b,d){b.textContent=t.s[d];b.setAttribute('aria-label',t.l[d]);b.setAttribute('aria-pressed',d===sel?'true':'false')});
+      out.className='wk-out'+(off(sel)?' off':'');
+      out.innerHTML='<b></b><span></span>'+(sel===today?'<em></em>':'');
+      out.children[0].textContent=t.l[sel];out.children[1].textContent=off(sel)?t.x:t.h;if(sel===today)out.children[2].textContent=t.t}
+    if(box){box.setAttribute('aria-label',t.g);
+      rb.forEach(function(r,d){r.innerHTML='<span></span><i></i>';r.children[0].textContent=t.l[d];r.children[1].textContent=off(d)?t.x:t.h;
+        if(d===today){var m=document.createElement('small');m.textContent=t.t;r.children[0].appendChild(m)}
+        r.setAttribute('aria-pressed',d===sel?'true':'false')})}
+  }
+  draw();
+  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 })();
 </script>
 </body>
