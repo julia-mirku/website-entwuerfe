@@ -685,6 +685,13 @@ html.anim .steps.rvl.in::before{animation-name:lineX}
 .nw{white-space:nowrap}
 footer nav a .gl{font-size:.85em}
 @media (max-width:360px){.gl{font-size:.7em}}
+
+/* Kein blauer Browser-Rahmen beim Klicken/Tippen (Юля 22.11, Punkt 6a) */
+*{-webkit-tap-highlight-color:transparent}
+:focus:not(:focus-visible){outline:none}
+:focus-visible{outline:2px solid var(--apri);outline-offset:3px}
+dialog:focus,dialog:focus-visible,video:focus:not(:focus-visible){outline:none}
+.cform input:focus-visible,.cform select:focus-visible,.cform textarea:focus-visible{outline:none}
 /* ===== 8 IDEEN 21.11 — jede einzeln entfernbar: Block löschen + data-idee="N" im HTML ===== */
 /* IDEE 1 Atem START */
 .theme{position:relative;overflow:hidden;isolation:isolate}
