@@ -675,6 +675,10 @@ html.anim .steps.rvl.in::before{animation-name:lineX}
 .cbox a.addr{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;text-decoration-thickness:2px;border-radius:6px;transition:color .2s,text-decoration-color .2s,background-color .2s}
 @media (hover:hover){.cbox.shown a.addr:hover{color:var(--dt);text-decoration-color:var(--apri);background:color-mix(in srgb,var(--lime) 12%,transparent)}}
 .cbox a.addr:active{color:var(--dt)}
+
+/* Partner: ein Titel statt zwei (Юля 21.11) */
+.partner h2.ptitle{font-family:"Bad Script",cursive;font-weight:400;font-size:clamp(34px,4.4vw,48px);line-height:1.15;letter-spacing:0;color:var(--apri);margin:0 0 6px}
+.partner h2.ptitle .strip{transform:scale(1.15);transform-origin:left center;margin-right:4px}
 /* ===== 8 IDEEN 21.11 — jede einzeln entfernbar: Block löschen + data-idee="N" im HTML ===== */
 /* IDEE 1 Atem START */
 .theme{position:relative;overflow:hidden;isolation:isolate}
@@ -957,8 +961,7 @@ html.anim .steps.rvl.in .step:nth-child(1) .sprig{animation-delay:.55s}html.anim
 
 <section class="partner" id="partner">
   <div class="wrap">
-    <div class="eyebrow"><span class="strip h" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Partner</div>
-    <h2>Meine Partner</h2>
+    <h2 class="eyebrow ptitle"><span class="strip h" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>Meine Partner</h2>
     <div class="plogos">
       <a class="plogo reveal" href="https://www.more-life-institut.com/" target="_blank" rel="noopener"><span class="pimg"><img src="andrea_partner_morelife.jpg" alt="Logo vom More Life Institut" width="720" height="331" loading="lazy"></span><span class="pname">More Life Institut</span><span class="pext">Website ↗</span></a>
       <a class="plogo reveal" href="https://www.qi-quant.com/" target="_blank" rel="noopener"><span class="pimg"><img src="andrea_partner_qiquant.png" alt="Logo von Qi-Quant" width="499" height="128" loading="lazy"></span><span class="pname">Qi-Quant</span><span class="pext">Website ↗</span></a>
