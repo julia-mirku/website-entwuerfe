@@ -626,6 +626,28 @@ dialog.drawer.in::backdrop{opacity:1}
 .cbox dd.hrs-dd .wk-r[aria-pressed="true"] span{color:var(--dt);font-weight:800}
 @media (max-width:600px){.wk.on{grid-template-columns:auto}.wk-d{min-width:0;padding:6px 6px;font-size:13.5px}.wk-days{gap:1px}.cbox dd.hrs-dd .wk-r span,.wk-r{font-size:15.5px}.wk-r{gap:8px;padding:5px 8px;margin-left:-9px}.wk-r small{font-size:0;width:7px;height:7px;border-radius:50%;background:var(--lime);display:inline-block;vertical-align:middle;margin-left:7px}.wk-r i{white-space:nowrap}}
 @media (max-width:360px){.cbox dd.hrs-dd .wk-r span,.wk-r{font-size:14px;letter-spacing:0}.wk-r{gap:6px;padding:5px 6px;margin-left:-7px}.wk.on{padding:10px 10px}.wk-d{padding:6px 4px;font-size:13px}}
+
+/* Liste Юли 21.11: alles reagiert auf die Maus (nach der Animation) */
+.hero .leafframe img,.rooms img{transition:box-shadow .3s ease,filter .3s ease}
+.since{transition:box-shadow .3s ease,border-color .3s ease}
+.since b{transition:color .25s}
+.step .n{transition:background-color .25s,color .25s,box-shadow .25s}
+.step h3{transition:color .25s}
+.haddr a{transition:color .2s,text-decoration-color .2s}
+.cbox .mark{transition:transform .5s cubic-bezier(.3,1.4,.5,1),box-shadow .3s}
+.wk-d,.wk-r{transition:border-color .2s,color .2s,background-color .2s}
+@media (hover:hover){
+ .hero.live .leafframe:hover img{box-shadow:0 0 0 7px color-mix(in srgb,var(--lime) 30%,transparent),0 24px 40px -18px rgba(70,80,20,.4)}
+ .hero.live .since:hover{border-color:var(--lime);box-shadow:0 0 0 5px color-mix(in srgb,var(--lime) 22%,transparent),0 16px 40px -20px rgba(0,0,0,.35)}
+ .hero.live .since:hover b{color:var(--dt)}
+ .hero.live .haddr a:hover{color:var(--dt);text-decoration-color:var(--apri);text-decoration-thickness:2px}
+ .step.shown:hover .n{background:color-mix(in srgb,var(--lime) 22%,var(--card));box-shadow:0 0 0 6px color-mix(in srgb,var(--lime) 20%,transparent)}
+ .step.shown:hover h3{color:var(--dt)}
+ .rooms.shown figure:hover img{box-shadow:0 0 0 6px color-mix(in srgb,var(--apri) 22%,transparent),0 22px 36px -20px rgba(70,80,20,.45);filter:saturate(1.08) brightness(1.03)}
+ .cbox.shown .mark:hover{transform:rotate(-14deg);box-shadow:0 0 0 5px color-mix(in srgb,var(--lime) 25%,transparent)}
+ .wk.live .wk-d:not([aria-pressed="true"]):hover,.hrs-dd.on .wk-r:not([aria-pressed="true"]):hover{background:color-mix(in srgb,var(--apri) 10%,transparent)}
+}
+.step:active .n,.rooms figure:active img{box-shadow:0 0 0 6px color-mix(in srgb,var(--lime) 20%,transparent)}
 </style>
 </head>
 <body>
@@ -1041,7 +1063,7 @@ dialog.drawer.in::backdrop{opacity:1}
     for(var d=0;d<7;d++){var b=btn('wk-d',d);days.appendChild(b);hb.push(b)}
     out=document.createElement('span');out.className='wk-out';out.setAttribute('aria-live','polite');hero.appendChild(out);
     var still=!document.documentElement.classList.contains('anim')||matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setTimeout(function(){hero.classList.add('live')},still?0:1500)}
+    setTimeout(function(){hero.classList.add('live');var H=document.querySelector('.hero');if(H)H.classList.add('live')},still?0:1500)}
   if(box){box.innerHTML='';box.classList.add('on');box.setAttribute('role','group');
     for(var d=0;d<7;d++){var r=btn('wk-r',d);box.appendChild(r);rb.push(r)}}
   function draw(){var t=L();
