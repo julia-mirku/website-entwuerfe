@@ -2,7 +2,7 @@
 <html lang="de-CH" translate="no">
 <head>
 <meta name="google" content="notranslate"><script>try{if("scrollRestoration" in history)history.scrollRestoration="manual";}catch(e){}if(!location.hash&&window.scrollY>0){window.scrollTo(0,0);}</script>
-<script>setTimeout(function(){var s=document.getElementById("splash");if(s)s.parentNode.removeChild(s);},2600);</script>
+<script>try{if(sessionStorage.getItem("rj-splash")==="1")document.documentElement.classList.add("sp-seen");}catch(e){}setTimeout(function(){var s=document.getElementById("splash");if(s)s.parentNode.removeChild(s);},1300);</script>
 <meta charset="utf-8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect x='1.5' y='1.5' width='41' height='41' rx='13' fill='%23FFC81A' stroke='%231F2328' stroke-width='2.5'/%3E%3Ctext x='22' y='28.5' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='900' font-size='15' fill='%231F2328'%3ER%3Ctspan fill='%231E5E3F' font-size='12'%3E%26%3C/tspan%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="64x64" href="rj_favicon.png">
@@ -1445,6 +1445,126 @@ header .snav.na a:nth-child(4){min-width:64px}header .snav.na a:nth-child(5){min
 .chatw{transition:opacity .25s ease,transform .25s ease}
 html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-events:none}
 </style>
+
+<style>
+/* ===== review_fix_21_11 ===== */
+/* 1. Gepinnte Blöcke kürzer (how ≈ +70vh, steps ≈ +90vh, Wirbel ≈ ein Drittel kürzer) */
+.how.pin{height:calc(100vh + 70vh);height:calc(100svh + 70svh)}
+.steps.pin{height:calc(100vh + 90vh);height:calc(100svh + 90svh)}
+.swirl{height:215vh;height:215svh}
+@media (max-width:900px){
+  .how.pin{height:calc(100vh + 70vh);height:calc(100svh + 70svh)}
+  .steps.pin{height:calc(100vh + 90vh);height:calc(100svh + 90svh)}
+}
+@media (prefers-reduced-motion:reduce){.how.pin,.steps.pin,.swirl{height:auto}}
+/* how: ohne Verzögerung, kürzere Klapp-Animation */
+.how.pin .hgrid li.lit .hin{transition:transform .5s cubic-bezier(.25,1.45,.45,1),opacity .18s ease}
+.how.pin .hgrid li.lit::before{transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+.how.pin .hgrid li.lit .hico{transition:transform .45s cubic-bezier(.3,1.8,.5,1) .12s}
+/* steps: Karte landet schneller */
+.steps.pin ol>li.land{transition:transform .55s cubic-bezier(.3,1.45,.55,1),opacity .15s ease}
+.steps.pin ol>li.thud::before{animation-delay:.3s}
+.steps.pin .shint i{animation:shb 1.8s ease-in-out 3}
+
+/* 2. Kleine Endlos-Animationen: langsamer, 1–2 Durchläufe */
+.card:is(:hover,.live) .tico .bl1{animation:snipL .57s cubic-bezier(.6,0,.4,1) 4 alternate}
+.card:is(:hover,.live) .tico .bl2{animation:snipR .57s cubic-bezier(.6,0,.4,1) 4 alternate}
+.card:is(:hover,.live) .tico .h1{animation:hairfall 2.25s ease-in 2 forwards}
+.card:is(:hover,.live) .tico .h2{animation:hairfall 2.25s ease-in 1.1s 2 forwards}
+.card:is(:hover,.live) .tico .st{animation:steam2 2.4s ease-in-out 2 forwards}
+.card:is(:hover,.live) .tico .s2{animation-delay:.75s}
+.card:is(:hover,.live) .tico .wave{animation:wv 2.1s ease-in-out 1.3s 4 alternate}
+.card:is(:hover,.live) .tico .ham{animation:hammer 1.05s cubic-bezier(.5,0,.6,1) 2}
+.card:is(:hover,.live) .tico .nail{animation:nail 1.05s ease-in-out 2}
+.card:is(:hover,.live) .tico .rays{animation:rays 3.6s linear 1.3s 1 forwards}
+.trades .card:is(:hover,.live) .tico .rays{animation:rays2 3.9s linear 1.6s 1 forwards}
+.card:is(:hover,.live) .tico .hrt{animation:hb-beat 1.65s ease-in-out 2}
+.card:is(:hover,.live) .tico .ecg{animation:ecg 2.1s linear 2 forwards}
+.idea{animation:none}
+.idea.rjv{animation:idea-glow 6s ease-in-out 2}
+.usart .heart.beat{animation:hb-beat 2.4s ease-in-out 2}
+.usimg.isMin .wrest{animation:wrb 2.4s ease-in-out .4s 2}
+.slot.cta.on::after{animation:shine 3.6s ease-in-out .6s 2 both}
+.tsite .th .steam{animation:steam 3s ease-in-out 2 forwards}
+.tsite .badge i{animation:pulse 1.8s ease-in-out 3}
+.tsite .radius .r1,.tsite .map .rad{animation:rad 4.5s ease-in-out 2}
+.tphone-wrap .tlive i{animation:none}
+.tphone-wrap .tlive.rjv i{animation:pulse 1.8s ease-in-out 3}
+.chat .online i{animation:none}
+.chat .online.rjv i{animation:pulse 2.1s ease-in-out 3}
+.w-msg:is(:hover,:focus-visible,.on) .d{animation:w-dot 1.35s ease-in-out 2}
+.w-mic:is(:hover,:focus-visible,.on) .wv{animation:w-wave 1.2s ease-in-out 2}
+
+/* 3. Splash kürzer (~1 s), nur beim ersten Besuch */
+#splash{animation:sp-gone .3s ease .75s forwards}
+#splash .mk{animation-duration:.45s}
+#splash .mk .r,#splash .mk .j{animation-duration:.4s;animation-delay:.08s}
+#splash .mk .a{animation-duration:.35s;animation-delay:.28s}
+#splash .nm{animation-duration:.35s;animation-delay:.3s}
+html.sp-seen #splash{display:none !important}
+
+/* 4. Chat-Knopf */
+html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-events:none}
+@media (max-height:450px){
+  .chatb{width:48px;height:48px;min-height:48px;padding:0;justify-content:center;gap:0;border-radius:50%}
+  .chatb span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .chatb svg{width:22px;height:22px}
+}
+
+/* 5. Anruf im ersten Bildschirm */
+.hero .hcall{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;font-size:16px;color:var(--ink);text-decoration:none;min-height:44px;padding:0 4px;border-radius:10px}
+.hero .hcall .hci{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#BFE0FA;flex:none}
+.hero .hcall .hci svg{width:16px;height:16px}
+.hero .hcall span{background:linear-gradient(transparent 70%, rgba(255,200,26,.55) 70%, rgba(255,200,26,.55) 92%, transparent 92%);transition:background-size .25s ease}
+.hero .hcall:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (hover:hover){.hero .hcall:hover span{background:linear-gradient(transparent 55%, rgba(255,200,26,.7) 55%, rgba(255,200,26,.7) 95%, transparent 95%)}}
+@media (max-width:640px){.hero .hcall{margin-top:10px}}
+@media (min-width:641px){.hero .cta .btn{flex:0 0 auto;min-width:330px;justify-content:center}}
+
+/* 7. Hover weich: goldenes Leuchten statt harter gelber Schatten, nur mit Maus */
+@media (hover:hover){
+  .grid6 li:hover,.card:hover,.finds .grid6 li:hover{box-shadow:0 14px 32px -10px rgba(255,190,20,.55),0 0 0 2px rgba(255,200,26,.55) !important;border-color:rgba(255,200,26,.9) !important}
+  .pcard:hover,.pcard:focus-visible{box-shadow:0 14px 30px -12px rgba(30,94,63,.45),0 0 0 2px rgba(63,163,111,.45) !important}
+  .plan:hover{box-shadow:0 14px 30px -12px rgba(30,94,63,.4),0 0 0 2px rgba(63,163,111,.4)}
+  .plan.g:hover{box-shadow:0 14px 30px -12px rgba(255,190,20,.5),0 0 0 2px rgba(255,200,26,.5)}
+  .uchips li:hover{background:var(--sun-soft)}
+  .wchoice .wc:hover,.wchoice .wc:focus-visible,.wchoice .wc:nth-child(2):hover,.wchoice .wc:nth-child(2):focus-visible{background:var(--sun-soft)}
+  .ways li:is(:hover,:focus-visible){background:var(--sun-soft);border-color:rgba(255,200,26,.9);box-shadow:0 6px 16px -6px rgba(255,190,20,.6)}
+}
+.trades .card.live{border-color:rgba(255,200,26,.9);box-shadow:0 14px 32px -10px rgba(255,190,20,.5),0 0 0 2px rgba(255,200,26,.5)}
+.ways li.on{background:var(--sun-soft);border-color:rgba(255,200,26,.9);box-shadow:0 6px 16px -6px rgba(255,190,20,.6)}
+.tdev .pcard.on{box-shadow:0 14px 30px -12px rgba(30,94,63,.45),0 0 0 2px rgba(63,163,111,.45) !important}
+.tdev .plan.on{box-shadow:0 14px 30px -12px rgba(30,94,63,.4),0 0 0 2px rgba(63,163,111,.4)}
+html.tdev .finds .grid6 li.on{border-color:rgba(255,200,26,.9) !important;box-shadow:0 14px 32px -10px rgba(255,190,20,.5),0 0 0 2px rgba(255,200,26,.5) !important}
+html.tdev .plan.g.on{box-shadow:0 14px 30px -12px rgba(255,190,20,.5),0 0 0 2px rgba(255,200,26,.5)}
+
+/* Häkchen-Liste: kein Hover während die Häkchen erscheinen */
+.wlist.wait:not(.rjready) li{pointer-events:none}
+
+/* 8. Physio: kleine Pfeil-Taste statt gelbem Kreis */
+.tsite .tmore{width:28px;height:28px;border-radius:8px;background:transparent;border:0;display:grid;place-items:center;color:var(--ink-2);transition:background-color .2s}
+.tsite .tmore i{width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-1.5px,-1.5px)}
+.tsite .ther.open .tmore i{transform:rotate(-135deg) translate(-1.5px,-1.5px)}
+@media (hover:hover){.tphone.hov .tsite .tmore:hover{background:rgba(31,35,40,.06);color:var(--ink);box-shadow:none}}
+.tsite .ph.tav em{display:none}
+.tphone .scr{touch-action:pan-y}
+.tphone.rjdrag .scr{cursor:grabbing}
+
+/* 9. Sprachwechsel: Höhen bleiben (min-height setzt das Skript) */
+
+/* 10. Technik */
+/* iPad quer: Pfeil «weiter» nicht abgeschnitten */
+@media (min-width:901px) and (max-width:1320px){.trades .tlay{padding-right:58px}}
+/* Telefon-Muster im Wirbel: Zeilen nicht abschneiden */
+.sw-phone .slot .in > span:not(.r){white-space:normal;line-height:1.15;overflow:visible;text-overflow:clip;min-width:0}
+.sw-phone .slot .r{white-space:nowrap}
+/* Chat «Ohne böse Überraschungen»: Entwurf nicht zitronig */
+.chat .thumb .t1{background:linear-gradient(135deg,#FFE7A0,#FFC81A)}
+.chat.bright .thumb .t1{filter:brightness(1.06) saturate(.95)}
+/* Chips Nachricht/Foto/Sprachnachricht: nicht grau */
+.steps.pin ol>li .ways li.lit,.steps.pin.nopin ol>li .ways li{opacity:1;transform:none;background:var(--sun-soft)}
+.tdev .steps .ways li:not(.on){background:var(--sun-soft) !important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -1461,7 +1581,7 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
       <button type="button" data-lang="en" aria-pressed="false" aria-label="English" lang="en">EN</button>
       <button type="button" data-lang="fr" aria-pressed="false" aria-label="Français" lang="fr">FR</button>
     </div>
-    <a class="btn btn-s btn-o hb2" href="#kontakt" data-t="cta">Auf den Entwurf antworten</a>
+    <a class="btn btn-s btn-o hb2" href="#kontakt" data-t="cta">Auf unseren Entwurf antworten</a>
     <a class="btn btn-s" href="#kontakt" data-t="cta_order_s">Gratis-Entwurf bestellen</a>
   </div>
 </header>
@@ -1475,8 +1595,9 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
         <p class="sub" data-t="sub">Eine Website, die auf dem Handy sofort zeigt, was Kunden wissen wollen: Öffnungszeiten, Preise, Adresse und einen Knopf zum Buchen. Den Entwurf bauen wir gratis, und Sie sehen ihn, bevor Sie entscheiden.</p>
         <div class="cta">
           <a class="btn" href="#kontakt"><span data-t="cta_order">Gratis-Entwurf bestellen</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn btn-o" href="#kontakt" data-t="cta">Auf den Entwurf antworten</a>
+          <a class="btn btn-o" href="#kontakt" data-t="cta">Auf unseren Entwurf antworten</a>
         </div>
+        <a class="hcall" href="tel:+41799325514"><span class="hci" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M9.2 4.5h-3A1.7 1.7 0 0 0 4.5 6.3C4.9 15.6 12.4 23.1 21.7 23.5a1.7 1.7 0 0 0 1.8-1.7v-3l-4.6-1.9-2.3 2.3a13 13 0 0 1-6.8-6.8l2.3-2.3z" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span data-t="hero_call">Robin anrufen</span></a>
       </div>
 
       <div class="phones" role="img" aria-label="Drei Handy-Ansichten: Ihr Betrieb auf Google, Ihre Website mit Öffnungszeiten, ein Knopf zum Buchen." data-ta="aria-label:heroimg">
@@ -1544,7 +1665,7 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
           <a class="btn done" href="#kontakt" data-t="cta_order">Gratis-Entwurf bestellen</a>
         </div>
         <div class="pwrap">
-          <div class="sw-phone" role="img" aria-label="Handy mit fertiger Website: Name, Google-Bewertung, Öffnungszeiten, Preise, Fotos, Adresse und Knopf zum Buchen.">
+          <div class="sw-phone" role="img" aria-label="Handy mit fertiger Website: Name, Google-Bewertung, Öffnungszeiten, Preise, Fotos, Adresse und Knopf zum Buchen." data-ta="aria-label:swphone">
             <div class="scr">
               <div class="sbar" aria-hidden="true"><span>9:41</span><i></i></div>
           <div class="slot head" data-k="head"><div class="in"><div class="ht"><b data-t="sw_biz">Ihr Betrieb</b><small><i></i><span data-t="sw_now">Jetzt geöffnet</span></small></div><svg class="store" viewBox="0 0 60 50" aria-hidden="true"><path d="M6 20h48v28H6z" fill="#fff" stroke="#1F2328" stroke-width="2.5"/><path d="M4 8h52l-3 12H7z" fill="#1F2328"/><path d="M10 8l-2 12M20 8l-1 12M30 8v12M40 8l1 12M50 8l2 12" stroke="#FFC81A" stroke-width="4"/><rect x="12" y="28" width="14" height="20" fill="#FFF0C4" stroke="#1F2328" stroke-width="2"/><rect x="32" y="28" width="16" height="11" rx="2" fill="#D6EBDD" stroke="#1F2328" stroke-width="2"/></svg></div></div>
@@ -1919,7 +2040,7 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
   var EN={
     title:"Robin &amp; Julia Mirku – When people nearby search, they should find you",
     skip:"Skip to content",
-    cta:"Reply to your draft",
+    cta:"Reply to our mock-up",
     cta_order:"Order a free draft",
     cta_order_s:"Order a free draft",
     "@navlabel":"Page navigation",
@@ -1928,7 +2049,7 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
     "@tnext":"Next",
     c_em:"Email",
     sw_min:"2 min",
-    c_tel:"Call Robin",
+    c_tel:"Call Robin", hero_call:"Call Robin", "@swphone":"Phone with a finished website: name, Google rating, opening hours, prices, photos, address and a booking button.",
     fz_h:"Mon–Fri, 10 am–8 pm",
     fz_hk:"Available",
     navmenu:"Menu",
@@ -2184,12 +2305,13 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
     "@heroimg":"Three phone screens: your business on Google, your website with opening hours, a button to book.",
     "@chatimg":"Chat: you receive the draft as a preview and reply with yes."
   };
-  var FR={"@chatimg": "Chat : vous recevez la maquette, demandez une modification et dites oui.", "@chatph": "Votre question…", "@chatsend": "Envoyer", "@heroimg": "Trois écrans de téléphone : votre entreprise sur Google, votre site avec les horaires d’ouverture, un bouton pour réserver.", "@langgroup": "Langue", "@navlabel": "Navigation du site", "@navmenu": "Menu", "@pclose": "Fermer", "a1": "Nous ne promettons pas de chiffres. Nous intégrons <span class=\"ul\">ce que les clients cherchent</span> : qu’on vous trouve sur Google, qu’on voie tout de suite vos prix et vos horaires, et qu’on puisse réserver, commander ou faire une demande directement.", "a10": "Par facture QR ou par TWINT. La moitié à la commande, la moitié avant la mise en ligne.", "a2": "<span class=\"ul\">Un site d’une seule page est proposé dès CHF 900.</span> Nous vous indiquons le prix exact dans le devis, avant que vous vous engagiez.", "a4": "Peu de chose. Il nous faut vos prix et vos horaires, des photos prises avec votre téléphone et les informations pour les mentions légales.", "a5": "Dites-nous ce qui doit changer. Nous le modifions et vous le montrons à nouveau. Deux séries de corrections sont incluses. <span class=\"ul\">Si vous dites non, rien n’est mis en ligne.</span>", "a6": "Nouveaux prix, une promotion, une nouvelle photo : envoyez-les-nous par message. Vous voyez le résultat final et dites oui. Vous n’avez rien à modifier vous-même. C’est inclus dans le suivi dès CHF 60 par mois.", "a7": "En général quelques jours. Nous indiquons la date exacte dans le devis.", "a8": "Si vous en avez déjà un, nous l’utilisons. Sinon, nous vous aidons à en trouver un qui convient.", "a9": "Oui, si vous le souhaitez. Sinon, vous nous envoyez vos modifications par message, et nous nous en chargeons.", "ask_btn": "Poser une question", "ask_t": "Votre question n’y figure pas?", "c_ex": "« J’aime bien, quelle est la suite? »", "c_ex1": "« J’aimerais une maquette gratuite pour mon entreprise »", "c_h": "Une phrase suffit", "c_lead": "<a href=\"#\" class=\"wlink\">Écrivez-nous</a> de la manière la plus simple pour vous.<br>Nous répondons personnellement.", "c_mail": "E-mail R&amp;J", "c_trust": "Basés à Saint-Gall, actifs dans le monde entier", "c_wa": "Julia sur WhatsApp", "ch1": "Votre maquette est prête. Jetez-y un coup d’œil!", "ch2": "Waouh, exactement comme je le voulais! Juste la photo du haut un peu plus claire, s’il vous plaît.", "ch3": "C’est fait! Pouvons-nous publier le site maintenant?", "ch5": "Votre site est maintenant en ligne", "chat_btn": "Des questions? Écrivez-nous", "chat_h": "Questions sur le site", "chat_hi": "Bonjour! Comment pouvons-nous vous aider?", "chat_l": "Votre question", "chat_q1": "Combien coûte un site?", "chat_q2": "Combien de temps faut-il?", "chat_q3": "J’ai une idée", "chat_sub": "Réponse par e-mail", "cta": "Répondre à notre maquette", "cta_order": "Commander une maquette gratuite", "exl_k1": "Par exemple", "exl_k2": "Par exemple", "exl_k3": "Par exemple", "exl_k4": "Par exemple", "exl_k5": "Par exemple", "exl_k6": "Par exemple", "exl_k7": "Par exemple", "exl_k8": "Par exemple", "f1a": "Visible sur Google", "f1b": "On vous trouve dès que quelqu’un cherche près de chez vous.", "f2a": "Tout sur mobile", "f2b": "Horaires, itinéraire et appel en un geste.", "f3a": "Prix et carte en texte, pas en PDF", "f3b": "Ainsi, Google et les assistants IA peuvent aussi les lire.", "f4a": "Réserver directement", "f4b": "Un bouton pour un rendez-vous, une table ou une commande.", "f5a": "Vos vraies réalisations", "f5b": "De vraies photos plutôt que des images trouvées sur Internet.", "f6a": "Votre offre du mois", "f6b": "Cela montre qu’il se passe quelque chose chez vous.", "faq_h": "Questions fréquentes", "finds_h": "Ce que vos clients trouvent tout de suite", "fz_h": "Lu–ve, 10–20 h", "fz_hk": "Joignables", "h1": "Qu’on vous trouve quand on cherche <span class=\"hl\">près de chez vous</span>", "how_h": "Notre façon de travailler", "hw1": "Rapide et soigné", "hw1p": "Nous travaillons vite et veillons à chaque détail.", "hw2": "Selon vos souhaits", "hw2p": "Nous créons votre site sur mesure pour votre entreprise, sans modèle tout fait.", "hw3": "Modifications sur demande", "hw3p": "Si quelque chose doit changer, nous le modifions. Sur demande, nous assurons aussi le suivi de votre site par la suite.", "hw4": "Nous nous occupons de la technique", "hw4p": "Nous nous occupons de l’hébergement. Les mentions légales et la déclaration de protection des données sont incluses dès le départ.", "i1": "La maquette, avant votre décision", "i2": "Deux tours de corrections", "i3": "Conçu pour mobile", "i4": "Boutons d’appel, WhatsApp et e-mail", "ic1": "Bons-cadeaux", "ic2": "Petite boutique en ligne", "ic3": "Calendrier pour vos événements", "ic4": "Demande avec photo", "ic5": "Inscription à la newsletter", "ic6": "Offres d’emploi", "idea_btn": "Envoyer mon idée", "idea_h": "Vous avez une idée bien à vous?", "idea_p": "Décrivez-nous ce que vous imaginez. Nous vous disons ce qui est possible. Par exemple :", "imp": "Mentions légales", "k1d": "Votre site de A à Z : une seule page ou plusieurs pages avec horaires, prix, adresse et un bouton pour réserver ou commander.", "k1h": "Nouveau site", "k1x": "Une indication « Ouvert maintenant » en direct selon vos horaires, avec le jour actuel mis en évidence. Sur demande, un mode clair et un mode sombre au choix.", "k2d": "Vos contenus sont conservés. L’apparence et la navigation sont nouvelles et s’adaptent à chaque téléphone.", "k2h": "Refonte de votre site actuel", "k2x": "Couleurs et formes reprises de vos locaux, par exemple un motif inspiré de la forme de vos luminaires.", "k3d": "Toute votre carte sous forme de livre qui s’ouvre et se feuillette, avec chapitres et prix.", "k3h": "Votre carte en livre à feuilleter", "k3x": "Un clic sur un plat affiche sa photo, ses ingrédients et ses valeurs nutritives. Le livre tient entièrement sur l’écran d’un ordinateur portable.", "k4d": "Vos prestations et vos prix classés clairement, faciles à lire sur le téléphone.", "k4h": "Liste de prix par catégorie", "k4x": "Des groupes qui se déplient, ou vos prix affichés en grand comme sur une ardoise.", "k5d": "Votre travail en images, à parcourir, y compris en plein écran.", "k5h": "Galerie, avant-après et courtes vidéos", "k5x": "Les photos s’affichent d’abord en noir et blanc et passent en couleur au toucher.", "k6d": "Vos photos prises au téléphone bénéficient d’une meilleure lumière, des couleurs harmonieuses et un arrière-plan calme.", "k6h": "Retouche de vos photos", "k6x": "L’arrière-plan et la couleur des murs sont uniformisés. Votre travail lui-même reste inchangé.", "k7d": "Vos clients vous joignent directement depuis leur téléphone, sans chercher.", "k7h": "Un clic pour réserver, appeler ou écrire", "k7x": "Un bouton pour réserver, appeler ou écrire, directement depuis le mobile.", "k8d": "Chaque prestation importante a sa propre page, avec son propre titre et son propre texte.", "k8h": "Pages dédiées aux différentes prestations", "k8x": "Ainsi, chaque prestation peut être trouvée séparément sur Google.", "mail_btn": "Écrire un e-mail", "mail_l": "E-mail", "nav_ablauf": "Déroulement", "nav_branchen": "Secteurs", "nav_fragen": "Questions", "nav_kontakt": "Contact", "nav_leistungen": "Prestations", "nav_preise": "Prix", "navlabel": "Navigation du site", "navmenu": "Menu", "p1_h": "Votre site", "p2_h": "Inclus", "p3_h": "Suivi après la mise en ligne", "p4_h": "Déroulement", "p_h": "Prix et conditions", "p_host": "Hébergement : si vous avez déjà un fournisseur, votre site y reste. S’il vous en faut un nouveau, nous nous en occupons et indiquons les coûts dans le devis.", "p_note": "Nous vous indiquons le prix exact dans le devis. Il reste fixe, sauf si s’ajoutent de nouveaux souhaits dont nous n’avons pas parlé au départ.", "pback": "Retour", "pbtn": "Tous les prix et conditions", "ph_book": "Réserver", "ph_booked": "Réservé", "ph_hours": "Horaires", "ph_menu": "Carte", "ph_open": "Ouvert maintenant", "ph_refs": "Références", "pk1a": "Une page", "pk1b": "3 à 5 pages", "pl1d": "Conçu pour mobile, avec tout ce que vos clients cherchent.", "pl1h": "Nouveau site", "pl2b": "Demander le prix", "pl2d": "Animations et éléments interactifs comme sur cette page. Le prix dépend du nombre d’éléments animés.", "pl2h": "Avec animations et effets", "pm1a": "Sécurité, mises à jour et sauvegardes", "pm1b": "De l’aide en cas de blocage", "pm1d": "Nous vous remettons le site et vous montrons comment modifier vous-même les textes, les prix et les photos.", "pm1h": "Vous gérez vous-même", "pm1p": "dès CHF 30 par mois", "pm2a": "Petites modifications incluses : horaires, prix, textes, photos", "pm2b": "Sur demande, nous réservons un nouveau nom de domaine.", "pm2c": "Sécurité, mises à jour et sauvegardes", "pm2d": "Vous nous envoyez les petites modifications par message, nous nous en chargeons. Vous n’avez rien à faire vous-même.", "pm2e": "Les modifications plus importantes, p. ex. une nouvelle page, font l’objet d’un devis séparé.", "pm2h": "Nous nous occupons de tout", "pm2p": "dès CHF 60 par mois", "pmore": "En savoir plus", "pna_k2": "Prix selon le projet", "pna_k3": "Prix selon l’ampleur", "pna_k4": "Prix selon l’ampleur", "pna_k5": "Prix selon l’ampleur", "pna_k6": "Prix selon l’ampleur", "pna_k7": "Prix selon l’ampleur", "pna_k8": "Prix selon l’ampleur", "priv": "Protection des données", "pz1d": "Tout l’essentiel sur une page : offre, prix, horaires, contact.", "pz1k": "Une page", "pz2d": "Des pages dédiées aux prestations, à l’équipe ou à la galerie.", "pz2k": "3 à 5 pages", "pz3d": "Sécurité, mises à jour et sauvegardes. Petites modifications incluses dès CHF 60.", "pz3k": "Suivi", "pz_ab": "dès", "pz_ab2": "dès", "pz_ab3": "dès", "pz_btn": "Tous les prix et conditions", "pz_h": "Prix", "pz_lead": "Des prix de départ clairs. Nous vous indiquons le montant exact dans le devis.", "pz_mo": "/mois", "pz_note": "Avec animations et effets comme sur cette page : prix sur demande.", "q1": "Le site m’apportera-t-il vraiment des clients?", "q10": "Comment se fait le paiement?", "q2": "Combien cela me coûte-t-il?", "q4": "Quel travail cela me demande-t-il?", "q5": "Et si la maquette ne me plaît pas?", "q6": "Que se passe-t-il après la mise en ligne?", "q7": "Dans quel délai recevrai-je la maquette?", "q8": "Ai-je besoin de mon propre nom de domaine?", "q9": "Puis-je modifier quelque chose moi-même plus tard?", "s1": "Vous voyez la maquette finie avant de décider quoi que ce soit", "s2": "Rien n’est mis en ligne sans votre oui", "s8": "Si la maquette ne convient pas, vous ne nous devez rien", "s9": "Le prix est fixé dans le devis", "safe_h": "Sans mauvaise surprise", "skip": "Aller au contenu", "st1h": "La maquette est prête", "st1p": "Conçue à partir de ce que votre entreprise montre déjà : prix, photos, textes.", "st2h": "Vous dites ce qui doit changer", "st2p": "De la manière la plus simple pour vous :", "st3h": "Après votre oui, le site est mis en ligne", "st3p": "Vous nous envoyez les modifications ultérieures de la même façon.", "steps_h": "Comment ça se passe", "sub": "Un site qui montre d’emblée sur le téléphone ce que vos clients veulent savoir : horaires, prix, adresse et un bouton pour réserver. Nous créons la maquette gratuitement, et vous la voyez avant de décider.", "sw_biz": "Votre entreprise", "sw_from": "dès 25.–", "sw_h": "Tout ce qu’offre votre entreprise <span class=\"hl\">réuni sur une page</span>", "sw_kick": "Comment votre site prend forme", "sw_lead": "Horaires, prix, photos, adresse et un bouton pour réserver : nous rassemblons tout en un seul endroit, que vos clients trouvent tout de suite sur leur téléphone.", "sw_now": "Ouvert maintenant", "sw_open": "Ouvert", "sw_prices": "Prix", "sw_street": "Rue Principale 1", "t1h": "Coiffure, barbier, esthétique", "t1p": "« Réserver » tout en haut, une liste de prix claire, des photos avant-après.", "t2h": "Café, restaurant, à l’emporter", "t2p": "Carte, horaires, plan d’accès et un bouton pour réserver ou commander.", "t3h": "Sanitaire, chauffage, électricité", "t3p": "Votre numéro bien visible, à appeler d’un simple geste, votre zone d’intervention et une demande avec photo du dégât.", "t4h": "Menuiserie, peinture, paysagisme", "t4p": "Photos de travaux terminés, réponses aux questions fréquentes et un lien direct pour demander un devis.", "t5h": "Magasins à la ferme et producteurs régionaux", "t5p": "Ce qu’il y a de frais en ce moment, horaires, accès et précommande.", "t6h": "Physio, massage, thérapie", "t6p": "Prise de rendez-vous en ligne, prestations expliquées clairement, accès.", "title": "Robin &amp; Julia Mirku – Qu’on vous trouve quand on cherche près de chez vous", "tlive": "En direct · Essayez par vous-même", "trades_h": "Pour votre secteur", "u1": "Personnel, selon vos souhaits", "u2": "Fait avec amour", "u3": "Des prix justes", "u4": "Le souci du détail", "us_btn": "Voir tous les prix", "us_h": "De tout cœur", "us_p1": "Nous sommes Robin et Julia Mirku. Nous prenons le temps de connaître votre entreprise et sommes à votre écoute.", "us_p2": "Chaque client est traité comme on aimerait soi-même être traité. Les prix sont justes : vous payez pour un site réalisé avec soin, pas pour le nom d’une grande agence.", "w1a": "Nouveau site pour votre entreprise", "w1b": "Une page ou plusieurs, selon ce que vous voulez montrer.", "w2a": "Refonte de votre site actuel", "w2b": "Vos contenus sont conservés, l’apparence et la navigation changent.", "w3a": "Votre carte en livre à feuilleter", "w3b": "Avec catégories, prix et, pour chaque plat, un emplacement pour la photo, les ingrédients et les valeurs nutritives.", "w4a": "Liste de prix par catégorie", "w4b": "Vos prestations bien présentées, y compris sur le téléphone.", "w5a": "Galerie avec curseur avant-après et courtes vidéos", "w5b": "À parcourir, y compris en plein écran.", "w6a": "Retouche de vos photos", "w6b": "Lumière, couleurs et arrière-plan calme.", "w7a": "Un clic pour réserver, appeler ou écrire", "w7b": "Vos clients vous joignent directement depuis leur téléphone, sans chercher.", "w8a": "Pages dédiées aux différentes prestations", "w8b": "Pour qu’on vous trouve sur Google précisément pour ces prestations.", "wAa": "Animations et effets comme sur cette page", "wAb": "Des animations qui mettent en valeur votre offre.", "wBa": "Votre profil Google, entièrement configuré", "wBb": "Horaires, photos et lien vers votre site directement dans Google Maps.", "way1": "Message", "way2": "Photo", "way3": "Message vocal", "works_h": "Ce que nous créons pour vous", "yes": "Oui", "z1": "Vous recevez un devis écrit avec l’étendue des travaux, la date et le prix.", "z2": "Vous payez 50 % à la commande et 50 % avant la mise en ligne.", "z3": "Vous recevez une facture QR, ou vous payez par TWINT.", "z4": "Si la maquette ne convient pas, vous ne nous devez rien.", "z5": "Sur demande, nous assurons aussi le suivi de votre site par la suite.", "c_tel": "Appeler Robin", "sw_min": "2 min", "c_em": "E-mail", "@tprev": "Précédent", "@tnext": "Suivant", "cta_order_s": "Maquette gratuite"};
+  var FR={"@chatimg": "Chat : vous recevez la maquette, demandez une modification et dites oui.", "@chatph": "Votre question…", "@chatsend": "Envoyer", "@heroimg": "Trois écrans de téléphone : votre entreprise sur Google, votre site avec les horaires d’ouverture, un bouton pour réserver.", "@langgroup": "Langue", "@navlabel": "Navigation du site", "@navmenu": "Menu", "@pclose": "Fermer", "a1": "Nous ne promettons pas de chiffres. Nous intégrons <span class=\"ul\">ce que les clients cherchent</span> : qu’on vous trouve sur Google, qu’on voie tout de suite vos prix et vos horaires, et qu’on puisse réserver, commander ou faire une demande directement.", "a10": "Par facture QR ou par TWINT. La moitié à la commande, la moitié avant la mise en ligne.", "a2": "<span class=\"ul\">Un site d’une seule page est proposé dès CHF 900.</span> Nous vous indiquons le prix exact dans le devis, avant que vous vous engagiez.", "a4": "Peu de chose. Il nous faut vos prix et vos horaires, des photos prises avec votre téléphone et les informations pour les mentions légales.", "a5": "Dites-nous ce qui doit changer. Nous le modifions et vous le montrons à nouveau. Deux séries de corrections sont incluses. <span class=\"ul\">Si vous dites non, rien n’est mis en ligne.</span>", "a6": "Nouveaux prix, une promotion, une nouvelle photo : envoyez-les-nous par message. Vous voyez le résultat final et dites oui. Vous n’avez rien à modifier vous-même. C’est inclus dans le suivi dès CHF 60 par mois.", "a7": "En général quelques jours. Nous indiquons la date exacte dans le devis.", "a8": "Si vous en avez déjà un, nous l’utilisons. Sinon, nous vous aidons à en trouver un qui convient.", "a9": "Oui, si vous le souhaitez. Sinon, vous nous envoyez vos modifications par message, et nous nous en chargeons.", "ask_btn": "Poser une question", "ask_t": "Votre question n’y figure pas?", "c_ex": "« J’aime bien, quelle est la suite? »", "c_ex1": "« J’aimerais une maquette gratuite pour mon entreprise »", "c_h": "Une phrase suffit", "c_lead": "<a href=\"#\" class=\"wlink\">Écrivez-nous</a> de la manière la plus simple pour vous.<br>Nous répondons personnellement.", "c_mail": "E-mail R&amp;J", "c_trust": "Basés à Saint-Gall, actifs dans le monde entier", "c_wa": "Julia sur WhatsApp", "ch1": "Votre maquette est prête. Jetez-y un coup d’œil!", "ch2": "Waouh, exactement comme je le voulais! Juste la photo du haut un peu plus claire, s’il vous plaît.", "ch3": "C’est fait! Pouvons-nous publier le site maintenant?", "ch5": "Votre site est maintenant en ligne", "chat_btn": "Des questions? Écrivez-nous", "chat_h": "Questions sur le site", "chat_hi": "Bonjour! Comment pouvons-nous vous aider?", "chat_l": "Votre question", "chat_q1": "Combien coûte un site?", "chat_q2": "Combien de temps faut-il?", "chat_q3": "J’ai une idée", "chat_sub": "Réponse par e-mail", "cta": "Répondre à notre maquette", "cta_order": "Commander une maquette gratuite", "exl_k1": "Par exemple", "exl_k2": "Par exemple", "exl_k3": "Par exemple", "exl_k4": "Par exemple", "exl_k5": "Par exemple", "exl_k6": "Par exemple", "exl_k7": "Par exemple", "exl_k8": "Par exemple", "f1a": "Visible sur Google", "f1b": "On vous trouve dès que quelqu’un cherche près de chez vous.", "f2a": "Tout sur mobile", "f2b": "Horaires, itinéraire et appel en un geste.", "f3a": "Prix et carte en texte, pas en PDF", "f3b": "Ainsi, Google et les assistants IA peuvent aussi les lire.", "f4a": "Réserver directement", "f4b": "Un bouton pour un rendez-vous, une table ou une commande.", "f5a": "Vos vraies réalisations", "f5b": "De vraies photos plutôt que des images trouvées sur Internet.", "f6a": "Votre offre du mois", "f6b": "Cela montre qu’il se passe quelque chose chez vous.", "faq_h": "Questions fréquentes", "finds_h": "Ce que vos clients trouvent tout de suite", "fz_h": "Lu–ve, 10–20 h", "fz_hk": "Joignables", "h1": "Qu’on vous trouve quand on cherche <span class=\"hl\">près de chez vous</span>", "how_h": "Notre façon de travailler", "hw1": "Rapide et soigné", "hw1p": "Nous travaillons vite et veillons à chaque détail.", "hw2": "Selon vos souhaits", "hw2p": "Nous créons votre site sur mesure pour votre entreprise, sans modèle tout fait.", "hw3": "Modifications sur demande", "hw3p": "Si quelque chose doit changer, nous le modifions. Sur demande, nous assurons aussi le suivi de votre site par la suite.", "hw4": "Nous nous occupons de la technique", "hw4p": "Nous nous occupons de l’hébergement. Les mentions légales et la déclaration de protection des données sont incluses dès le départ.", "i1": "La maquette, avant votre décision", "i2": "Deux tours de corrections", "i3": "Conçu pour mobile", "i4": "Boutons d’appel, WhatsApp et e-mail", "ic1": "Bons-cadeaux", "ic2": "Petite boutique en ligne", "ic3": "Calendrier pour vos événements", "ic4": "Demande avec photo", "ic5": "Inscription à la newsletter", "ic6": "Offres d’emploi", "idea_btn": "Envoyer mon idée", "idea_h": "Vous avez une idée bien à vous?", "idea_p": "Décrivez-nous ce que vous imaginez. Nous vous disons ce qui est possible. Par exemple :", "imp": "Mentions légales", "k1d": "Votre site de A à Z : une seule page ou plusieurs pages avec horaires, prix, adresse et un bouton pour réserver ou commander.", "k1h": "Nouveau site", "k1x": "Une indication « Ouvert maintenant » en direct selon vos horaires, avec le jour actuel mis en évidence. Sur demande, un mode clair et un mode sombre au choix.", "k2d": "Vos contenus sont conservés. L’apparence et la navigation sont nouvelles et s’adaptent à chaque téléphone.", "k2h": "Refonte de votre site actuel", "k2x": "Couleurs et formes reprises de vos locaux, par exemple un motif inspiré de la forme de vos luminaires.", "k3d": "Toute votre carte sous forme de livre qui s’ouvre et se feuillette, avec chapitres et prix.", "k3h": "Votre carte en livre à feuilleter", "k3x": "Un clic sur un plat affiche sa photo, ses ingrédients et ses valeurs nutritives. Le livre tient entièrement sur l’écran d’un ordinateur portable.", "k4d": "Vos prestations et vos prix classés clairement, faciles à lire sur le téléphone.", "k4h": "Liste de prix par catégorie", "k4x": "Des groupes qui se déplient, ou vos prix affichés en grand comme sur une ardoise.", "k5d": "Votre travail en images, à parcourir, y compris en plein écran.", "k5h": "Galerie, avant-après et courtes vidéos", "k5x": "Les photos s’affichent d’abord en noir et blanc et passent en couleur au toucher.", "k6d": "Vos photos prises au téléphone bénéficient d’une meilleure lumière, des couleurs harmonieuses et un arrière-plan calme.", "k6h": "Retouche de vos photos", "k6x": "L’arrière-plan et la couleur des murs sont uniformisés. Votre travail lui-même reste inchangé.", "k7d": "Vos clients vous joignent directement depuis leur téléphone, sans chercher.", "k7h": "Un clic pour réserver, appeler ou écrire", "k7x": "Un bouton pour réserver, appeler ou écrire, directement depuis le mobile.", "k8d": "Chaque prestation importante a sa propre page, avec son propre titre et son propre texte.", "k8h": "Pages dédiées aux différentes prestations", "k8x": "Ainsi, chaque prestation peut être trouvée séparément sur Google.", "mail_btn": "Écrire un e-mail", "mail_l": "E-mail", "nav_ablauf": "Déroulement", "nav_branchen": "Secteurs", "nav_fragen": "Questions", "nav_kontakt": "Contact", "nav_leistungen": "Prestations", "nav_preise": "Prix", "navlabel": "Navigation du site", "navmenu": "Menu", "p1_h": "Votre site", "p2_h": "Inclus", "p3_h": "Suivi après la mise en ligne", "p4_h": "Déroulement", "p_h": "Prix et conditions", "p_host": "Hébergement : si vous avez déjà un fournisseur, votre site y reste. S’il vous en faut un nouveau, nous nous en occupons et indiquons les coûts dans le devis.", "p_note": "Nous vous indiquons le prix exact dans le devis. Il reste fixe, sauf si s’ajoutent de nouveaux souhaits dont nous n’avons pas parlé au départ.", "pback": "Retour", "pbtn": "Tous les prix et conditions", "ph_book": "Réserver", "ph_booked": "Réservé", "ph_hours": "Horaires", "ph_menu": "Carte", "ph_open": "Ouvert maintenant", "ph_refs": "Références", "pk1a": "Une page", "pk1b": "3 à 5 pages", "pl1d": "Conçu pour mobile, avec tout ce que vos clients cherchent.", "pl1h": "Nouveau site", "pl2b": "Demander le prix", "pl2d": "Animations et éléments interactifs comme sur cette page. Le prix dépend du nombre d’éléments animés.", "pl2h": "Avec animations et effets", "pm1a": "Sécurité, mises à jour et sauvegardes", "pm1b": "De l’aide en cas de blocage", "pm1d": "Nous vous remettons le site et vous montrons comment modifier vous-même les textes, les prix et les photos.", "pm1h": "Vous gérez vous-même", "pm1p": "dès CHF 30 par mois", "pm2a": "Petites modifications incluses : horaires, prix, textes, photos", "pm2b": "Sur demande, nous réservons un nouveau nom de domaine.", "pm2c": "Sécurité, mises à jour et sauvegardes", "pm2d": "Vous nous envoyez les petites modifications par message, nous nous en chargeons. Vous n’avez rien à faire vous-même.", "pm2e": "Les modifications plus importantes, p. ex. une nouvelle page, font l’objet d’un devis séparé.", "pm2h": "Nous nous occupons de tout", "pm2p": "dès CHF 60 par mois", "pmore": "En savoir plus", "pna_k2": "Prix selon le projet", "pna_k3": "Prix selon l’ampleur", "pna_k4": "Prix selon l’ampleur", "pna_k5": "Prix selon l’ampleur", "pna_k6": "Prix selon l’ampleur", "pna_k7": "Prix selon l’ampleur", "pna_k8": "Prix selon l’ampleur", "priv": "Protection des données", "pz1d": "Tout l’essentiel sur une page : offre, prix, horaires, contact.", "pz1k": "Une page", "pz2d": "Des pages dédiées aux prestations, à l’équipe ou à la galerie.", "pz2k": "3 à 5 pages", "pz3d": "Sécurité, mises à jour et sauvegardes. Petites modifications incluses dès CHF 60.", "pz3k": "Suivi", "pz_ab": "dès", "pz_ab2": "dès", "pz_ab3": "dès", "pz_btn": "Tous les prix et conditions", "pz_h": "Prix", "pz_lead": "Des prix de départ clairs. Nous vous indiquons le montant exact dans le devis.", "pz_mo": "/mois", "pz_note": "Avec animations et effets comme sur cette page : prix sur demande.", "q1": "Le site m’apportera-t-il vraiment des clients?", "q10": "Comment se fait le paiement?", "q2": "Combien cela me coûte-t-il?", "q4": "Quel travail cela me demande-t-il?", "q5": "Et si la maquette ne me plaît pas?", "q6": "Que se passe-t-il après la mise en ligne?", "q7": "Dans quel délai recevrai-je la maquette?", "q8": "Ai-je besoin de mon propre nom de domaine?", "q9": "Puis-je modifier quelque chose moi-même plus tard?", "s1": "Vous voyez la maquette finie avant de décider quoi que ce soit", "s2": "Rien n’est mis en ligne sans votre oui", "s8": "Si la maquette ne convient pas, vous ne nous devez rien", "s9": "Le prix est fixé dans le devis", "safe_h": "Sans mauvaise surprise", "skip": "Aller au contenu", "st1h": "La maquette est prête", "st1p": "Conçue à partir de ce que votre entreprise montre déjà : prix, photos, textes.", "st2h": "Vous dites ce qui doit changer", "st2p": "De la manière la plus simple pour vous :", "st3h": "Après votre oui, le site est mis en ligne", "st3p": "Vous nous envoyez les modifications ultérieures de la même façon.", "steps_h": "Comment ça se passe", "sub": "Un site qui montre d’emblée sur le téléphone ce que vos clients veulent savoir : horaires, prix, adresse et un bouton pour réserver. Nous créons la maquette gratuitement, et vous la voyez avant de décider.", "sw_biz": "Votre entreprise", "sw_from": "dès 25.–", "sw_h": "Tout ce qu’offre votre entreprise <span class=\"hl\">réuni sur une page</span>", "sw_kick": "Comment votre site prend forme", "sw_lead": "Horaires, prix, photos, adresse et un bouton pour réserver : nous rassemblons tout en un seul endroit, que vos clients trouvent tout de suite sur leur téléphone.", "sw_now": "Ouvert maintenant", "sw_open": "Ouvert", "sw_prices": "Prix", "sw_street": "Rue Principale 1", "t1h": "Coiffure, barbier, esthétique", "t1p": "« Réserver » tout en haut, une liste de prix claire, des photos avant-après.", "t2h": "Café, restaurant, à l’emporter", "t2p": "Carte, horaires, plan d’accès et un bouton pour réserver ou commander.", "t3h": "Sanitaire, chauffage, électricité", "t3p": "Votre numéro bien visible, à appeler d’un simple geste, votre zone d’intervention et une demande avec photo du dégât.", "t4h": "Menuiserie, peinture, paysagisme", "t4p": "Photos de travaux terminés, réponses aux questions fréquentes et un lien direct pour demander un devis.", "t5h": "Magasins à la ferme et producteurs régionaux", "t5p": "Ce qu’il y a de frais en ce moment, horaires, accès et précommande.", "t6h": "Physio, massage, thérapie", "t6p": "Prise de rendez-vous en ligne, prestations expliquées clairement, accès.", "title": "Robin &amp; Julia Mirku – Qu’on vous trouve quand on cherche près de chez vous", "tlive": "En direct · Essayez par vous-même", "trades_h": "Pour votre secteur", "u1": "Personnel, selon vos souhaits", "u2": "Fait avec amour", "u3": "Des prix justes", "u4": "Le souci du détail", "us_btn": "Voir tous les prix", "us_h": "De tout cœur", "us_p1": "Nous sommes Robin et Julia Mirku. Nous prenons le temps de connaître votre entreprise et sommes à votre écoute.", "us_p2": "Chaque client est traité comme on aimerait soi-même être traité. Les prix sont justes : vous payez pour un site réalisé avec soin, pas pour le nom d’une grande agence.", "w1a": "Nouveau site pour votre entreprise", "w1b": "Une page ou plusieurs, selon ce que vous voulez montrer.", "w2a": "Refonte de votre site actuel", "w2b": "Vos contenus sont conservés, l’apparence et la navigation changent.", "w3a": "Votre carte en livre à feuilleter", "w3b": "Avec catégories, prix et, pour chaque plat, un emplacement pour la photo, les ingrédients et les valeurs nutritives.", "w4a": "Liste de prix par catégorie", "w4b": "Vos prestations bien présentées, y compris sur le téléphone.", "w5a": "Galerie avec curseur avant-après et courtes vidéos", "w5b": "À parcourir, y compris en plein écran.", "w6a": "Retouche de vos photos", "w6b": "Lumière, couleurs et arrière-plan calme.", "w7a": "Un clic pour réserver, appeler ou écrire", "w7b": "Vos clients vous joignent directement depuis leur téléphone, sans chercher.", "w8a": "Pages dédiées aux différentes prestations", "w8b": "Pour qu’on vous trouve sur Google précisément pour ces prestations.", "wAa": "Animations et effets comme sur cette page", "wAb": "Des animations qui mettent en valeur votre offre.", "wBa": "Votre profil Google, entièrement configuré", "wBb": "Horaires, photos et lien vers votre site directement dans Google Maps.", "way1": "Message", "way2": "Photo", "way3": "Message vocal", "works_h": "Ce que nous créons pour vous", "yes": "Oui", "z1": "Vous recevez un devis écrit avec l’étendue des travaux, la date et le prix.", "z2": "Vous payez 50 % à la commande et 50 % avant la mise en ligne.", "z3": "Vous recevez une facture QR, ou vous payez par TWINT.", "z4": "Si la maquette ne convient pas, vous ne nous devez rien.", "z5": "Sur demande, nous assurons aussi le suivi de votre site par la suite.", "c_tel": "Appeler Robin", "hero_call": "Appeler Robin", "@swphone": "Téléphone avec un site terminé : nom, note Google, horaires, prix, photos, adresse et bouton de réservation.", "sw_min": "2 min", "c_em": "E-mail", "@tprev": "Précédent", "@tnext": "Suivant", "cta_order_s": "Maquette gratuite"};
   var DE={}, root=document.documentElement;
   var els=document.querySelectorAll('[data-t]');
   for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-t'); if(!(k in DE)) DE[k]=els[i].innerHTML;}
   var aels=document.querySelectorAll('[data-ta]');
   for(var j=0;j<aels.length;j++){aels[j].getAttribute('data-ta').split(';').forEach(function(p){var s=p.split(':'); DE['@'+s[1]]=aels[j].getAttribute(s[0]);});}
+  window.__LD={de:DE,en:EN,fr:FR};
   function apply(l){
     var D=l==='en'?EN:(l==='fr'?FR:DE);
     for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-t'); if(D[k]!=null) els[i].innerHTML=D[k];}
@@ -2299,38 +2421,47 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
     var r=sec.getBoundingClientRect(), span=r.height-innerHeight;
     tgt=clamp(-r.top/span);
   }
-  var running=false, settled=0;
+  var running=false, settled=0, M=null;
+  function measure(){
+    var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect(), m={t:{}};
+    m.cx=pr.left+pr.width/2-sr.left; m.cy=pr.top+pr.height/2-sr.top;
+    m.R=Math.min(sr.width*(sr.width>900?0.22:(sr.width>=700?0.28:0.40)), sr.height*0.36, 330);
+    icons.forEach(function(el){ var k=el.dataset.k, s=slots[k].getBoundingClientRect();
+      m.t[k]=[s.left+(k==='head'?s.width*0.12:22)-sr.left, s.top+s.height/2-sr.top]; });
+    ring.style.width=ring.style.height=(m.R*2)+'px'; M=m;
+  }
   function kick(){ if(!running){ running=true; settled=0; requestAnimationFrame(frame); } }
   function frame(){
+    if(!M) measure();
+    var r=sec.getBoundingClientRect(), near=r.bottom>-200&&r.top<innerHeight+200;
     cur+= (tgt-cur)*0.12;
-    var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect();
-    var cx=pr.left+pr.width/2-sr.left, cy=pr.top+pr.height/2-sr.top;
-    var R=Math.min(sr.width*(sr.width>900?0.22:0.40), sr.height*0.36, 330);
-    ring.style.width=ring.style.height=(R*2)+'px';
-    ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)'; ring.style.height=(R*2)+'px';
-    ring.style.opacity=String(1-clamp((cur-.35)/.25));
+    var cx=M.cx, cy=M.cy, R=M.R;
+    ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)';
+    ring.style.opacity=String(1-clamp((cur-.06)/.3));
     var allIn=true;
     icons.forEach(function(el,i){
-      var k=el.dataset.k, s=slots[k], srr=s.getBoundingClientRect();
-      var start=.34+i*.075, end=start+.2;          // fly window for this icon
+      var k=el.dataset.k, s=slots[k], t=M.t[k];
+      var start=.06+i*.085, end=start+.2;
       var f=ease(clamp((cur-start)/(end-start)));
-      var a=(i/n)*Math.PI*2 + cur*Math.PI*3.2;      // orbit angle turns with scroll
-      var wob=Math.sin(cur*9+i*1.7)*R*0.06;
+      var a=(i/n)*Math.PI*2 + cur*Math.PI*2.2;
+      var wob=Math.sin(cur*7+i*1.7)*R*0.06;
       var ox=cx+Math.cos(a)*(R+wob), oy=cy+Math.sin(a)*(R*0.82+wob);
-      var tx=srr.left+ (k==='head'?srr.width*0.12:22) -sr.left, ty=srr.top+srr.height/2-sr.top;
-      var x=ox+(tx-ox)*f, y=oy+(ty-oy)*f;
+      var x=ox+(t[0]-ox)*f, y=oy+(t[1]-oy)*f;
       var sc=1-0.55*f, rot=(1-f)*Math.sin(a*1.3)*18;
       el.style.transform='translate('+x+'px,'+y+'px) rotate('+rot+'deg) scale('+sc+')';
-      el.style.opacity=String(f>0.96?0:1);
-      s.classList.toggle('on', f>0.96);
+      el.style.opacity=f>0.96?'0':'1';
+      if(s.classList.contains('on')!==(f>0.96)) s.classList.toggle('on', f>0.96);
       if(f<=0.96) allIn=false;
     });
-    done.classList.toggle('on', allIn && cur>0.9);
-    var r=sec.getBoundingClientRect(); var near=r.bottom>-200&&r.top<innerHeight+200;
+    done.classList.toggle('on', allIn && cur>0.82);
     if(Math.abs(tgt-cur)<0.0008){ settled++; } else settled=0;
     if(near&&settled<4){ requestAnimationFrame(frame); } else running=false;
   }
-  addEventListener('scroll',function(){read();kick();},{passive:true}); addEventListener('resize',function(){read();kick();});
+  function remeasure(){ M=null; read(); kick(); }
+  addEventListener('scroll',function(){read();kick();},{passive:true}); addEventListener('resize',remeasure);
+  new MutationObserver(function(){ setTimeout(remeasure,60); }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
+  setTimeout(remeasure,1200);
   read(); cur=tgt; kick();
 })();
 </script>
@@ -2377,7 +2508,7 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
         setTimeout(function(){cur.classList.add('press'); burst();},550);
         setTimeout(function(){cur.classList.remove('press');},800);
         setTimeout(function(){cur.classList.remove('near');},1500);
-        ht=setTimeout(auto,4200); }
+        auto.n=(auto.n||0)+1; if(auto.n<2) ht=setTimeout(auto,6300); }
       new IntersectionObserver(function(es){es.forEach(function(e){hvis=e.isIntersecting; clearTimeout(ht); if(hvis){heart.classList.add('beat'); ht=setTimeout(auto,700);} else heart.classList.remove('beat');});},{threshold:.5}).observe(svg);
     }
   }
@@ -2416,8 +2547,9 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
       var st=lastSite(); if(st){ var tn=st.querySelector('.tin'); tn.getAnimations().forEach(function(a){a.cancel();});
         var b=st.querySelector('.tb'); if(b&&b.classList.contains('ok')){b.classList.remove('ok'); b.querySelector('span').textContent=b.dataset.orig||b.querySelector('span').textContent;} }
     }
+    var userNav=false;
     async function demo(){
-      demoT=null; if(!vis||busy||onPhone) return; busy=true; var g=gen;
+      demoT=null; if(!vis||busy||onPhone||userNav) return; busy=true; var g=gen;
       function alive(){ return g===gen; }
       var site=lastSite(), tin=site.querySelector('.tin'), tb=site.querySelector('.tb'), w=W(), h=H();
       var view=site.querySelector('.tview'), maxS=Math.max(0, tin.scrollHeight-view.clientHeight);
@@ -2516,27 +2648,41 @@ html.chat-hide .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-ev
     scr.addEventListener('pointerdown',function(ev){ var ba=ev.target.closest('.ba'); if(!ba) return; drag=ba; ba.setPointerCapture(ev.pointerId); mv(ev); ev.preventDefault(); });
     function mv(ev){ if(!drag) return; var r=drag.getBoundingClientRect(); var p=Math.min(100,Math.max(0,(ev.clientX-r.left)/r.width*100)); drag.style.setProperty('--p',p+'%'); drag._user=true; }
     scr.addEventListener('pointermove',mv); addEventListener('pointerup',function(){drag=null;});
-    (function autoBA(t){ if(!vis){ requestAnimationFrame(autoBA); return; } var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user){ ba.style.setProperty('--p',(50+28*Math.sin(t/900))+'%'); } requestAnimationFrame(autoBA); })(0);
+    (function autoBA(t){ if(!vis){ requestAnimationFrame(autoBA); return; } var ba=scr.querySelector('.ba'); if(ba&&!drag&&!onPhone&&!ba._user&&!userNav){ if(ba._t0==null) ba._t0=t; var u=t-ba._t0; if(u<2*Math.PI*1400*2){ ba.style.setProperty('--p',(50+28*Math.sin(u/1400))+'%'); } else if(!ba._end){ ba._end=1; ba.style.setProperty('--p','50%'); } } requestAnimationFrame(autoBA); })(0);
 
     /* Pfeile, Punkte, Wischen */
     var manualT=0, N=SITESL.de.length;
     /* Wer selbst bedient, übernimmt: keine Demo, kein Auto-Wischen mehr */
     var userCtl=false; scr.addEventListener('pointerdown',function(){ manualT=Date.now()+1e12; if(!userCtl){ userCtl=true; try{stopDemo();}catch(e){} } },true);
-    function nav(d){ manualT=Date.now()+1e12; hoverI=-1; go(((want+d)%N+N)%N,true); }
+    function nav(d){ manualT=Date.now()+1e12; userNav=true; hoverI=-1; go(((want+d)%N+N)%N,true); }
     tw.querySelector('.tnav.prev').addEventListener('click',function(){nav(-1);});
     tw.querySelector('.tnav.next').addEventListener('click',function(){nav(1);});
     dots.forEach(function(d,k){ d.addEventListener('click',function(){ manualT=Date.now()+1e12; go(k,true); }); d.style.cursor='pointer'; });
     var sx=null, sy=null;
+    /* Maus: ziehen nach links/rechts blättert; Trackpad: waagrecht wischen */
+    var md=null;
+    scr.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0||(e.target.closest&&e.target.closest('.ba'))) return; md={x:e.clientX,y:e.clientY,id:e.pointerId,mv:false}; });
+    scr.addEventListener('pointermove',function(e){ if(!md||e.pointerId!==md.id) return; var dx=e.clientX-md.x;
+      if(!md.mv&&Math.abs(dx)>8&&Math.abs(dx)>Math.abs(e.clientY-md.y)){ md.mv=true; ph.classList.add('rjdrag'); try{scr.setPointerCapture(md.id);}catch(_){} }
+      if(md.mv){ var st=lastSite(); if(st&&!swiping) st.style.transform='translateX('+Math.max(-60,Math.min(60,dx*0.4))+'px)'; } });
+    function mup(e){ if(!md) return; var dx=e.clientX-md.x, was=md.mv; md=null; ph.classList.remove('rjdrag'); var st=lastSite(); if(st&&!swiping) st.style.transform='';
+      if(was){ var blk=function(ev){ ev.stopPropagation(); ev.preventDefault(); scr.removeEventListener('click',blk,true); }; scr.addEventListener('click',blk,true); setTimeout(function(){ scr.removeEventListener('click',blk,true); },50);
+        if(Math.abs(dx)>40) nav(dx<0?1:-1); } }
+    scr.addEventListener('pointerup',mup); scr.addEventListener('pointercancel',mup);
+    var wx=0, wT=null, wLock=0;
+    scr.addEventListener('wheel',function(e){ if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)) return; e.preventDefault();
+      if(Date.now()<wLock) return; wx+=e.deltaX; clearTimeout(wT); wT=setTimeout(function(){wx=0;},220);
+      if(Math.abs(wx)>60){ nav(wx>0?1:-1); wx=0; wLock=Date.now()+700; } },{passive:false});
     scr.addEventListener('touchstart',function(e){ var t=e.touches[0]; sx=t.clientX; sy=t.clientY; },{passive:true});
     scr.addEventListener('touchend',function(e){ if(sx==null) return; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
-      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){ nav(dx<0?1:-1); } },{passive:true});
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){ nav(dx<0?1:-1); } else if(Math.abs(dx)>12||Math.abs(dy)>12){ userNav=true; } },{passive:true});
     cards.forEach(function(c,k){c.addEventListener('mouseenter',function(){hoverI=k; go(k,true);}); c.addEventListener('mouseleave',function(){hoverI=-1;});});
     var touchT=null;
     ph.addEventListener('touchstart',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); clearTimeout(touchT);
-      touchT=setTimeout(function(){ onPhone=false; ph.classList.remove('hov'); tw.classList.remove('act'); if(!busy) demoT=setTimeout(demo,300); },7000); },{passive:true});
+      touchT=setTimeout(function(){ onPhone=false; ph.classList.remove('hov'); tw.classList.remove('act'); if(!busy&&!userNav) demoT=setTimeout(demo,300); },7000); },{passive:true});
     cards.forEach(function(c,k){ c.addEventListener('click',function(){ if(innerWidth>900) return; go(k,true); }); });
     ph.addEventListener('mouseenter',function(){ onPhone=true; if(!swiping){ stopDemo(); busy=false; } ph.classList.add('hov'); tw.classList.add('act'); var tn=scr.querySelector('.tin'); if(tn){tn.dataset.y=0; tn.style.transform='';} });
-    ph.addEventListener('mouseleave',function(){ onPhone=false; userCtl=false; manualT=Date.now()-9000; ph.classList.remove('hov'); tw.classList.remove('act'); var tn=scr.querySelector('.tin'); if(tn){tn.dataset.y=0; tn.style.transform='';} var cl=scr.querySelector('.tcall'); if(cl) cl.remove(); if(!busy) demoT=setTimeout(demo,500); });
+    ph.addEventListener('mouseleave',function(){ onPhone=false; userCtl=false; if(!userNav) manualT=Date.now()-9000; ph.classList.remove('hov'); tw.classList.remove('act'); var tn=scr.querySelector('.tin'); if(tn){tn.dataset.y=0; tn.style.transform='';} var cl=scr.querySelector('.tcall'); if(cl) cl.remove(); if(!busy) demoT=setTimeout(demo,500); });
     addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll);
     function rerender(){ if(swiping){ setTimeout(rerender,700); return; } stopDemo(); busy=false; var st=lastSite(); if(st) st.innerHTML=SITESL[LNG()][now]; if(vis) demoT=setTimeout(demo,600); }
     new MutationObserver(rerender).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
@@ -2583,7 +2729,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   var s=document.getElementById('splash'); if(!s) return;
   var seen=false; try{ seen=sessionStorage.getItem('rj-splash')==='1'; sessionStorage.setItem('rj-splash','1'); }catch(e){}
   if(seen){ s.remove(); return; }
-  setTimeout(function(){ s.classList.add('out'); setTimeout(function(){ s.remove(); },500); },1500);
+  setTimeout(function(){ s.classList.add('out'); setTimeout(function(){ s.remove(); },320); },760);
 })();
 </script>
 
@@ -2739,14 +2885,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   document.addEventListener('click',function(e){ var li=e.target.closest&&e.target.closest('.plan ul.pmul li'); if(li) li.classList.toggle('tk'); });
   /* Kontakt: «Schreiben Sie uns» öffnet Auswahl E-Mail / WhatsApp */
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('.wlink'); if(!a) return; e.preventDefault(); var c=document.querySelector('.wchoice'); if(c) c.hidden=!c.hidden; });
-  /* 9. Preise zählen hoch */
-  var cnt=[].slice.call(document.querySelectorAll('.pcard .cnt.__aus'));
-  if(cnt.length&&!RM&&'IntersectionObserver' in window){
-    var fmt=function(v){v=Math.round(v);return v>=1000?Math.floor(v/1000)+'’'+('00'+(v%1000)).slice(-3):''+v;};
-    var io2=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting) return; io2.unobserve(e.target); var el=e.target, n=+el.dataset.n, t0=performance.now();
-      (function f(t){ var k=clamp((t-t0)/800); el.textContent=fmt(n*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(f); })(t0); });},{threshold:.6});
-    cnt.forEach(function(el){ io2.observe(el); });
-  }
+  /* 9. (alter zweiter Preiszähler entfernt 21.11, es zählt nur noch price_pin) */
 })();
 </script>
 
@@ -2833,7 +2972,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   var segs=lis.slice(0,-1).map(function(li){var i=document.createElement('i');i.className='sline';li.appendChild(i);return i;});
   var bars=lis.map(function(li){var b=document.createElement('span');b.className='sbar';b.innerHTML='<i></i>';li.appendChild(b);return b;});
   /* Schwellen im gepinnten Bereich: Karte 1, 2 (+3 Wege), 3 */
-  var T=[0.03,0.27,0.55], WT=[0.33,0.38,0.43], pmax=0, q=false, mob=false;
+  var T=[0.02,0.25,0.5], WT=[0.31,0.36,0.41], pmax=0, q=false, mob=false;
   function clamp(x){return x<0?0:x>1?1:x;}
   function fitStack(){ mob=innerWidth<=900; lis.forEach(function(li){ li.style.minHeight=''; }); if(!mob){ ol.style.height=''; return; }
     var m=0; lis.forEach(function(li){ m=Math.max(m, li.offsetHeight); }); lis.forEach(function(li){ li.style.minHeight=m+'px'; });
@@ -2844,23 +2983,28 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('land');}); ol.classList.add('fin'); ol.style.height=''; return; }
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.45) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
+    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.8) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
     var top=-1;
     lis.forEach(function(li,k){ var on=li.classList.contains('land');
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ if(!ol.classList.contains('fin')) li.classList.remove('on'); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.02, en=(k<T.length-1?T[k+1]+0.01:0.80); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.02, en=(k<T.length-1?T[k+1]:0.74); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.82) ol.classList.add('fin');
+    if(p>=0.76) ol.classList.add('fin');
   }
+  /* Sprung über das Menü (#ablauf): alle drei Karten sofort */
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#ablauf"]'); if(a){ pmax=1; requestAnimationFrame(up); } },true);
+  if(location.hash==='#ablauf') pmax=1;
 
   /* Nach dem Ende: Pin auflösen, sobald der Abschnitt oben verlassen wurde (kein totes Scrollen zurück) */
   function __coll(sec, done){ if(!done||sec.classList.contains('unpinned')) return; var r=sec.getBoundingClientRect(); if(r.bottom>0) return;
     var an=sec.nextElementSibling, t0=an?an.getBoundingClientRect().top:0; sec.classList.add('unpinned'); var t1=an?an.getBoundingClientRect().top:0, d=t0-t1;
     if(Math.abs(d)>1){ var H=document.documentElement, sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollTo(0, window.scrollY-d); H.style.scrollBehavior=sb; } }
-  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); __coll(sec, ol.classList.contains('fin')); }); } },{passive:true});
+  var collT=null; function collLater(){ clearTimeout(collT); collT=setTimeout(function(){ __coll(sec, ol.classList.contains('fin')); },180); }
+  if('onscrollend' in window) addEventListener('scrollend',function(){ clearTimeout(collT); __coll(sec, ol.classList.contains('fin')); });
+  addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(function(){ up(); }); } collLater(); },{passive:true});
   addEventListener('resize',function(){ nofit(); fitStack(); up(); });
   nofit(); fitStack(); up(); setTimeout(function(){ nofit(); up(); },900); setTimeout(fitStack,800);
 })();
@@ -2872,17 +3016,17 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var lis=[].slice.call(sec.querySelectorAll('.hgrid > li'));
   lis.forEach(function(li){ var w=document.createElement('div'); w.className='hin'; while(li.firstChild) w.appendChild(li.firstChild); li.appendChild(w); });
-  var T=[0.02,0.25,0.48,0.71], q=false;
+  var T=[0,0.25,0.5,0.75], q=false, doneT=null;
   function nofit(){ var st=sec.querySelector('.stk'), w=st.querySelector('.wrap'), hh=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||70;
     var no=w.offsetHeight > innerHeight-hh-12; sec.classList.toggle('nopin',no); return no; }
   function up(){ q=false;
-    if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('lit');}); sec.querySelector('.hgrid').classList.add('done'); return; }
+    var g=sec.querySelector('.hgrid');
+    if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('lit');}); g.classList.add('done'); return; }
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=Math.max(0,Math.min(1,(hh-r.top)/run)); if(r.top<innerHeight*0.45) p=Math.max(p,T[0]);
-    lis.forEach(function(li,k){ var on=li.classList.contains('lit');
-      if(!on&&p>=T[k]) li.classList.add('lit'); else if(on&&p<T[k]-0.025) li.classList.remove('lit'); });
-    var g=sec.querySelector('.hgrid'); g.classList.toggle('done', lis.every(function(li){return li.classList.contains('lit');}) && p>=T[T.length-1]+0.06);
+    var lead=innerHeight*0.5, p=Math.max(0,Math.min(1,(hh+lead-r.top)/(run+lead)));
+    lis.forEach(function(li,k){ if(!li.classList.contains('lit')&&p>=T[k]) li.classList.add('lit'); });
+    if(!g.classList.contains('done')&&!doneT&&lis.every(function(li){return li.classList.contains('lit');})) doneT=setTimeout(function(){ g.classList.add('done'); },750);
   }
   addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(up); } },{passive:true});
   addEventListener('resize',function(){ nofit(); up(); }); nofit(); up(); setTimeout(function(){ nofit(); up(); },900);
@@ -2900,14 +3044,17 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     function f(t){ if(done) return; if(t0===null) t0=t; var k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3);
       if(k>=1){ end(); return; } el.textContent=fmt(Math.min(to,Math.round((from+(to-from)*e)/step)*step)); requestAnimationFrame(f); }
     requestAnimationFrame(f); setTimeout(end, D+400); }
-  /* Start, sobald der Preis-Block irgendwie ins Bild kommt; alle drei zählen bis zum Ende, egal wie weiter gescrollt wird */
-  var sec=document.getElementById('preise'), started=false, todo=[];
+  /* Jede Karte zählt los, wenn sie selbst zu 60 % im Bild ist (von 60 % bis zum Preis, nie 0) */
+  var todo=[];
   els.forEach(function(el){ var c=el.closest('.pcard'); if(!c) return; if(c.getBoundingClientRect().top<innerHeight) return;
     var to=+el.getAttribute('data-n'); el.style.fontVariantNumeric='tabular-nums'; el.setAttribute('data-from',Math.round(to*0.6)); el.textContent=fmt(Math.round(to*0.6)); todo.push(el); });
-  function start(){ if(started) return; started=true; todo.forEach(function(el,k){ setTimeout(function(){ run(el); },k*180); }); }
-  function chk(){ if(started||!sec) return; var r=sec.getBoundingClientRect(); if(r.top<innerHeight*0.9&&r.bottom>0) start(); }
-  if(todo.length){ addEventListener('scroll',chk,{passive:true}); addEventListener('resize',chk); chk();
-    if('IntersectionObserver' in window&&sec){ new IntersectionObserver(function(es){ if(es[0].isIntersecting) start(); },{threshold:0.05}).observe(sec); } }
+  function hh(){ return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||70; }
+  function seen(c){ var r=c.getBoundingClientRect(), top=hh(); if(r.bottom<top) return true; var v=Math.min(r.bottom,innerHeight)-Math.max(r.top,top); return v>=Math.min(r.height,innerHeight-top)*0.6; }
+  var q3=false;
+  function chk(){ q3=false; todo=todo.filter(function(el){ if(seen(el.closest('.pcard'))){ run(el); return false; } return true; });
+    if(!todo.length){ removeEventListener('scroll',onS); removeEventListener('resize',onS); } }
+  function onS(){ if(!q3){ q3=true; requestAnimationFrame(chk); } }
+  if(todo.length){ addEventListener('scroll',onS,{passive:true}); addEventListener('resize',onS); chk(); }
 })();
 </script>
 
@@ -2932,7 +3079,8 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
       an.push(J.animate([{transform:'translate('+b0+'px,0)'},{transform:'translate('+((b0+b1)/2)+'px,7px)'},{transform:'translate('+b1+'px,0)'}],{duration:D,easing:E,fill:'forwards'}));
       an.push(A.animate([{transform:'rotate('+r0+'deg) scale(1)'},{transform:'rotate('+((r0+r1)/2)+'deg) scale(1.25)'},{transform:'rotate('+r1+'deg) scale(1)'}],{duration:D,easing:E,fill:'forwards'})); }
     var hov=false;
-    br.addEventListener('mouseenter',function(){ hov=true; go(true); }); br.addEventListener('mouseleave',function(){ hov=false; go(false); });
+    var fineP=!window.matchMedia||matchMedia('(hover: hover)').matches;
+    br.addEventListener('mouseenter',function(){ if(!fineP) return; hov=true; go(true); }); br.addEventListener('mouseleave',function(){ if(!fineP) return; hov=false; go(false); });
     /* Am Anfang zweimal von selbst tauschen (nach dem Splash), danach nur beim Drüberfahren */
     if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
       [[3000,true],[4300,false],[8500,true],[9800,false]].forEach(function(x){ setTimeout(function(){ if(!hov) go(x[1]); },x[0]); }); }
@@ -2976,10 +3124,101 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     var pins=document.querySelectorAll('section.pin:not(.nopin):not(.unpinned), .swirl:not(.nopin)'), inpin=false, h=hh();
     for(var i=0;i<pins.length;i++){ var r=pins[i].getBoundingClientRect(); if(r.top<=h+2&&r.bottom>=innerHeight-2){ inpin=true; break; } }
     var hero=innerWidth<=480&&scrollY<innerHeight*0.6;
+    if(!hero&&!inpin&&cb){ var cr=cb.getBoundingClientRect();
+      var zs=document.querySelectorAll('#kontakt, footer');
+      for(var z=0;z<zs.length&&!hero;z++){ var zr=zs[z].getBoundingClientRect(); if(zr.top<innerHeight-8&&zr.bottom>0) hero=true; }
+      if(!hero&&cr.width){ var bs=document.querySelectorAll('main a.btn, main button.btn, main .pbtn, main .wcard, main .ichips button, .faq a, .faq button, .totop');
+        for(var b=0;b<bs.length;b++){ var q=bs[b].getBoundingClientRect(); if(!q.width) continue;
+          if(q.bottom>cr.top-10&&q.top<cr.bottom+10&&q.right>cr.left-10&&q.left<cr.right+10){ hero=true; break; } } } }
     var open=cb&&cb.getAttribute('aria-expanded')==='true';
     document.documentElement.classList.toggle('chat-hide', !open&&(inpin||hero));
   }
-  addEventListener('scroll',chk,{passive:true}); addEventListener('resize',chk); chk(); setTimeout(chk,1000);
+  var qc=false; addEventListener('scroll',function(){ if(!qc){ qc=true; requestAnimationFrame(function(){ qc=false; chk(); }); } },{passive:true}); addEventListener('resize',chk); chk(); setTimeout(chk,1000);
+})();
+</script>
+
+<script>
+(function(){
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var D=document, H=D.documentElement;
+  function hh(){ return parseFloat(getComputedStyle(H).getPropertyValue('--hh'))||70; }
+  function L3(d,e,f){ return window.__L3?__L3(d,e,f):d; }
+
+  /* 2. Kleine Animationen: starten erst, wenn sichtbar; Klick spielt sie nochmal */
+  function replay(el){ if(!el||!el.getAnimations) return; el.getAnimations({subtree:true}).forEach(function(a){
+      try{ var it=a.effect&&a.effect.getTiming().iterations; if(it===Infinity) return; a.cancel(); a.play(); }catch(_){} }); }
+  var vis=[].slice.call(D.querySelectorAll('.idea, .tphone-wrap .tlive, .chat .online'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('rjv'); io.unobserve(e.target); } }); },{threshold:.35});
+    vis.forEach(function(el){ io.observe(el); });
+  } else vis.forEach(function(el){ el.classList.add('rjv'); });
+  D.addEventListener('click',function(e){ var t=e.target; if(!t.closest) return;
+    var host=t.closest('.trades .card, .idea, .usart, .chat .online, .tsite .th, .tsite .badge, .tsite .radius, .tsite .map, .w-msg, .w-mic, .slot.cta');
+    if(!host) return; var ic=host.querySelector&&host.querySelector('.tico'); replay(ic||host); });
+
+  /* 7. Häkchen-Liste: Hover erst nach dem Erscheinen der Häkchen */
+  var wl=D.querySelector('.wlist');
+  if(wl){ if(!wl.classList.contains('wait')) wl.classList.add('rjready');
+    else new MutationObserver(function(m,o){ if(wl.classList.contains('go')){ o.disconnect(); setTimeout(function(){ wl.classList.add('rjready'); }, wl.children.length*110+700); } }).observe(wl,{attributes:true,attributeFilter:['class']}); }
+
+  /* 7. Touch: Hover-Stile kleben nicht (":hover" wird auf Touch-Geräten abgeschaltet) */
+  if(window.matchMedia&&matchMedia('(hover: none)').matches){
+    var fix=function(rules){ for(var i=0;i<rules.length;i++){ var r=rules[i];
+        if(r.cssRules&&!r.selectorText){ try{ fix(r.cssRules); }catch(_){} continue; }
+        if(r.selectorText&&r.selectorText.indexOf(':hover')>=0){ try{ r.selectorText=r.selectorText.replace(/:hover/g,'.rj-nohover'); }catch(_){} } } };
+    for(var s=0;s<D.styleSheets.length;s++){ try{ fix(D.styleSheets[s].cssRules); }catch(_){} }
+  }
+
+  /* 9. Höhen pro Sprache angleichen: Überschriften und Absätze bekommen die Höhe der längsten Sprache */
+  var EQ='main h1[data-t], main h2[data-t], main h3[data-t], main p[data-t], main summary[data-t], main .kick[data-t]';
+  function eq(){
+    var LD=window.__LD; if(!LD) return;
+    var els=[].slice.call(D.querySelectorAll(EQ)).filter(function(el){ return !el.closest('.tphone, .chat, .drawer, dialog'); });
+    els.forEach(function(el){ el.style.minHeight=''; }); var h1=D.querySelector('.hero h1'); if(h1){ h1.style.maxWidth=''; h1.style.fontSize=''; }
+    var items=[];
+    els.forEach(function(el){ var w=el.offsetWidth; if(!w) return; var c=el.cloneNode(false); c.removeAttribute('id'); c.removeAttribute('data-t'); c.setAttribute('aria-hidden','true');
+      c.style.cssText+=';position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;margin:0;width:'+w+'px;min-height:0;height:auto;max-height:none;transition:none;animation:none;transform:none';
+      el.parentNode.insertBefore(c,el.nextSibling); items.push({el:el,c:c,k:el.getAttribute('data-t'),m:0,hero:!!el.closest('.hero')&&el.tagName==='H1'}); });
+    ['de','en','fr'].forEach(function(l){ var d=LD[l]||{};
+      items.forEach(function(it){ var v=d[it.k]; if(v==null) v=LD.de[it.k]; if(v!=null) it.c.innerHTML=v; });
+      items.forEach(function(it){ var hgt=it.c.offsetHeight; it.m=Math.max(it.m, hgt); if(l==='de') it.de=hgt; }); });
+    items.forEach(function(it){ it.c.remove(); });
+    items.forEach(function(it){ if(it.hero){ it.el._deH=it.de; return; } var lh=parseFloat(getComputedStyle(it.el).lineHeight)||20, own=it.el.offsetHeight;
+      if(it.m>own+1&&it.m-own<=lh*2.2) it.el.style.minHeight=it.m+'px'; });
+    fitHero();
+  }
+  /* Titel im ersten Bildschirm: EN/FR passen in die Höhe des deutschen Titels (etwas breiter/kleiner), nichts rutscht nach unten */
+  function fitHero(){ var h1=D.querySelector('.hero h1'); if(!h1||!h1._deH) return;
+    h1.style.maxWidth=''; h1.style.fontSize=''; h1.style.minHeight=h1._deH+'px';
+    if(/^de/.test(H.lang)||h1.offsetHeight<=h1._deH+2) return;
+    h1.style.maxWidth='100%'; var fs=parseFloat(getComputedStyle(h1).fontSize), f=fs;
+    while(h1.offsetHeight>h1._deH+2&&f>fs*0.76){ f-=fs*0.03; h1.style.fontSize=f+'px'; } }
+  var lw=innerWidth, eqT=null;
+  function eqSoon(){ clearTimeout(eqT); eqT=setTimeout(function(){ eq(); dispatchEvent(new Event('resize')); },60); }
+  if(D.fonts&&D.fonts.ready) D.fonts.ready.then(function(){ eq(); dispatchEvent(new Event('resize')); }); else setTimeout(eq,800);
+  addEventListener('resize',function(){ if(Math.abs(innerWidth-lw)<2) return; lw=innerWidth; clearTimeout(eqT); eqT=setTimeout(eq,250); });
+
+  /* 9. Sprachwechsel: Leser bleibt an derselben Stelle */
+  function anchor(){
+    var y=Math.max(hh()+20, innerHeight*0.4), el=null, xs=[.5,.3,.7,.15,.85];
+    for(var i=0;i<xs.length;i++){ var c=D.elementFromPoint(innerWidth*xs[i],y); if(!c||c.closest('header, .chatw, .drawer')) continue;
+      if(!el) el=c; if(c.closest('[data-t]')||(c.offsetHeight&&c.offsetHeight<innerHeight*0.5&&!/^(SECTION|MAIN|BODY|HTML)$/.test(c.tagName)&&!c.classList.contains('wrap'))){ el=c.closest('[data-t]')||c; break; } }
+    if(!el) return null;
+    var pin=el.closest('.pin, .swirl'); if(pin) el=pin;
+    else { while(el.parentNode&&el!==D.body&&getComputedStyle(el).position==='fixed') el=el.parentNode; }
+    return {el:el, top:el.getBoundingClientRect().top};
+  }
+  function restore(a){ if(!a||!a.el.isConnected) return; var d=a.el.getBoundingClientRect().top-a.top; if(Math.abs(d)<1) return;
+    var sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollTo(0, window.scrollY+d); H.style.scrollBehavior=sb; }
+  D.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.lang button[data-lang]'); if(!b) return;
+    var a=anchor(); if(!a) return;
+    setTimeout(function(){ fitHero(); restore(a); dispatchEvent(new Event('resize')); restore(a);
+      requestAnimationFrame(function(){ restore(a); }); setTimeout(function(){ restore(a); },150); setTimeout(function(){ restore(a); },450); },0);
+  },true);
+
+  /* 10. Impressum-Kreuz und Telefon-Muster: Beschriftung in der Seitensprache */
+  function lab(){ var x=D.querySelector('#legal .lx'); if(x) x.setAttribute('aria-label',L3('Schliessen','Close','Fermer')); }
+  lab(); new MutationObserver(lab).observe(H,{attributes:true,attributeFilter:['lang']});
 })();
 </script>
 </body>
