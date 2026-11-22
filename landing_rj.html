@@ -1565,6 +1565,12 @@ html.tdev .plan.g.on{box-shadow:0 14px 30px -12px rgba(255,190,20,.5),0 0 0 2px 
 .steps.pin ol>li .ways li.lit,.steps.pin.nopin ol>li .ways li{opacity:1;transform:none;background:var(--sun-soft)}
 .tdev .steps .ways li:not(.on){background:var(--sun-soft) !important}
 </style>
+<style>
+/* ===== physio_tap_22_11: ganze Zeile klickbar, Pfeil neben dem Namen ===== */
+.tsite .ther:has(>.tmore){grid-template-columns:46px auto auto;justify-content:start;column-gap:10px;cursor:pointer}
+.tsite .ther:has(>.tmore) *{cursor:pointer}
+.tsite .ther:has(>.tmore) .tmore{margin-left:2px;color:var(--ink);pointer-events:none}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -2866,7 +2872,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   });
   /* Physio: Team aufklappen */
   document.addEventListener('click',function(e){
-    var b=e.target.closest&&e.target.closest('.tsite .tmore'); if(!b) return; e.preventDefault(); e.stopPropagation();
+    var r0=e.target.closest&&e.target.closest('.tsite .ther'); var b=r0&&r0.querySelector(':scope>.tmore'); if(!b) return; e.preventDefault(); e.stopPropagation();
     var row=b.closest('.ther'), tm=row&&row.parentNode.querySelector('.tteam'); if(!tm) return;
     var o=!tm.classList.contains('open'); tm.classList.toggle('open',o); row.classList.toggle('open',o);
   },true);
