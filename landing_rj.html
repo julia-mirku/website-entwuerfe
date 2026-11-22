@@ -1621,8 +1621,8 @@ html .trades .card:nth-child(4):is(:hover,.live) .tico{background:var(--sun)}
 .tsite .nhero .hcap small{opacity:.75}
 .tsite .nhero .hcap{position:relative;z-index:2}
 /* Foto der Hand: 5 Aufnahmen (eine pro Farbe) liegen übereinander und blenden weich ineinander */
-.tsite .nph{position:absolute;inset:0;background-size:cover;background-position:right center;opacity:0;transition:opacity .8s ease;z-index:1}
-.tsite .nph.on{opacity:1;animation:nph-in 1.6s cubic-bezier(.2,.7,.2,1) .35s both}
+.tsite .nph{position:absolute;inset:0;background-size:cover;background-position:right center;opacity:0;transition:opacity 0s .5s;z-index:1}
+.tsite .nph.on{opacity:1;z-index:2;transition:opacity .5s ease;animation:nph-in 1.6s cubic-bezier(.2,.7,.2,1) .35s both}
 @keyframes nph-in{0%{transform:scale(1.07)}100%{transform:none}}
 /* solange kein Foto da ist: weiche Farbflecken in der gewählten Farbe */
 .tsite .nblob{position:absolute;border-radius:50%;background:var(--nc);filter:blur(16px);opacity:.55;transition:background-color .8s ease}
