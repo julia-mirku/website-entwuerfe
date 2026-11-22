@@ -1636,7 +1636,8 @@ html .trades .card:nth-child(4):is(:hover,.live) .tico{background:var(--sun)}
 </style>
 <style>
 /* ===== 22.11 abends: Handy «Ihr Betrieb» skaliert als Ganzes ===== */
-html .sw-phone{width:300px !important;scale:var(--ps,1);transform-origin:50% 50%}
+/* Computer: Entwurfsbreite 232px = Inhalt füllt den Bildschirm bis unten (Julia 22.11: «почему это до сих пор есть»), dann als Ganzes skaliert */
+html .sw-phone{width:232px !important;scale:var(--ps,1.29);transform-origin:50% 50%}
 /* Handy-Ansicht: Entwurfsbreite 187px = Inhalt füllt den Bildschirm bis unten («Termin buchen» ganz unten, wie vor dem 22.11.), dann als Ganzes skaliert */
 @media (max-width:900px){html .sw-phone{width:187px !important;transform-origin:50% 0}
   html .swirl.nopin .sw-phone{width:200px !important;scale:1}}
@@ -3342,10 +3343,10 @@ document.addEventListener('click',function(e){
 </script>
 <script>
 (function(){ var p=document.querySelector('.sw-phone'); if(!p) return; var st=p.closest('.stage')||p.parentNode;
-  function fit(){ var m=innerWidth<=900, vh=innerHeight, b=m?187:300, w;
+  function fit(){ var m=innerWidth<=900, vh=innerHeight, b=m?187:232, w;
     if(m){ var sr=st.getBoundingClientRect(), pr=p.getBoundingClientRect(), free=Math.min(sr.height,vh)-(pr.top-sr.top)-6;
       w=Math.min(230,(vh-310)*.48,free*9/18.6); } else w=Math.min(300,vh*.33);
-    p.style.setProperty('--ps',Math.max(.45,Math.min(m?1.24:1,w/b)).toFixed(4)); }
+    p.style.setProperty('--ps',Math.max(.45,Math.min(m?1.24:1.3,w/b)).toFixed(4)); }
   fit(); addEventListener('resize',fit); addEventListener('orientationchange',fit); addEventListener('load',fit);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit); setTimeout(fit,600); })();
 </script>
