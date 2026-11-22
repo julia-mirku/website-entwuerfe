@@ -1634,6 +1634,15 @@ html .trades .card:nth-child(4):is(:hover,.live) .tico{background:var(--sun)}
 .tsite .nsw.on{transform:scale(1.14);box-shadow:inset 0 0 0 2px #fff,0 0 0 2.5px var(--ink)}
 .tsite .nsw:active{transform:scale(.92)}
 </style>
+<style>
+/* ===== 22.11 abends: Handy «Ihr Betrieb» skaliert als Ganzes ===== */
+html .sw-phone{width:300px !important;scale:var(--ps,1);transform-origin:50% 50%}
+@media (max-width:900px){html .sw-phone{width:230px !important;transform-origin:50% 0}
+  html .swirl.nopin .sw-phone{width:200px !important;scale:1}}
+/* ===== 22.11 abends: Hover der Branchen-Karten, kein Gelb ===== */
+html .trades .card:nth-child(4):is(:hover,.live) .tico{background:#FFD3DD;box-shadow:none}
+html .trades .card:nth-child(5):is(:hover,.live) .tico{background:#BFE0FA;box-shadow:none}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3161,7 +3170,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
       bb.textContent=l==='en'?'Hello!':(l==='fr'?'Bonjour !':'Grüezi!'); bb.classList.remove('on'); void bb.offsetWidth; bb.classList.add('on'); try{ lg.querySelectorAll('.hbd').forEach(function(q){q.remove();}); [[-58,30,12,0],[56,36,10,.08],[-30,62,8,.16],[34,70,13,.05],[-70,64,7,.22],[74,18,8,.12]].forEach(function(v){ var q=document.createElement('span'); q.className='hbd'; q.setAttribute('aria-hidden','true'); q.style.setProperty('--dx',v[0]+'px'); q.style.setProperty('--dy',v[1]+'px'); q.style.setProperty('--s',v[2]+'px'); q.style.setProperty('--dl',v[3]+'s'); lg.appendChild(q); void q.offsetWidth; q.classList.add('go'); setTimeout(function(){q.remove();},1500); }); }catch(_){}
       clearTimeout(bt); bt=setTimeout(function(){ bb.classList.remove('on'); },1100); }); }
   /* 3. Kopieren (nur Computer), der Link selbst funktioniert weiter */
-  [['.wcard.mail','mirkurobin@gmail.com'],['.wcard.tel','+41 79 932 55 14']].forEach(function(x){
+  [['.wcard.mail','mirkurobin@gmail.com'],['.wcard.tel','+41 79 932 55 14'],['.wcard.wa','+41 77 470 59 28']].forEach(function(x){
     var c=document.querySelector(x[0]); if(!c) return; var p=document.createElement('span'); p.className='cpy'; p.setAttribute('role','button'); p.tabIndex=0;
     function lab(){ p.textContent=p.classList.contains('ok')?L3('Kopiert ✓','Copied ✓','Copié ✓'):L3('Kopieren','Copy','Copier'); }
     lab(); c.appendChild(p);
@@ -3312,6 +3321,12 @@ document.addEventListener('click',function(e){
   r.children[0].textContent=c.dataset.n; r.children[1].textContent=c.dataset.p;
   r.animate([{opacity:.3,transform:'translateY(3px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
 });
+</script>
+<script>
+(function(){ var p=document.querySelector('.sw-phone'); if(!p) return;
+  function fit(){ var m=innerWidth<=900, vh=innerHeight, w=m?Math.min(230,(vh-310)*.48):Math.min(300,vh*.33), b=m?230:300;
+    p.style.setProperty('--ps',Math.max(.45,Math.min(1,w/b)).toFixed(4)); }
+  fit(); addEventListener('resize',fit); addEventListener('orientationchange',fit); })();
 </script>
 </body>
 </html>
