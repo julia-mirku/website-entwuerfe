@@ -44,7 +44,8 @@ iframe{flex:1 1 auto;width:100%;min-height:0;border:0;background:#fff}
   function show(k){
     var b=bs.filter(function(x){return x.dataset.k===k})[0]||bs[0];
     bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
-    f.src=b.dataset.src;
+    var u=b.dataset.src;
+    f.src=u+(u.indexOf('?')<0?'?':'&')+'t='+Date.now();
     try{history.replaceState(null,'','#'+b.dataset.k)}catch(e){}
   }
   bs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.k)})});
