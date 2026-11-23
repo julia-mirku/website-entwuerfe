@@ -1736,6 +1736,14 @@ html .trades .card:nth-child(1) .tico svg{position:relative;z-index:1}
 html .trades .card:nth-child(1):is(:hover,.live) .tico::before,html .trades .card:nth-child(1) .tico.itap::before{animation:bbg 1.5s linear 2}
 @media (prefers-reduced-motion:reduce){html .trades .card:nth-child(1) .tico::before{animation:none !important}}
 </style>
+<style>
+/* ===== 23.11: Häkchen in den gelben Kreisen des Preis-Panels immer sichtbar ===== */
+html .dlist li{padding-left:30px}
+html .dlist li::before{left:0;top:.2em;width:18px;height:18px;box-sizing:border-box;transform:none !important}
+html .dlist li::after{content:"";position:absolute;left:6.5px;top:calc(.2em + 3px);width:5px;height:9px;box-sizing:border-box;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) !important;opacity:1 !important}
+/* ===== 23.11: Uhr – Zeiger drehen um die Mitte ===== */
+html .cinfo .trust svg .hm,html .cinfo .trust svg .hh{transform-box:view-box !important;transform-origin:13px 13px !important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -2110,7 +2118,7 @@ html .trades .card:nth-child(1):is(:hover,.live) .tico::before,html .trades .car
         <div>
           <h2 id="h-contact" data-t="c_h">Ein Satz genügt</h2>
           <p class="lead2" data-t="c_lead"><a href="#" class="wlink">Schreiben Sie uns</a> so, wie es Ihnen am einfachsten ist.<br>Wir antworten persönlich.</p><div class="wchoice" hidden><a class="wc" href="mailto:mirkurobin@gmail.com?subject=Anfrage%20Website" data-t="c_em">E-Mail</a><a class="wc" href="https://wa.me/41774705928" target="_blank" rel="noopener">WhatsApp</a></div>
-          <div class="cinfo"><p class="trust hours"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><path class="hm" d="M13 13V6.6" fill="none" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path class="hh" d="M13 13l3.6 2.3" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/></svg><span><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span></p></div>
+          <div class="cinfo"><p class="trust hours"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><path class="hm" d="M13 13V6.6" fill="none" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path class="hh" d="M13 13l4.3 2.75" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><circle cx="13" cy="13" r="1.9" fill="#1F2328"/></svg><span><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span></p></div>
         </div>
         <div class="ways2">
           <a class="wcard mail" href="mailto:mirkurobin@gmail.com?subject=Gratis-Entwurf"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="6" width="22" height="16" rx="3.5" fill="#fff" stroke="#1F2328" stroke-width="2.2"/><path d="M4.5 8l9.5 7 9.5-7" fill="none" stroke="#1F2328" stroke-width="2.2" stroke-linejoin="round"/></svg></span><span><b data-t="c_mail">E-Mail R&amp;J</b><span>mirkurobin@gmail.com</span></span></a>
@@ -3168,16 +3176,19 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('land');}); ol.classList.add('fin'); ol.style.height=''; return; }
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
     var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
-    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.8) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
+    /* 23.11: gleicher Scrollweg 1→2 und 2→3 */
+    var lead=Math.max(0,innerHeight*0.35-hh); T[1]=0.12; T[2]=Math.min(0.64,2*T[1]+lead/run);
+    WT[0]=T[1]+(T[2]-T[1])*0.25; WT[1]=T[1]+(T[2]-T[1])*0.45; WT[2]=T[1]+(T[2]-T[1])*0.65; var FIN=Math.max(0.76,T[2]+0.2);
+    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.35) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
     var top=-1;
     lis.forEach(function(li,k){ var on=li.classList.contains('land');
       if(!on&&p>=T[k]){ li.classList.add('land','thud'); on=true; }
       if(on) top=k; });
     lis.forEach(function(li,k){ if(!ol.classList.contains('fin')) li.classList.remove('on'); li.classList.toggle('under',mob&&k<top); });
-    bars.forEach(function(br,k){ var st=T[k]+0.02, en=(k<T.length-1?T[k+1]:0.74); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
+    bars.forEach(function(br,k){ var st=T[k]+0.02, en=(k<T.length-1?T[k+1]:FIN-0.02); br.style.setProperty('--f',clamp((p-st)/(en-st)).toFixed(3)); });
     segs.forEach(function(sg,k){ sg.style.setProperty('--s',clamp((p-T[k]-0.06)/(T[k+1]-T[k]-0.1)).toFixed(3)); });
     ways.forEach(function(w,k){ w.classList.toggle('lit',p>=WT[k]); w.classList.toggle('on',p>=WT[k]&&(k===ways.length-1||p<WT[k+1])&&p<T[2]); });
-    if(p>=0.76) ol.classList.add('fin');
+    if(p>=FIN) ol.classList.add('fin');
   }
   /* Sprung über das Menü (#ablauf): alle drei Karten sofort */
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#ablauf"]'); if(a){ pmax=1; requestAnimationFrame(up); } },true);
