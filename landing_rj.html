@@ -1841,6 +1841,19 @@ html .cinfo .trust svg .hm,html .cinfo .trust svg .hh{transform-box:view-box !im
   .fpin.hot::after{animation:none}
 }
 </style>
+<style>
+/* ===== 23.11 abends: Barber-Streifen nur bei Hover (Computer) bzw. .live / Antippen (Handy), sonst gelb ===== */
+html .trades .card:nth-child(1) .tico,html .trades .card:nth-child(1).live .tico{background:var(--sun)}
+html .trades .card:nth-child(1) .tico::before,html .trades .card:nth-child(1).live .tico::before{opacity:0;transition:opacity .25s ease}
+@media (hover:hover){
+  html .trades .card:nth-child(1):hover .tico{background:#fff}
+  html .trades .card:nth-child(1):hover .tico::before{opacity:1}
+}
+@media (hover:none){
+  html .trades .card:nth-child(1).live .tico{background:#fff}
+  html .trades .card:nth-child(1).live .tico::before,html .trades .card:nth-child(1) .tico.itap::before{opacity:1}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
