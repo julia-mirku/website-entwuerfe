@@ -3328,7 +3328,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     if(!hero&&!inpin&&cb){ var cr=cb.getBoundingClientRect();
       var zs=document.querySelectorAll('#kontakt, footer');
       for(var z=0;z<zs.length&&!hero;z++){ var zr=zs[z].getBoundingClientRect(); if(zr.top<innerHeight-8&&zr.bottom>0) hero=true; }
-      if(!hero&&cr.width){ var bs=document.querySelectorAll('main a.btn, main button.btn, main .pbtn, main .wcard, main .ichips button, .faq a, .faq button, .totop');
+      if(!hero&&cr.width){ var bs=document.querySelectorAll('main a.btn, main button.btn, main .pbtn, main .wcard, main .ichips button, .faq a, .faq button, .totop, .pcards .pcard, .pks .pkc');
         for(var b=0;b<bs.length;b++){ var q=bs[b].getBoundingClientRect(); if(!q.width) continue;
           if(q.bottom>cr.top-10&&q.top<cr.bottom+10&&q.right>cr.left-10&&q.left<cr.right+10){ hero=true; break; } } } }
     var open=cb&&cb.getAttribute('aria-expanded')==='true';
