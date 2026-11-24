@@ -3307,13 +3307,14 @@ html body main>section#kontakt{padding-top:16px}
     if(!M) measure();
     var r=sec.getBoundingClientRect(), near=r.bottom>-200&&r.top<innerHeight+200;
     cur+= (tgt-cur)*0.12;
-    var cx=M.cx, cy=M.cy, R=M.R;
+    var cx=M.cx, cy=M.cy, R=M.R, mob=innerWidth<768; /* Handy: grosser Kreis -> kleinerer Kreis -> ins Telefon */
+    if(mob){ R=M.R*(1-0.22*ease(clamp((cur-.08)/.17))); ring.style.width=ring.style.height=(R*2)+'px'; }
     ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)';
-    ring.style.opacity=String(1-clamp((cur-.06)/.3));
+    ring.style.opacity=String(1-clamp((cur-(mob?.28:.06))/.3));
     var allIn=true;
     icons.forEach(function(el,i){
       var k=el.dataset.k, s=slots[k], t=M.t[k];
-      var start=.06+i*.085, end=start+.2;
+      var start=mob?.30+i*.06:.06+i*.085, end=start+(mob?.17:.2);
       var f=ease(clamp((cur-start)/(end-start)));
       var a=(i/n)*Math.PI*2 + cur*Math.PI*2.2;
       var wob=Math.sin(cur*7+i*1.7)*R*0.06;
