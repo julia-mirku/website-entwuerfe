@@ -3297,7 +3297,7 @@ html body main>section#kontakt{padding-top:16px}
   function measure(){
     var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect(), m={t:{}};
     m.cx=pr.left+pr.width/2-sr.left; m.cy=pr.top+pr.height/2-sr.top;
-    m.R=Math.min(sr.width*(sr.width>900?0.22:(sr.width>=700?0.28:0.40)), sr.height*0.36, 330);
+    m.R=Math.min(sr.width*(sr.width>900?0.30:(sr.width>=700?0.40:0.50))-30, sr.height*0.47, 440); /* B: Kreis groesser */
     icons.forEach(function(el){ var k=el.dataset.k, s=slots[k].getBoundingClientRect();
       m.t[k]=[s.left+(k==='head'?s.width*0.12:22)-sr.left, s.top+s.height/2-sr.top]; });
     ring.style.width=ring.style.height=(m.R*2)+'px'; M=m;
