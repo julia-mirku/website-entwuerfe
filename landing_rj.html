@@ -2289,6 +2289,7 @@ html body .muster .mband .mcard .mgo{min-height:36px;height:36px}
 html body .muster .mband>li{align-self:start}
 @media (max-width:600px){ html body .muster .mband .mcard .mbody{padding:12px 16px 14px} }
 </style>
+<style>/* 24.11: swirl wie 22.11 */ html body main>section.swirl{height:215vh;height:215svh;margin-top:0 !important;padding-top:56px !important} @media (max-width:900px){ html body main>section.swirl{padding-top:36px !important} } @media (prefers-reduced-motion:reduce){ html body .swirl{height:auto} }</style>
 <style>
 /* ===== 24.11: Branchen-Symbole – 13 verschiedene, kräftigere Hintergründe ===== */
 html body .trades .card:nth-child(2):is(:hover,.live) .tico{background:#EBCB9B;box-shadow:none}
@@ -2317,8 +2318,8 @@ html body .trades .card:nth-child(1):is(:hover,.live) .tico::before{opacity:1}
 /* Regel 18h (Julia 24.11): kein Hin und Her hell/weiss zwischen den Blöcken – alle hellen Blöcke ein Ton;
    der eine dunkle Block geht lang und weich über */
 html body section.muster,html body section.finds,html body section.works,html body section.how,html body section#zusagen{background:none !important}
-html body main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F2328 120px,#1F2328 calc(100% - 80px),var(--paper) 100%) !important;padding-top:118px !important;padding-bottom:82px !important}
-@media (max-width:900px){ html body main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F2328 90px,#1F2328 calc(100% - 64px),var(--paper) 100%) !important;padding-top:96px !important;padding-bottom:66px !important} }
+html body main>section.safe.dark{background:#1F2328 !important;padding-top:56px !important;padding-bottom:56px !important}
+@media (max-width:900px){ html body main>section.safe.dark{padding-top:36px !important;padding-bottom:36px !important} }
 </style>
 </head>
 <body>
@@ -3263,16 +3264,11 @@ html body main>section.safe.dark{background:linear-gradient(to bottom,var(--pape
   function nofit(){ sec.classList.toggle('nopin', innerHeight<=560); }
   addEventListener('resize',nofit); nofit();
   function read(){
-    if(sec.classList.contains('nopin')){ tgt=1; preT=0; return; }
+    if(sec.classList.contains('nopin')){ tgt=1; return; }
     var r=sec.getBoundingClientRect(), span=r.height-innerHeight;
     tgt=clamp(-r.top/span);
-    /* Vorlauf: ab 85 % sichtbarem Handy bis zum Kleben nur Drehung auf dem grossen Kreis */
-    var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect(), cs=getComputedStyle(sec);
-    var nat=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.borderTopWidth)||0);
-    var T0=innerHeight-nat-(pr.top-sr.top)-0.85*pr.height; if(!(T0>0)) T0=0;
-    preT=Math.max(0,Math.min(r.top,T0))/span;
   }
-  var running=false, settled=0, M=null, preT=0, preC=0, LT=0;
+  var running=false, settled=0, M=null;
   function measure(){
     var sr=stage.getBoundingClientRect(), pr=phone.getBoundingClientRect(), m={t:{}};
     m.cx=pr.left+pr.width/2-sr.left; m.cy=pr.top+pr.height/2-sr.top;
@@ -3285,16 +3281,16 @@ html body main>section.safe.dark{background:linear-gradient(to bottom,var(--pape
   function frame(){
     if(!M) measure();
     var r=sec.getBoundingClientRect(), near=r.bottom>-200&&r.top<innerHeight+200;
-    var nowT=performance.now(), dT=LT?Math.min(50,nowT-LT):16.7; LT=nowT; var dc=(tgt-cur)*(1-Math.pow(0.88,dT/16.7)), mx=0.00039*dT; cur+= dc>mx?mx:(dc<-mx?-mx:dc); preC+= (preT-preC)*0.12;
+    cur+= (tgt-cur)*0.12;
     var cx=M.cx, cy=M.cy, R=M.R;
     ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)';
-    ring.style.opacity=String(1-clamp((cur-.35)/.25));
+    ring.style.opacity=String(1-clamp((cur-.06)/.3));
     var allIn=true;
     icons.forEach(function(el,i){
       var k=el.dataset.k, s=slots[k], t=M.t[k];
-      var start=.34+i*.075, end=start+.2;
+      var start=.06+i*.085, end=start+.2;
       var f=ease(clamp((cur-start)/(end-start)));
-      var a=(i/n)*Math.PI*2 + (cur-preC)*Math.PI*3.2;
+      var a=(i/n)*Math.PI*2 + cur*Math.PI*2.2;
       var wob=Math.sin(cur*7+i*1.7)*R*0.06;
       var ox=cx+Math.cos(a)*(R+wob), oy=cy+Math.sin(a)*(R*0.82+wob);
       var x=ox+(t[0]-ox)*f, y=oy+(t[1]-oy)*f;
@@ -3304,16 +3300,16 @@ html body main>section.safe.dark{background:linear-gradient(to bottom,var(--pape
       if(s.classList.contains('on')!==(f>0.96)) s.classList.toggle('on', f>0.96);
       if(f<=0.96) allIn=false;
     });
-    done.classList.toggle('on', allIn && cur>0.9);
-    if(Math.abs(tgt-cur)<0.0008&&Math.abs(preT-preC)<0.0008){ settled++; } else settled=0;
-    if(near&&settled<4){ requestAnimationFrame(frame); } else { running=false; LT=0; }
+    done.classList.toggle('on', allIn && cur>0.82);
+    if(Math.abs(tgt-cur)<0.0008){ settled++; } else settled=0;
+    if(near&&settled<4){ requestAnimationFrame(frame); } else running=false;
   }
   function remeasure(){ M=null; read(); kick(); }
   addEventListener('scroll',function(){read();kick();},{passive:true}); addEventListener('resize',remeasure);
   new MutationObserver(function(){ setTimeout(remeasure,60); }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
   setTimeout(remeasure,1200);
-  read(); cur=tgt; preC=preT; kick();
+  read(); cur=tgt; kick();
 })();
 </script>
 
@@ -4265,20 +4261,6 @@ document.addEventListener('click',function(e){
       var x=30+Math.sin(p*Math.PI*2)*30; r.value=x; set(x); requestAnimationFrame(step); }
     setTimeout(function(){ requestAnimationFrame(step); },500); },{threshold:.6});
   io.observe(v);
-})();
-</script>
-<script>
-/* 24.11: festgehaltene Blöcke – Inhalt oben statt mittig, damit über der Überschrift kein Loch steht */
-(function(){
-  function fit(){ [].forEach.call(document.querySelectorAll('.pin'),function(sec){
-    var stk=sec.querySelector('.stk'), wrap=stk&&stk.querySelector('.wrap'), prev=sec.previousElementSibling; if(!wrap||!prev) return;
-    wrap.style.marginTop=''; stk.style.alignItems='';
-    var dark=prev.classList.contains('dark'), T=innerWidth>900?(dark?72:100):(dark?44:56);
-    var ppb=dark?0:parseFloat(getComputedStyle(prev).paddingBottom)||0, want=Math.max(20,T-ppb), slack=(stk.clientHeight-wrap.offsetHeight)/2;
-    if(slack>want+8){ stk.style.alignItems='flex-start'; wrap.style.marginTop=want+'px'; }
-  }); }
-  fit(); addEventListener('load',fit); var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(fit,150); });
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
 })();
 </script>
 </body>
