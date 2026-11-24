@@ -2345,6 +2345,17 @@ html body main>section#kontakt{padding-top:16px}
   html body main>section#kontakt{padding-bottom:0}
   html body footer{padding-top:12px}
 }
+
+/* regress_fix_24_11: E-Mail/WhatsApp gleich, gelb nur unter dem Zeiger */
+html body .gform .gf-b .gbtn{background:var(--white)}
+@media (hover:hover){html body .gform .gf-b .gbtn:hover{background:var(--sun)}}
+html body .gform .gf-b .gbtn:focus-visible,html body .gform .gf-b .gbtn:active{background:var(--sun)}
+/* regress_fix_24_11: Demo-Handy neutral, bis eine Branche gewählt ist */
+.tphone-wrap.tneutral .tsite .tin{visibility:hidden}
+.tphone-wrap.tneutral .tsite::after{content:"";position:absolute;left:14px;right:14px;top:44px;bottom:14px;border-radius:12px;
+  background:linear-gradient(135deg,var(--sun-soft),var(--sun)) top/100% 22% no-repeat,
+  repeating-linear-gradient(to bottom,transparent 0 10px,#F1EEE6 10px 50px) 0 28%/100% 72% no-repeat}
+.tphone-wrap.tneutral .touch{opacity:0!important}
 </style>
 </head>
 <body>
@@ -3393,8 +3404,10 @@ html body main>section#kontakt{padding-top:16px}
     var ph=tw.querySelector('.tphone'), scr=tw.querySelector('.scr'), dot=tw.querySelector('.touch'), dots=[].slice.call(tw.querySelectorAll('.tdots i'));
     var now=0, want=0, busy=false, hoverI=-1, vis=false, demoT=null, gen=0, onPhone=false, E='cubic-bezier(.5,0,.2,1)';
     function W(){return scr.clientWidth} function H(){return scr.clientHeight}
-    var touched=false; cards.forEach(function(c){ ['pointerenter','click','focusin'].forEach(function(ev){ c.addEventListener(ev,function(){ touched=true; },true); }); });
-    function mark(i){cards.forEach(function(c,k){c.classList.toggle('live',touched&&k===i);}); dots.forEach(function(d,k){d.classList.toggle('on',k===i);});}
+    var touched=false; tw.classList.add('tneutral'); function setT(){ if(touched) return; touched=true; window.__trT=true; tw.classList.remove('tneutral'); }
+    cards.forEach(function(c){ c.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') setT(); },true); c.addEventListener('click',function(e){ if(e.isTrusted) setT(); },true); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' ') setT(); },true); });
+    tw.addEventListener('click',function(e){ if(e.isTrusted) setT(); },true);
+    function mark(i){cards.forEach(function(c,k){c.classList.toggle('live',touched&&k===i);}); dots.forEach(function(d,k){d.classList.toggle('on',touched&&k===i);});}
     function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
     function fing(x,y,o,ms){return dot.animate([{},{transform:'translate('+x+'px,'+y+'px)',opacity:o}],{duration:ms||400,easing:E,fill:'forwards'}).finished.catch(function(){});}
     function place(x,y,o){dot.getAnimations().forEach(function(a){a.cancel();}); dot.style.transform='translate('+x+'px,'+y+'px)'; dot.style.opacity=o;}
@@ -3436,7 +3449,7 @@ html body main>section#kontakt{padding-top:16px}
     document.addEventListener('pointermove',zMove,{passive:true}); document.addEventListener('pointerdown',zMove,{passive:true});
     document.documentElement.addEventListener('mouseleave',function(){ if(overZone){ overZone=false; lastAct=Date.now(); qCheck(); } });
     async function demo(){
-      demoT=null; if(!vis||busy||onPhone||userNav||!quiet()) return; busy=true; var g=gen;
+      demoT=null; if(!touched||!vis||busy||onPhone||userNav||!quiet()) return; busy=true; var g=gen;
       function alive(){ return g===gen; }
       var site=lastSite(), tin=site.querySelector('.tin'), tb=site.querySelector('.tb'), w=W(), h=H();
       var view=site.querySelector('.tview'), maxS=Math.max(0, tin.scrollHeight-view.clientHeight);
@@ -4159,11 +4172,12 @@ document.addEventListener('click',function(e){
     function tick(){ if(held||!vis) return; cur=cur%3+1; hot(cur); }
     function run(){ clearInterval(t); t=setInterval(tick,2600); }
     notes.forEach(function(l){ var n=+l.getAttribute('data-n');
-      l.addEventListener('pointerenter',function(){held=true;cur=n;hot(n);});
+      l.addEventListener('pointerenter',function(e){ if(e.pointerType!=='mouse'||!matchMedia('(hover:hover) and (pointer:fine)').matches) return; held=true;cur=n;hot(n);});
       l.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'){held=false;run();} });
       l.addEventListener('focus',function(){held=true;cur=n;hot(n);});
       l.addEventListener('blur',function(){held=false;run();});
-      l.addEventListener('click',function(){held=true;cur=n;hot(n);}); });
+      l.addEventListener('click',function(e){ cur=n;hot(n); if(e.pointerType==='mouse') return; held=true; clearTimeout(l._h); l._h=setTimeout(function(){held=false;run();},4000); }); });
+    var lastQ=0; addEventListener('scroll',function(){ if(!vis||held) return; var r=f.getBoundingClientRect(), p=(innerHeight-r.top)/(innerHeight+r.height); var q=p<.42?1:(p<.58?2:3); if(q!==lastQ){ lastQ=q; cur=q; hot(q); run(); } },{passive:true});
     if('IntersectionObserver' in window) new IntersectionObserver(function(es){es.forEach(function(e){vis=e.isIntersecting; if(vis&&!cur){cur=1;hot(1);} });},{threshold:.3}).observe(f); else {vis=true;hot(1);}
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches) run(); }
   var g=document.getElementById('gform');
@@ -4236,7 +4250,7 @@ document.addEventListener('click',function(e){
   function ord(){ it.forEach(function(el,i){ el.style.order=String((i-pos+N)%N); }); }
   function step(){ var a=it[pos].getBoundingClientRect(), b=it[(pos+1)%N].getBoundingClientRect(); return (b.left-a.left)||a.width; }
   function vis(){ return Math.max(1,Math.round((vp.clientWidth-8)/step())); }
-  function sel(){ var c=it[pos]; try{ c.dispatchEvent(new MouseEvent('mouseenter')); c.dispatchEvent(new MouseEvent('mouseleave')); if(innerWidth<=900) c.click(); }catch(_){} }
+  function sel(){ var c=it[pos]; if(!window.__trT) return; try{ c.dispatchEvent(new MouseEvent('mouseenter')); c.dispatchEvent(new MouseEvent('mouseleave')); if(innerWidth<=900) c.click(); }catch(_){} }
   function fin(){ tr.style.transition='none'; tr.style.transform='none'; busy=false; if(q){ var d=q>0?1:-1; q-=d; mv(d,true); } else sel(); }
   function mv(d,chain){ if(busy){ q=Math.max(-2,Math.min(2,q+d)); return; } busy=true; var s=step(), D=chain?420:560, E='transform '+D+'ms cubic-bezier(.3,.8,.25,1)';
     if(d>0){ tr.style.transition=E; tr.style.transform='translate3d('+(-s)+'px,0,0)'; setTimeout(function(){ pos=(pos+1)%N; ord(); fin(); },D+20); }
