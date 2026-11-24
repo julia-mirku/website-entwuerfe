@@ -2214,6 +2214,19 @@ html body .trades .card.k-blum:is(:hover,.live) .tico{background:#45C08A;box-sha
 html body .trades .card.k-hotel:is(:hover,.live) .tico{background:#FFFFFF;box-shadow:none}
 @media (hover:hover){ html body .trades .card:nth-child(1).live:not(:hover) .tico{background:linear-gradient(135deg,#FF6B5E 0 50%,#4FA3F7 50% 100%)} }
 </style>
+<style>
+/* ===== 24.11: Abstände zwischen den Blöcken ===== */
+@media (min-width:901px){
+  html body .hero{padding-bottom:20px}
+  html body .swirl{padding-top:0;margin-top:-60px}
+  html body .fall{padding-bottom:56px}
+}
+/* Regel 18h (Julia 24.11): kein Hin und Her hell/weiss zwischen den Blöcken – alle hellen Blöcke ein Ton;
+   der eine dunkle Block geht lang und weich über */
+html body section.muster,html body section.finds,html body section.works,html body section.how,html body section#zusagen{background:none !important}
+html body main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F2328 120px,#1F2328 calc(100% - 80px),var(--paper) 100%) !important;padding-top:118px !important;padding-bottom:82px !important}
+@media (max-width:900px){ html body main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F2328 90px,#1F2328 calc(100% - 64px),var(--paper) 100%) !important;padding-top:96px !important;padding-bottom:66px !important} }
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -4125,6 +4138,20 @@ document.addEventListener('click',function(e){
   bs.forEach(function(b){ b.addEventListener('click',fit); b.addEventListener('keydown',function(){ setTimeout(fit,0); }); });
   set('w'); fit(); addEventListener('resize',fit); addEventListener('load',fit);
   if(window.ResizeObserver) ps.forEach(function(p){ new ResizeObserver(fit).observe(p); });
+})();
+</script>
+<script>
+/* 24.11: festgehaltene Blöcke – Inhalt oben statt mittig, damit über der Überschrift kein Loch steht */
+(function(){
+  function fit(){ [].forEach.call(document.querySelectorAll('.pin'),function(sec){
+    var stk=sec.querySelector('.stk'), wrap=stk&&stk.querySelector('.wrap'), prev=sec.previousElementSibling; if(!wrap||!prev) return;
+    wrap.style.marginTop=''; stk.style.alignItems='';
+    var dark=prev.classList.contains('dark'), T=innerWidth>900?(dark?72:100):(dark?44:56);
+    var ppb=dark?0:parseFloat(getComputedStyle(prev).paddingBottom)||0, want=Math.max(20,T-ppb), slack=(stk.clientHeight-wrap.offsetHeight)/2;
+    if(slack>want+8){ stk.style.alignItems='flex-start'; wrap.style.marginTop=want+'px'; }
+  }); }
+  fit(); addEventListener('load',fit); var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(fit,150); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
 })();
 </script>
 </body>
