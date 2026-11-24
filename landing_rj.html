@@ -3943,7 +3943,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     /* 23.11: gleicher Scrollweg 1→2 und 2→3 */
     var lead=Math.max(0,innerHeight*0.35-hh), D=innerHeight*0.77; T[1]=Math.max(0.05,(D-lead)/run); T[2]=T[1]+D/run;
     WT[0]=T[1]+(T[2]-T[1])*0.25; WT[1]=T[1]+(T[2]-T[1])*0.45; WT[2]=T[1]+(T[2]-T[1])*0.65; var FIN=Math.min(0.97,T[2]+0.5*D/run);
-    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.35) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
+    var p=clamp((hh-r.top)/run); if(r.top<innerHeight*0.8) p=Math.max(p,T[0]); if(p>pmax) pmax=p; p=pmax;
     /* nacheinander: nächste Karte frühestens GAP ms nach der vorigen */
     if(!NOG){ var now=performance.now(), wait=0, d;
       for(var g=1;g<lis.length;g++){ if(lis[g].classList.contains('land')) continue;
