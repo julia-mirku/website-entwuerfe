@@ -2478,6 +2478,25 @@ html body .steps.pin ol>li .ways li{transition:opacity .5s ease-out,transform .5
 }
 @media (prefers-reduced-motion:reduce){ html body .steps.pin ol>li:not(.land){opacity:1 !important;transform:none !important} }
 </style>
+<style>
+/* ===== tel_pfeile_24_11: kleine schwarze Pfeile am Demo-Telefon ===== */
+html body .trades .tphone-wrap{--pw:280px;position:relative}
+@media (min-width:901px){ html body .trades .tphone-wrap{--pw:clamp(260px, calc((100vh - 180px) * .484), 280px)} }
+html body .trades .tphone-wrap .tphone{margin-left:auto !important;margin-right:auto !important}
+html body .trades .tphone-wrap .tnav{display:grid !important;place-items:center;position:absolute;z-index:4;
+  top:calc((100% - 24px) / 2);margin-top:-17px;width:28px;height:34px;padding:0;background:none !important;border:0 !important;
+  box-shadow:none !important;border-radius:6px;color:var(--ink);opacity:.75;cursor:pointer;transform:none;transition:opacity .2s ease,transform .2s ease}
+html body .trades .tphone-wrap .tnav svg{width:20px;height:20px}
+html body .trades .tphone-wrap .tnav svg path{stroke-width:2.2}
+html body .trades .tphone-wrap .tnav.prev{left:calc(50% - var(--pw) / 2 - 40px);right:auto}
+html body .trades .tphone-wrap .tnav.next{right:calc(50% - var(--pw) / 2 - 40px);left:auto}
+html body .trades .tphone-wrap .tnav:hover{opacity:1;transform:scale(1.18);background:none !important}
+html body .trades .tphone-wrap .tnav:active{transform:scale(1.05)}
+html body .trades .tphone-wrap .tnav:focus-visible{outline:2px solid var(--ink);outline-offset:2px;opacity:1}
+@media (min-width:901px) and (max-width:1199px){
+  html body .trades .tlay{grid-template-columns:336px minmax(0,1fr) !important;gap:40px !important}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
