@@ -2302,7 +2302,7 @@ html body .gform .gf-b .gbtn:focus-visible,html body .gform .gf-b .gbtn:active{b
 }
 /* 5) Branchen-Handy passt in niedrige Bildschirme */
 @media (min-width:901px) and (max-height:860px){
-  html body #branchen .tphone{width:min(280px, calc((100vh - 300px) * .484)) !important}
+  /* Julia 24.11 abends: «телефон верните, как было» – Handy nicht verkleinern */
   html body #branchen .tcar,html body #branchen .tcv,html body #branchen .cards{height:auto !important;min-height:0 !important}
   html body #branchen .card{min-height:0 !important;height:auto !important}
   html body #branchen .tlay{margin-top:28px !important}
@@ -2325,6 +2325,49 @@ html body .gform .gf-b .gbtn:focus-visible,html body .gform .gf-b .gbtn:active{b
   .chatw .wab{width:48px;height:48px}
   html.chat-down .chatw:not(.open){opacity:0;transform:translateY(16px);pointer-events:none}
 }
+</style>
+<style>
+/* ===== abend_wuensche_24_11 ===== */
+/* 2) Branchen: Hover erst nach echter Mausbewegung, nicht wenn die Seite unter dem Zeiger durchscrollt */
+@media (hover:hover){ #branchen:not(.hvok) .cards{pointer-events:none} }
+/* 4) Karten nur so hoch wie der Inhalt */
+html body #branchen .tcar,html body #branchen .tcv,html body #branchen .cards{height:auto !important;min-height:0 !important}
+html body #branchen .cards{align-items:flex-start}
+html body #branchen .card{min-height:0 !important;height:auto !important}
+/* 5) «Blöcke hochziehen»: festgehaltene Blöcke nur so hoch wie ihr Inhalt, oben angelegt – kein leerer Halbbildschirm vor/nach «So geht es» und «Wie wir arbeiten» */
+html body .steps.pin:not(.nopin):not(.unpinned) .stk,html body .how.pin:not(.nopin) .stk{height:auto !important;align-items:flex-start;padding:28px 0 28px}
+html body .steps.pin.unpinned .stk{position:relative !important;top:auto !important;height:auto !important;align-items:flex-start;padding:24px 0 8px !important}
+/* 5b) alle Abstände noch etwas kleiner (Julia: «Blöcke hochziehen», «ниже… тоже») */
+@media (min-width:901px){
+  html body main>section.swirl{padding-top:0 !important}
+  html body .swirl .inner{padding-top:6px}
+  html body main>section#muster,html body main>section#erklaert{margin-top:-44px}
+  html body main>section.finds,html body main>section#branchen,html body main>section.us{margin-top:-54px}
+  html body main>section#leistungen{margin-top:-16px}
+  html body main>section#zusagen{margin-top:-48px}
+  html body main>section#zusagen+section#preise{margin-top:-42px}
+  html body main>section#fragen{margin-top:-16px}
+  html body .how.pin:not(.nopin) .stk{padding-top:10px !important}
+}
+@media (max-width:900px){
+  html body main>section.swirl{padding-top:0 !important}
+  html body .swirl .inner{padding-top:4px}
+  html body .swirl .stage{padding-top:12px}
+  html body main>section#muster,html body main>section.finds{margin-top:-58px}
+  html body main>section#erklaert{margin-top:-52px}
+  html body main>section#branchen,html body main>section.us{margin-top:-34px}
+  html body main>section#leistungen{margin-top:-32px}
+  html body main>section#zusagen{margin-top:-38px}
+  html body main>section#zusagen+section#preise{margin-top:-38px}
+  html body main>section#fragen{margin-top:-24px}
+  html body .how.pin:not(.nopin) .stk{padding-top:8px !important}
+}
+/* 7) reines Schwarz */
+html body main>section.safe.dark{background:#000 !important}
+/* 8)+9) Chips wie bis 20.11: ruhig hell, aktiv kräftig gelb mit dunklem Rand, angehoben */
+html body .steps.pin ol>li .ways li.lit,html body .steps.pin.nopin ol>li .ways li,html body .ways li{background:var(--sky);border-color:transparent;box-shadow:none}
+html body .steps.pin ol>li .ways li.on,html body .steps.pin ol>li .ways li:is(:hover,:focus-visible),html body .ways li.on,html body .ways li:is(:hover,:focus-visible){background:var(--sun);border-color:var(--ink);transform:translateY(-3px);box-shadow:0 4px 0 var(--ink)}
+html body .w-msg:is(:hover,:focus-visible,.on) .d{animation:w-dot .9s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -3831,7 +3874,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   function up(){ q=false;
     if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('land');}); ol.classList.add('fin'); ol.style.height=''; return; }
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
-    var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
+    var r=sec.getBoundingClientRect(), run=sec.offsetHeight-Math.max(st.offsetHeight,innerHeight-(parseFloat(getComputedStyle(st).top)||0)); if(run<=0) return;
     /* 23.11: gleicher Scrollweg 1→2 und 2→3 */
     var lead=Math.max(0,innerHeight*0.35-hh), D=innerHeight*0.77; T[1]=Math.max(0.05,(D-lead)/run); T[2]=T[1]+D/run;
     WT[0]=T[1]+(T[2]-T[1])*0.25; WT[1]=T[1]+(T[2]-T[1])*0.45; WT[2]=T[1]+(T[2]-T[1])*0.65; var FIN=Math.min(0.97,T[2]+0.5*D/run);
@@ -3884,7 +3927,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     var g=sec.querySelector('.hgrid');
     if(sec.classList.contains('nopin')){ lis.forEach(function(li){li.classList.add('lit');}); g.classList.add('done'); return; }
     var st=sec.querySelector('.stk'), hh=parseFloat(getComputedStyle(st).top)||0;
-    var r=sec.getBoundingClientRect(), run=sec.offsetHeight-st.offsetHeight; if(run<=0) return;
+    var r=sec.getBoundingClientRect(), run=sec.offsetHeight-Math.max(st.offsetHeight,innerHeight-(parseFloat(getComputedStyle(st).top)||0)); if(run<=0) return;
     var lead=innerHeight*0.5, p=Math.max(0,Math.min(1,(hh+lead-r.top)/(run+lead)));
     lis.forEach(function(li,k){ if(!li.classList.contains('lit')&&p>=T[k]) li.classList.add('lit'); });
     if(!g.classList.contains('done')&&!doneT&&lis.every(function(li){return li.classList.contains('lit');})) doneT=setTimeout(function(){ g.classList.add('done'); },750);
@@ -4250,6 +4293,21 @@ document.addEventListener('click',function(e){
   addEventListener('scroll',function(){ if(innerWidth>900) return; var y=scrollY;
     if(y>ly+4) R.classList.add('chat-down'); else if(y<ly-4) R.classList.remove('chat-down');
     ly=y; clearTimeout(t); t=setTimeout(function(){ R.classList.remove('chat-down'); },1400); },{passive:true});
+})();
+</script>
+<script>
+(function(){ /* abend_wuensche_24_11: Branchen-Hover nur nach echter Mausbewegung */
+  var s=document.querySelector('#branchen'); if(!s) return;
+  var lx=null, ly=null; /* echte Bewegung = andere Bildschirmkoordinaten als beim letzten Ereignis (Scrollen unter ruhiger Maus ändert sie nicht) */
+  addEventListener('pointermove',function(e){ if(e.pointerType!=='mouse') return; var mv=(lx!==null)&&(e.clientX!==lx||e.clientY!==ly); lx=e.clientX; ly=e.clientY; if(mv&&s.contains(e.target)) s.classList.add('hvok'); },{passive:true,capture:true});
+  addEventListener('scroll',function(){ s.classList.remove('hvok'); },{passive:true});
+  addEventListener('wheel',function(){ s.classList.remove('hvok'); },{passive:true});
+})();
+(function(){ /* 9) drittes Feld bleibt am Ende sichtbar umrandet */
+  var ws=[].slice.call(document.querySelectorAll('#ablauf .ways li')); if(ws.length<3) return;
+  var last=ws[ws.length-1], busy=false;
+  new MutationObserver(function(){ if(busy) return; var all=ws.every(function(l){return l.classList.contains('lit');}), none=ws.every(function(l){return !l.classList.contains('on');});
+    if(all&&none){ busy=true; last.classList.add('on'); busy=false; } }).observe(document.querySelector('#ablauf .ways'),{subtree:true,attributes:true,attributeFilter:['class']});
 })();
 </script>
 </body>
