@@ -2317,7 +2317,7 @@ html body .gform .gf-b .gbtn:focus-visible,html body .gform .gf-b .gbtn:active{b
   header .snav.na a{flex:none;min-width:0 !important;padding:7px 4px !important;font-size:13px !important}
   header .snav.na.more{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
 }
-@media (max-width:767px){
+@media (max-width:900px){ /* Handy und Tablet hochkant (Julia: Tablet wie Handy) */
   .chatw{flex-direction:column;align-items:flex-end;gap:10px;right:10px;bottom:12px}
   .chatw .chatb{width:48px;height:48px;min-height:48px;padding:0;justify-content:center;gap:0;border-radius:50%}
   .chatw .chatb span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -3256,7 +3256,9 @@ html body .gform .gf-b .gbtn:focus-visible,html body .gform .gf-b .gbtn:active{b
   function read(){
     if(sec.classList.contains('nopin')){ tgt=1; return; }
     var r=sec.getBoundingClientRect(), span=r.height-innerHeight;
-    tgt=clamp(-r.top/span);
+    /* Julia 23.11/24.11: Start schon, wenn 85 % des Handys sichtbar sind (nicht erst bei 100 %) */
+    var pr=phone.getBoundingClientRect(), pb=pr.bottom-r.top, off=Math.max(0, innerHeight+0.15*pr.height-pb);
+    tgt=clamp((off-r.top)/(span+off));
   }
   var running=false, settled=0, M=null;
   function measure(){
@@ -4245,7 +4247,7 @@ document.addEventListener('click',function(e){
   if(nav){ nav.addEventListener('scroll',more,{passive:true}); addEventListener('resize',more); setTimeout(more,300); setTimeout(more,1500);
     new MutationObserver(function(){ setTimeout(more,60); }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']}); }
   var ly=scrollY, t=null, R=document.documentElement;
-  addEventListener('scroll',function(){ if(innerWidth>767) return; var y=scrollY;
+  addEventListener('scroll',function(){ if(innerWidth>900) return; var y=scrollY;
     if(y>ly+4) R.classList.add('chat-down'); else if(y<ly-4) R.classList.remove('chat-down');
     ly=y; clearTimeout(t); t=setTimeout(function(){ R.classList.remove('chat-down'); },1400); },{passive:true});
 })();
