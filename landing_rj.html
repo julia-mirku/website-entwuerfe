@@ -2554,6 +2554,21 @@ html body .zed .zpf-wr{right:4px;bottom:22px;transform:rotate(-8deg)}
 html body .offv,html body .offv *,html body .offv *::before,html body .offv *::after{animation-play-state:paused !important}
 @media (prefers-reduced-motion:reduce){ html body #ablauf.steps.pin.mflow ol>li{opacity:1 !important;transform:none !important} }
 </style>
+<style>
+/* ===== 25.11: Betreuung ab 30 sichtbar, Pakete im Fenster ===== */
+@media (min-width:901px){ .psec .pcards{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:14px} .psec .pcards .pcard{padding:20px 18px 18px} .psec .pcards ul.pvl{font-size:13px} .psec .pcards ul.pvl li{gap:6px} .psec .pcards ul.pvl .nb2{display:inline;white-space:normal} }
+@media (min-width:701px) and (max-width:900px){ .psec .pcards{grid-template-columns:repeat(2,minmax(0,1fr)) !important} }
+.pcard.pcare{cursor:pointer}
+.pcard.pcare .pv small[data-t="pz_mo"]{font-size:.5em;font-weight:700;margin-left:2px}
+.pcard.pcare .pgo{margin-top:8px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.pcard.pcare:hover .pgo svg{transform:translateX(3px)}
+.pcard.pcare .pgo svg{transition:transform .2s ease}
+.drawer .pkdr .plan.pkpl{margin-top:14px}
+.drawer .pkdr .plan.pkpl.top{margin-top:26px}
+.drawer .pkdr .pkb{position:absolute;top:-13px;left:16px}
+.drawer .pkdr ul.pkl{margin:10px 0 0;padding-left:18px;font-size:15.5px}
+.drawer .pkdr ul.pkn{margin:14px 0 0;padding-left:18px;font-size:15px;color:var(--ink-2)}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -2957,6 +2972,7 @@ html body .offv,html body .offv *,html body .offv *::before,html body .offv *::a
         <div class="pcard" tabindex="0"><span class="pk" data-t="pz1k">Eine Seite</span><b class="pv"><small data-t="pz_ab">ab</small> CHF <span class="cnt" data-n="900">900</span></b><span class="pd" data-t="pz1d">Alles Wichtige auf einer Seite: Angebot, Preise, Öffnungszeiten, Kontakt.</span></div>
         <div class="pcard" tabindex="0"><span class="pk" data-t="pz2k">3 bis 5 Seiten</span><b class="pv"><small data-t="pz_ab2">ab</small> CHF <span class="cnt" data-n="1600">1’600</span></b><span class="pd" data-t="pz2d">Eigene Seiten für Leistungen, Team oder Galerie.</span></div>
         <div class="pcard g" tabindex="0"><span class="pk" data-t="pzvk">Animierte Videos</span><b class="pv">+ <small data-t="pz_ab3">ab</small> CHF <span class="cnt" data-n="150">150</span></b><span class="pd" data-t="pzvd">zusätzlich zur Website</span><ul class="pvl"><li><span data-t="pzv1">Kurze Animation bis 10 Sek. <span class=nb2>(Logo, Story)</span></span><b><span data-t="pz_ab">ab</span> CHF 150</b></li><li><span data-t="pzv2">Video 15–30 Sek.</span><b><span data-t="pz_ab">ab</span> CHF 250</b></li><li><span data-t="pzv3">Video 30–60 Sek.</span><b><span data-t="pz_ab">ab</span> CHF 400</b></li></ul></div>
+        <div class="pcard pcare" tabindex="0" role="button" aria-controls="preise"><span class="pk" data-t="pz3k">Betreuung</span><b class="pv"><small data-t="pz_ab">ab</small> CHF 30<small data-t="pz_mo">/Monat</small></b><span class="pd" data-t="pz3d">Selbst pflegen, Wir pflegen oder Rundum betreut.</span><ul class="pvl"><li><span data-t="pk1n">Selbst pflegen</span><b><span data-t="pz_ab">ab</span> CHF 30</b></li><li><span data-t="pk2n">Wir pflegen</span><b><span data-t="pz_ab">ab</span> CHF 60</b></li><li><span data-t="pk3n">Rundum betreut</span><b><span data-t="pz_ab">ab</span> CHF 90</b></li></ul></div>
       </div>
       <p class="psw" aria-hidden="true" data-t="mu_sw">→ wischen</p><p class="pnote" data-t="pz_note">Mit Bewegung und Effekten wie auf dieser Seite: Preis auf Anfrage.</p></div><div class="pp" data-pp="b" role="tabpanel"><h3 class="pkh" data-t="p3_h">Betreuung nach dem Start</h3><div class="pks"><article class="pkc"><h4 data-t="pk1n">Selbst pflegen</h4><b class="pkp" data-t="pk1p">ab CHF 30 / Monat</b><ul class="pkl"><li data-t="pk1e">Sie erhalten einen einfachen Editor: Texte, Preise, Öffnungszeiten und Fotos ändern Sie selbst im Browser – ohne Programmierkenntnisse.</li><li data-t="pk1u">Sicherheit, Updates, Backups, Hilfe, wenn Sie nicht weiterkommen</li></ul></article><article class="pkc top"><span class="pkb" data-t="pk_top">Beliebteste Wahl</span><h4 data-t="pk2n">Wir pflegen</h4><b class="pkp" data-t="pk2p">ab CHF 60 / Monat</b><ul class="pkl"><li data-t="pk2a">Alles aus «Selbst pflegen»</li><li data-t="pk2b">Bis 3 kleine Änderungen pro Monat: Öffnungszeiten, Preise, Texte, Fotos, Ihre Monatsaktion</li><li data-t="pk2c">Antwort innert 2 Arbeitstagen</li></ul></article><article class="pkc"><h4 data-t="pk3n">Rundum betreut</h4><b class="pkp" data-t="pk3p">ab CHF 90 / Monat</b><ul class="pkl"><li data-t="pk3a">Alles aus «Wir pflegen»</li><li data-t="pk3b">Bis 8 Änderungen pro Monat</li><li data-t="pk3c">Aktionen und Saisonangebote eintragen</li><li data-t="pk3d">Google-Profil pflegen: Öffnungszeiten, Feiertage, Fotos, Aktionen</li><li data-t="pk3e">Neue Fotos zuschneiden und einsetzen</li><li data-t="pk3f">Kurzer Monatsbericht: Besucher, Anrufe, was wir gemacht haben</li><li data-t="pk3g">Antwort am nächsten Arbeitstag</li></ul></article></div><p class="psw" aria-hidden="true" data-t="mu_sw">→ wischen</p><ul class="pkn"><li data-t="pkn1">Eine Änderung = ein Wunsch in einer Nachricht, z. B. neue Öffnungszeiten.</li><li data-t="pkn2">Nicht inklusive: neue Seiten, Saison-Design, neue Funktionen – mit Offerte vorab.</li><li data-t="pkn3">Monatlich kündbar. Paket jederzeit wechseln.</li></ul>
       </div></div>
@@ -3041,6 +3057,11 @@ html body .offv,html body .offv *,html body .offv *::before,html body .offv *::a
         <a class="pbtn pask" href="mailto:mirkurobin@gmail.com?subject=Preis%20f%C3%BCr%20eine%20Website%20mit%20Animation"><span data-t="pl2b">Preis anfragen</span><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <p class="note" data-t="p_note">Den genauen Preis nennen wir Ihnen in der Offerte. Er bleibt fest, solange keine neuen Wünsche dazukommen, die wir am Anfang nicht besprochen haben.</p><p class="note" data-t="p_host">Hosting: Haben Sie schon einen Anbieter, bleibt Ihre Website dort. Brauchen Sie einen neuen, organisieren wir ihn und nennen die Kosten in der Offerte.</p><p class="note" data-t="pm2b">Eine neue Domain organisieren wir auf Wunsch.</p>
+    </section>
+    <section aria-labelledby="h-p3" class="pkdr" style="padding:0">
+      <h3 id="h-p3" data-t="p3_h">Betreuung nach dem Start</h3>
+      <div class="plan pkpl"><h4 data-t="pk1n">Selbst pflegen</h4><b class="pkp" data-t="pk1p">ab CHF 30 / Monat</b><ul class="pkl"><li data-t="pk1e">Sie erhalten einen einfachen Editor: Texte, Preise, Öffnungszeiten und Fotos ändern Sie selbst im Browser – ohne Programmierkenntnisse.</li><li data-t="pk1u">Sicherheit, Updates, Backups, Hilfe, wenn Sie nicht weiterkommen</li></ul></div><div class="plan pkpl top"><span class="pkb" data-t="pk_top">Beliebteste Wahl</span><h4 data-t="pk2n">Wir pflegen</h4><b class="pkp" data-t="pk2p">ab CHF 60 / Monat</b><ul class="pkl"><li data-t="pk2a">Alles aus «Selbst pflegen»</li><li data-t="pk2b">Bis 3 kleine Änderungen pro Monat: Öffnungszeiten, Preise, Texte, Fotos, Ihre Monatsaktion</li><li data-t="pk2c">Antwort innert 2 Arbeitstagen</li></ul></div><div class="plan pkpl"><h4 data-t="pk3n">Rundum betreut</h4><b class="pkp" data-t="pk3p">ab CHF 90 / Monat</b><ul class="pkl"><li data-t="pk3a">Alles aus «Wir pflegen»</li><li data-t="pk3b">Bis 8 Änderungen pro Monat</li><li data-t="pk3c">Aktionen und Saisonangebote eintragen</li><li data-t="pk3d">Google-Profil pflegen: Öffnungszeiten, Feiertage, Fotos, Aktionen</li><li data-t="pk3e">Neue Fotos zuschneiden und einsetzen</li><li data-t="pk3f">Kurzer Monatsbericht: Besucher, Anrufe, was wir gemacht haben</li><li data-t="pk3g">Antwort am nächsten Arbeitstag</li></ul></div>
+      <ul class="pkn"><li data-t="pkn1">Eine Änderung = ein Wunsch in einer Nachricht, z. B. neue Öffnungszeiten.</li><li data-t="pkn2">Nicht inklusive: neue Seiten, Saison-Design, neue Funktionen – mit Offerte vorab.</li><li data-t="pkn3">Monatlich kündbar. Paket jederzeit wechseln.</li></ul>
     </section>
     
     <section aria-labelledby="h-p2" style="padding:0">
@@ -4526,6 +4547,12 @@ document.addEventListener('click',function(e){
     var io2=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('offv',!e.isIntersecting); }); },{rootMargin:'200px 0px'});
     [].forEach.call(document.querySelectorAll('main>section, .hero'),function(s){ io2.observe(s); });
   }
+})();
+</script>
+<script>
+(function(){ var c=document.querySelector('.pcard.pcare'), t=document.querySelector('.ptabs [data-pt="b"]'); if(!c||!t) return;
+  function go(){ t.click(); }
+  c.addEventListener('click',go); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
 })();
 </script>
 </body>
