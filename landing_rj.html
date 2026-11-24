@@ -2055,6 +2055,37 @@ main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F23
   main>section.safe.dark{padding-top:calc(36px + 40px) !important;padding-bottom:calc(36px + 40px) !important}
 }
 </style>
+<style>
+/* branchen_band_24_11 */
+/* ===== /alt/: Muster und Branchen als waagrechtes Band ===== */
+.aband{display:flex !important;grid-template-columns:none !important;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding:8px 4px 16px;margin-left:-4px;margin-right:-4px;scroll-padding:0 4px}
+.aband::-webkit-scrollbar{display:none}
+.aband>*{order:0 !important;scroll-snap-align:start;flex:0 0 calc((100% - 40px)/3);min-width:0}
+.trades .tlay .cards.aband>*{flex:0 0 calc((100% - 20px)/2)}
+.trades .tlay .cards.aband{align-items:stretch;margin-top:0}
+.abox{min-width:0}
+.muster .abox{margin-top:40px}
+.muster .abox .mgrid{margin-top:0}
+.actl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px}
+.actl button.aa{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--sun);display:grid;place-items:center;cursor:pointer;box-shadow:0 3px 0 var(--ink);transition:transform .15s ease,opacity .2s ease}
+.actl button.aa:hover{transform:translateY(-2px)}
+.actl button.aa:active{transform:translateY(2px)}
+.actl button.aa[disabled]{opacity:.3;cursor:default;transform:none}
+.actl button.aa svg{width:20px;height:20px}
+.actl button.aa:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.adots{display:flex;gap:8px;align-items:center}
+.adots i{width:9px;height:9px;border-radius:50%;background:#D9D3C6;transition:background-color .2s ease,transform .2s ease}
+.adots i.on{background:var(--ink);transform:scale(1.25)}
+.ahint{display:none;font:700 14px/1 var(--body);color:var(--ink-2)}
+@media (max-width:900px){
+  .aband{gap:14px;margin-left:-16px;margin-right:-16px;padding:6px 16px 14px;scroll-padding:0 16px}
+  .aband>*,.trades .tlay .cards.aband>*{flex:0 0 80%}
+  .actl{justify-content:space-between;margin-top:4px}
+  .actl button.aa{display:none}
+  .ahint{display:inline}
+}
+@media (min-width:600px) and (max-width:900px){ .aband>*,.trades .tlay .cards.aband>*{flex:0 0 44%} }
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3874,6 +3905,28 @@ document.addEventListener('click',function(e){
   bp.addEventListener('click',function(){ mv(-1); }); bn.addEventListener('click',function(){ mv(1); });
   list.addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(upd); } },{passive:true});
   addEventListener('resize',lay); lay(); setTimeout(lay,700);
+})();
+</script>
+<script>/* alt: Bänder */
+(function(){
+  var HINT={"de": "→ wischen", "en": "→ swipe", "fr": "→ glisser"};
+  function lang(){ var l=(document.documentElement.lang||'de').slice(0,2); return HINT[l]?l:'de'; }
+  function band(list){ if(!list||list.classList.contains('mband')) return; list.classList.add('aband'); var items=[].slice.call(list.children);
+    var c=document.createElement('div'); c.className='actl'; c.innerHTML='<button type="button" class="aa p" aria-label="Zurück"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="adots" aria-hidden="true"></span><span class="ahint" aria-hidden="true"></span><button type="button" class="aa n" aria-label="Weiter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="#1F2328" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>';
+    var bx=document.createElement('div'); bx.className='abox'; list.parentNode.insertBefore(bx,list); bx.appendChild(list); bx.appendChild(c);
+    var bp=c.querySelector('.p'), bn=c.querySelector('.n'), dots=c.querySelector('.adots'), hint=c.querySelector('.ahint'), pages=1, q=false;
+    function step(){ var a=items[0].getBoundingClientRect(), b=items[1]?items[1].getBoundingClientRect():a; return (b.left-a.left)||a.width; }
+    function per(){ return Math.max(1,Math.round((list.clientWidth+20)/step())); }
+    function lay(){ var n=Math.max(1,Math.ceil(items.length/per())); if(n!==pages||!dots.children.length){ pages=n; dots.innerHTML=''; for(var k=0;k<n;k++) dots.appendChild(document.createElement('i')); } upd(); hint.textContent=HINT[lang()]; }
+    function upd(){ q=false; var max=list.scrollWidth-list.clientWidth, x=list.scrollLeft, p=max<=2?0:Math.round(x/max*(pages-1));
+      [].forEach.call(dots.children,function(d,k){ d.classList.toggle('on',k===p); }); bp.disabled=x<=2; bn.disabled=x>=max-2; }
+    function mv(d){ list.scrollBy({left:d*step()*per(),behavior:'smooth'}); }
+    bp.addEventListener('click',function(){ mv(-1); }); bn.addEventListener('click',function(){ mv(1); });
+    list.addEventListener('scroll',function(){ if(!q){ q=true; requestAnimationFrame(upd); } },{passive:true});
+    addEventListener('resize',lay); new MutationObserver(function(){ hint.textContent=HINT[lang()]; }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    lay(); setTimeout(lay,600); }
+  band(document.querySelector('.muster .mgrid'));
+  band(document.querySelector('.trades .tlay .cards'));
 })();
 </script>
 </body>
