@@ -2529,6 +2529,31 @@ html body .zed .zpf-wr{right:4px;bottom:22px;transform:rotate(-8deg)}
   html body .zed.go .zpf-sh,html body .zed.go .zpf-wr{opacity:1;translate:0 0}
 }
 </style>
+<style>
+/* ===== ios_24_11 ===== */
+@media (max-width:900px){
+  /* So geht es: einfache Spalte */
+  html body #ablauf.steps.pin.mflow{height:auto !important}
+  html body #ablauf.steps.pin.mflow .stk{position:relative !important;top:auto !important;height:auto !important;padding:40px 0 4px !important;overflow:visible !important;display:block}
+  html body #ablauf.steps.pin.mflow ol{display:block !important;height:auto !important;position:relative}
+  html body #ablauf.steps.pin.mflow ol>li{position:relative !important;top:auto !important;min-height:0 !important;margin:0 0 14px !important;filter:none !important;
+    opacity:0 !important;transform:translateY(26px) !important;transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1) !important}
+  html body #ablauf.steps.pin.mflow ol>li.mup{opacity:1 !important;transform:none !important}
+  html body #ablauf.steps.pin.mflow ol>li:last-child{margin-bottom:0 !important}
+  html body #ablauf.steps.pin.mflow ol>li>*{opacity:1 !important}
+  html body #ablauf.steps.pin.mflow ol>li .yes-chip{transform:none !important}
+  html body #ablauf.steps.pin.mflow ol>li .ways li{opacity:1 !important;transform:none !important}
+  html body #ablauf.steps.pin.mflow .sbar,html body #ablauf.steps.pin.mflow .sline,html body #ablauf.steps.pin.mflow .shint{display:none !important}
+  /* Lags: keine Unschärfe-Filter, leichtere Schatten, Demo-Telefon ohne Neigung */
+  html body *,html body *::before,html body *::after{-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+  html body .trades .tphone{transform:none !important;transition:none !important;box-shadow:0 12px 24px rgba(31,35,40,.16) !important;will-change:auto}
+  html body .sw-phone{box-shadow:0 12px 24px rgba(31,35,40,.16) !important}
+}
+@media (hover:none){ html body .trades .tphone{transform:none !important} }
+/* Dauer-Animationen ausserhalb des Bildschirms anhalten (alle Geräte) */
+html body .offv,html body .offv *,html body .offv *::before,html body .offv *::after{animation-play-state:paused !important}
+@media (prefers-reduced-motion:reduce){ html body #ablauf.steps.pin.mflow ol>li{opacity:1 !important;transform:none !important} }
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3455,7 +3480,7 @@ html body .zed .zpf-wr{right:4px;bottom:22px;transform:rotate(-8deg)}
   var n=icons.length, cur=0, tgt=0;
   function clamp(x){return x<0?0:x>1?1:x}
   function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-  function nofit(){ sec.classList.toggle('nopin', innerHeight<=560); }
+  function nofit(){ /* Julia 24.11 iPhone: Telefon nie abgeschnitten – zu niedrig zum Pinnen (Handy < 840 px, Computer <= 560 px) -> nicht pinnen, fertiges Telefon ganz zeigen */ var hh=Math.min(innerHeight, document.documentElement.clientHeight||innerHeight); if(innerWidth<=900&&nofit.w===innerWidth) return; nofit.w=innerWidth; sec.classList.toggle('nopin', innerWidth<=900 ? hh<840 : hh<=560); }
   addEventListener('resize',nofit); nofit();
   function read(){
     if(sec.classList.contains('nopin')){ tgt=1; return; }
@@ -4129,7 +4154,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
   function L3(d,e,f){ return window.__L3?__L3(d,e,f):d; }
   /* 1. Logo: R und J fahren im Bogen aneinander vorbei und tauschen die Plätze, «&» dreht sich; beim Wegfahren zurück */
   var bm=document.querySelector('header .brand-mark'), br=bm&&bm.closest('a');
-  if(bm&&br&&bm.querySelector('text')&&bm.querySelector('text').getExtentOfChar&&Element.prototype.animate){ try{
+  if(false&&bm&&br&&bm.querySelector('text')&&bm.querySelector('text').getExtentOfChar&&Element.prototype.animate){ try{
     var NS='http://www.w3.org/2000/svg', tx=bm.querySelector('text'), ts=tx.querySelectorAll('tspan');
     var ex=[0,1,2].map(function(i){ var b=tx.getExtentOfChar(i); return {x:b.x+b.width/2}; });
     var y=tx.getAttribute('y'), ff=tx.getAttribute('font-family');
@@ -4482,6 +4507,23 @@ document.addEventListener('click',function(e){
     else if(y>ly+6){ R.classList.remove('chat-up'); }
     ly=y; }
   addEventListener('scroll',up,{passive:true}); addEventListener('resize',up); up();
+})();
+</script>
+<script>
+(function(){ /* ios_24_11 */
+  var sec=document.querySelector('#ablauf.steps.pin');
+  function mf(){ if(!sec) return; var on=innerWidth<=900; sec.classList.toggle('mflow',on); }
+  mf(); addEventListener('resize',function(){ if(mf.w!==innerWidth){ mf.w=innerWidth; mf(); } });
+  if(sec&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var li=e.target, k=[].indexOf.call(li.parentNode.children,li);
+      setTimeout(function(){ li.classList.add('mup'); var w=li.querySelectorAll('.ways li'); [].forEach.call(w,function(x,i){ setTimeout(function(){ [].forEach.call(w,function(y){ y.classList.remove('on'); }); x.classList.add('lit','on'); },400+i*700); }); }, k*150); io.unobserve(li); } }); },{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+    [].forEach.call(sec.querySelectorAll('ol>li'),function(li){ io.observe(li); });
+  } else if(sec){ [].forEach.call(sec.querySelectorAll('ol>li'),function(li){ li.classList.add('mup'); }); }
+  /* unsichtbare Abschnitte: Dauer-Animationen pausieren */
+  if('IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('offv',!e.isIntersecting); }); },{rootMargin:'200px 0px'});
+    [].forEach.call(document.querySelectorAll('main>section, .hero'),function(s){ io2.observe(s); });
+  }
 })();
 </script>
 </body>
