@@ -2997,16 +2997,16 @@ main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F23
   function frame(){
     if(!M) measure();
     var r=sec.getBoundingClientRect(), near=r.bottom>-200&&r.top<innerHeight+200;
-    cur+= (tgt-cur)*0.12; preC+= (preT-preC)*0.12;
+    var dc=(tgt-cur)*0.12, mx=0.009; cur+= dc>mx?mx:(dc<-mx?-mx:dc); preC+= (preT-preC)*0.12;
     var cx=M.cx, cy=M.cy, R=M.R;
     ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)';
-    ring.style.opacity=String(1-clamp((cur-.06)/.3));
+    ring.style.opacity=String(1-clamp((cur-.35)/.25));
     var allIn=true;
     icons.forEach(function(el,i){
       var k=el.dataset.k, s=slots[k], t=M.t[k];
-      var start=.06+i*.085, end=start+.2;
+      var start=.34+i*.075, end=start+.2;
       var f=ease(clamp((cur-start)/(end-start)));
-      var a=(i/n)*Math.PI*2 + (cur-preC)*Math.PI*2.2;
+      var a=(i/n)*Math.PI*2 + (cur-preC)*Math.PI*3.2;
       var wob=Math.sin(cur*7+i*1.7)*R*0.06;
       var ox=cx+Math.cos(a)*(R+wob), oy=cy+Math.sin(a)*(R*0.82+wob);
       var x=ox+(t[0]-ox)*f, y=oy+(t[1]-oy)*f;
@@ -3016,7 +3016,7 @@ main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F23
       if(s.classList.contains('on')!==(f>0.96)) s.classList.toggle('on', f>0.96);
       if(f<=0.96) allIn=false;
     });
-    done.classList.toggle('on', allIn && cur>0.82);
+    done.classList.toggle('on', allIn && cur>0.9);
     if(Math.abs(tgt-cur)<0.0008&&Math.abs(preT-preC)<0.0008){ settled++; } else settled=0;
     if(near&&settled<4){ requestAnimationFrame(frame); } else running=false;
   }
