@@ -2036,6 +2036,25 @@ html .steps.pin ol>li.thud::before{animation-delay:.5s}
   .muster .mgrid.mband>li{flex:0 0 44%}
 }
 </style>
+<style>
+/* ===== 24.11: «Под экран» 18a–18c ===== */
+main>section.swirl,main>section.muster,main>section.finds,main>section.works,main>section.how,main>section.zus,footer{border-top:0 !important;border-bottom:0 !important}
+main>section.muster,main>section.finds,main>section.works,main>section.how{background:linear-gradient(to bottom,var(--paper) 0,#fff 90px,#fff calc(100% - 90px),var(--paper) 100%) !important}
+main>section.zus{background:linear-gradient(to bottom,var(--paper) 0,var(--paper-2) 90px,var(--paper-2) calc(100% - 90px),var(--paper) 100%) !important}
+main>section.safe.dark{background:linear-gradient(to bottom,var(--paper) 0,#1F2328 64px,#1F2328 calc(100% - 64px),var(--paper) 100%) !important;padding-top:calc(56px + 44px) !important;padding-bottom:calc(56px + 44px) !important}
+@media (min-width:901px){
+  main>section.muster{padding-top:46px !important;padding-bottom:38px !important}
+  main>section.muster .mbox{margin-top:24px}
+  main>section.contact{padding-bottom:34px !important}
+}
+@media (min-width:1200px){
+  .trades .tlay .cards:not(.aband){grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+  .trades .tlay .cards:not(.aband) .card{padding:20px 18px}
+}
+@media (max-width:900px){
+  main>section.safe.dark{padding-top:calc(36px + 40px) !important;padding-bottom:calc(36px + 40px) !important}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
