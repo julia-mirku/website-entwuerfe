@@ -12,6 +12,10 @@ body{background:var(--bg);color:var(--fg);font:15px/1.35 system-ui,-apple-system
 .bar button{flex:none;min-height:40px;padding:0 16px;border:2px solid var(--on);border-radius:999px;background:transparent;color:var(--fg);font:600 14px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
 .bar button[aria-pressed="true"]{background:var(--on);color:var(--on-fg)}
 .bar button:focus-visible{outline:3px solid #2a6fdb;outline-offset:2px}
+.bar .solo{flex:none;display:flex;align-items:center;gap:8px;margin-left:10px;padding-left:14px;border-left:2px solid var(--line)}
+.bar .solo small{font:600 11px/1 inherit;font-family:inherit;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.bar .solo button{border-style:dashed}
+.bar .solo button[aria-pressed="true"]{border-style:solid}
 iframe{flex:1 1 auto;width:100%;min-height:0;border:0;background:#fff}
 </style>
 <nav class="bar" aria-label="Сайты">
@@ -52,6 +56,8 @@ iframe{flex:1 1 auto;width:100%;min-height:0;border:0;background:#fff}
   <button type="button" data-k="uferlicht" data-src="https://julia-mirku.github.io/uferlicht-lounge/">Uferlicht (копия)</button>
   <button type="button" data-k="lindenrain" data-src="https://julia-mirku.github.io/chaesi-lindenrain/">Chäsi Lindenrain (копия)</button>
   <button type="button" data-k="kiku" data-src="https://julia-mirku.github.io/kiku-sushi/">Kiku (копия)</button>
+  <!-- separat: eigener Block, nicht Original/Kopie (Julia 24.11) -->
+  <div class="solo" role="group" aria-label="Separat"><small>Separat</small><button type="button" data-k="customnails" data-src="https://julia-mirku.github.io/custom-nails/">Custom Nails</button></div>
 </nav>
 <iframe id="view" title="Сайт" translate="no"></iframe>
 <script>
