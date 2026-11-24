@@ -2430,6 +2430,15 @@ html body .works .wlist li:nth-child(4n+4) svg circle{fill:#FFD3DD}
 @media (max-width:700px){ html body .works .wlist{grid-template-columns:1fr} }
 @media (max-width:900px){ html body #zusagen .zk .zart{overflow:hidden} html body #zusagen .zk .zbw{transform:scale(.82);transform-origin:left center} }
 </style>
+<style>
+/* ===== pfeile_24_11: Pfeile im ersten Block frei, nicht auf den Handys ===== */
+html body .phones .arrow.a1{left:23%;top:3%}
+html body .phones .arrow.a2{left:67%;top:3%}
+@media (max-width:900px){
+  html body .phones .arrow.a1{left:17%;top:2%}
+  html body .phones .arrow.a2{left:72%;top:2%}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3381,7 +3390,7 @@ html body .works .wlist li:nth-child(4n+4) svg circle{fill:#FFD3DD}
     if(!M) measure();
     var r=sec.getBoundingClientRect(), near=r.bottom>-200&&r.top<innerHeight+200;
     var tnow=performance.now(), dt=Math.min(80, tnow-(frame.lt||tnow-16)); frame.lt=tnow; /* zeitbasiert: gleich schnell bei 30 und 60 fps */
-    var dd=(tgt-cur)*(1-Math.pow(0.88,dt/16.7)), mx=dt/950; cur+= dd>mx?mx:(dd<-mx?-mx:dd); /* Julia 24.11: bei schnellem Scrollen ~1,4 s statt 0,4 s */
+    var dd=(tgt-cur)*(1-Math.pow(0.88,dt/16.7)), mx=dt/1700; cur+= dd>mx?mx:(dd<-mx?-mx:dd); /* Julia 24.11: bei schnellem Scrollen ~1,4 s statt 0,4 s */
     var cx=M.cx, cy=M.cy, R=M.R, mob=innerWidth<768; /* Handy: grosser Kreis -> kleinerer Kreis -> ins Telefon */
     if(mob){ R=M.R*(1-0.22*ease(clamp((cur-.08)/.17))); ring.style.width=ring.style.height=(R*2)+'px'; }
     ring.style.transform='translate('+(cx-R)+'px,'+(cy-R)+'px) scaleY(.82)';
