@@ -2612,22 +2612,7 @@ html body .offv,html body .offv *,html body .offv *::before,html body .offv *::a
 }
 
 @media (min-width:1000px){ .safe .wrap{align-items:start!important} .safe .wrap > div:first-child{padding-top:10px} }
-/* Umschalter Jetzt | Premium */
-.vprem{position:fixed;left:14px;bottom:14px;z-index:70;display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.94);border:1.5px solid #1F2328;box-shadow:0 6px 18px -8px rgba(0,0,0,.35);font:700 12.5px/1 var(--body)}
-.vprem button{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;color:#1F2328}
-.vprem button[aria-pressed="true"]{background:#1F2328;color:#fff}
-.vprem button:focus-visible{outline:2px solid #1F2328;outline-offset:2px}
-@media (max-width:700px){ .vprem{left:10px;bottom:10px;font-size:11.5px} .vprem button{padding:6px 10px} }
-/* Premium-Ansicht */
-html.prem{--sun:#E9E1CF;--sun-soft:#F3EEE3;--paper:#FBF9F4;--paper-2:#F6F2EA;--line:#E6E0D3}
-html.prem a.btn:not(.btn-o),html.prem .hdr a.btn-s:not(.btn-o),html.prem .btn-s:not(.btn-o){background:#FFC81A!important;box-shadow:none!important}
-html.prem .btn,html.prem .pbtn,html.prem .pcard,html.prem .pkc,html.prem .plan,html.prem .zk,html.prem .wcard,html.prem .mcard,html.prem .card{box-shadow:0 1px 2px rgba(31,35,40,.06),0 10px 30px -18px rgba(31,35,40,.25)!important}
-html.prem .btn-o{border-width:1.5px!important}
-html.prem h1,html.prem h2{font-weight:700!important;letter-spacing:-.02em!important}
-html.prem h1 em,html.prem h1 mark,html.prem h1 span{background:none!important;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:10px;text-decoration-color:#1F2328}
-html.prem .eyebrow-line{background:#1F2328!important;height:2px!important;width:36px!important}
-html.prem .hero .phones::before,html.prem .hero .blob{opacity:.45}
-html.prem *,html.prem *::before,html.prem *::after{animation-iteration-count:1!important}
+/* Premium-Ansicht und Umschalter entfernt (Julia 25.11) */
 </style>
 <style id="kontakt-domain-25-11">
 .usav{display:flex;gap:26px;justify-content:center;align-items:flex-start}
@@ -2777,6 +2762,53 @@ html body .uchips li:not(.ubtn):is(:hover,:active,:focus-visible){background:var
 .pzrow .pbtn{margin:0!important;flex:none}
 #preise:has(.pp[data-pp="b"].on) .pzrow .pnote{visibility:hidden}
 @media (max-width:900px){#preise:has(.pp[data-pp="b"].on) .pzrow .pnote{display:none}}
+</style>
+<style id="mobil-fein-25-11">
+/* Menü: Tippfläche 44 px hoch, Aussehen gleich */
+html body header .snav.na a::before{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+/* DE/EN/FR auf dem Handy: 44 hoch, sichtbarer Kreis bleibt 38 */
+@media (max-width:480px){
+  html body .lang{padding:0 3px;height:48px}
+  html body .lang button{width:40px;height:44px;padding:3px 1px;background-clip:content-box}
+}
+/* kleine Pfeile am Demo-Telefon: Fläche 44×44, Pfeil an gleicher Stelle */
+html body .trades .tphone-wrap .tnav{width:44px!important;height:44px!important;margin-top:-22px!important}
+html body .trades .tphone-wrap .tnav.prev{left:calc(50% - var(--pw) / 2 - 48px)!important}
+html body .trades .tphone-wrap .tnav.next{right:calc(50% - var(--pw) / 2 - 48px)!important}
+/* Karussell-Punkte: unsichtbare Tippfläche */
+.tdots i,.mdots i{position:relative}
+.tdots i::after,.mdots i::after{content:"";position:absolute;left:50%;top:50%;width:max(100%,16px);height:44px;transform:translate(-50%,-50%)}
+/* 360 px: Kopf zwei Zeilen */
+@media (max-width:374px){
+  html body header.top .brand{font-size:14px;gap:7px}
+  html body header.top .brand svg{width:28px;height:28px}
+  html body header .wrap{column-gap:8px}
+  html body .lang button{width:38px}
+}
+/* Handy quer: Kopf kompakter */
+@media (max-height:500px) and (min-width:560px) and (max-width:1000px){
+  html body header .wrap{padding-top:4px!important}
+  html body .lang{height:48px;padding:0 3px}
+  html body .lang button{height:44px;padding:3px 1px;background-clip:content-box}
+  html body header .btn-s{min-height:40px;padding-top:0;padding-bottom:0}
+  html body header .snav.na a{font-size:14px!important}
+}
+/* Tablet hochkant: «Wie wir arbeiten» ohne Festpinnen */
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+  html body .how.pin{height:auto!important}
+  html body .how.pin .stk{position:relative;top:auto;height:auto;padding:56px 0;display:block;overflow:visible}
+  html body .how.pin .hgrid li::before{transform:scaleX(1)}
+  html body .how.pin .hin{transform:none!important;opacity:1!important}
+  html body .how.pin .hgrid li .hico{transform:none!important}
+}
+/* Tablet: mehr Luft vor «Das sagen wir zu» / Preise / Fragen */
+@media (min-width:701px) and (max-width:900px){
+  html body main>section#zusagen{margin-top:4px!important}
+  html body main>section#preise{margin-top:-16px!important}
+  html body main>section#fragen{margin-top:-8px!important}
+}
+/* Stempel nicht über den Rand */
+@media (max-width:420px){ html body .msg.me.big .stamp{right:calc(100% + 12px)!important;left:auto!important;font-size:15px!important;padding:5px 10px!important;border-width:2.5px!important} }
 </style>
 </head>
 <body>
@@ -4778,15 +4810,7 @@ document.addEventListener('click',function(e){
   c.addEventListener('click',go); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
 })();
 </script>
-<script>
-(function(){ var de=document.documentElement, b=document.createElement('div'); b.className='vprem'; b.setAttribute('role','group'); b.setAttribute('aria-label','Ansicht');
-  b.innerHTML='<button type="button" data-v="jetzt">Jetzt</button><button type="button" data-v="premium">Premium</button>';
-  function set(v){ de.classList.toggle('prem', v==='premium'); [].forEach.call(b.querySelectorAll('button'),function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-v')===v?'true':'false'); }); try{ localStorage.setItem('jrAnsicht', v); }catch(_){} }
-  b.addEventListener('click',function(e){ var x=e.target.closest('button'); if(x) set(x.getAttribute('data-v')); });
-  var q=(location.search.match(/[?&]ansicht=(premium|jetzt)/)||[])[1], s=null; try{ s=localStorage.getItem('jrAnsicht'); }catch(_){}
-  document.body.appendChild(b); set(q||s||'jetzt');
-})();
-</script>
+<script>try{localStorage.removeItem('jrAnsicht');}catch(_){}document.documentElement.classList.remove('prem');</script>
 <script>(function(){
   var d=document.getElementById('ueber'), bg=document.querySelector('.ubg'), last=null; if(!d||!bg) return;
   function isOpen(){return d.classList.contains('open');}
