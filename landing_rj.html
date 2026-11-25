@@ -2972,7 +2972,19 @@ html body .zfix.go .zpen{animation:j33pen 1.9s ease-in-out .15s both!important}
   html body #branchen .wrap > .eyebrow-line, html body #branchen .wrap > #h-trades{margin-left:428px}
 }
 </style>
-</head>
+<style id="j31_steps_how">
+/* 1) nach dem Ende: kein Pin mehr; html.nav-a-Regel (top:--hh) darf den Block nicht verschieben */
+html body #ablauf.steps.pin.unpinned{height:auto !important}
+html body #ablauf.steps.pin.unpinned .stk{position:relative !important;top:auto !important;height:auto !important}
+/* 2) Wie wir arbeiten: Blöcke mit Rahmen */
+html body .how .hgrid>li,html body .how.pin .hgrid>li{border:2px solid var(--line) !important;border-radius:var(--r,20px);background:var(--paper);padding:22px 20px 20px !important}
+html body .how.pin .hgrid>li.jrin:hover,html body .how .hgrid>li.jrin:hover,html body .how.pin .hgrid>li.jrin.j31t,html body .how .hgrid>li.jrin.j31t{transform:translateY(-3px) !important;border-color:var(--ink) !important;box-shadow:0 14px 30px -12px rgba(30,94,63,.45),0 0 0 2px rgba(63,163,111,.45) !important}
+html body .how .hgrid>li.jrin:hover .hico,html body .how .hgrid>li.jrin.j31t .hico{box-shadow:0 0 0 4px rgba(255,200,26,.35)}
+/* erschienene Blöcke reagieren immer (auch wenn .hgrid nie .done bekommt, z. B. Handy) */
+html body .how .hgrid>li.jrin{pointer-events:auto}
+@media (max-width:900px){html body .how .hgrid>li,html body .how.pin .hgrid>li{padding:16px 16px 14px !important}}
+@media (hover:none){html body .how.pin .hgrid>li.jrin:hover:not(.j31t),html body .how .hgrid>li.jrin:hover:not(.j31t){transform:none !important;border-color:var(--line) !important;box-shadow:none !important}}
+</style></head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
 
@@ -5166,5 +5178,31 @@ new MutationObserver(q).observe(document.documentElement,{attributes:true,attrib
 function pos(){var ar=a.getBoundingClientRect(),sr=s.getBoundingClientRect();var x=sr.left-ar.left-18,y=sr.bottom-ar.top+5-50;
 p.style.setProperty('--px0',x+'px');p.style.setProperty('--py0',y+'px');p.style.setProperty('--pw',sr.width+'px');}
 pos();addEventListener('resize',pos);addEventListener('load',pos);new MutationObserver(function(){if(k.classList.contains('go'))pos();}).observe(k,{attributes:true,attributeFilter:['class']});})();</script>
-</body>
+<script id="j31_steps_how-js">
+(function(){ /* 1) Schritte: nach dem Ende sofort entpinnen, ohne Sprung */
+  var sec=document.querySelector('#ablauf.steps.pin'); if(!sec) return;
+  var ol=sec.querySelector('ol'); if(!ol) return;
+  function go(){
+    if(!ol.classList.contains('fin')||sec.classList.contains('unpinned')) return;
+    if(sec.classList.contains('nopin')||sec.classList.contains('mflow')){ sec.classList.add('unpinned'); return; }
+    var w=sec.querySelector('.stk>.wrap')||sec, r=sec.getBoundingClientRect();
+    /* Anker = das, was man gerade sieht: der Inhalt des Blocks, sonst der nächste Abschnitt */
+    var an=(w.getBoundingClientRect().bottom>0||!sec.nextElementSibling)?w:sec.nextElementSibling;
+    var a0=an.getBoundingClientRect().top, below=r.top>innerHeight;
+    sec.classList.add('unpinned');
+    var d=an.getBoundingClientRect().top-a0;
+    if(!below&&Math.abs(d)>0.5){ var H=document.documentElement, sb=H.style.scrollBehavior; H.style.scrollBehavior='auto'; window.scrollTo(0, window.scrollY+d); H.style.scrollBehavior=sb; }
+  }
+  if('MutationObserver' in window) new MutationObserver(go).observe(ol,{attributes:true,attributeFilter:['class']});
+  addEventListener('scroll',go,{passive:true}); go();
+})();
+(function(){ /* 2) Wie wir arbeiten: Tap auf Touch = Hover */
+  var L=[].slice.call(document.querySelectorAll('.how .hgrid>li')); if(!L.length) return;
+  var sx=0, sy=0, mv=false;
+  function set(li){ L.forEach(function(x){ x.classList.toggle('j31t', x===li && !x.classList.contains('j31t')); }); }
+  addEventListener('touchstart',function(e){ var t=e.touches[0]; sx=t.clientX; sy=t.clientY; mv=false; },{passive:true});
+  addEventListener('touchmove',function(e){ var t=e.touches[0]; if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10) mv=true; },{passive:true});
+  addEventListener('touchend',function(e){ if(mv) return; var li=e.target.closest&&e.target.closest('.how .hgrid>li'); set(li&&li.classList.contains('jrin')?li:null); },{passive:true});
+})();
+</script></body>
 </html>
