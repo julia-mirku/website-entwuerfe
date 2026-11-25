@@ -2807,6 +2807,8 @@ html body .trades .tphone-wrap .tnav.next{right:calc(50% - var(--pw) / 2 - 48px)
   html body main>section#preise{margin-top:-16px!important}
   html body main>section#fragen{margin-top:-8px!important}
 }
+/* Gelber Strich über «Muster unserer Arbeit» nicht vom Block darüber verdeckt (Prüfung Runde 2) */
+html body main>section#muster{position:relative;z-index:2}
 /* Stempel nicht über den Rand */
 @media (max-width:420px){ html body .msg.me.big .stamp{right:calc(100% + 12px)!important;left:auto!important;font-size:15px!important;padding:5px 10px!important;border-width:2.5px!important} }
 </style>
@@ -4307,7 +4309,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
     var a=e.target.closest&&e.target.closest('a'); if(!a) return;
     var key=a.getAttribute('data-t')||(a.querySelector('[data-t]')&&a.querySelector('[data-t]').getAttribute('data-t'));
     if(a.getAttribute('href')==='#kontakt'&&MAP[key]){ last=MAP[key]; return; }
-    var h=a.getAttribute('href')||''; var mail=/^mailto:/i.test(h), wa=/wa\.me\//.test(h); if(!mail&&!wa) return;
+    if(a.closest('#chatp,#chatlog')) return; var h=a.getAttribute('href')||''; var mail=/^mailto:/i.test(h), wa=/wa\.me\//.test(h); if(!mail&&!wa) return;
     var it=a.dataset.intent;
     if(!it){ if(/Frage/i.test(h)&&!/Anfrage/i.test(h)) it='ask'; else if(/Preis|Animation/i.test(h)) it='price'; else it=last||'general'; a.dataset.auto='1'; }
     if(a.dataset.auto) it=(/Frage/i.test(a.dataset.orig||h)&&!/Anfrage/i.test(a.dataset.orig||h))?'ask':(/Preis|Animation/i.test(a.dataset.orig||h)?'price':(last||'general'));
