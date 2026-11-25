@@ -2685,6 +2685,66 @@ html.prem *,html.prem *::before,html.prem *::after{animation-iteration-count:1!i
 .udr .umail:is(:hover,:focus-visible)>svg:last-child{transform:translateX(4px)}
 @media (max-width:600px){.udr .upair img{width:100px;height:100px}.udr .utxt .ub1{font-size:21px}}
 </style>
+<style id="muster-pins-25-11">
+.fimg .pstrip .fpin{cursor:pointer}
+.fimg .pstrip .fpin:hover b{transform:scale(1.12)}
+.fimg .pstrip .fpin b{transition:background-color .3s,color .3s,transform .2s cubic-bezier(.3,1.5,.5,1)}
+.fnotes li.hot.viapin{animation:fpinpulse .5s ease}
+@keyframes fpinpulse{0%{transform:translateX(0)}35%{transform:translateX(6px)}100%{transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){.fnotes li.hot.viapin{animation:none}}
+</style>
+<style id="abstaende-dober-25-11">
+@media (min-width:901px) and (max-height:760px){html body main>section#erklaert{margin-top:18px!important}html body main>section.safe{margin-top:-14px!important}html body main>section.finds{margin-top:-40px!important}html body main>section#branchen{margin-top:-32px!important}html body main>section.ideasec{margin-top:46px!important}html body main>section#leistungen{margin-top:-4px!important}html body main>section.us{margin-top:-17px!important}html body main>section#zusagen{margin-top:-6px!important}html body main>section#preise{margin-top:-14px!important}html body main>section#fragen{margin-top:18px!important}}
+@media (max-width:900px){html body main>section#erklaert{margin-top:-40px!important}html body main>section.finds{margin-top:-46px!important}html body main>section.ideasec{margin-top:14px!important}html body main>section.us{margin-top:-30px!important}html body main>section#zusagen{margin-top:-14px!important}html body main>section#preise{margin-top:-30px!important}html body main>section#fragen{margin-top:-18px!important}}
+</style>
+<style id="zusagen-anim-25-11">
+#zusagen .zdomk .zdom{opacity:0;transform:translateY(12px) scale(.9)}
+#zusagen .zdomk .zdom svg path{transform:translateY(-3.5px);transition:none}
+#zusagen .zdomk .zkey{opacity:0;transform:translateX(46px) rotate(0)}
+#zusagen .zdomk .zdom span{display:inline-block;clip-path:inset(0 100% 0 0)}
+#zusagen .zdomk.go .zdom{opacity:1;transform:none;transition:transform .5s cubic-bezier(.3,1.5,.5,1) .15s,opacity .3s ease .15s}
+#zusagen .zdomk.go .zdom span{clip-path:inset(0 0 0 0);transition:clip-path .9s steps(13,end) .55s}
+#zusagen .zdomk.go .zdom svg path{transform:none;transition:transform .25s cubic-bezier(.3,1.8,.5,1) 1.6s}
+#zusagen .zdomk.go .zkey{opacity:1;animation:zkeyin 1.1s cubic-bezier(.3,1.2,.5,1) 1.7s both}
+@keyframes zkeyin{0%{opacity:0;transform:translateX(46px) rotate(0)}55%{opacity:1;transform:translateX(0) rotate(0)}75%{transform:translateX(0) rotate(-18deg)}100%{opacity:1;transform:translateX(0) rotate(0)}}
+#zusagen .zdomk .zkey{transform-origin:10px 12px}
+@media (prefers-reduced-motion:reduce){#zusagen .zdomk .zdom,#zusagen .zdomk .zkey{opacity:1;transform:none;animation:none}#zusagen .zdomk .zdom span{clip-path:none}#zusagen .zdomk .zdom svg path{transform:none}}
+</style>
+<style id="erreichbar-25-11">
+.cinfo .trust.hours.hz{display:inline-flex;align-items:center;gap:14px;align-self:flex-start;padding:12px 18px 12px 14px;border:2px solid var(--ink);border-radius:18px;background:#fff;box-shadow:0 3px 0 var(--ink);color:var(--ink);cursor:default;transition:transform .2s ease,box-shadow .2s ease}
+.cinfo .trust.hours.hz:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--ink)}
+.cinfo .trust.hours.hz svg{width:38px;height:38px}
+.hz .hz-x{display:flex;flex-direction:column;gap:2px;line-height:1.1}
+.hz .hz-x b[data-t="fz_hk"]{font:700 12px/1.2 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.hz .hz-x [data-t="fz_h"]{font:800 22px/1.15 var(--head);color:var(--ink);letter-spacing:-.01em}
+.hz .hz-now{display:inline-flex;align-items:center;gap:7px;margin-left:6px;padding:6px 11px;border-radius:999px;background:#EAF6EF;color:#1E5E3F;font:700 13px/1.1 var(--body);white-space:nowrap}
+.hz .hz-now i{width:9px;height:9px;border-radius:50%;background:#2FB36A;box-shadow:0 0 0 0 rgba(47,179,106,.5);animation:hzp 1.8s ease-out infinite}
+.hz .hz-now.off{background:var(--sun-soft,#FFF1C2);color:var(--ink)}
+.hz .hz-now.off i{background:var(--sun);animation:none}
+@keyframes hzp{0%{box-shadow:0 0 0 0 rgba(47,179,106,.5)}100%{box-shadow:0 0 0 9px rgba(47,179,106,0)}}
+@media (max-width:600px){.cinfo .trust.hours.hz{flex-wrap:wrap;gap:10px 12px}.hz .hz-now{margin-left:0}.hz .hz-x [data-t="fz_h"]{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.hz .hz-now i{animation:none}}
+</style>
+<style id="hover-rest-25-11">
+@media (hover:hover){
+.uchips li:not(.ubtn){transition:transform .2s cubic-bezier(.3,1.5,.5,1),background-color .2s ease,box-shadow .2s ease}
+.uchips li:not(.ubtn):hover{transform:translateY(-3px) rotate(-1.5deg);background:var(--sun);box-shadow:0 3px 0 var(--ink)}
+.pvl li{transition:background-color .2s ease,transform .2s ease;border-radius:8px}
+.pvl li:hover{background:var(--sun-soft,#FFF1C2);transform:translateX(3px)}
+.pvl li:hover b{color:var(--ink)}
+.gform label input,.gform label textarea{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.gform label:hover input,.gform label:hover textarea{box-shadow:0 3px 0 var(--sun);transform:translateY(-1px)}
+.gform label:hover>span{text-decoration:underline;text-decoration-color:var(--sun);text-decoration-thickness:3px;text-underline-offset:3px}
+.fimg{overflow:hidden}
+.fimg>img{transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.fimg:hover>img{transform:scale(1.035)}
+footer a{transition:color .2s ease,text-decoration-color .2s ease;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:3px;text-underline-offset:4px}
+footer a:hover{text-decoration-color:var(--sun);color:var(--ink)}
+.totop{transition:transform .2s cubic-bezier(.3,1.5,.5,1),box-shadow .2s ease,background-color .2s ease}
+.totop:hover{transform:translateY(-3px);background:var(--sun);box-shadow:0 3px 0 var(--ink)}
+}
+@media (hover:none){.uchips li:not(.ubtn):active{background:var(--sun);transform:scale(.97)}.pvl li:active{background:var(--sun-soft,#FFF1C2)}.totop:active,footer a:active{background:var(--sun)}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3128,7 +3188,7 @@ html.prem *,html.prem *::before,html.prem *::after{animation-iteration-count:1!i
           <a class="wcard wa" href="https://wa.me/41774705928" target="_blank" rel="noopener"><span class="wi"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5a10.5 10.5 0 0 0-9 15.9L3.5 24.5l5.3-1.4A10.5 10.5 0 1 0 14 3.5z" fill="#fff" stroke="#1F2328" stroke-width="2"/><path d="M10.2 9.2c.3-.6.7-.6 1-.6h.7c.2 0 .5.1.6.5l.9 2.1c.1.3 0 .6-.2.8l-.6.7c-.2.2-.2.4-.1.6.8 1.5 2 2.6 3.5 3.3.2.1.5.1.6-.1l.8-.9c.2-.2.5-.3.8-.2l2 .9c.4.2.5.5.4.8-.2 1-1 1.9-2 2-1 .2-2.3 0-4.4-1.1a11 11 0 0 1-4.3-4.6c-.8-1.6-.6-2.7-.1-3.4z" fill="#1E5E3F"/></svg></span><span><b data-t="c_wa">WhatsApp Julia</b><span>+41 77 470 59 28</span></span></a>
           <p class="trust"><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2.5c-4.4 0-8 3.4-8 7.9C5 16.4 13 24 13 24s8-7.6 8-13.6c0-4.5-3.6-7.9-8-7.9z" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><circle cx="13" cy="10.5" r="3" fill="#1F2328"/></svg><span data-t="c_trust">Weltweit tätig, von St. Gallen aus</span></p>
         </div>
-        <div class="cbot"><form class="gform" id="gform" novalidate><h3 data-t="gf_h">Gratis-Entwurf anfragen – dauert 1 Minute</h3><div class="gf-g"><label><span data-t="gf1">Name des Betriebs</span><input name="b" type="text" autocomplete="organization" required></label><label><span data-t="gf2">Ort</span><input name="o" type="text" autocomplete="address-level2"></label><label><span data-t="gf3">Link zu Google oder Instagram</span><input name="l" type="text" inputmode="url" autocomplete="off" autocapitalize="off"></label><label><span data-t="gf4">Telefon oder WhatsApp</span><input name="t" type="tel" autocomplete="tel"></label></div><p class="gf-err" role="alert" hidden data-t="gf_err">Bitte den Namen Ihres Betriebs eintragen.</p><div class="gf-b"><button type="submit" class="gbtn" data-via="mail" data-t="gf_m">Per E-Mail senden</button><button type="submit" class="gbtn o" data-via="wa" data-t="gf_w">Per WhatsApp senden</button></div><p class="gf-n" data-t="gf_n">Der Text öffnet sich fertig in Ihrem E-Mail-Programm oder in WhatsApp. Sie schicken die Nachricht dann selbst ab.</p></form><div class="cinfo"><p class="trust hours"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><path class="hm" d="M13 13V6.6" fill="none" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path class="hh" d="M13 13l4.3 2.75" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><circle cx="13" cy="13" r="1.9" fill="#1F2328"/></svg><span><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span></p></div></div>
+        <div class="cbot"><form class="gform" id="gform" novalidate><h3 data-t="gf_h">Gratis-Entwurf anfragen – dauert 1 Minute</h3><div class="gf-g"><label><span data-t="gf1">Name des Betriebs</span><input name="b" type="text" autocomplete="organization" required></label><label><span data-t="gf2">Ort</span><input name="o" type="text" autocomplete="address-level2"></label><label><span data-t="gf3">Link zu Google oder Instagram</span><input name="l" type="text" inputmode="url" autocomplete="off" autocapitalize="off"></label><label><span data-t="gf4">Telefon oder WhatsApp</span><input name="t" type="tel" autocomplete="tel"></label></div><p class="gf-err" role="alert" hidden data-t="gf_err">Bitte den Namen Ihres Betriebs eintragen.</p><div class="gf-b"><button type="submit" class="gbtn" data-via="mail" data-t="gf_m">Per E-Mail senden</button><button type="submit" class="gbtn o" data-via="wa" data-t="gf_w">Per WhatsApp senden</button></div><p class="gf-n" data-t="gf_n">Der Text öffnet sich fertig in Ihrem E-Mail-Programm oder in WhatsApp. Sie schicken die Nachricht dann selbst ab.</p></form><div class="cinfo"><p class="trust hours hz"><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="10.5" fill="#FFC81A" stroke="#1F2328" stroke-width="2"/><path class="hm" d="M13 13V6.6" fill="none" stroke="#1F2328" stroke-width="2" stroke-linecap="round"/><path class="hh" d="M13 13l4.3 2.75" fill="none" stroke="#1F2328" stroke-width="2.4" stroke-linecap="round"/><circle cx="13" cy="13" r="1.9" fill="#1F2328"/></svg><span class="hz-x"><b data-t="fz_hk">Erreichbar</b> <span data-t="fz_h">Mo–Fr, 10–20 Uhr</span></span><span class="hz-now" aria-live="polite"><i></i><span></span></span></p></div></div>
       </div>
     </div>
   </section>
@@ -4718,6 +4778,39 @@ document.addEventListener('click',function(e){
   function subj(){ var l=(document.documentElement.lang||'de').slice(0,2); var s=m.getAttribute('data-subj-'+l)||m.getAttribute('data-subj-de'); m.setAttribute('href','mailto:hallo@webstudio-mirku.ch?subject='+encodeURIComponent(s)); }
   if(m){ subj(); new MutationObserver(subj).observe(document.documentElement,{attributes:true,attributeFilter:['lang']}); }
   window.__ueber={open:open,close:close};
+})();</script>
+<script>(function(){
+  var f=document.querySelector('.fall'); if(!f) return;
+  var pins=[].slice.call(f.querySelectorAll('.fpin'));
+  function note(n){ return f.querySelector('.fnotes li[data-n="'+n+'"]'); }
+  function go(n,hold){ var l=note(n); if(!l) return; l.dispatchEvent(new FocusEvent('focus'));
+    l.classList.remove('viapin'); void l.offsetWidth; l.classList.add('viapin');
+    clearTimeout(f._pt); if(!hold) f._pt=setTimeout(function(){ l.dispatchEvent(new FocusEvent('blur')); },4000); }
+  function rel(n){ var l=note(n); if(l) l.dispatchEvent(new FocusEvent('blur')); }
+  var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+  pins.forEach(function(p){ var n=+p.getAttribute('data-n'); p.setAttribute('role','button'); p.tabIndex=0;
+    p.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'&&fine) go(n,true); });
+    p.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'&&fine) rel(n); });
+    p.addEventListener('click',function(e){ e.preventDefault(); go(n,false); });
+    p.addEventListener('focus',function(){ go(n,true); }); p.addEventListener('blur',function(){ rel(n); });
+  });
+})();</script>
+<script>(function(){
+  var sec=document.getElementById('zusagen'); if(!sec) return;
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(RM||!(window.matchMedia&&matchMedia('(hover:hover)').matches)) return;
+  [].forEach.call(sec.querySelectorAll('.zk.zd3,.zk.zon,.zk.zdomk'),function(t){ var busy=false;
+    t.addEventListener('mouseenter',function(){ if(busy||!t.classList.contains('go')) return; busy=true;
+      t.classList.remove('go'); void t.offsetWidth; t.classList.add('go'); setTimeout(function(){ busy=false; },3000); }); });
+})();</script>
+<script>(function(){
+  var el=document.querySelector('.hz .hz-now'); if(!el) return; var T={"de": ["Jetzt erreichbar", "Wir antworten ab 10 Uhr", "Wir antworten am Montag ab 10 Uhr"], "en": ["Available now", "We reply from 10 am", "We reply on Monday from 10 am"], "fr": ["Disponibles maintenant", "Nous répondons dès 10 h", "Nous répondons lundi dès 10 h"]};
+  function upd(){ var l=(document.documentElement.lang||'de').slice(0,2); if(!T[l]) l='de';
+    var p={}; try{ new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'numeric',hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;}); }catch(e){ var d=new Date(); p.weekday=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]; p.hour=d.getHours(); }
+    var wd=p.weekday, h=parseInt(p.hour,10)%24, work=['Mon','Tue','Wed','Thu','Fri'].indexOf(wd)>=0, open=work&&h>=10&&h<20;
+    var t= open?T[l][0] : ((wd==='Fri'&&h>=20)||wd==='Sat'||wd==='Sun' ? T[l][2] : T[l][1]);
+    el.classList.toggle('off',!open); el.querySelector('span').textContent=t; }
+  upd(); setInterval(upd,60000); new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 })();</script>
 </body>
 </html>
