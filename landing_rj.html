@@ -2959,15 +2959,7 @@ html body .zfix.go .zpen{animation:j33pen 1.9s ease-in-out .15s both!important}
  100%{transform:translate(calc(var(--px0) + var(--pw) + 26px),calc(var(--py0) - 34px));opacity:0}}
 @media (prefers-reduced-motion:reduce){html body .zfix .zstr{transform:scaleX(1)}}
 </style>
-<style id="j30_branche_19">
-@media (min-width:901px) and (max-height:820px){
-  html body #branchen .wrap > .eyebrow-line, html body #branchen .wrap > #h-trades{margin-left:408px}
-  html body #branchen .tlay > .tphone-wrap{margin-top:-80px;align-self:start}
-}
-@media (min-width:901px) and (max-width:1199px) and (max-height:820px){
-  html body #branchen .wrap > .eyebrow-line, html body #branchen .wrap > #h-trades{margin-left:428px}
-}
-</style>
+
 <style id="j31_steps_how">
 /* 1) nach dem Ende: kein Pin mehr; html.nav-a-Regel (top:--hh) darf den Block nicht verschieben */
 html body #ablauf.steps.pin.unpinned{height:auto !important}
@@ -2988,6 +2980,11 @@ html body .how .hgrid>li.jrin{pointer-events:auto}
 }
 </style>
 <style id="j40">.zk .zt{text-wrap:pretty}</style>
+<style id="j41">
+html.j41c body section.safe.dark{padding-top:var(--j41hh,77px)!important;padding-bottom:12px!important}
+html.j41c body section.safe.dark .chat{padding:16px 18px!important;gap:8px!important;min-height:var(--j41h)!important}
+html.j41c body section.safe.dark .chat .thumb{zoom:.68}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -5209,5 +5206,13 @@ pos();addEventListener('resize',pos);addEventListener('load',pos);new MutationOb
   addEventListener('touchend',function(e){ if(mv) return; var li=e.target.closest&&e.target.closest('.how .hgrid>li'); set(li&&li.classList.contains('jrin')?li:null); },{passive:true});
 })();
 </script><script id="j38-js">(function(){var c=document.querySelector('#kontakt .box2 .cinfo');if(!c)return;function s(){document.documentElement.style.setProperty('--j38w',c.offsetWidth+'px');}s();addEventListener('resize',s);addEventListener('load',s);})();</script>
+<script id="j41-js">(function(){var R=document.documentElement,s=document.querySelector('section.safe.dark');if(!s)return;var c=s.querySelector('.chat');if(!c)return;
+function hh(){var hd=document.querySelector('header');return hd?hd.getBoundingClientRect().height:77;}
+function natural(){var kids=[].slice.call(c.children),add=[];kids.forEach(function(k){if(!k.classList.contains('shown')&&!k.classList.contains('typing3')){k.classList.add('shown');add.push(k);}});
+ var ty=c.querySelector('.typing3'),td=ty?ty.style.display:'';if(ty)ty.style.display='none';var prev=c.style.minHeight;c.style.minHeight='0px';
+ var h=c.scrollHeight;add.forEach(function(k){k.classList.remove('shown');});if(ty)ty.style.display=td;c.style.minHeight=prev;return h;}
+function fit(){if(innerWidth<901){R.classList.remove('j41c');return;}R.classList.remove('j41c');var avail=innerHeight-2*hh()-24;var full=Math.max(c.offsetHeight,natural());
+ if(full<=avail)return;R.style.setProperty('--j41hh',Math.round(hh())+'px');R.classList.add('j41c');R.style.setProperty('--j41h',natural()+'px');}
+var t;function q(){clearTimeout(t);t=setTimeout(fit,120);}setTimeout(fit,300);setTimeout(fit,1500);addEventListener('load',fit);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(fit,200);});})();</script>
 </body>
 </html>
