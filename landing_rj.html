@@ -2954,6 +2954,20 @@ html body .contact .box:hover,html body .contact .box:focus-within,html body .co
 .us .lead + .lead{margin-top:8px!important}
 .us .uchips{margin-top:14px!important}
 </style>
+<style id="j33">
+html body .zfix .zart{position:relative}
+html body .zfix .zstr{top:auto!important;bottom:-6px;margin-top:0!important;height:3px;background:var(--ink)!important;transform-origin:left center!important;transform:scaleX(0)}
+html body .zfix.go .zstr{animation:j33ul 1.6s ease-in-out .3s both!important}
+html body .zfix.go .zsheet{animation:none!important}
+html body .zfix .zpen{left:0!important;top:0!important;transform:translate(var(--px0,0px),var(--py0,0px));opacity:0}
+html body .zfix.go .zpen{animation:j33pen 1.9s ease-in-out .15s both!important}
+@keyframes j33ul{0%,12%{transform:scaleX(0)}80%,100%{transform:scaleX(1)}}
+@keyframes j33pen{0%{transform:translate(calc(var(--px0) + 26px),calc(var(--py0) - 34px));opacity:0}
+ 12%{transform:translate(var(--px0),var(--py0));opacity:1}
+ 72%{transform:translate(calc(var(--px0) + var(--pw)),var(--py0));opacity:1}
+ 100%{transform:translate(calc(var(--px0) + var(--pw) + 26px),calc(var(--py0) - 34px));opacity:0}}
+@media (prefers-reduced-motion:reduce){html body .zfix .zstr{transform:scaleX(1)}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -5146,5 +5160,9 @@ document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListene
 function f(){l.style.transform='';if(getComputedStyle(l).display==='none')return;var r=document.createRange();r.selectNodeContents(h);var tb=r.getBoundingClientRect().bottom,lt=l.getBoundingClientRect().top;var d=Math.min(0,tb+14-lt);l.style.transform=d?'translateY('+d+'px)':'';}
 var t;function q(){clearTimeout(t);t=setTimeout(f,60);}f();addEventListener('load',f);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f);
 new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script>
+<script id="j33-js">(function(){var k=document.querySelector('.zfix');if(!k)return;var a=k.querySelector('.zart'),s=k.querySelector('.zsum'),p=k.querySelector('.zpen');if(!a||!s||!p)return;
+function pos(){var ar=a.getBoundingClientRect(),sr=s.getBoundingClientRect();var x=sr.left-ar.left-18,y=sr.bottom-ar.top+5-50;
+p.style.setProperty('--px0',x+'px');p.style.setProperty('--py0',y+'px');p.style.setProperty('--pw',sr.width+'px');}
+pos();addEventListener('resize',pos);addEventListener('load',pos);new MutationObserver(function(){if(k.classList.contains('go'))pos();}).observe(k,{attributes:true,attributeFilter:['class']});})();</script>
 </body>
 </html>
