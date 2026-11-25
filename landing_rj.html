@@ -2822,6 +2822,19 @@ html body #branchen .cards{align-items:stretch}
 html body .swirl .copy h2{min-height:0!important}
 .swirl .lead b{font-weight:700;color:var(--ink)}
 </style>
+<style id="j13_dunkel">
+/* Julia 19:09/20:11: sanfter Eintritt (wie 20:07) */
+html body section.safe.dark{position:relative}
+html body section.safe.dark{clip-path:inset(0 calc(var(--dk,1)*5%) 0 calc(var(--dk,1)*5%) round calc(var(--dk,1)*36px));will-change:clip-path}
+@media (prefers-reduced-motion:reduce){html body section.safe.dark{clip-path:none}}
+html body section.safe.dark>.wrap{transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+html body section.safe.dark.sx-wait>.wrap{opacity:0;transform:translateY(28px)}
+@media (prefers-reduced-motion:reduce){html body section.safe.dark.sx-wait>.wrap{opacity:1;transform:none}}
+/* Julia 20:16: Block deckt den ganzen Bildschirm, Chat wieder gross */
+html body main>section.safe.dark{min-height:100vh;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+html body main>section.safe.dark>.wrap{width:100%}
+html body section.safe.dark .chat{zoom:1!important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -4886,5 +4899,24 @@ document.addEventListener('click',function(e){
 function on(){w.classList.add('hot');}function off(){w.classList.remove('hot');}
 s.addEventListener('mouseenter',on);s.addEventListener('mouseleave',function(){if(!t)off();});
 s.addEventListener('click',function(){on();clearTimeout(t);t=setTimeout(function(){t=null;off();},1800);});})();</script>
+<script id="j13_dunkel-js">(function(){
+  var s=document.querySelector('section.safe.dark'); if(!s) return;
+  var c=s.querySelector('.chat'), t=c&&c.querySelector('.typing3');
+  function fix(){ if(!c) return; c.style.minHeight=''; var kids=[].slice.call(c.children), add=[];
+    kids.forEach(function(k){ if(!k.classList.contains('shown')){ k.classList.add('shown'); add.push(k); } });
+    var ty=c.querySelector('.typing3'), td=ty?ty.style.display:''; if(ty) ty.style.display='';
+    var h=c.offsetHeight; add.forEach(function(k){ k.classList.remove('shown'); }); if(ty) ty.style.display=td;
+    var h2=c.offsetHeight; c.style.minHeight=Math.max(h,h2)+'px'; }
+  if(c&&'ResizeObserver' in window){ var mx=0; new ResizeObserver(function(){ var h=c.offsetHeight; if(h>mx){ mx=h; c.style.minHeight=h+'px'; } }).observe(c); }
+  fix(); addEventListener('resize',fix); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fix);
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var qk=false; function dk(){ qk=false; var r=s.getBoundingClientRect(), a=innerHeight, b=innerHeight*0.35; var v=(r.top-b)/(a-b); v=v<0?0:v>1?1:v; s.style.setProperty('--dk',v.toFixed(3)); }
+  addEventListener('scroll',function(){ if(!qk){ qk=true; requestAnimationFrame(dk); } },{passive:true}); addEventListener('resize',dk); dk();
+  if(!('IntersectionObserver' in window)) return;
+  var r=s.getBoundingClientRect(); if(r.top<innerHeight*0.9) return;
+  s.classList.add('sx-wait');
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ s.classList.remove('sx-wait'); io.disconnect(); } }); },{rootMargin:'0px 0px -18% 0px'});
+  io.observe(s);
+})();</script>
 </body>
 </html>
