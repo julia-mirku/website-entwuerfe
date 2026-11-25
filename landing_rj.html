@@ -5121,12 +5121,13 @@ addEventListener('scroll',h,{passive:true});addEventListener('resize',h);h();})(
 var s=document.querySelector('section.hero');if(!s)return;var h1=s.querySelector('h1'),sub=s.querySelector('.sub'),note=s.querySelector('.cta-note');
 var pt0=null,f1=null,fs=null;
 function fit(){ if(!h1||!note)return;
-  s.style.removeProperty('padding-top');h1.style.fontSize='';if(sub)sub.style.fontSize='';
+  s.style.removeProperty('padding-top');h1.style.fontSize='';if(sub){sub.style.fontSize='';sub.style.removeProperty('margin-top');}var _c=s.querySelector('.cta');if(_c)_c.style.removeProperty('margin-top');note.style.removeProperty('margin-top');
   pt0=parseFloat(getComputedStyle(s).paddingTop)||0; f1=parseFloat(getComputedStyle(h1).fontSize); fs=sub?parseFloat(getComputedStyle(sub).fontSize):0;
-  var top=s.getBoundingClientRect().top+scrollY, need=function(){return note.getBoundingClientRect().bottom+scrollY+14-innerHeight;};
+  var top=s.getBoundingClientRect().top+scrollY, need=function(){return note.getBoundingClientRect().bottom+scrollY+8-innerHeight;};
   var o=need(); if(o<=0) return;
   var cut=Math.min(o,Math.max(0,pt0-6)); s.style.setProperty('padding-top',(pt0-cut)+'px','important'); o=need();
-  for(var i=0;i<12&&o>0;i++){ var k=Math.max(.85,1-o/innerHeight*1.2); h1.style.fontSize=(parseFloat(getComputedStyle(h1).fontSize)*k)+'px'; if(sub) sub.style.fontSize=Math.max(14,parseFloat(getComputedStyle(sub).fontSize)*Math.max(.92,k))+'px'; o=need(); if(parseFloat(h1.style.fontSize)<f1*.58) break; }
+  var gaps=[[sub,'margin-top',10],[s.querySelector('.cta'),'margin-top',14],[note,'margin-top',6]];
+  for(var g=0;g<gaps.length&&o>0;g++){ var e=gaps[g][0]; if(!e) continue; var v=parseFloat(getComputedStyle(e)[gaps[g][1]==='margin-top'?'marginTop':'marginBottom'])||0, m=gaps[g][2]; if(v<=m) continue; var c=Math.min(o,v-m); e.style.setProperty(gaps[g][1],(v-c)+'px','important'); o=need(); }
 }
 var t=null;function q(){clearTimeout(t);t=setTimeout(fit,80);}
 fit(); addEventListener('load',fit); addEventListener('resize',q); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
