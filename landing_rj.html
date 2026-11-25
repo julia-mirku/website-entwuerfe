@@ -2578,6 +2578,57 @@ html body .offv,html body .offv *,html body .offv *::before,html body .offv *::a
 }
 </style>
 <style>/* Julia 25.11: ohne «Beliebteste Wahl» */ .drawer .pkdr .plan.pkpl.top,.plan.pkpl.top{margin-top:14px!important}</style>
+<style id="layout-premium-25-11">
+@media (min-width:1000px) and (max-height:760px){
+  #muster,#leistungen,#fragen,.safe,#preise{padding-top:22px!important;padding-bottom:22px!important}
+  #muster h2,#leistungen h2,#fragen h2,.safe h2,#preise h2,#kontakt h2{font-size:40px!important}
+  #muster .eyebrow-line,#leistungen .eyebrow-line,#fragen .eyebrow-line,.safe .eyebrow-line,#preise .eyebrow-line{margin-bottom:12px!important}
+  #muster .lead{margin-top:8px!important} #muster .mbox{margin-top:14px!important} #muster .mfoot{margin-top:8px!important}
+  #muster .mshot img{height:150px!important;object-fit:cover;object-position:top}
+  #leistungen .wlist{margin-top:18px!important;gap:10px!important}
+  #leistungen .wlist li{padding-top:11px!important;padding-bottom:11px!important}
+  .safe .chat{zoom:.78}
+  .safe .checks{margin-top:22px!important}
+  #fragen .faq-list{margin-top:18px!important;gap:10px!important}
+  #fragen details summary{padding-top:9px!important;padding-bottom:9px!important}
+  #fragen .ask{padding-top:9px!important;padding-bottom:9px!important}
+  #kontakt .box{padding-top:24px!important;padding-bottom:22px!important}
+  #kontakt .lead2{margin-top:10px!important}
+  #kontakt .cbot{margin-top:6px!important;padding-top:8px!important}
+  #kontakt .box{row-gap:10px!important;padding-top:18px!important;padding-bottom:16px!important}
+  #kontakt .ways2{gap:8px!important}
+  #kontakt .wcard{padding-top:7px!important;padding-bottom:7px!important}
+  #kontakt .gform{padding-top:10px!important}
+  #kontakt .gf-g{margin-top:8px!important}
+  #kontakt .gf-g input{height:38px!important;min-height:0!important}
+  #kontakt .gf-b{margin-top:10px!important}
+  #kontakt .gf-n{margin-top:6px!important}
+  #kontakt .cinfo{margin-top:8px!important}
+  #muster .mshot img{height:140px!important}
+  #leistungen .wlist{gap:8px!important}
+  #leistungen .wlist li{padding-top:9px!important;padding-bottom:9px!important}
+  #fragen .faq-list{gap:8px!important}
+  #fragen details summary{padding-top:8px!important;padding-bottom:8px!important}
+}
+
+@media (min-width:1000px){ .safe .wrap{align-items:start!important} .safe .wrap > div:first-child{padding-top:10px} }
+/* Umschalter Jetzt | Premium */
+.vprem{position:fixed;left:14px;bottom:14px;z-index:70;display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.94);border:1.5px solid #1F2328;box-shadow:0 6px 18px -8px rgba(0,0,0,.35);font:700 12.5px/1 var(--body)}
+.vprem button{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;color:#1F2328}
+.vprem button[aria-pressed="true"]{background:#1F2328;color:#fff}
+.vprem button:focus-visible{outline:2px solid #1F2328;outline-offset:2px}
+@media (max-width:700px){ .vprem{left:10px;bottom:10px;font-size:11.5px} .vprem button{padding:6px 10px} }
+/* Premium-Ansicht */
+html.prem{--sun:#E9E1CF;--sun-soft:#F3EEE3;--paper:#FBF9F4;--paper-2:#F6F2EA;--line:#E6E0D3}
+html.prem a.btn:not(.btn-o),html.prem .hdr a.btn-s:not(.btn-o),html.prem .btn-s:not(.btn-o){background:#FFC81A!important;box-shadow:none!important}
+html.prem .btn,html.prem .pbtn,html.prem .pcard,html.prem .pkc,html.prem .plan,html.prem .zk,html.prem .wcard,html.prem .mcard,html.prem .card{box-shadow:0 1px 2px rgba(31,35,40,.06),0 10px 30px -18px rgba(31,35,40,.25)!important}
+html.prem .btn-o{border-width:1.5px!important}
+html.prem h1,html.prem h2{font-weight:700!important;letter-spacing:-.02em!important}
+html.prem h1 em,html.prem h1 mark,html.prem h1 span{background:none!important;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:10px;text-decoration-color:#1F2328}
+html.prem .eyebrow-line{background:#1F2328!important;height:2px!important;width:36px!important}
+html.prem .hero .phones::before,html.prem .hero .blob{opacity:.45}
+html.prem *,html.prem *::before,html.prem *::after{animation-iteration-count:1!important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -4563,6 +4614,15 @@ document.addEventListener('click',function(e){
 (function(){ var c=document.querySelector('.pcard.pcare'), t=document.querySelector('.ptabs [data-pt="b"]'); if(!c||!t) return;
   function go(){ t.click(); }
   c.addEventListener('click',go); c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+})();
+</script>
+<script>
+(function(){ var de=document.documentElement, b=document.createElement('div'); b.className='vprem'; b.setAttribute('role','group'); b.setAttribute('aria-label','Ansicht');
+  b.innerHTML='<button type="button" data-v="jetzt">Jetzt</button><button type="button" data-v="premium">Premium</button>';
+  function set(v){ de.classList.toggle('prem', v==='premium'); [].forEach.call(b.querySelectorAll('button'),function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-v')===v?'true':'false'); }); try{ localStorage.setItem('jrAnsicht', v); }catch(_){} }
+  b.addEventListener('click',function(e){ var x=e.target.closest('button'); if(x) set(x.getAttribute('data-v')); });
+  var q=(location.search.match(/[?&]ansicht=(premium|jetzt)/)||[])[1], s=null; try{ s=localStorage.getItem('jrAnsicht'); }catch(_){}
+  document.body.appendChild(b); set(q||s||'jetzt');
 })();
 </script>
 </body>
