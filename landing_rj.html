@@ -2819,7 +2819,6 @@ html body #branchen .cards{align-items:stretch}
 .usw .ubar span{font:700 clamp(12px,1.05vw,14px)/1 var(--head);color:var(--ink);white-space:nowrap;padding:4px 8px;border-radius:999px;transition:background-color .2s ease,box-shadow .2s ease}
 .usw .ubar:hover span,.usw .ubar:focus-visible span,.usw.hot .ubar span{background:var(--sun);box-shadow:0 0 0 2px var(--ink)}
 .udr .utxt p.up2{margin-top:10px}
-html body .swirl .copy h2{min-height:0!important}
 .swirl .lead b{font-weight:700;color:var(--ink)}
 </style>
 <style id="j13_dunkel">
@@ -5134,5 +5133,9 @@ fit(); addEventListener('load',fit); addEventListener('resize',q); if(document.f
 new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListener('touchstart',function(){document.querySelectorAll('.contact .box.tap').forEach(function(x){if(x!==b)x.classList.remove('tap')});b.classList.add('tap');},{passive:true});});
 })();</script>
+<script id="j28-js">(function(){var c=document.querySelector('.swirl .copy');if(!c)return;var h=c.querySelector('h2'),l=c.querySelector('.lead');if(!h||!l)return;
+function f(){l.style.transform='';if(getComputedStyle(l).display==='none')return;var r=document.createRange();r.selectNodeContents(h);var tb=r.getBoundingClientRect().bottom,lt=l.getBoundingClientRect().top;var d=Math.min(0,tb+14-lt);l.style.transform=d?'translateY('+d+'px)':'';}
+var t;function q(){clearTimeout(t);t=setTimeout(f,60);}f();addEventListener('load',f);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f);
+new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script>
 </body>
 </html>
