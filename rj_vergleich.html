@@ -1,0 +1,32 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>19:00 | сейчас</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;font-family:system-ui,sans-serif}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+#a{z-index:1}#b{z-index:2}
+#h{position:absolute;top:0;bottom:0;width:4px;background:#e11d48;z-index:5;cursor:ew-resize}
+#h:after{content:"⇆";position:absolute;top:50%;left:-16px;width:36px;height:36px;margin-top:-18px;border-radius:50%;background:#e11d48;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+.l{position:absolute;top:8px;z-index:6;background:#111;color:#fff;font-size:13px;padding:4px 10px;border-radius:12px;pointer-events:none}
+#la{left:8px}#lb{right:8px}
+#cover{position:absolute;inset:0;z-index:4;display:none;cursor:ew-resize}
+</style></head><body>
+<iframe id="a" src="rj_1900.html"></iframe>
+<iframe id="b" src="landing_rj.html"></iframe>
+<div id="cover"></div><div id="h"></div>
+<div class="l" id="la">слева — 19:00</div><div class="l" id="lb">справа — сейчас</div>
+<script>
+const a=document.getElementById('a'),b=document.getElementById('b'),h=document.getElementById('h'),cv=document.getElementById('cover');
+let x=0;
+function set(v){x=Math.max(0,Math.min(innerWidth,v));h.style.left=(x-2)+'px';b.style.clipPath='inset(0 0 0 '+x+'px)';}
+addEventListener('load',()=>set(innerWidth/2));setTimeout(()=>{if(x<=0)set(innerWidth/2)},300);
+h.onpointerdown=e=>{cv.style.display='block';e.preventDefault();};
+addEventListener('pointermove',e=>{if(cv.style.display==='block')set(e.clientX);});
+addEventListener('pointerup',()=>cv.style.display='none');
+cv.onpointermove=e=>set(e.clientX);
+let lead=null;
+function sc(w){return w.document.scrollingElement||w.document.documentElement;}
+function hook(f){try{const w=f.contentWindow;const st=w.document.createElement('style');st.textContent='html,body{scroll-behavior:auto!important}';w.document.head.appendChild(st);
+['wheel','touchstart','keydown','mousedown','mousemove'].forEach(ev=>w.addEventListener(ev,()=>{lead=f},{passive:true}));}catch(e){}}
+function tryHook(){[a,b].forEach(f=>{if(!f._h&&f.contentDocument&&f.contentDocument.readyState!=='loading'){f._h=1;hook(f);}});}
+setInterval(()=>{tryHook();if(!lead)return;const o=lead===a?b:a;try{const y=sc(lead.contentWindow).scrollTop;const e=sc(o.contentWindow);if(Math.abs(e.scrollTop-y)>1)e.scrollTop=y;}catch(e){}},30);
+addEventListener('resize',()=>set(x>0?x:innerWidth/2));
+</script></body></html>
