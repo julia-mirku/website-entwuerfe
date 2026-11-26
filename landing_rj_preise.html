@@ -3419,6 +3419,25 @@ html body.j78page main>section.j78cta{padding-bottom:44px!important}
 .j82nw{white-space:nowrap}
 html body .j78cta h2{text-wrap:balance}
 </style>
+<style id="j86">
+/* Preis gelb unterstreichen beim Hover / Tippen (wie .pcard .pv in j75) */
+html body .j78kp .kpc>b,html body .pkc .pkp,html body #preise .pked-p{background:linear-gradient(var(--sun),var(--sun)) 0 92%/0 .32em no-repeat;transition:background-size .35s ease;width:max-content;max-width:100%}
+html body .j78kp .kpc:hover>b,html body .j78kp .kpc.on>b,html body .pkc:hover .pkp,html body .pkc.on .pkp,html body #preise .pked:hover .pked-p,html body #preise .pked.on .pked-p{background-size:100% .32em}
+/* Karten reagieren wie die Preis-Karten */
+html body .pkc,html body #preise .pked{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+html body .pkc:hover,html body .pkc.on,html body #preise .pked:hover,html body #preise .pked.on{transform:translateY(-3px);border-color:var(--ink);box-shadow:5px 5px 0 var(--sun)}
+html body .j78kp .kpc.on{transform:translateY(-3px);box-shadow:0 14px 32px -10px rgba(255,190,20,.55),0 0 0 2px rgba(255,200,26,.55)}
+/* Hinweise: nach dem Durchlauf beim Tippen */
+html body #preise ul.pkn.j56i li.on{background-size:100% 3px}
+</style>
+<style id="j86p">
+/* «So läuft es ab» wie j75: Kasten mit gelben Kreisen und Haken */
+html body #ablauf-zahlung .j72ab{margin:0;padding:26px 28px;border-radius:22px;background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--sun)}
+html body #ablauf-zahlung .j72ab .dlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;font-size:17px;line-height:1.5;color:var(--ink-2)}
+html body #ablauf-zahlung .j72ab .dlist b{color:var(--ink)}
+html body #ablauf-zahlung .j72ab .note{margin:16px 0 0;padding-left:0;font-size:16px;color:var(--ink-2)}
+@media (max-width:760px){html body #ablauf-zahlung .j72ab .dlist{grid-template-columns:1fr}html body #ablauf-zahlung .j72ab{padding:20px}}
+</style>
 </head>
 <body class="j78page">
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3463,7 +3482,7 @@ html body .j78cta h2{text-wrap:balance}
 
   <section class="j78sec" id="im-detail" aria-labelledby="h-det"><div class="wrap"><div class="eyebrow-line"></div><h2 class="j78h2" id="h-det" data-t="pr_det">Im Detail</h2><div class="j78card" style="margin-top:28px;background:#F4F8F5"><p data-t="pp_1_q0">Immer dabei: fürs Handy gebaut, Knöpfe für Anruf, WhatsApp und E-Mail.</p></div><div class="j78grid g3"><div class="j78card"><h3 data-t="pp_2_h">Einzelner Block</h3><p class="pp-lead" data-t="pp_2_r">ein Bereich Ihrer Website neu gestaltet oder ein neuer Block, etwa «Team» oder «Bewertungen»: ab CHF 150</p></div><div class="j78card"><h3 data-t="pp_3_h">Spezial-Blöcke</h3><p class="pp-lead" data-t="pp_3_r">Preis pro Block auf Anfrage, je nach Aufwand</p><p data-t="pp_3_p0">Blöcke mit Bewegung oder eigener Funktion, gebaut für Ihren Betrieb:</p><ul class="dlist"><li data-t="pp_3_u0">Animationen und Bewegung, z. B. ein Gericht, das sich dreht, oder Preise, die erscheinen</li><li data-t="pp_3_u1">Speisekarte zum Blättern wie ein Buch</li><li data-t="pp_3_u2">Rechner und Baukästen, z. B. Preisrechner oder Burger-Baukasten</li><li data-t="pp_3_u3">Vorher-Nachher-Regler, Filter und andere interaktive Teile</li></ul><p data-t="pp_3_q0">Auch eine ganze Website mit Bewegung, wie diese Seite, ist möglich.</p></div><div class="j78card"><h3 data-t="pp_4_h">Hosting und Domain</h3><p data-t="pp_4_p0">Hosting inklusive – darum kümmern wir uns. Haben Sie schon eine Adresse, bleibt sie bei Ihrem Anbieter – die Umstellung auf die neue Website übernehmen wir. Eine neue Domain besorgen wir auf Wunsch.</p></div></div><div class="j78grid"><div class="j78card"><h3 data-t="j85g_h">Google-Profil</h3><ul class="dlist"><li data-t="j85g_1"><b>Neu einrichten: CHF 150</b> einmalig – Kategorie, Beschreibung, Öffnungszeiten, Adresse, Telefon, Link zur Website, bis 10 Fotos und Knöpfe</li><li data-t="j85g_2"><b>Bestehendes Profil überarbeiten: CHF 100</b> einmalig – wir bringen es auf den neusten Stand</li><li data-t="j85g_3"><b>Laufend gepflegt</b> im Paket «Rundum betreut». Einzelne Änderungen ohne Paket wie bei «Auf Abruf».</li></ul></div><div class="j78card"><h3 data-t="j85o_h">Online bestellen und bezahlen</h3><p class="pp-lead" data-t="j85o_r">Preis auf Anfrage, je nach Umfang</p><p data-t="j85o_t">Ihre Website nimmt Bestellungen, Reservationen und Zahlungen entgegen. Die Zahlung – mit Karte oder TWINT – wickelt ein etablierter Zahlungsanbieter ab, Sie werden bei jeder Bestellung benachrichtigt.</p><p data-t="j85o_q">Ideal für Take-away, Blumen, Bäckerei oder Gutscheine.</p></div></div></div></section>
 
-  <section class="j78steps j78sec" id="ablauf-zahlung" aria-labelledby="h-st"><div class="wrap"><div class="eyebrow-line"></div><h2 class="j78h2" id="h-st" data-t="pr_s_h">So läuft es ab – und so bezahlen Sie</h2><div class="j78card" style="margin-top:28px"><ol><li data-t="pr_s1"><b>Gratis-Entwurf</b> – innert 3 Arbeitstagen, unverbindlich.</li><li data-t="pr_s2"><b>Offerte</b> – schriftlich, mit Umfang, Termin und Preis.</li><li data-t="pr_s3"><b>50 % bei Auftrag</b> – per Rechnung mit QR-Code. Ab Zahlungseingang machen wir Ihre Website fertig: in 5 Tagen bis 3 Wochen.</li><li data-t="pr_s4"><b>50 % vor der Veröffentlichung</b> – danach ist Ihre Website online.</li></ol><p class="note" data-t="pr_s5">Betreuung danach nur auf Wunsch.</p></div></div></section>
+  <section class="j78steps j78sec" id="ablauf-zahlung" aria-labelledby="h-st"><div class="wrap"><div class="eyebrow-line"></div><h2 class="j78h2" id="h-st" data-t="pr_s_h">So läuft es ab – und so bezahlen Sie</h2><div class="j72ab"><ul class="dlist"><li data-t="pr_s1"><b>Gratis-Entwurf</b> – innert 3 Arbeitstagen, unverbindlich.</li><li data-t="pr_s2"><b>Offerte</b> – schriftlich, mit Umfang, Termin und Preis.</li><li data-t="pr_s3"><b>50 % bei Auftrag</b> – per Rechnung mit QR-Code. Ab Zahlungseingang machen wir Ihre Website fertig: in 5 Tagen bis 3 Wochen.</li><li data-t="pr_s4"><b>50 % vor der Veröffentlichung</b> – danach ist Ihre Website online.</li></ul><p class="note" data-t="pr_s5">Betreuung danach nur auf Wunsch.</p></div></div></section>
 
   <section class="j78cta"><div class="wrap"><div class="j78card"><h2 data-t="cta_h">Bereit für Ihren Gratis-Entwurf?</h2><div class="btns"><a class="btn" href="landing_rj.html#kontakt" data-t="cta_order">Gratis-Entwurf bestellen</a><a class="btn btn-o" href="landing_rj.html#fragen" data-t="sub_faq">Häufige Fragen</a><a class="btn btn-o" data-back href="landing_rj.html#preise"><span aria-hidden="true">←</span>&nbsp;<span data-t="sub_back">Zurück zur Startseite</span></a></div></div></div></section>
 
@@ -5167,9 +5186,9 @@ function fit(){if(innerWidth<901){R.classList.remove('j41c');return;}R.classList
 var t;function q(){clearTimeout(t);t=setTimeout(fit,120);}setTimeout(fit,300);setTimeout(fit,1500);addEventListener('load',fit);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(fit,200);});})();</script>
 <script id="j43-js">(function(){var u=document.querySelector('#preise ul.pkn');if(!u)return;var L=[].slice.call(u.children);if(!L.length)return;u.classList.add('j56i');
 var R=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(R)return;var seq=[],t=null,run=false;
-function step(i){L.forEach(function(x){x.classList.remove('j43on');});if(i>=seq.length){u.classList.add('j56i');t=setTimeout(start,6000);return;}L[seq[i]].classList.add('j43on');t=setTimeout(function(){step(i+1);},1100);}
+function step(i){L.forEach(function(x){x.classList.remove('j43on');});if(i>=seq.length){u.classList.add('j56i');return;}L[seq[i]].classList.add('j43on');t=setTimeout(function(){step(i+1);},1100);}
 function start(){u.classList.remove('j56i');seq=[];for(var r=0;r<2;r++)for(var k=0;k<L.length;k++)seq.push(k);step(0);}
-if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!run){run=true;start();}else if(!e.isIntersecting&&run){run=false;clearTimeout(t);u.classList.add('j56i');L.forEach(function(x){x.classList.remove('j43on');});}});},{threshold:.5}).observe(u);}else start();})();</script>
+if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!run){run=true;start();}});},{threshold:.5}).observe(u);}else start();})();</script>
 <script id="j45-js">(function(){
 var SEL='main .k5b b,main .k5x b,main #sicherheit-google li>b,main a.btn,main .finds .grid6 strong,main .works .wlist strong,main .grid6 li span,main b.zv,main [data-t="sw_kick"],main .btn span,main .pd,main .pk,main .pksub,main .pkall,main p,main li,main h1,main h2,main h3,main h4,main .lead,main .zt,main .zv,main summary span,main label span,.drawer p,.drawer li,.drawer h3,.drawer h4,footer p';
 var SKIP='.tphone,.tsite,.chat,.chatw,.phones,.pwrap,svg,script,style,[aria-hidden="true"]';
@@ -5248,5 +5267,21 @@ function go(){var e=t.querySelector('.eyebrow-line')||t,hd=document.querySelecto
 var stop=false;addEventListener('wheel',function(){stop=true;},{passive:true});addEventListener('touchstart',function(){stop=true;},{passive:true});
 [80,300,700].forEach(function(ms){setTimeout(function(){if(!stop)go();},ms);});})();</script>
 <script id="j82-js">(function(){var a=document.querySelector('#preise a.j58m');if(!a)return;a.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var t=document.querySelector('.ptabs [data-pt="b"]');if(t)t.click();setTimeout(function(){var k=document.querySelector('.pp[data-pp="b"] .pkh')||document.querySelector('.pp[data-pp="b"]');if(!k)return;var hd=document.querySelector('header.top'),hb=hd?hd.getBoundingClientRect().bottom:80;var y=k.getBoundingClientRect().top+scrollY-hb-24;try{scrollTo({top:y,behavior:'smooth'});}catch(_){scrollTo(0,y);}},120);},true);})();</script>
+<script id="j86-js">(function(){
+var S='.j78kp .kpc,.pks .pkc,#preise .pked,#preise ul.pkn li';
+/* Reiter-Panel nicht «inert» lassen: sonst reagieren die Karten nicht auf die Maus */
+function un(){[].forEach.call(document.querySelectorAll('#preise .ppan>.pp'),function(p){if(p.hasAttribute('inert'))p.removeAttribute('inert');});}
+un();[].forEach.call(document.querySelectorAll('#preise .ppan>.pp'),function(p){new MutationObserver(un).observe(p,{attributes:true,attributeFilter:['inert']});});
+/* Handy: Tippen = Hover */
+if(matchMedia('(hover: none)').matches){document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest(S);
+ [].forEach.call(document.querySelectorAll('.j78kp .kpc.on,.pks .pkc.on,#preise .pked.on,#preise ul.pkn li.on'),function(x){if(x!==c)x.classList.remove('on');});
+ if(c&&!e.target.closest('a,button'))c.classList.toggle('on');});}
+/* 900 zählt hoch wie in j75 */
+var el=document.querySelector('.j78kp .kpc .cnt[data-n]');if(el&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+ var c=el.closest('.kpc');if(c.getBoundingClientRect().top>innerHeight){var to=+el.getAttribute('data-n'),fr=Math.round(to*.6),D=1100,go=false;el.style.fontVariantNumeric='tabular-nums';el.textContent=fr;
+  function run(){var t0=null;function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);el.textContent=Math.round((fr+(to-fr)*e)/5)*5;if(k<1)requestAnimationFrame(f);else el.textContent=to;}requestAnimationFrame(f);setTimeout(function(){el.textContent=to;},D+400);}
+  function chk(){if(go)return;var r=c.getBoundingClientRect();if(r.top<innerHeight*.8&&r.bottom>0){go=true;run();removeEventListener('scroll',chk);}}
+  addEventListener('scroll',chk,{passive:true});chk();}}
+})();</script>
 </body>
 </html>

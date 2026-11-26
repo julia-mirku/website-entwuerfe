@@ -3420,6 +3420,17 @@ html body.j78page main>section.j78cta{padding-bottom:44px!important}
 html body .j78cta h2{text-wrap:balance}
 </style>
 <style id="j85a">html body .how .hgrid h3[data-t=hw3]{text-wrap:balance}html body main>section.safe+section#nach-dem-start{padding-top:84px}@media (max-width:900px){html body main>section.safe+section#nach-dem-start{padding-top:60px}}</style>
+<style id="j86">
+/* Preis gelb unterstreichen beim Hover / Tippen (wie .pcard .pv in j75) */
+html body .j78kp .kpc>b,html body .pkc .pkp,html body #preise .pked-p{background:linear-gradient(var(--sun),var(--sun)) 0 92%/0 .32em no-repeat;transition:background-size .35s ease;width:max-content;max-width:100%}
+html body .j78kp .kpc:hover>b,html body .j78kp .kpc.on>b,html body .pkc:hover .pkp,html body .pkc.on .pkp,html body #preise .pked:hover .pked-p,html body #preise .pked.on .pked-p{background-size:100% .32em}
+/* Karten reagieren wie die Preis-Karten */
+html body .pkc,html body #preise .pked{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+html body .pkc:hover,html body .pkc.on,html body #preise .pked:hover,html body #preise .pked.on{transform:translateY(-3px);border-color:var(--ink);box-shadow:5px 5px 0 var(--sun)}
+html body .j78kp .kpc.on{transform:translateY(-3px);box-shadow:0 14px 32px -10px rgba(255,190,20,.55),0 0 0 2px rgba(255,200,26,.55)}
+/* Hinweise: nach dem Durchlauf beim Tippen */
+html body #preise ul.pkn.j56i li.on{background-size:100% 3px}
+</style>
 </head>
 <body class="j78page">
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -5327,5 +5338,21 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 function go(){var e=t.querySelector('.eyebrow-line')||t,hd=document.querySelector('header.top'),hb=hd?hd.getBoundingClientRect().bottom:80;var y=e.getBoundingClientRect().top+scrollY-hb-28;try{scrollTo({top:Math.max(0,y),behavior:'instant'});}catch(_){scrollTo(0,y);}}
 var stop=false;addEventListener('wheel',function(){stop=true;},{passive:true});addEventListener('touchstart',function(){stop=true;},{passive:true});
 [80,300,700].forEach(function(ms){setTimeout(function(){if(!stop)go();},ms);});})();</script>
+<script id="j86-js">(function(){
+var S='.j78kp .kpc,.pks .pkc,#preise .pked,#preise ul.pkn li';
+/* Reiter-Panel nicht «inert» lassen: sonst reagieren die Karten nicht auf die Maus */
+function un(){[].forEach.call(document.querySelectorAll('#preise .ppan>.pp'),function(p){if(p.hasAttribute('inert'))p.removeAttribute('inert');});}
+un();[].forEach.call(document.querySelectorAll('#preise .ppan>.pp'),function(p){new MutationObserver(un).observe(p,{attributes:true,attributeFilter:['inert']});});
+/* Handy: Tippen = Hover */
+if(matchMedia('(hover: none)').matches){document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest(S);
+ [].forEach.call(document.querySelectorAll('.j78kp .kpc.on,.pks .pkc.on,#preise .pked.on,#preise ul.pkn li.on'),function(x){if(x!==c)x.classList.remove('on');});
+ if(c&&!e.target.closest('a,button'))c.classList.toggle('on');});}
+/* 900 zählt hoch wie in j75 */
+var el=document.querySelector('.j78kp .kpc .cnt[data-n]');if(el&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+ var c=el.closest('.kpc');if(c.getBoundingClientRect().top>innerHeight){var to=+el.getAttribute('data-n'),fr=Math.round(to*.6),D=1100,go=false;el.style.fontVariantNumeric='tabular-nums';el.textContent=fr;
+  function run(){var t0=null;function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);el.textContent=Math.round((fr+(to-fr)*e)/5)*5;if(k<1)requestAnimationFrame(f);else el.textContent=to;}requestAnimationFrame(f);setTimeout(function(){el.textContent=to;},D+400);}
+  function chk(){if(go)return;var r=c.getBoundingClientRect();if(r.top<innerHeight*.8&&r.bottom>0){go=true;run();removeEventListener('scroll',chk);}}
+  addEventListener('scroll',chk,{passive:true});chk();}}
+})();</script>
 </body>
 </html>
