@@ -5081,7 +5081,7 @@ document.addEventListener('click',function(e){
   var sec=document.getElementById('zusagen'); if(!sec) return;
   var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(RM||!(window.matchMedia&&matchMedia('(hover:hover)').matches)) return;
-  [].forEach.call(sec.querySelectorAll('.zk.zd3,.zk.zon,.zk.zdomk'),function(t){ var busy=false;
+  [].forEach.call(sec.querySelectorAll('.zk.zd3,.zk.zon,.zk.zed,.zk.zdomk'),function(t){ var busy=false;
     t.addEventListener('mouseenter',function(){ if(busy||!t.classList.contains('go')) return; busy=true;
       t.classList.remove('go'); void t.offsetWidth; t.classList.add('go'); setTimeout(function(){ busy=false; },3000); }); });
 })();</script>
