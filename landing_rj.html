@@ -3040,6 +3040,10 @@ html[lang^="de"] .udr .utxt h3.uh,html[lang^="en"] .udr .utxt h3.uh{margin-top:1
 html[lang^="de"] .udr .db .udom,html[lang^="en"] .udr .db .udom{margin-top:auto}
 </style>
 <style id="j53">.tsite .chips>.j53s{display:inline-block!important}</style>
+<style id="j55">
+html body section.how.pin.pin{height:auto!important}
+html body section.how.pin.pin .stk{position:relative!important;top:auto!important;height:auto!important;padding-bottom:110px!important}
+</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -5124,8 +5128,8 @@ document.addEventListener('pointerdown',function(e){if(p.hidden)return;if(e.targ
 var L=[].slice.call(document.querySelectorAll('.how .hgrid>li'));if(!L.length)return;var t=0,last=0;
 function f(){t=0;var mid=innerWidth>600&&innerWidth<901;var now=Date.now();
  for(var i=0;i<L.length;i++){var l=L[i];if(l.classList.contains('jrin'))continue;var r=l.getBoundingClientRect();
-  var gone=r.bottom<0;var want=gone||l.classList.contains('lit')||(mid&&r.top<innerHeight*0.85);
-  if(!want)break; if(!gone&&now-last<160){if(!t)t=setTimeout(f,170);break;} l.classList.add('jrin');last=gone?last:now;}}
+  var gone=r.bottom<0;var want=gone||L[0].getBoundingClientRect().top<innerHeight*0.8;
+  if(!want)break; if(!gone&&now-last<260){if(!t)t=setTimeout(f,270);break;} l.classList.add('jrin');last=gone?last:now;}}
 addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(f);},{passive:true});setInterval(f,400);f();})();
 (function(){ /* 2) Ja-Ring, sobald das Ja sichtbar da ist */
 var sec=document.querySelector('#ablauf'); if(!sec) return; var ol=sec.querySelector('ol'), li=ol&&ol.lastElementChild, c=li&&li.querySelector('.yes-chip'); if(!c) return;
@@ -5272,5 +5276,7 @@ setTimeout(function(){var s=document.getElementById('preise');if(!s)return;var t
 var t=s.querySelector('.pks')||s;t.scrollIntoView({behavior:'smooth',block:'start'});},380);});})();</script>
 <script id="j51-js">(function(){var c=document.querySelector('#preise .pcard.g');if(!c)return;function go(){var b=document.querySelector('#preise .pzrow .pbtn');if(b)b.click();}
 c.addEventListener('click',go);c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});})();</script>
+<script id="j55-js">(function(){var g=document.querySelector('.how .hgrid');if(!g)return;var L=[].slice.call(g.children);
+var iv=setInterval(function(){if(L.every(function(l){return l.classList.contains('jrin');})){setTimeout(function(){g.classList.add('done');},500);clearInterval(iv);}},200);})();</script>
 </body>
 </html>
