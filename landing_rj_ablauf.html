@@ -3431,6 +3431,11 @@ html body .j78kp .kpc.on{transform:translateY(-3px);box-shadow:0 14px 32px -10px
 /* Hinweise: nach dem Durchlauf beim Tippen */
 html body #preise ul.pkn.j56i li.on{background-size:100% 3px}
 </style>
+<style id="j88">
+html.hcmp header.top .brand>span{display:none}
+html.hcmp2 header.top .wrap{gap:14px}
+html.hcmp2 header .snav.na a{padding-left:6px!important;padding-right:6px!important;min-width:0!important}
+</style>
 </head>
 <body class="j78page">
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3451,6 +3456,13 @@ html body #preise ul.pkn.j56i li.on{background-size:100% 3px}
     <a class="btn btn-s" href="landing_rj.html#kontakt" data-t="cta_order_s">Gratis-Entwurf bestellen</a>
   </div>
 </header>
+<script id="j88-js">(function(){var R=document.documentElement,w=document.querySelector('header.top .wrap');if(!w)return;
+function over(){if(innerWidth<901)return false;var b=w.getBoundingClientRect(),pr=parseFloat(getComputedStyle(w).paddingRight)||0,m=0;
+ [].forEach.call(w.children,function(c){var r=c.getBoundingClientRect();if(r.width&&getComputedStyle(c).display!=='none')m=Math.max(m,r.right);});return m>b.right-pr+0.5;}
+function fit(){R.classList.remove('hcmp','hcmp2');if(over())R.classList.add('hcmp');if(over())R.classList.add('hcmp2');}
+fit();addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+new MutationObserver(function(){setTimeout(fit,30);}).observe(R,{attributes:true,attributeFilter:['lang']});})();</script>
+
 
 <div id="splash" aria-hidden="true"><div class="lg"><div class="mk"><i class="r">J</i><i class="a">&amp;</i><i class="j">R</i></div><div class="nm">Julia &amp; Robin Mirku</div></div></div>
 <main id="main">
