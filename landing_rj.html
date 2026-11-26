@@ -2,7 +2,7 @@
 <html lang="de-CH" translate="no">
 <head>
 <meta name="google" content="notranslate"><script>try{if("scrollRestoration" in history)history.scrollRestoration="manual";}catch(e){}if(!location.hash&&window.scrollY>0){window.scrollTo(0,0);}</script>
-<script>try{if(sessionStorage.getItem("rj-splash")==="1")document.documentElement.classList.add("sp-seen");}catch(e){}setTimeout(function(){var s=document.getElementById("splash");if(s)s.parentNode.removeChild(s);},1300);</script>
+<script>setTimeout(function(){var s=document.getElementById("splash");if(s)s.parentNode.removeChild(s);},1300);</script>
 <meta charset="utf-8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect x='1.5' y='1.5' width='41' height='41' rx='13' fill='%23FFC81A' stroke='%231F2328' stroke-width='2.5'/%3E%3Ctext x='22' y='28.5' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='900' font-size='15' fill='%231F2328'%3EJ%3Ctspan fill='%231E5E3F' font-size='12'%3E%26%3C/tspan%3ER%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="64x64" href="jr_favicon.png">
@@ -3127,6 +3127,24 @@ html[lang^="de"] .udr .db .udom,html[lang^="en"] .udr .db .udom{margin-top:auto}
       </div>
     </div>
   </section>
+<script id="j27-js">(function(){
+var s=document.querySelector('section.hero');if(!s)return;var h1=s.querySelector('h1'),sub=s.querySelector('.sub'),note=s.querySelector('.cta-note');
+var pt0=null,f1=null,fs=null;
+function fit(){ if(!h1||!note)return;
+  s.style.removeProperty('padding-top');h1.style.fontSize='';if(sub){sub.style.fontSize='';sub.style.removeProperty('margin-top');}var _c=s.querySelector('.cta');if(_c)_c.style.removeProperty('margin-top');note.style.removeProperty('margin-top');
+  pt0=parseFloat(getComputedStyle(s).paddingTop)||0; f1=parseFloat(getComputedStyle(h1).fontSize); fs=sub?parseFloat(getComputedStyle(sub).fontSize):0;
+  var top=s.getBoundingClientRect().top+scrollY, need=function(){return note.getBoundingClientRect().bottom+scrollY+8-innerHeight;};
+  var o=need(); if(o<=0) return;
+  var cut=Math.min(o,Math.max(0,pt0-6)); s.style.setProperty('padding-top',(pt0-cut)+'px','important'); o=need();
+  var gaps=[[sub,'margin-top',10],[s.querySelector('.cta'),'margin-top',14],[note,'margin-top',6]];
+  for(var g=0;g<gaps.length&&o>0;g++){ var e=gaps[g][0]; if(!e) continue; var v=parseFloat(getComputedStyle(e)[gaps[g][1]==='margin-top'?'marginTop':'marginBottom'])||0, m=gaps[g][2]; if(v<=m) continue; var c=Math.min(o,v-m); e.style.setProperty(gaps[g][1],(v-c)+'px','important'); o=need(); }
+}
+var t=null;function q(){clearTimeout(t);t=setTimeout(fit,80);}
+fit(); addEventListener('load',fit); addEventListener('resize',q); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+function _box(){document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListener('touchstart',function(){document.querySelectorAll('.contact .box.tap').forEach(function(x){if(x!==b)x.classList.remove('tap')});b.classList.add('tap');},{passive:true});});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',_box);else _box();
+})();</script>
   <section class="swirl" aria-labelledby="h-swirl">
     <div class="stage">
       <div class="inner">
@@ -4291,9 +4309,7 @@ document.querySelectorAll('.wcard.__aus').forEach(function(c){var sp=c.querySele
 <script>
 (function(){
   var s=document.getElementById('splash'); if(!s) return;
-  var seen=false; try{ seen=sessionStorage.getItem('rj-splash')==='1'; sessionStorage.setItem('rj-splash','1'); }catch(e){}
-  if(seen){ s.remove(); return; }
-  setTimeout(function(){ s.classList.add('out'); setTimeout(function(){ s.remove(); },320); },760);
+    setTimeout(function(){ s.classList.add('out'); setTimeout(function(){ s.remove(); },320); },760);
 })();
 </script>
 
@@ -5178,23 +5194,6 @@ var a=it[0].getBoundingClientRect(),b=it[1]?it[1].getBoundingClientRect():a,st=(
 <script id="j26-js">(function(){var R=document.documentElement,hero=document.querySelector('section.hero');
 function h(){var b=hero?hero.getBoundingClientRect().bottom:0;R.classList.toggle('chat-hero',b>innerHeight*0.25);}
 addEventListener('scroll',h,{passive:true});addEventListener('resize',h);h();})();</script>
-<script id="j27-js">(function(){
-var s=document.querySelector('section.hero');if(!s)return;var h1=s.querySelector('h1'),sub=s.querySelector('.sub'),note=s.querySelector('.cta-note');
-var pt0=null,f1=null,fs=null;
-function fit(){ if(!h1||!note)return;
-  s.style.removeProperty('padding-top');h1.style.fontSize='';if(sub){sub.style.fontSize='';sub.style.removeProperty('margin-top');}var _c=s.querySelector('.cta');if(_c)_c.style.removeProperty('margin-top');note.style.removeProperty('margin-top');
-  pt0=parseFloat(getComputedStyle(s).paddingTop)||0; f1=parseFloat(getComputedStyle(h1).fontSize); fs=sub?parseFloat(getComputedStyle(sub).fontSize):0;
-  var top=s.getBoundingClientRect().top+scrollY, need=function(){return note.getBoundingClientRect().bottom+scrollY+8-innerHeight;};
-  var o=need(); if(o<=0) return;
-  var cut=Math.min(o,Math.max(0,pt0-6)); s.style.setProperty('padding-top',(pt0-cut)+'px','important'); o=need();
-  var gaps=[[sub,'margin-top',10],[s.querySelector('.cta'),'margin-top',14],[note,'margin-top',6]];
-  for(var g=0;g<gaps.length&&o>0;g++){ var e=gaps[g][0]; if(!e) continue; var v=parseFloat(getComputedStyle(e)[gaps[g][1]==='margin-top'?'marginTop':'marginBottom'])||0, m=gaps[g][2]; if(v<=m) continue; var c=Math.min(o,v-m); e.style.setProperty(gaps[g][1],(v-c)+'px','important'); o=need(); }
-}
-var t=null;function q(){clearTimeout(t);t=setTimeout(fit,80);}
-fit(); addEventListener('load',fit); addEventListener('resize',q); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
-new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListener('touchstart',function(){document.querySelectorAll('.contact .box.tap').forEach(function(x){if(x!==b)x.classList.remove('tap')});b.classList.add('tap');},{passive:true});});
-})();</script>
 <script id="j28-js">(function(){var c=document.querySelector('.swirl .copy');if(!c)return;var h=c.querySelector('h2'),l=c.querySelector('.lead');if(!h||!l)return;
 function f(){l.style.transform='';if(getComputedStyle(l).display==='none')return;var r=document.createRange();r.selectNodeContents(h);var tb=r.getBoundingClientRect().bottom,lt=l.getBoundingClientRect().top;var d=Math.min(0,tb+14-lt);l.style.transform=d?'translateY('+d+'px)':'';}
 var t;function q(){clearTimeout(t);t=setTimeout(f,60);}f();addEventListener('load',f);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f);
