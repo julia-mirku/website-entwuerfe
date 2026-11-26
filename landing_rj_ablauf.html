@@ -3458,6 +3458,22 @@ html body main>section.j90f .box2{margin-top:0}
 html body main>section.j90f .gform{border-top:0;padding-top:0;margin-top:0}
 @media (max-width:900px){html body.j78page main>section.j90f{padding:72px 0 64px!important}}
 </style>
+<style id="j93h">
+/* Kopf ab 1341: breiter als die Inhaltsspalte, damit Name, Menü, Sprachen und Knopf Platz haben */
+@media (min-width:1341px){html body header.top .wrap{max-width:1440px}}
+</style>
+<style id="j93a">
+/* Karte «Im Entwurf ist noch alles offen»: deutlich, gleicher Kartenstil */
+html body #extras .pcard.q-ew{border-color:var(--ink);background:#fff;box-shadow:5px 5px 0 var(--sun)}
+html body #extras .pcard.q-ew .q-et{font-family:var(--head);font-weight:800;font-size:21px;line-height:1.25;color:var(--ink);text-wrap:balance}
+html body #extras .pcard.q-ew .q-el{margin-top:8px;font-weight:700;color:var(--ink)}
+/* Pakete: keine einzelnen Wörter */
+html body .pks .pkl li,html body .pks .pkfn,html body .pks .pksub{text-wrap:pretty;-webkit-hyphens:auto;hyphens:auto}
+/* Formular wie auf der Startseite: «(freiwillig)» eigene Zeile */
+html body #anfrage .gform label span i{font-style:normal;font-weight:500;color:var(--ink-2)}
+html body #anfrage .gf-g label>span>i{display:block!important;margin:0!important}
+html body #anfrage .gf-g{align-items:end}
+</style>
 </head>
 <body class="j78page">
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -3481,7 +3497,7 @@ html body main>section.j90f .gform{border-top:0;padding-top:0;margin-top:0}
 <script id="j88-js">(function(){var R=document.documentElement,w=document.querySelector('header.top .wrap');if(!w)return;
 function over(){if(innerWidth<901)return false;var b=w.getBoundingClientRect(),pr=parseFloat(getComputedStyle(w).paddingRight)||0,m=0;
  [].forEach.call(w.children,function(c){var r=c.getBoundingClientRect();if(r.width&&getComputedStyle(c).display!=='none')m=Math.max(m,r.right);});return m>b.right-pr+0.5;}
-function fit(){R.classList.remove('hcmp','hcmp2');if(over())R.classList.add('hcmp');if(over())R.classList.add('hcmp2');}
+function fit(){R.classList.remove('hcmp','hcmp2');if(over())R.classList.add('hcmp2');}
 fit();addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 new MutationObserver(function(){setTimeout(fit,30);}).observe(R,{attributes:true,attributeFilter:['lang']});})();</script>
 
