@@ -2934,7 +2934,7 @@ html.chat-hero .chatw:not(.open){opacity:0!important;transform:translateY(16px)!
 </style>
 <style id="j27">
 html body .contact .box{border:2px solid var(--line,#ECE7DC)!important;box-shadow:none!important;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-html body .contact .box:hover,html body .contact .box:focus-within,html body .contact .box.tap{border-color:var(--ink)!important;transform:translateY(-3px);box-shadow:0 14px 30px -12px rgba(30,94,63,.45),0 0 0 2px rgba(63,163,111,.45)!important}
+html body .contact .box:hover,html body .contact .box:focus-within,html body .contact .box.ctap{border-color:var(--ink)!important;transform:translateY(-3px);box-shadow:0 14px 30px -12px rgba(30,94,63,.45),0 0 0 2px rgba(63,163,111,.45)!important}
 </style>
 <style id="j32">
 .udr .dh{padding-top:12px!important;padding-bottom:12px!important}
@@ -3577,7 +3577,7 @@ function fit(){ if(!h1||!note)return;
 var t=null;function q(){clearTimeout(t);t=setTimeout(fit,80);}
 fit(); addEventListener('load',fit); addEventListener('resize',q); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-function _box(){document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListener('touchstart',function(){document.querySelectorAll('.contact .box.tap').forEach(function(x){if(x!==b)x.classList.remove('tap')});b.classList.add('tap');},{passive:true});});}
+function _box(){document.querySelectorAll('.contact .box').forEach(function(b){b.addEventListener('touchstart',function(){document.querySelectorAll('.contact .box.ctap').forEach(function(x){if(x!==b)x.classList.remove('ctap')});b.classList.add('ctap');},{passive:true});});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',_box);else _box();
 })();</script>
   <section class="swirl" aria-labelledby="h-swirl">
