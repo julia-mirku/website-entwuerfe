@@ -3472,6 +3472,7 @@ html body .works .wlist li.j85w>div>span{text-align:left;margin-top:0}}
 @media (min-width:901px) and (max-width:1023px){ html body #branchen .tlay .cards>.card{flex-basis:100% !important;max-width:100% !important} }
 </style>
 <style id="j108hz">@media (min-width:1200px){html body #kontakt .box2 .cbot>.cinfo{position:static!important;margin:22px 0 0!important;right:auto!important;bottom:auto!important}}</style>
+<style id="j117hf">html body section.hero.hfill{display:flex !important;flex-direction:column;justify-content:center}html body section.hero.hfill>.wrap{width:100%}</style>
 </head>
 <body>
 <a class="skip" href="#main" data-t="skip">Zum Inhalt</a>
@@ -5620,5 +5621,11 @@ var el=document.querySelector('.j78kp .kpc .cnt[data-n]');if(el&&!(window.matchM
   addEventListener('scroll',chk,{passive:true});chk();}}
 })();</script>
 <script id="j98-js">(function(){var d=[].slice.call(document.querySelectorAll('aside.drawer'));if(!d.length)return;var c=document.createElement('div');c.className='j98clip';document.body.appendChild(c);d.forEach(function(x){c.appendChild(x);});})();</script>
+<script id="j117hf-js">(function(){var s=document.querySelector('section.hero');if(!s)return;
+function fill(){s.style.removeProperty('min-height');s.classList.remove('hfill');var top=s.getBoundingClientRect().top+scrollY,need=Math.ceil(innerHeight-top);
+ if(need>0&&s.offsetHeight<need){s.style.setProperty('min-height',need+'px','important');s.classList.add('hfill');}}
+var t=null;function q(){clearTimeout(t);t=setTimeout(fill,90);}
+fill();addEventListener('load',fill);addEventListener('resize',q);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fill);
+new MutationObserver(q).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});})();</script>
 </body>
 </html>
